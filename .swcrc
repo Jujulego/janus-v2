@@ -1,12 +1,18 @@
 {
   "jsc": {
-    "target": "esnext",
     "parser": {
-      "syntax": "typescript"
+      "syntax": "typescript",
+      "decorators": true
+    },
+    "transform": {
+      "decoratorVersion": "2022-03"
     }
   },
   "module": {
     "type": "es6"
+  },
+  "env": {
+    "targets": "node 18"
   },
   "sourceMaps": true
 }
