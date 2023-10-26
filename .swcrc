@@ -1,0 +1,12 @@
+{
+  "jsc": {
+    "target": "esnext",
+    "parser": {
+      "syntax": "typescript"
+    }
+  },
+  "module": {
+    "type": "es6"
+  },
+  "sourceMaps": true
+}
