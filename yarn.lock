@@ -402,14 +402,14 @@ __metadata:
   linkType: hard
 
 "@jujulego/injector@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@jujulego/injector@npm:0.1.0"
+  version: 0.1.2
+  resolution: "@jujulego/injector@npm:0.1.2"
   dependencies:
     "@jujulego/aegis": "npm:^2.0.1"
     "@jujulego/utils": "npm:^2.0.2"
   peerDependencies:
     reflect-metadata: ^0.1.13
-  checksum: ed51832aea5eaf51d4d7f4f12253aa6569418d74b5f7fa9dfdb9ceaf03be83a3751953d80dce17704e381ae8c8993e14334fd1f8e7e36736e991ae113d24e02c
+  checksum: 5c6a14149f186951a0027e85077d2716c64106413ce01791cf38373bbd97284f5104c98d6a57028f34dffbe8ddecc477c00fb18daf3947c20c3320f9cab9215a
   languageName: node
   linkType: hard
 
