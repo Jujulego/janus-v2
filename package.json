@@ -27,7 +27,9 @@
     "test:types": "vitest typecheck"
   },
   "dependencies": {
-    "@jujulego/injector": "^0.1.0",
+    "@jujulego/injector": "^0.1.1",
+    "@jujulego/logger": "^0.2.4",
+    "ajv": "^8.12.0",
     "reflect-metadata": "^0.1.13",
     "yargs": "^17.7.2"
   },

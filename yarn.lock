@@ -401,15 +401,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/injector@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@jujulego/injector@npm:0.1.0"
+"@jujulego/injector@npm:^0.1.1":
+  version: 0.1.1
+  resolution: "@jujulego/injector@npm:0.1.1"
   dependencies:
     "@jujulego/aegis": "npm:^2.0.1"
     "@jujulego/utils": "npm:^2.0.2"
   peerDependencies:
     reflect-metadata: ^0.1.13
-  checksum: ed51832aea5eaf51d4d7f4f12253aa6569418d74b5f7fa9dfdb9ceaf03be83a3751953d80dce17704e381ae8c8993e14334fd1f8e7e36736e991ae113d24e02c
+  checksum: 8f6d877554cebec3944f505945bcf5e58c57d1dd1a8b109503f9e45b4a6b7bf4fff082b35fff8c68444b39082f59a3d1ac918d99c6b1344eab9563b263c01935
   languageName: node
   linkType: hard
 
@@ -417,8 +417,9 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@jujulego/injector": "npm:^0.1.0"
+    "@jujulego/injector": "npm:^0.1.1"
     "@jujulego/jill": "npm:2.3.3"
+    "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@swc/cli": "npm:0.1.62"
@@ -428,6 +429,7 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:6.9.0"
     "@typescript-eslint/parser": "npm:6.9.0"
     "@vitest/coverage-v8": "npm:0.34.6"
+    ajv: "npm:^8.12.0"
     eslint: "npm:8.52.0"
     eslint-plugin-vitest: "npm:0.3.8"
     reflect-metadata: "npm:^0.1.13"
@@ -474,7 +476,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/logger@npm:^0.2.2":
+"@jujulego/logger@npm:^0.2.2, @jujulego/logger@npm:^0.2.4":
   version: 0.2.4
   resolution: "@jujulego/logger@npm:0.2.4"
   dependencies:
