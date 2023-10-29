@@ -1,0 +1,26 @@
+services:
+  sample-api:
+    url: '/api-sample/'
+    gates:
+      local1:
+        target: 'http://localhost:3001/'
+        ws: true
+
+      local2:
+        target: 'http://localhost:3002/'
+
+      local3:
+        target: 'http://localhost:3003/'
+
+  sample-api-ii:
+    url: '/api-sample-ii/'
+    gates:
+      local1:
+        target: 'http://localhost:3001/'
+        ws: true
+
+      local2:
+        target: 'http://localhost:3002/'
+
+      local3:
+        target: 'http://localhost:3003/'

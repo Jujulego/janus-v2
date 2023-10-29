@@ -20,6 +20,6 @@ export interface ServiceConfig {
 /**
  * Janus configuration
  */
-export interface Configuration {
+export interface Config {
   readonly services: Readonly<Record<string, ServiceConfig>>;
 }
