@@ -378,16 +378,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/aegis@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@jujulego/aegis@npm:2.0.0"
+"@jujulego/aegis@npm:^2.0.1":
+  version: 2.0.1
+  resolution: "@jujulego/aegis@npm:2.0.1"
   dependencies:
     "@jujulego/event-tree": "npm:^4.1.1"
     "@jujulego/utils": "npm:^2.0.0"
   dependenciesMeta:
     vitest@0.34.5:
       unplugged: true
-  checksum: 1d89cb5e3f18e8ec88d11bb11e7db3b03ab82c4a133d0cacab9069faca4e6c0f6a5b6f04de61e8c62033813a162e3bfdf5c4887760a133635d44a0fa40b8fd4d
+  checksum: e8fc514032f16a614d7fff7361a56526a5ce4c424776817fced432dcf5a2c4988b9ab11560c70db0318d0290454f4cdb1494afe8014ac5d7ec64f87da2194cb6
   languageName: node
   linkType: hard
 
@@ -401,14 +401,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/injector@npm:^0.0.5":
-  version: 0.0.5
-  resolution: "@jujulego/injector@npm:0.0.5"
+"@jujulego/injector@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "@jujulego/injector@npm:0.1.0"
   dependencies:
-    "@jujulego/aegis": "npm:^2.0.0"
+    "@jujulego/aegis": "npm:^2.0.1"
+    "@jujulego/utils": "npm:^2.0.2"
   peerDependencies:
     reflect-metadata: ^0.1.13
-  checksum: de5422529b106d419c13b7b98f97db4fd0a5739de24ab389d08eeab633af4f705b2052a99c9fd9d57e865a6d8705ece6f9537530784afe88607299b7f10eb66f
+  checksum: ed51832aea5eaf51d4d7f4f12253aa6569418d74b5f7fa9dfdb9ceaf03be83a3751953d80dce17704e381ae8c8993e14334fd1f8e7e36736e991ae113d24e02c
   languageName: node
   linkType: hard
 
@@ -416,7 +417,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@jujulego/injector": "npm:^0.0.5"
+    "@jujulego/injector": "npm:^0.1.0"
     "@jujulego/jill": "npm:2.3.3"
     "@jujulego/vite-plugin-swc": "npm:1.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
@@ -507,7 +508,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.1":
+"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.1, @jujulego/utils@npm:^2.0.2":
   version: 2.0.2
   resolution: "@jujulego/utils@npm:2.0.2"
   dependencies:
