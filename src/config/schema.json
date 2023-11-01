@@ -1,0 +1,74 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["services"],
+  "properties": {
+    "pidfile": {
+      "type": "string",
+      "default": ".janus.pid"
+    },
+    "proxy": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "port": {
+          "type": "number",
+          "default": 3000
+        }
+      }
+    },
+    "services": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/service"
+      },
+      "minProperties": 1
+    }
+  },
+  "definitions": {
+    "gate": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target"],
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": false
+        },
+        "changeOrigin": {
+          "type": "boolean",
+          "default": false
+        },
+        "secure": {
+          "type": "boolean",
+          "default": false
+        },
+        "ws": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "service": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["url", "gates"],
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "gates": {
+          "type": "object",
+          "minProperties": 1,
+          "additionalProperties": {
+            "$ref": "#/definitions/gate"
+          }
+        }
+      }
+    }
+  }
+}

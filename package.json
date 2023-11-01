@@ -27,7 +27,13 @@
     "test:types": "vitest typecheck"
   },
   "dependencies": {
-    "@jujulego/injector": "^0.1.0",
+    "@jujulego/aegis": "^2.0.1",
+    "@jujulego/injector": "^0.1.2",
+    "@jujulego/logger": "^0.2.4",
+    "@jujulego/quick-tag": "^0.3.3",
+    "ajv": "^8.12.0",
+    "chalk-template": "^1.1.0",
+    "cosmiconfig": "^8.3.6",
     "reflect-metadata": "^0.1.13",
     "yargs": "^17.7.2"
   },

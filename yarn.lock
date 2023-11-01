@@ -401,15 +401,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/injector@npm:^0.1.0":
-  version: 0.1.0
-  resolution: "@jujulego/injector@npm:0.1.0"
+"@jujulego/injector@npm:^0.1.2":
+  version: 0.1.2
+  resolution: "@jujulego/injector@npm:0.1.2"
   dependencies:
     "@jujulego/aegis": "npm:^2.0.1"
     "@jujulego/utils": "npm:^2.0.2"
   peerDependencies:
     reflect-metadata: ^0.1.13
-  checksum: ed51832aea5eaf51d4d7f4f12253aa6569418d74b5f7fa9dfdb9ceaf03be83a3751953d80dce17704e381ae8c8993e14334fd1f8e7e36736e991ae113d24e02c
+  checksum: 5c6a14149f186951a0027e85077d2716c64106413ce01791cf38373bbd97284f5104c98d6a57028f34dffbe8ddecc477c00fb18daf3947c20c3320f9cab9215a
   languageName: node
   linkType: hard
 
@@ -417,8 +417,11 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@jujulego/injector": "npm:^0.1.0"
+    "@jujulego/aegis": "npm:^2.0.1"
+    "@jujulego/injector": "npm:^0.1.2"
     "@jujulego/jill": "npm:2.3.3"
+    "@jujulego/logger": "npm:^0.2.4"
+    "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/vite-plugin-swc": "npm:1.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@swc/cli": "npm:0.1.62"
@@ -428,6 +431,9 @@ __metadata:
     "@typescript-eslint/eslint-plugin": "npm:6.9.1"
     "@typescript-eslint/parser": "npm:6.9.1"
     "@vitest/coverage-v8": "npm:0.34.6"
+    ajv: "npm:^8.12.0"
+    chalk-template: "npm:^1.1.0"
+    cosmiconfig: "npm:^8.3.6"
     eslint: "npm:8.52.0"
     eslint-plugin-vitest: "npm:0.3.8"
     reflect-metadata: "npm:^0.1.13"
@@ -474,7 +480,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/logger@npm:^0.2.2":
+"@jujulego/logger@npm:^0.2.2, @jujulego/logger@npm:^0.2.4":
   version: 0.2.4
   resolution: "@jujulego/logger@npm:0.2.4"
   dependencies:
@@ -1769,7 +1775,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"cosmiconfig@npm:^8.2.0":
+"cosmiconfig@npm:^8.2.0, cosmiconfig@npm:^8.3.6":
   version: 8.3.6
   resolution: "cosmiconfig@npm:8.3.6"
   dependencies:
