@@ -12,6 +12,20 @@ const schema = {
   additionalProperties: false,
   required: ['services'],
   properties: {
+    pidfile: {
+      type: 'string',
+      default: '.janus.pid'
+    },
+    proxy: {
+      type: 'object',
+      additionalProperties: false,
+      properties: {
+        port: {
+          type: 'number',
+          default: 3000
+        }
+      }
+    },
     services: {
       type: 'object',
       additionalProperties: {
