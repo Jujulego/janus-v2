@@ -18,8 +18,17 @@ export interface ServiceConfig {
 }
 
 /**
+ * Proxy server config
+ */
+export interface IProxyConfig {
+  readonly port: number;
+}
+
+/**
  * Janus configuration
  */
 export interface Config {
+  readonly pidfile: string;
+  readonly proxy: IProxyConfig;
   readonly services: Readonly<Record<string, ServiceConfig>>;
 }

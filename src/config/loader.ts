@@ -14,6 +14,12 @@ export const Config = token$(
     const loaded = await explorer.search();
     const config = loaded?.config ?? {};
 
+    // Apply defaults
+    config.pidfile ??= '.janus.pid';
+
+    config.proxy ??= {};
+    config.proxy.port ??= 3000;
+
     // Validate
     const validator = inject$(ConfigValidator);
 

@@ -1,3 +1,5 @@
+import { chalkTemplateStderr } from 'chalk-template';
+import { flow$ } from '@jujulego/aegis';
 import { inject$, singleton$, token$ } from '@jujulego/injector';
 import {
   logger$,
@@ -9,8 +11,6 @@ import {
   WithTimestamp,
   withTimestamp
 } from '@jujulego/logger';
-import { flow$ } from '@jujulego/aegis';
-import { chalkTemplateStderr } from 'chalk-template';
 import { qprop } from '@jujulego/quick-tag';
 
 // Types
