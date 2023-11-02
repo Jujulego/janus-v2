@@ -5,14 +5,15 @@ import { LabelledLogger } from './logger.config.js';
 
 // Types
 export type AjvParser = ajv.default;
-export type AjvParserType = { new (opts: ajv.Options): AjvParser };
+export type AjvParserType = new (opts: ajv.Options) => AjvParser;
 
 // Token
 export const Ajv = token$(
   () => new (ajv as unknown as AjvParserType)({
-      allErrors: true,
-      logger: inject$(LabelledLogger('ajv')),
-      strict: process.env.NODE_ENV === 'development' ? 'log' : true,
-    }),
+    allErrors: true,
+    useDefaults: true,
+    logger: inject$(LabelledLogger('ajv')),
+    strict: process.env.NODE_ENV === 'development' ? 'log' : true,
+  }),
   { modifiers: [singleton$()] }
 );

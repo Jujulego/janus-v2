@@ -1,0 +1,30 @@
+import { SyncMutableRef, var$ } from '@jujulego/aegis';
+import { inject$, Service } from '@jujulego/injector';
+import { nanoid } from 'nanoid';
+
+import { Redirection } from './redirection.js';
+import { LabelledLogger } from '../logger.config.js';
+
+// Repository
+@Service()
+export class RedirectionRepository {
+  // Attributes
+  private readonly _logger = inject$(LabelledLogger('redirections'));
+  private readonly _redirections = new Map<string, SyncMutableRef<Redirection>>();
+
+  // Methods
+  register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
+    const id = nanoid(6);
+    const ref = var$({ ...redirection, id });
+    this._redirections.set(id, ref);
+
+    const gates = Object.values(redirection.outputs);
+    this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
+
+    return ref;
+  }
+
+  get(id: string): SyncMutableRef<Redirection> | null {
+    return this._redirections.get(id) ?? null;
+  }
+}
