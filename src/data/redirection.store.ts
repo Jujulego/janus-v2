@@ -7,7 +7,7 @@ import { LabelledLogger } from '../logger.config.ts';
 
 // Repository
 @Service()
-export class RedirectionRepository {
+export class RedirectionStore {
   // Attributes
   private readonly _logger = inject$(LabelledLogger('redirections'));
   private readonly _redirections = new Map<string, SyncMutableRef<Redirection>>();

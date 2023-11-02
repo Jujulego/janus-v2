@@ -7,6 +7,7 @@ export interface RedirectionOutput {
 }
 
 export interface Redirection {
+  id: string;
   url: string;
   outputs: Record<string, RedirectionOutput>;
 }
