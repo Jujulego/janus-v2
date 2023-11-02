@@ -1,8 +1,8 @@
 import { inject$ } from '@jujulego/injector';
 import 'reflect-metadata';
 
-import { Config } from './config/loader.js';
-import { RedirectionRepository } from './data/redirection.repository.js';
+import { Config } from './config/loader.ts';
+import { RedirectionRepository } from './data/redirection.repository.ts';
 
 // Bootstrap
 (async () => {

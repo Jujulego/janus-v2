@@ -1,9 +1,9 @@
 import { inject$, singleton$, token$ } from '@jujulego/injector';
 
-import { Ajv } from '../ajv.config.js';
-import { LabelledLogger } from '../logger.config.js';
-import { ConfigExplorer, ConfigValidator } from './utils.js';
-import { ConfigOptions } from './options.js';
+import { Ajv } from '../ajv.config.ts';
+import { LabelledLogger } from '../logger.config.ts';
+import { ConfigExplorer, ConfigValidator } from './utils.ts';
+import { ConfigOptions } from './options.ts';
 
 // Tokens
 export const Config = token$(

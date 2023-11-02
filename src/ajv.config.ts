@@ -1,7 +1,7 @@
 import { inject$, singleton$, token$ } from '@jujulego/injector';
 import ajv from 'ajv';
 
-import { LabelledLogger } from './logger.config.js';
+import { LabelledLogger } from './logger.config.ts';
 
 // Types
 export type AjvParser = ajv.default;
