@@ -2,8 +2,8 @@ import { SyncMutableRef, var$ } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
 import { nanoid } from 'nanoid';
 
-import { Redirection } from './redirection.js';
-import { LabelledLogger } from '../logger.config.js';
+import { Redirection } from './redirection.ts';
+import { LabelledLogger } from '../logger.config.ts';
 
 // Repository
 @Service()
