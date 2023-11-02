@@ -10,7 +10,7 @@ const schema = {
   $schema: 'http://json-schema.org/draft-07/schema',
   type: 'object',
   additionalProperties: false,
-  required: ['services'],
+  required: ['redirections'],
   properties: {
     pidfile: {
       type: 'string',
@@ -26,16 +26,16 @@ const schema = {
         }
       }
     },
-    services: {
-      type: 'object',
-      additionalProperties: {
-        $ref: '#/definitions/service'
+    redirections: {
+      type: 'array',
+      items: {
+        $ref: '#/definitions/redirection'
       },
-      minProperties: 1
+      minItems: 1
     }
   },
   definitions: {
-    gate: {
+    output: {
       type: 'object',
       additionalProperties: false,
       required: ['target'],
@@ -61,19 +61,19 @@ const schema = {
         }
       }
     },
-    service: {
+    redirection: {
       type: 'object',
       additionalProperties: false,
-      required: ['url', 'gates'],
+      required: ['url', 'outputs'],
       properties: {
         url: {
           type: 'string'
         },
-        gates: {
+        outputs: {
           type: 'object',
           minProperties: 1,
           additionalProperties: {
-            $ref: '#/definitions/gate'
+            $ref: '#/definitions/output'
           }
         }
       }

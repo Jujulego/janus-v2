@@ -1,12 +1,12 @@
 /**
  * Possible proxy output
  */
-export interface GateConfig {
+export interface OutputConfig {
   readonly target: string;
-  readonly enabled?: boolean;
-  readonly changeOrigin?: boolean;
-  readonly secure?: boolean;
-  readonly ws?: boolean;
+  readonly enabled: boolean;
+  readonly changeOrigin: boolean;
+  readonly secure: boolean;
+  readonly ws: boolean;
 }
 
 /**
@@ -14,7 +14,7 @@ export interface GateConfig {
  */
 export interface RedirectionConfig {
   readonly url: string;
-  readonly gates: Readonly<Record<string, GateConfig>>;
+  readonly outputs: Readonly<Record<string, OutputConfig>>;
 }
 
 /**

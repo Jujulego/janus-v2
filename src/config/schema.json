@@ -37,7 +37,7 @@
         },
         "enabled": {
           "type": "boolean",
-          "default": false
+          "default": true
         },
         "changeOrigin": {
           "type": "boolean",
