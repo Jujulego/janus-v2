@@ -1,7 +1,6 @@
-services:
-  sample-api:
-    url: '/api-sample/'
-    gates:
+redirections:
+  - url: '/api-sample/'
+    outputs:
       local1:
         target: 'http://localhost:3001/'
         ws: true
@@ -12,9 +11,8 @@ services:
       local3:
         target: 'http://localhost:3003/'
 
-  sample-api-ii:
-    url: '/api-sample-ii/'
-    gates:
+  - url: '/api-sample-ii/'
+    outputs:
       local1:
         target: 'http://localhost:3001/'
         ws: true

@@ -12,7 +12,7 @@ export interface GateConfig {
 /**
  * Redirected url inputs
  */
-export interface ServiceConfig {
+export interface RedirectionConfig {
   readonly url: string;
   readonly gates: Readonly<Record<string, GateConfig>>;
 }
@@ -30,5 +30,5 @@ export interface IProxyConfig {
 export interface Config {
   readonly pidfile: string;
   readonly proxy: IProxyConfig;
-  readonly services: Readonly<Record<string, ServiceConfig>>;
+  readonly redirections: readonly RedirectionConfig[];
 }
