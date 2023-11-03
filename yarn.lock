@@ -407,7 +407,7 @@ __metadata:
     chalk-template: "npm:^1.1.0"
     cosmiconfig: "npm:^8.3.6"
     eslint: "npm:8.52.0"
-    eslint-plugin-vitest: "npm:0.3.8"
+    eslint-plugin-vitest: "npm:0.3.9"
     nanoid: "npm:^5.0.2"
     reflect-metadata: "npm:^0.1.13"
     rollup: "npm:4.2.0"
@@ -1048,7 +1048,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@typescript-eslint/utils@npm:6.9.1, @typescript-eslint/utils@npm:^6.7.5":
+"@typescript-eslint/utils@npm:6.9.1, @typescript-eslint/utils@npm:^6.9.1":
   version: 6.9.1
   resolution: "@typescript-eslint/utils@npm:6.9.1"
   dependencies:
@@ -1908,18 +1908,20 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest@npm:0.3.8":
-  version: 0.3.8
-  resolution: "eslint-plugin-vitest@npm:0.3.8"
+"eslint-plugin-vitest@npm:0.3.9":
+  version: 0.3.9
+  resolution: "eslint-plugin-vitest@npm:0.3.9"
   dependencies:
-    "@typescript-eslint/utils": "npm:^6.7.5"
+    "@typescript-eslint/utils": "npm:^6.9.1"
   peerDependencies:
     eslint: ">=8.0.0"
     vitest: "*"
   peerDependenciesMeta:
     "@typescript-eslint/eslint-plugin":
       optional: true
-  checksum: 85df9e7d90bbbbff68d549155595884544c0507d73f7934aa69232d8d45b543e0e6b20422b611e73b47734381a40ac5eab54ae5d2a39d4cc11f4cdb3119e0ff8
+    vitest:
+      optional: true
+  checksum: 003f0dfefa7b5c67f78d098807d4bbb9952bd12bc6ebc839db27614c78ba8690a4cf2a67f49568aafe0100ca8914e41f9aac6a912890d59d49aa87e6f2097d08
   languageName: node
   linkType: hard
 
