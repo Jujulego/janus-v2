@@ -1,15 +1,10 @@
 redirections:
   - url: '/api-sample/'
     outputs:
-      local1:
-        target: 'http://localhost:3001/'
-        ws: true
-
-      local2:
-        target: 'http://localhost:3002/'
-
-      local3:
-        target: 'http://localhost:3003/'
+      example:
+        target: 'https://example.com/'
+        changeOrigin: true
+        secure: true
 
   - url: '/api-sample-ii/'
     outputs:

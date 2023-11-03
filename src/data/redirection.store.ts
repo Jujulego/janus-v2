@@ -27,4 +27,16 @@ export class RedirectionStore {
   get(id: string): SyncMutableRef<Redirection> | null {
     return this._redirections.get(id) ?? null;
   }
+
+  resolve(url: string): Redirection | null {
+    for (const ref of this._redirections.values()) {
+      const redirection = ref.read();
+
+      if (url.startsWith(redirection.url)) {
+        return redirection;
+      }
+    }
+
+    return null;
+  }
 }

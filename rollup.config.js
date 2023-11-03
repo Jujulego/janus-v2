@@ -21,7 +21,10 @@ const options = {
     'ajv',
     'chalk-template',
     'cosmiconfig',
+    'http-proxy',
     'nanoid',
+    'node:http',
+    'node:os',
     'reflect-metadata',
     'yargs',
     'yargs/helpers'

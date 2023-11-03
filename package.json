@@ -21,6 +21,7 @@
     "lint": "eslint .",
     "clean": "shx rm -r dist",
     "build": "rollup -c",
+    "watch": "rollup -c --watch",
     "test": "vitest run",
     "test:types": "vitest typecheck"
   },
