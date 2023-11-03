@@ -49,7 +49,7 @@ export class ProxyServer {
           return;
         } else {
           this._logger.warn(`#${redirection.read().id}.${name} is not responding`);
-          redirection.disable(name);
+          redirection.disableOutput(name);
         }
       }
 
