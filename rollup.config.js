@@ -22,6 +22,7 @@ const options = {
     'chalk-template',
     'cosmiconfig',
     'http-proxy',
+    'immer',
     'nanoid',
     'node:http',
     'node:os',

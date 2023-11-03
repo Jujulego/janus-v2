@@ -1,6 +1,13 @@
 redirections:
   - url: '/api-sample/'
     outputs:
+      local1:
+        target: 'http://localhost:3001/'
+        ws: true
+
+      local2:
+        target: 'http://localhost:3002/'
+
       example:
         target: 'https://example.com/'
         changeOrigin: true
