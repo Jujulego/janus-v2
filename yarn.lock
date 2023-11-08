@@ -399,7 +399,7 @@ __metadata:
     "@swc/cli": "npm:0.1.62"
     "@swc/core": "npm:1.3.96"
     "@types/node": "npm:18.18.9"
-    "@types/yargs": "npm:17.0.30"
+    "@types/yargs": "npm:17.0.31"
     "@typescript-eslint/eslint-plugin": "npm:6.10.0"
     "@typescript-eslint/parser": "npm:6.10.0"
     "@vitest/coverage-v8": "npm:0.34.6"
@@ -944,12 +944,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/yargs@npm:17.0.30":
-  version: 17.0.30
-  resolution: "@types/yargs@npm:17.0.30"
+"@types/yargs@npm:17.0.31":
+  version: 17.0.31
+  resolution: "@types/yargs@npm:17.0.31"
   dependencies:
     "@types/yargs-parser": "npm:*"
-  checksum: 7e3b4de5aa406a408d93e8a282314c7b28160185322044eea6373c5a7625a47743dc17044fff1a6cde7d0c022ecfd8e78a4f9df9c01afc07b1df6b0e0e6275af
+  checksum: 1e04df99bd0ad8ac8b3748b6ac0e99a9a4efe20b9cd8eab69ac9503fe87ab9bec312ad56982e969cdb0e2c0679431434ad571f6934049adb15fa35b22810c867
   languageName: node
   linkType: hard
 
