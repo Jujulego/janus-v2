@@ -373,6 +373,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@jujulego/aegis@npm:^2.1.0":
+  version: 2.1.0
+  resolution: "@jujulego/aegis@npm:2.1.0"
+  dependencies:
+    "@jujulego/event-tree": "npm:^4.3.0"
+    "@jujulego/utils": "npm:^2.0.0"
+    immer: "npm:^10.0.3"
+  dependenciesMeta:
+    vitest@0.34.5:
+      unplugged: true
+  checksum: 505c9cfa2a98e2b827012449eccdd7a1e561e94a2e4e57c1c43046dde0d88b91ef23535c5efa2d58028bf7df95432303e5b4289b9ddfd8027a1349a6c385afa5
+  languageName: node
+  linkType: hard
+
 "@jujulego/event-tree@npm:^4.1.0, @jujulego/event-tree@npm:^4.1.1, @jujulego/event-tree@npm:^4.2.0":
   version: 4.2.0
   resolution: "@jujulego/event-tree@npm:4.2.0"
@@ -380,6 +394,16 @@ __metadata:
     vitest@0.34.6:
       unplugged: true
   checksum: a38ef01dc4497bff879b82729cf0c51304a83cd1197e3df1577dd50b44dd36ca06255b41b6833d32ccbbfe49b92219d5ceaf95385175cffe623ee3d423dfd340
+  languageName: node
+  linkType: hard
+
+"@jujulego/event-tree@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@jujulego/event-tree@npm:4.3.0"
+  dependenciesMeta:
+    vitest@0.34.6:
+      unplugged: true
+  checksum: 8ceb88b3aa794496b88b1e2e7cd1e8b84d071d93e288fdb1ba36ab19934167d1c1f32f28b513f505bc03c5c723a33728640d88342fa9f85e3b37c618d6cc9226
   languageName: node
   linkType: hard
 
@@ -399,7 +423,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@jujulego/aegis": "npm:^2.0.1"
+    "@jujulego/aegis": "npm:^2.1.0"
     "@jujulego/injector": "npm:^0.1.2"
     "@jujulego/jill": "npm:2.4.0-alpha.3"
     "@jujulego/logger": "npm:^0.2.4"
