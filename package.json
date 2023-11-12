@@ -36,8 +36,6 @@
     "chalk-template": "^1.1.0",
     "cosmiconfig": "^8.3.6",
     "http-proxy": "^1.18.1",
-    "immer": "^10.0.3",
-    "nanoid": "^5.0.2",
     "reflect-metadata": "^0.1.13",
     "yargs": "^17.7.2"
   },

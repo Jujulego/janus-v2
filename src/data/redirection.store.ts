@@ -1,6 +1,6 @@
 import { actions$, RefMap, SyncMutableRef, var$ } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
-import { nanoid } from 'nanoid';
+import { createHash } from 'node:crypto';
 
 import { Redirection } from './redirection.ts';
 import { LabelledLogger } from '../logger.config.ts';
@@ -30,8 +30,15 @@ export class RedirectionStore {
   }));
 
   // Methods
+  private _generateId(url: string) {
+    const hash = createHash('md5');
+    hash.update(url);
+
+    return hash.digest().toString('base64url');
+  }
+
   register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
-    const id = nanoid(6);
+    const id = this._generateId(redirection.url);
     const ref = this._redirections.set(id, { ...redirection, id });
 
     const gates = Object.values(redirection.outputs);
