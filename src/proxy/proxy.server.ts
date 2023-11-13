@@ -38,18 +38,18 @@ export class ProxyServer {
         return;
       }
 
-      for (const [name, output] of Object.entries(redirection.read().outputs)) {
+      for (const output of redirection.read().outputs) {
         if (!output.enabled) {
           continue;
         }
 
-        this._logger.info(`${req.url} => ${output.target} (#${redirection.read().id}.${name})`);
+        this._logger.info(`${req.url} => ${output.target} (#${redirection.read().id}.${output.name})`);
 
         if (await this._redirectWebTo(req, res, output)) {
           return;
         } else {
-          this._logger.warn(`#${redirection.read().id}.${name} is not responding`);
-          redirection.disableOutput(name);
+          this._logger.warn(`#${redirection.read().id}.${output.name} is not responding`);
+          redirection.disableOutput(output.name);
         }
       }
 

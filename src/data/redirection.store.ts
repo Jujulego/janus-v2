@@ -1,8 +1,8 @@
-import { actions$, RefMap, SyncMutableRef, var$ } from '@jujulego/aegis';
+import { RefMap, SyncMutableRef } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
 import { createHash } from 'node:crypto';
 
-import { Redirection } from './redirection.ts';
+import { Redirection, redirection$ } from './redirection.ts';
 import { LabelledLogger } from '../logger.config.ts';
 
 // Repository
@@ -10,24 +10,7 @@ import { LabelledLogger } from '../logger.config.ts';
 export class RedirectionStore {
   // Attributes
   private readonly _logger = inject$(LabelledLogger('redirections'));
-
-  private readonly _redirections = new RefMap((key: string, state: Redirection) => actions$(var$(state), {
-    enableOutput: (name: string) => (draft) => {
-      const output = draft.outputs[name];
-
-      if (output) {
-        output.enabled = true;
-      }
-    },
-    disableOutput: (name: string) => (draft) => {
-      const output = draft.outputs[name];
-
-      if (output) {
-        output.enabled = false;
-        this._logger.info(`Output #${draft.id}.${name} disabled`);
-      }
-    }
-  }));
+  private readonly _redirections = new RefMap((_: string, value: Redirection) => redirection$(value));
 
   // Methods
   private _generateId(url: string) {

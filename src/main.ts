@@ -13,7 +13,11 @@ import { ProxyServer } from './proxy/proxy.server.ts';
     const proxy = inject$(ProxyServer);
 
     for (const redirect of config.redirections) {
-      repository.register(redirect);
+      repository.register({
+        ...redirect,
+        outputs: Object.entries(redirect.outputs)
+          .map(([name, output]) => Object.assign(output, { name }))
+      });
     }
 
     proxy.listen(config.proxy.port);
