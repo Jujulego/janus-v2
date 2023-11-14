@@ -52,7 +52,7 @@
     "rollup": "4.4.1",
     "shx": "0.3.4",
     "typescript": "5.2.2",
-    "vite": "5.0.0-beta.18",
+    "vite": "5.0.0-beta.19",
     "vite-tsconfig-paths": "4.2.1",
     "vitest": "0.34.6"
   },
