@@ -89,4 +89,9 @@ export class ProxyServer {
     res.write(JSON.stringify(content));
     res.end();
   }
+
+  // Properties
+  get server() {
+    return this._server;
+  }
 }

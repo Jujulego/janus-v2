@@ -30,7 +30,12 @@
       "files": "**/*.test.{js,jsx,ts,tsx}",
       "extends": [
         "plugin:vitest/recommended"
-      ]
+      ],
+      "rules": {
+        "vitest/expect-expect": ["error", {
+          "customExpressions": ["expect", "request.*.expect"]
+        }]
+      }
     }
   ]
 }
