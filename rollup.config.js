@@ -18,6 +18,7 @@ const options = {
     '@jujulego/injector',
     '@jujulego/logger',
     '@jujulego/quick-tag',
+    '@jujulego/utils',
     'ajv',
     'chalk-template',
     'cosmiconfig',
@@ -25,6 +26,7 @@ const options = {
     'node:crypto',
     'node:http',
     'node:os',
+    'node:stream',
     'reflect-metadata',
     'yargs',
     'yargs/helpers'
