@@ -1,11 +1,11 @@
 import { Inject, inject$, Service } from '@jujulego/injector';
+import { Flag } from '@jujulego/utils';
 import http from 'node:http';
 import stream from 'node:stream';
-import proxy from 'http-proxy';
+import proxy, { ServerOptions } from 'http-proxy';
 
 import { LabelledLogger } from '../logger.config.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
-import { RedirectionOutput } from '../data/redirection.js';
 
 // Proxy server
 @Service()
@@ -27,10 +27,16 @@ export class ProxyServer {
     });
   }
 
+  private _bodyLength(req: http.IncomingMessage): number {
+    const length = req.headers['content-length'];
+    return length ? parseInt(length) : 0;
+  }
+
   private async _handleRequest(req: http.IncomingMessage, res: http.ServerResponse) {
     try {
       const redirection = this._redirections.resolve(req.url ?? '');
 
+      // No redirection found
       if (!redirection) {
         this._logger.warn(`${req.url} => unresolved`);
         this._send(res, 404, { message: 'No redirection found' });
@@ -38,14 +44,45 @@ export class ProxyServer {
         return;
       }
 
-      for (const output of redirection.read().outputs) {
+      // Get outputs
+      const outputs = redirection.read().outputs;
+      const count = outputs.reduce((cnt, out) => cnt + (out.enabled ? 1 : 0), 0);
+
+      // Save body for future requests
+      const buffer = Buffer.allocUnsafe(count > 1 ? this._bodyLength(req) : 0);
+      const isComplete = new Flag();
+
+      if (count > 1) {
+        let cursor = 0;
+
+        req.on('data', (chunk: Buffer) => {
+          cursor += chunk.copy(buffer, cursor);
+        });
+
+        req.once('end', () => {
+          isComplete.raise();
+        });
+      }
+
+      // Iterate on outputs
+      let first = true;
+
+      for (const output of outputs) {
         if (!output.enabled) {
           continue;
         }
 
         this._logger.info(`${req.url} => ${output.target} (#${redirection.read().id}.${output.name})`);
+        const options: ServerOptions = { ...output };
 
-        if (await this._redirectWebTo(req, res, output)) {
+        if (!first) {
+          await isComplete.waitFor(true);
+          options.buffer = stream.Readable.from(buffer);
+        } else {
+          first = false;
+        }
+
+        if (await this._redirectWebTo(req, res, options)) {
           return;
         } else {
           this._logger.warn(`#${redirection.read().id}.${output.name} is not responding`);
@@ -69,7 +106,7 @@ export class ProxyServer {
     // this._proxy.ws(req, socket, head, { target: 'http://localhost:3001' });
   }
 
-  private _redirectWebTo(req: http.IncomingMessage, res: http.ServerResponse, output: RedirectionOutput): Promise<boolean> {
+  private _redirectWebTo(req: http.IncomingMessage, res: http.ServerResponse, output: ServerOptions): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       res.once('close', () => resolve(true));
 
