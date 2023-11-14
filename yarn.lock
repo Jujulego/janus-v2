@@ -351,25 +351,26 @@ __metadata:
   linkType: hard
 
 "@jujulego/aegis@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@jujulego/aegis@npm:2.0.1"
+  version: 2.1.1
+  resolution: "@jujulego/aegis@npm:2.1.1"
   dependencies:
-    "@jujulego/event-tree": "npm:^4.1.1"
+    "@jujulego/event-tree": "npm:^4.3.0"
     "@jujulego/utils": "npm:^2.0.0"
+    immer: "npm:^10.0.3"
   dependenciesMeta:
     vitest@0.34.5:
       unplugged: true
-  checksum: e8fc514032f16a614d7fff7361a56526a5ce4c424776817fced432dcf5a2c4988b9ab11560c70db0318d0290454f4cdb1494afe8014ac5d7ec64f87da2194cb6
+  checksum: fab3b6776343b8aba79cf6b14a08998c2af68c4b822efb246968ddf1408acf225e576c5a049fa7231581b1aa5ab2806ba3cbf84652cc9c744e6f3bd820b88a82
   languageName: node
   linkType: hard
 
-"@jujulego/event-tree@npm:^4.1.0, @jujulego/event-tree@npm:^4.1.1":
-  version: 4.2.0
-  resolution: "@jujulego/event-tree@npm:4.2.0"
+"@jujulego/event-tree@npm:^4.1.0, @jujulego/event-tree@npm:^4.1.1, @jujulego/event-tree@npm:^4.3.0":
+  version: 4.3.0
+  resolution: "@jujulego/event-tree@npm:4.3.0"
   dependenciesMeta:
     vitest@0.34.6:
       unplugged: true
-  checksum: a38ef01dc4497bff879b82729cf0c51304a83cd1197e3df1577dd50b44dd36ca06255b41b6833d32ccbbfe49b92219d5ceaf95385175cffe623ee3d423dfd340
+  checksum: 8ceb88b3aa794496b88b1e2e7cd1e8b84d071d93e288fdb1ba36ab19934167d1c1f32f28b513f505bc03c5c723a33728640d88342fa9f85e3b37c618d6cc9226
   languageName: node
   linkType: hard
 
@@ -2569,6 +2570,13 @@ __metadata:
   version: 5.2.4
   resolution: "ignore@npm:5.2.4"
   checksum: 7c7cd90edd9fea6e037f9b9da4b01bf0a86b198ce78345f9bbd983929d68ff14830be31111edc5d70c264921f4962404d75b7262b4d9cc3bc12381eccbd03096
+  languageName: node
+  linkType: hard
+
+"immer@npm:^10.0.3":
+  version: 10.0.3
+  resolution: "immer@npm:10.0.3"
+  checksum: 282a4f8479a40f7d12b2b3243c095e3e892bf99058e2ffcdd6b8e9fd143e6a90f2717ab9b6c8b97c927ffb8054465c8f647056f41660dbfd672e240cf1063503
   languageName: node
   linkType: hard
 
