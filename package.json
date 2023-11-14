@@ -41,7 +41,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
-    "@jujulego/jill": "2.4.0-alpha.3",
+    "@jujulego/jill": "2.4.0-alpha.4",
     "@jujulego/vite-plugin-swc": "1.1.0",
     "@microsoft/eslint-formatter-sarif": "3.0.0",
     "@rollup/plugin-json": "6.0.1",

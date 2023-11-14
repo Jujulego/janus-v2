@@ -387,20 +387,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/aegis@npm:^2.0.0-beta.5, @jujulego/aegis@npm:^2.0.1":
-  version: 2.0.1
-  resolution: "@jujulego/aegis@npm:2.0.1"
-  dependencies:
-    "@jujulego/event-tree": "npm:^4.1.1"
-    "@jujulego/utils": "npm:^2.0.0"
-  dependenciesMeta:
-    vitest@0.34.5:
-      unplugged: true
-  checksum: e8fc514032f16a614d7fff7361a56526a5ce4c424776817fced432dcf5a2c4988b9ab11560c70db0318d0290454f4cdb1494afe8014ac5d7ec64f87da2194cb6
-  languageName: node
-  linkType: hard
-
-"@jujulego/aegis@npm:^2.1.1":
+"@jujulego/aegis@npm:^2.0.1, @jujulego/aegis@npm:^2.1.0, @jujulego/aegis@npm:^2.1.1":
   version: 2.1.1
   resolution: "@jujulego/aegis@npm:2.1.1"
   dependencies:
@@ -414,17 +401,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/event-tree@npm:^4.1.0, @jujulego/event-tree@npm:^4.1.1, @jujulego/event-tree@npm:^4.2.0":
-  version: 4.2.0
-  resolution: "@jujulego/event-tree@npm:4.2.0"
-  dependenciesMeta:
-    vitest@0.34.6:
-      unplugged: true
-  checksum: a38ef01dc4497bff879b82729cf0c51304a83cd1197e3df1577dd50b44dd36ca06255b41b6833d32ccbbfe49b92219d5ceaf95385175cffe623ee3d423dfd340
-  languageName: node
-  linkType: hard
-
-"@jujulego/event-tree@npm:^4.3.0":
+"@jujulego/event-tree@npm:^4.1.0, @jujulego/event-tree@npm:^4.1.1, @jujulego/event-tree@npm:^4.2.0, @jujulego/event-tree@npm:^4.3.0":
   version: 4.3.0
   resolution: "@jujulego/event-tree@npm:4.3.0"
   dependenciesMeta:
@@ -452,7 +429,7 @@ __metadata:
   dependencies:
     "@jujulego/aegis": "npm:^2.1.1"
     "@jujulego/injector": "npm:^0.1.3"
-    "@jujulego/jill": "npm:2.4.0-alpha.3"
+    "@jujulego/jill": "npm:2.4.0-alpha.4"
     "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^2.1.1"
@@ -489,12 +466,12 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.4.0-alpha.3":
-  version: 2.4.0-alpha.3
-  resolution: "@jujulego/jill@npm:2.4.0-alpha.3"
+"@jujulego/jill@npm:2.4.0-alpha.4":
+  version: 2.4.0-alpha.4
+  resolution: "@jujulego/jill@npm:2.4.0-alpha.4"
   dependencies:
-    "@jujulego/aegis": "npm:^2.0.0-beta.5"
-    "@jujulego/event-tree": "npm:^4.2.0"
+    "@jujulego/aegis": "npm:^2.1.0"
+    "@jujulego/event-tree": "npm:^4.3.0"
     "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/tasks": "npm:^2.2.0"
@@ -503,6 +480,7 @@ __metadata:
     chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
     cosmiconfig: "npm:^8.2.0"
+    glob: "npm:^10.3.10"
     ink: "npm:^4.3.0"
     ink-spinner: "npm:^5.0.0"
     inversify: "npm:^6.0.1"
@@ -510,16 +488,16 @@ __metadata:
     log-symbols: "npm:^6.0.0"
     moo: "npm:^0.5.2"
     normalize-package-data: "npm:^6.0.0"
+    path-scurry: "npm:^1.10.1"
     pretty-ms: "npm:^8.0.0"
     react: "npm:^18.2.0"
     reflect-metadata: "npm:^0.1.13"
     semver: "npm:^7.5.4"
     slugify: "npm:^1.6.6"
-    tiny-glob: "npm:^0.2.9"
     yargs: "npm:^17.7.2"
   bin:
-    jill: ./bin/jill.mjs
-  checksum: 007c7c88749ab0c469bf965bbf4cbca0524b2c1f6a31cb3ea694d6b101b44fa4bd0669dd046c54a71a2c96c7341ad44318a1e8c93dce6e8437e9bb74455816d2
+    jill: ./bin/jill.js
+  checksum: 98cf09177f3dd9a1914becc74907bfd6fee55fd46e7cdc7fdfa018e1ac04b8fdb7ffeeef48b85af0989c1ffc77d98f26b0292bea7b61e33c276f3037d031e371
   languageName: node
   linkType: hard
 
@@ -557,16 +535,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.2":
-  version: 2.0.2
-  resolution: "@jujulego/utils@npm:2.0.2"
-  dependencies:
-    "@jujulego/event-tree": "npm:^4.1.0"
-  checksum: 5a13335b5ad3a65bbf556abb1781adc2b85eaba765968a12ef7f363d00f2d205782c758fb980a72d0c22285f12bdc48ea9a9ebf51cba122834e7a8f640b28893
-  languageName: node
-  linkType: hard
-
-"@jujulego/utils@npm:^2.1.1":
+"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.2, @jujulego/utils@npm:^2.1.1":
   version: 2.1.1
   resolution: "@jujulego/utils@npm:2.1.1"
   dependencies:
@@ -2942,7 +2911,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"glob@npm:^10.2.2":
+"glob@npm:^10.2.2, glob@npm:^10.3.10":
   version: 10.3.10
   resolution: "glob@npm:10.3.10"
   dependencies:
@@ -2977,13 +2946,6 @@ __metadata:
   dependencies:
     type-fest: "npm:^0.20.2"
   checksum: fc05e184b3be59bffa2580f28551a12a758c3a18df4be91444202982c76f13f52821ad54ffaf7d3f2a4d2498fdf54aeaca8d4540fd9e860a9edb09d34ef4c507
-  languageName: node
-  linkType: hard
-
-"globalyzer@npm:0.1.0":
-  version: 0.1.0
-  resolution: "globalyzer@npm:0.1.0"
-  checksum: e16e47a5835cbe8a021423d4c7fcd9f5f85815b4190a7f50c1fdb95fc559d72e4fb30be96f106c66a99413f36d72da0f8323d19d27f60a8feec9d936139ec5a8
   languageName: node
   linkType: hard
 
@@ -5416,16 +5378,6 @@ __metadata:
   version: 2.3.8
   resolution: "through@npm:2.3.8"
   checksum: 4b09f3774099de0d4df26d95c5821a62faee32c7e96fb1f4ebd54a2d7c11c57fe88b0a0d49cf375de5fee5ae6bf4eb56dbbf29d07366864e2ee805349970d3cc
-  languageName: node
-  linkType: hard
-
-"tiny-glob@npm:^0.2.9":
-  version: 0.2.9
-  resolution: "tiny-glob@npm:0.2.9"
-  dependencies:
-    globalyzer: "npm:0.1.0"
-    globrex: "npm:^0.1.2"
-  checksum: cbe072f0d213a1395d30aa94845a051d4af18fe8ffb79c8e99ac1787cd25df69083f17791a53997cb65f469f48950cb61426ccc0683cc9df170ac2430e883702
   languageName: node
   linkType: hard
 
