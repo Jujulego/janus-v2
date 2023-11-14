@@ -12,6 +12,7 @@ import {
   withTimestamp
 } from '@jujulego/logger';
 import { qprop } from '@jujulego/quick-tag';
+import os from 'node:os';
 
 // Types
 export type JanusLog = WithTimestamp & Partial<LogLabel>;
@@ -19,7 +20,7 @@ export type JanusLog = WithTimestamp & Partial<LogLabel>;
 // Utils
 export const janusLogFormat = qlevelColor(
   quick.wrap(chalkTemplateStderr)
-    .function<JanusLog>`#?:${qprop('label')}{grey [#$]} ?#${qprop('message')}`
+    .function<JanusLog>`#?:${qprop('label')}{grey [#$]} ?#${qprop('message')}#?:${qprop('error')}${os.EOL}#!error$?#  `
 );
 
 // Tokens

@@ -1,8 +1,8 @@
-import { SyncMutableRef, var$ } from '@jujulego/aegis';
+import { RefMap, SyncMutableRef } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
-import { nanoid } from 'nanoid';
+import { createHash } from 'node:crypto';
 
-import { Redirection } from './redirection.ts';
+import { Redirection, redirection$ } from './redirection.ts';
 import { LabelledLogger } from '../logger.config.ts';
 
 // Repository
@@ -10,13 +10,19 @@ import { LabelledLogger } from '../logger.config.ts';
 export class RedirectionStore {
   // Attributes
   private readonly _logger = inject$(LabelledLogger('redirections'));
-  private readonly _redirections = new Map<string, SyncMutableRef<Redirection>>();
+  private readonly _redirections = new RefMap((_: string, value: Redirection) => redirection$(value));
 
   // Methods
+  private _generateId(url: string) {
+    const hash = createHash('md5');
+    hash.update(url);
+
+    return hash.digest().toString('base64url');
+  }
+
   register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
-    const id = nanoid(6);
-    const ref = var$({ ...redirection, id });
-    this._redirections.set(id, ref);
+    const id = this._generateId(redirection.url);
+    const ref = this._redirections.set(id, { ...redirection, id });
 
     const gates = Object.values(redirection.outputs);
     this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
@@ -24,7 +30,17 @@ export class RedirectionStore {
     return ref;
   }
 
-  get(id: string): SyncMutableRef<Redirection> | null {
+  get(id: string) {
     return this._redirections.get(id) ?? null;
+  }
+
+  resolve(url: string) {
+    for (const ref of this._redirections.references()) {
+      if (url.startsWith(ref.read().url)) {
+        return ref;
+      }
+    }
+
+    return null;
   }
 }
