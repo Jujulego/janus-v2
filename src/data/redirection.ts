@@ -5,18 +5,18 @@ import { LabelledLogger } from '../logger.config.ts';
 
 // Types
 export interface RedirectionOutput {
-  name: string;
-  target: string;
-  enabled: boolean;
-  changeOrigin: boolean;
-  secure: boolean;
-  ws: boolean;
+  readonly name: string;
+  readonly target: string;
+  readonly enabled: boolean;
+  readonly changeOrigin: boolean;
+  readonly secure: boolean;
+  readonly ws: boolean;
 }
 
 export interface Redirection {
-  id: string;
-  url: string;
-  outputs: RedirectionOutput[];
+  readonly id: string;
+  readonly url: string;
+  readonly outputs: readonly RedirectionOutput[];
 }
 
 export interface RedirectionRef extends SyncMutableRef<Redirection> {
