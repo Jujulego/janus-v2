@@ -438,7 +438,7 @@ __metadata:
     "@rollup/plugin-json": "npm:6.0.1"
     "@swc/cli": "npm:0.1.62"
     "@swc/core": "npm:1.3.96"
-    "@types/http-proxy": "npm:1.17.13"
+    "@types/http-proxy": "npm:1.17.14"
     "@types/node": "npm:18.18.9"
     "@types/supertest": "npm:2.0.16"
     "@types/yargs": "npm:17.0.31"
@@ -1030,12 +1030,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:1.17.13":
-  version: 1.17.13
-  resolution: "@types/http-proxy@npm:1.17.13"
+"@types/http-proxy@npm:1.17.14":
+  version: 1.17.14
+  resolution: "@types/http-proxy@npm:1.17.14"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 67d963d1559d15e9c4a66710e58c1d666454d6d2b79956c4a7fd745d29a4fe7674218bfc02a8d54905a49a82b9a8fddcdeb29e412c702d76d534af6e7590599d
+  checksum: c4bffd87be9aff7e879c05bd2c28716220e0eb39788e3f8d314eee665324ad8f5f0919041cbd710254d553cd9cea023f8b776d4b1ec31d2188eac60af18c3022
   languageName: node
   linkType: hard
 
