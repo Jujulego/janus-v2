@@ -22,6 +22,7 @@ const options = {
     'ajv',
     'chalk-template',
     'cosmiconfig',
+    'http-errors',
     'http-proxy',
     'node:crypto',
     'node:http',
