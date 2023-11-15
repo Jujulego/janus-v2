@@ -1,10 +1,10 @@
 import { Inject, inject$, Service } from '@jujulego/injector';
 import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
+import { Duplex } from 'node:stream';
 
 import { LabelledLogger } from './logger.config.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
-import { Duplex } from 'node:stream';
 
 // Http server
 @Service()

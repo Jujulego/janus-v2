@@ -1,4 +1,5 @@
 import { overrideInject$ } from '@jujulego/injector/tests';
+import { isHttpError } from 'http-errors';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { createServer, Server } from 'node:http';
@@ -9,7 +10,6 @@ import { afterAll, beforeAll, beforeEach, vi } from 'vitest';
 import { RedirectionStore } from '@/src/data/redirection.store.js';
 import { redirection$ } from '@/src/data/redirection.js';
 import { ProxyServer } from '@/src/proxy/proxy.server.js';
-import { isHttpError } from 'http-errors';
 
 // Setup
 let store: RedirectionStore;
