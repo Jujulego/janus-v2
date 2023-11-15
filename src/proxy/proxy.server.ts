@@ -1,8 +1,8 @@
 import { Inject, inject$, Service } from '@jujulego/injector';
 import { Flag } from '@jujulego/utils';
-import http from 'node:http';
-import stream from 'node:stream';
-import proxy, { ServerOptions } from 'http-proxy';
+import { createServer, IncomingMessage, ServerResponse } from 'node:http';
+import { Duplex, Readable } from 'node:stream';
+import { createProxy, ServerOptions } from 'http-proxy';
 
 import { LabelledLogger } from '../logger.config.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
@@ -11,8 +11,8 @@ import { RedirectionStore } from '../data/redirection.store.ts';
 @Service()
 export class ProxyServer {
   // Attributes
-  private readonly _proxy = proxy.createProxy();
-  private readonly _server = http.createServer((req, res) => this._handleRequest(req, res));
+  private readonly _proxy = createProxy();
+  private readonly _server = createServer((req, res) => this._handleRequest(req, res));
   private readonly _logger = inject$(LabelledLogger('proxy'));
 
   @Inject(RedirectionStore)
@@ -27,12 +27,12 @@ export class ProxyServer {
     });
   }
 
-  private _bodyLength(req: http.IncomingMessage): number {
+  private _bodyLength(req: IncomingMessage): number {
     const length = req.headers['content-length'];
     return length ? parseInt(length) : 0;
   }
 
-  private async _handleRequest(req: http.IncomingMessage, res: http.ServerResponse) {
+  private async _handleRequest(req: IncomingMessage, res: ServerResponse) {
     try {
       const redirection = this._redirections.resolve(req.url ?? '');
 
@@ -77,7 +77,7 @@ export class ProxyServer {
 
         if (!first) {
           await isComplete.waitFor(true);
-          options.buffer = stream.Readable.from(buffer);
+          options.buffer = Readable.from(buffer);
         } else {
           first = false;
         }
@@ -98,7 +98,7 @@ export class ProxyServer {
   }
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  private _handleUpgrade(req: http.IncomingMessage, socket: stream.Duplex, head: Buffer) {
+  private _handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
     this._logger.warn('WebSockets not yet handled');
     socket.end();
 
@@ -106,11 +106,11 @@ export class ProxyServer {
     // this._proxy.ws(req, socket, head, { target: 'http://localhost:3001' });
   }
 
-  private _redirectWebTo(req: http.IncomingMessage, res: http.ServerResponse, output: ServerOptions): Promise<boolean> {
+  private _redirectWebTo(req: IncomingMessage, res: ServerResponse, options: ServerOptions): Promise<boolean> {
     return new Promise<boolean>((resolve, reject) => {
       res.once('close', () => resolve(true));
 
-      this._proxy.web(req, res, output, (err: NodeJS.ErrnoException) => {
+      this._proxy.web(req, res, options, (err: NodeJS.ErrnoException) => {
         if (err.code === 'ECONNREFUSED') {
           resolve(false);
         } else {
@@ -120,7 +120,7 @@ export class ProxyServer {
     });
   }
 
-  private _send(res: http.ServerResponse, status: number, content: object) {
+  private _send(res: ServerResponse, status: number, content: object) {
     res.statusCode = status;
     res.setHeader('Content-Type', 'application/json');
     res.write(JSON.stringify(content));
