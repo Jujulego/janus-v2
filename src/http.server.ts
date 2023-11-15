@@ -46,7 +46,27 @@ export class HttpServer {
   }
 
   private async _handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
-    await this._proxy.handleUpgrade(req, socket, head);
+    try {
+      await this._proxy.handleUpgrade(req, socket, head);
+    } catch (err) {
+      const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
+
+      if (httpError.statusCode === 500) {
+        this._logger.error('Error while handling request', err as Error);
+      }
+
+      const content = JSON.stringify({
+        status: httpError.statusCode,
+        message: httpError.message
+      });
+
+      socket.write(`HTTP/1.1 ${httpError.statusCode} ${httpError.name}\r\n`);
+      socket.write(`Content-Length: ${content.length}\r\n`);
+      socket.write('Content-Type: application/json\r\n');
+      socket.write('\r\n');
+      socket.write('\r\n');
+      socket.write(content);
+    }
   }
 
   // Properties
