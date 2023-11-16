@@ -14,10 +14,6 @@ beforeEach(() => {
 describe('RedirectionStore.loadConfig', () => {
   beforeEach(() => {
     vi.spyOn(Config, 'read').mockResolvedValue({
-      pidfile: '.janus.pid',
-      proxy: {
-        port: 3000,
-      },
       redirections: {
         '/life': {
           outputs: {
@@ -48,7 +44,12 @@ describe('RedirectionStore.loadConfig', () => {
             },
           },
         },
-      }
+      },
+      server: {
+        pidfile: '.janus.pid',
+        port: 3000,
+      },
+      verbose: 'info',
     });
   });
 
