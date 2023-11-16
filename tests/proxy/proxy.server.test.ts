@@ -1,15 +1,14 @@
 import { overrideInject$ } from '@jujulego/injector/tests';
-import { isHttpError } from 'http-errors';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { createServer, Server } from 'node:http';
-import { AddressInfo } from 'node:net';
+import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, vi } from 'vitest';
 
 import { RedirectionStore } from '@/src/data/redirection.store.js';
 import { redirection$ } from '@/src/data/redirection.js';
 import { ProxyServer } from '@/src/proxy/proxy.server.js';
+import { createHttpServer, ignoreServer } from '../utils.js';
 
 // Setup
 let store: RedirectionStore;
@@ -31,16 +30,9 @@ const targetServer = setupServer(
 beforeAll(() => {
   targetServer.listen({
     onUnhandledRequest(req, print) {
-      const url = new URL(req.url);
-
-      // Ignore request to proxy
-      const addr = server.address() as AddressInfo;
-
-      if (url.host === `127.0.0.1:${addr.port}`) {
-        return;
+      if (!ignoreServer(req, server)) {
+        print.warning();
       }
-
-      print.warning();
     }
   });
 });
@@ -51,23 +43,7 @@ beforeEach(() => {
   store = overrideInject$(RedirectionStore, new RedirectionStore());
   proxy = overrideInject$(ProxyServer, new ProxyServer());
 
-  server = createServer(async (req, res) => {
-    try {
-      await proxy.handleRequest(req, res);
-    } catch (err) {
-      if (!isHttpError(err)) {
-        throw err;
-      }
-
-      res.statusCode = err.statusCode;
-      res.setHeader('Content-Type', 'application/json');
-      res.write(JSON.stringify({
-        status: err.statusCode,
-        message: err.message
-      }));
-      res.end();
-    }
-  });
+  server = createHttpServer((req, res) => proxy.handleRequest(req, res));
 });
 
 afterAll(() => {

@@ -5,6 +5,7 @@ import { Duplex } from 'node:stream';
 
 import { LabelledLogger } from './logger.config.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
+import { renderHttpError, sendHttpError } from './utils/http-error.ts';
 
 // Http server
 @Service()
@@ -35,13 +36,7 @@ export class HttpServer {
         this._logger.error('Error while handling request', err as Error);
       }
 
-      res.statusCode = httpError.statusCode;
-      res.setHeader('Content-Type', 'application/json');
-      res.write(JSON.stringify({
-        status: httpError.statusCode,
-        message: httpError.message
-      }));
-      res.end();
+      sendHttpError(res, httpError);
     }
   }
 
@@ -55,17 +50,7 @@ export class HttpServer {
         this._logger.error('Error while handling request', err as Error);
       }
 
-      const content = JSON.stringify({
-        status: httpError.statusCode,
-        message: httpError.message
-      });
-
-      socket.write(`HTTP/1.1 ${httpError.statusCode} ${httpError.name}\r\n`);
-      socket.write(`Content-Length: ${content.length}\r\n`);
-      socket.write('Content-Type: application/json\r\n');
-      socket.write('\r\n');
-      socket.write('\r\n');
-      socket.write(content);
+      socket.write(renderHttpError(httpError));
     }
   }
 
