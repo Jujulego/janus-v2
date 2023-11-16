@@ -21,6 +21,16 @@ export class RedirectionStore {
     return hash.digest().toString('base64url');
   }
 
+  register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
+    const id = this._generateId(redirection.url);
+    const ref = this._redirections.set(id, { ...redirection, id });
+
+    const gates = Object.values(redirection.outputs);
+    this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
+
+    return ref;
+  }
+
   async loadConfig(): Promise<void> {
     const config = await inject$(Config);
     let count = 0;
@@ -35,16 +45,6 @@ export class RedirectionStore {
     }
 
     this._logger.verbose(`Loaded ${count} redirections from config`);
-  }
-
-  register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
-    const id = this._generateId(redirection.url);
-    const ref = this._redirections.set(id, { ...redirection, id });
-
-    const gates = Object.values(redirection.outputs);
-    this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
-
-    return ref;
   }
 
   get(id: string) {
