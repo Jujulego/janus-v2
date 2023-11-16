@@ -451,7 +451,7 @@ __metadata:
     eslint: "npm:8.53.0"
     eslint-plugin-vitest: "npm:0.3.9"
     http-proxy: "npm:^1.18.1"
-    msw: "npm:2.0.6"
+    msw: "npm:2.0.7"
     reflect-metadata: "npm:^0.1.13"
     rollup: "npm:4.4.1"
     shx: "npm:0.3.4"
@@ -4051,9 +4051,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.0.6":
-  version: 2.0.6
-  resolution: "msw@npm:2.0.6"
+"msw@npm:2.0.7":
+  version: 2.0.7
+  resolution: "msw@npm:2.0.7"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/js-levenshtein": "npm:^2.0.1"
@@ -4084,7 +4084,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 5373ae1dcfdafc83e46288887e13095b1b4b9dd7e76d55f13fb1554dadc4fb437cbcbc56af9840dbfb843d43056c8a4b30dda4209f5bbbb35f0306eb07c3fb2a
+  checksum: 881a399490fc2f503f154a54c96f70fc2b63ddc3200b8ce9ba120e08145694d1bdafd2859c7f84df74d8c7e8dd111e21ff7710db11e1648c377ea3bb64c13066
   languageName: node
   linkType: hard
 
