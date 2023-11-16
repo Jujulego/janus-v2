@@ -15,7 +15,6 @@ export interface OutputConfig {
  * Redirected url inputs
  */
 export interface RedirectionConfig {
-  readonly url: string;
   readonly outputs: Readonly<Record<string, OutputConfig>>;
 }
 
@@ -31,7 +30,7 @@ export interface IServerConfig {
  * Janus configuration
  */
 export interface Config {
-  readonly redirections: readonly RedirectionConfig[];
+  readonly redirections: Readonly<Record<string, RedirectionConfig>>;
   readonly server: IServerConfig;
   readonly verbose: LogLevelKey;
 }

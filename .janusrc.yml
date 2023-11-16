@@ -1,5 +1,5 @@
 redirections:
-  - url: '/api-sample/'
+  /api-sample/:
     outputs:
       local1:
         target: 'http://localhost:3001/'
@@ -13,7 +13,7 @@ redirections:
         changeOrigin: true
         secure: true
 
-  - url: '/api-sample-ii/'
+  /api-sample-ii/:
     outputs:
       local1:
         target: 'http://localhost:3001/'

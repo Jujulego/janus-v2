@@ -9,16 +9,10 @@ import { ProxyServer } from './proxy/proxy.server.ts';
 (async () => {
   try {
     const config = await inject$(Config);
-    const repository = inject$(RedirectionStore);
+    const redirections = inject$(RedirectionStore);
     const proxy = inject$(ProxyServer);
 
-    for (const redirect of config.redirections) {
-      repository.register({
-        ...redirect,
-        outputs: Object.entries(redirect.outputs)
-          .map(([name, output]) => Object.assign(output, { name }))
-      });
-    }
+    await redirections.loadConfig();
 
     proxy.listen(config.server.port);
   } catch (err) {

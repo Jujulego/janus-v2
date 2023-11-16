@@ -1,6 +1,7 @@
 import { beforeEach } from 'vitest';
 
-import { RedirectionStore } from '@/src/data/redirection.store.js';
+import { Config } from '@/src/config/loader.ts';
+import { RedirectionStore } from '@/src/data/redirection.store.ts';
 
 // Setup
 let repository: RedirectionStore;
@@ -10,6 +11,91 @@ beforeEach(() => {
 });
 
 // Tests
+describe('RedirectionStore.loadConfig', () => {
+  beforeEach(() => {
+    vi.spyOn(Config, 'read').mockResolvedValue({
+      redirections: {
+        '/life': {
+          outputs: {
+            book: {
+              target: 'http://localhost:3042',
+              enabled: true,
+              changeOrigin: false,
+              secure: false,
+              ws: false,
+            },
+          },
+        },
+        '/test': {
+          outputs: {
+            book: {
+              target: 'http://localhost:3042',
+              enabled: true,
+              changeOrigin: false,
+              secure: false,
+              ws: false,
+            },
+            example: {
+              target: 'https://example.com',
+              enabled: true,
+              changeOrigin: true,
+              secure: true,
+              ws: false,
+            },
+          },
+        },
+      },
+      server: {
+        pidfile: '.janus.pid',
+        port: 3000,
+      },
+      verbose: 'info',
+    });
+  });
+
+  it('should add redirections from config', async () => {
+    vi.spyOn(repository, 'register');
+
+    await repository.loadConfig();
+
+    expect(repository.register).toHaveBeenCalledTimes(2);
+    expect(repository.register).toHaveBeenCalledWith({
+      url: '/life',
+      outputs: [
+        {
+          name: 'book',
+          target: 'http://localhost:3042',
+          enabled: true,
+          changeOrigin: false,
+          secure: false,
+          ws: false,
+        },
+      ]
+    });
+    expect(repository.register).toHaveBeenCalledWith({
+      url: '/test',
+      outputs: [
+        {
+          name: 'book',
+          target: 'http://localhost:3042',
+          enabled: true,
+          changeOrigin: false,
+          secure: false,
+          ws: false,
+        },
+        {
+          name: 'example',
+          target: 'https://example.com',
+          enabled: true,
+          changeOrigin: true,
+          secure: true,
+          ws: false,
+        },
+      ]
+    });
+  });
+});
+
 describe('RedirectionStore.get', () => {
   it('should save redirection with a new id', () => {
     const ref = repository.register({
