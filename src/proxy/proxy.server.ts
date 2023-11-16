@@ -82,13 +82,11 @@ export class ProxyServer {
     throw new createHttpError.ServiceUnavailable('No outputs available');
   }
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   async handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
     this._logger.warn('WebSockets not yet handled');
-    socket.end();
 
     // TODO: handle websockets
-    // this._proxy.ws(req, socket, head, { target: 'http://localhost:3001' });
+    this._proxy.ws(req, socket, head, { target: 'http://localhost:3001' });
   }
 
   private _redirectWebTo(req: IncomingMessage, res: ServerResponse, options: ServerOptions): Promise<boolean> {

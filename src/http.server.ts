@@ -51,6 +51,8 @@ export class HttpServer {
       }
 
       socket.write(renderHttpError(httpError));
+    } finally {
+      socket.end();
     }
   }
 
