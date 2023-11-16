@@ -1,9 +1,9 @@
 import { chalkTemplateStderr } from 'chalk-template';
-import { flow$ } from '@jujulego/aegis';
+import { filter$, flow$, var$ } from '@jujulego/aegis';
 import { inject$, singleton$, token$ } from '@jujulego/injector';
 import {
   logger$,
-  LogLabel,
+  LogLabel, LogLevel,
   qlevelColor,
   quick,
   toStderr,
@@ -18,7 +18,8 @@ import os from 'node:os';
 export type JanusLog = WithTimestamp & Partial<LogLabel>;
 
 // Utils
-export const janusLogFormat = qlevelColor(
+export const logLevel = var$(LogLevel.info);
+export const logFormat = qlevelColor(
   quick.wrap(chalkTemplateStderr)
     .function<JanusLog>`#?:${qprop('label')}{grey [#$]} ?#${qprop('message')}#?:${qprop('error')}${os.EOL}#!error$?#  `
 );
@@ -27,7 +28,12 @@ export const janusLogFormat = qlevelColor(
 export const Logger = token$(
   () => {
     const logger = logger$(withTimestamp());
-    flow$(logger, toStderr(janusLogFormat));
+
+    flow$(
+      logger,
+      filter$((log) => log.level >= logLevel.read()),
+      toStderr(logFormat)
+    );
 
     return logger;
   },

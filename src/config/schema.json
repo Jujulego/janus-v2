@@ -4,26 +4,31 @@
   "additionalProperties": false,
   "required": ["redirections"],
   "properties": {
-    "pidfile": {
-      "type": "string",
-      "default": ".janus.pid"
-    },
-    "proxy": {
-      "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "port": {
-          "type": "number",
-          "default": 3000
-        }
-      }
-    },
     "redirections": {
       "type": "array",
       "items": {
         "$ref": "#/definitions/redirection"
       },
       "minItems": 1
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "port": {
+          "type": "number",
+          "default": 3000
+        },
+        "pidfile": {
+          "type": "string",
+          "default": ".janus.pid"
+        }
+      }
+    },
+    "verbose": {
+      "type": "string",
+      "enum": ["info", "verbose", "debug"],
+      "default": "info"
     }
   },
   "definitions": {
