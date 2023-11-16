@@ -1,3 +1,5 @@
+import { LogLevelKey } from '@jujulego/logger';
+
 /**
  * Possible proxy output
  */
@@ -19,15 +21,16 @@ export interface RedirectionConfig {
 /**
  * Proxy server config
  */
-export interface IProxyConfig {
+export interface IServerConfig {
   readonly port: number;
+  readonly pidfile: string;
 }
 
 /**
  * Janus configuration
  */
 export interface Config {
-  readonly pidfile: string;
-  readonly proxy: IProxyConfig;
   readonly redirections: Readonly<Record<string, RedirectionConfig>>;
+  readonly server: IServerConfig;
+  readonly verbose: LogLevelKey;
 }
