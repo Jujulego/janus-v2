@@ -20,7 +20,7 @@ import { ProxyServer } from './proxy/proxy.server.ts';
       });
     }
 
-    proxy.listen(config.proxy.port);
+    proxy.listen(config.server.port);
   } catch (err) {
     console.error(err);
     process.exit(1);

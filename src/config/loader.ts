@@ -1,7 +1,8 @@
 import { inject$, singleton$, token$ } from '@jujulego/injector';
+import { LogLevel } from '@jujulego/logger';
 
 import { Ajv } from '../ajv.config.ts';
-import { LabelledLogger } from '../logger.config.ts';
+import { LabelledLogger, logLevel } from '../logger.config.ts';
 import { ConfigExplorer, ConfigValidator } from './utils.ts';
 import { ConfigOptions } from './options.ts';
 
@@ -16,15 +17,12 @@ export const Config = token$(
     const loaded = await (options.configFile ? explorer.load(options.configFile) : explorer.search());
     const config = loaded?.config ?? {};
 
-    config.proxy ??= {};
+    config.server ??= {};
 
     // Apply options from cli
-    if (options.pidFile) config.pidfile ??= options.pidFile;
-    if (options.port) config.proxy.port ??= options.port;
-
-    // Apply defaults
-    config.pidfile ??= '.janus.pid';
-    config.proxy.port ??= 3000;
+    if (options.pidFile) config.server.pidfile = options.pidFile;
+    if (options.port) config.server.port = options.port;
+    if (options.verbose) config.verbose = options.verbose;
 
     // Validate
     const validator = inject$(ConfigValidator);
@@ -37,6 +35,8 @@ export const Config = token$(
       throw new Error('Error in config files');
     }
 
+    // Apply verbose option
+    logLevel.mutate(LogLevel[config.verbose]);
     logger.debug`Loaded config:\n#!json:${config}`;
 
     return config;

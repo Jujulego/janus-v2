@@ -1,9 +1,16 @@
 import { singleton$, token$ } from '@jujulego/injector';
+import { LogLevelKey } from '@jujulego/logger';
 import yargs, { type Argv } from 'yargs';
 import { hideBin } from 'yargs/helpers';
 
+// Utils
+const VERBOSITY_LEVEL: Record<number, LogLevelKey> = {
+  1: 'verbose',
+  2: 'debug',
+};
+
 // Options
-export function applyConfigOptions(parser: Argv) {
+export function buildConfigOptions(parser: Argv) {
   return parser
     .option('config-file', {
       alias: 'c',
@@ -18,6 +25,12 @@ export function applyConfigOptions(parser: Argv) {
       alias: 'p',
       type: 'number',
       description: 'Proxy listening port'
+    })
+    .option('verbose', {
+      alias: 'v',
+      type: 'count',
+      description: 'Set verbosity level',
+      coerce: (cnt) => VERBOSITY_LEVEL[Math.min(cnt, 2)]
     });
 }
 
@@ -28,7 +41,7 @@ export const ConfigOptions = token$(
       .help(false)
       .version(false);
 
-    return applyConfigOptions(parser).parseSync();
+    return buildConfigOptions(parser).parseSync();
   },
   { modifiers: [singleton$()] }
 );
