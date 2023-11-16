@@ -9,18 +9,12 @@ import { HttpServer } from './http.server.ts';
 (async () => {
   try {
     const config = await inject$(Config);
-    const repository = inject$(RedirectionStore);
+    const redirections = inject$(RedirectionStore);
     const server = inject$(HttpServer);
 
-    for (const redirect of config.redirections) {
-      repository.register({
-        ...redirect,
-        outputs: Object.entries(redirect.outputs)
-          .map(([name, output]) => Object.assign(output, { name }))
-      });
-    }
+    await redirections.loadConfig();
 
-    server.listen(config.proxy.port);
+    server.listen(config.server.port);
   } catch (err) {
     console.error(err);
     process.exit(1);

@@ -2,8 +2,9 @@ import { RefMap, SyncMutableRef } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
 import { createHash } from 'node:crypto';
 
-import { Redirection, redirection$ } from './redirection.ts';
+import { Config } from '../config/loader.ts';
 import { LabelledLogger } from '../logger.config.ts';
+import { Redirection, redirection$ } from './redirection.ts';
 
 // Repository
 @Service()
@@ -28,6 +29,22 @@ export class RedirectionStore {
     this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
 
     return ref;
+  }
+
+  async loadConfig(): Promise<void> {
+    const config = await inject$(Config);
+    let count = 0;
+
+    for (const [url, { outputs }] of Object.entries(config.redirections)) {
+      this.register({
+        url,
+        outputs: Object.entries(outputs).map(([name, output]) => ({ ...output, name }))
+      });
+
+      ++count;
+    }
+
+    this._logger.verbose(`Loaded ${count} redirections from config`);
   }
 
   get(id: string) {

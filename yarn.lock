@@ -436,7 +436,7 @@ __metadata:
     "@jujulego/vite-plugin-swc": "npm:1.1.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@rollup/plugin-json": "npm:6.0.1"
-    "@swc/cli": "npm:0.1.62"
+    "@swc/cli": "npm:0.1.63"
     "@swc/core": "npm:1.3.96"
     "@types/http-errors": "npm:2.0.4"
     "@types/http-proxy": "npm:1.17.14"
@@ -453,13 +453,13 @@ __metadata:
     eslint-plugin-vitest: "npm:0.3.9"
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
-    msw: "npm:2.0.6"
+    msw: "npm:2.0.7"
     reflect-metadata: "npm:^0.1.13"
     rollup: "npm:4.4.1"
     shx: "npm:0.3.4"
     supertest: "npm:6.3.3"
     typescript: "npm:5.2.2"
-    vite: "npm:5.0.0-beta.20"
+    vite: "npm:5.0.0"
     vite-tsconfig-paths: "npm:4.2.1"
     vitest: "npm:0.34.6"
     yargs: "npm:^17.7.2"
@@ -799,9 +799,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@swc/cli@npm:0.1.62":
-  version: 0.1.62
-  resolution: "@swc/cli@npm:0.1.62"
+"@swc/cli@npm:0.1.63":
+  version: 0.1.63
+  resolution: "@swc/cli@npm:0.1.63"
   dependencies:
     "@mole-inc/bin-wrapper": "npm:^8.0.1"
     commander: "npm:^7.1.0"
@@ -819,7 +819,7 @@ __metadata:
     spack: bin/spack.js
     swc: bin/swc.js
     swcx: bin/swcx.js
-  checksum: 0700d26c7c7598c01d56f7f8e19138e1e9d6acd04976a54d392c7f4589fd136647970e1a94c8ed5d563f2634ab55bf7cc33c42887cfe7375ed51605dfc5f8861
+  checksum: a8389647e6727f062903e4f90f3c4d6be979f5c85c50fd31342f580e7c58e514ecb13103a011806b33b09509aa6ebe61146efad803c5f55f4c70bcdb9c8f93da
   languageName: node
   linkType: hard
 
@@ -4080,9 +4080,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.0.6":
-  version: 2.0.6
-  resolution: "msw@npm:2.0.6"
+"msw@npm:2.0.7":
+  version: 2.0.7
+  resolution: "msw@npm:2.0.7"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/js-levenshtein": "npm:^2.0.1"
@@ -4113,7 +4113,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 5373ae1dcfdafc83e46288887e13095b1b4b9dd7e76d55f13fb1554dadc4fb437cbcbc56af9840dbfb843d43056c8a4b30dda4209f5bbbb35f0306eb07c3fb2a
+  checksum: 881a399490fc2f503f154a54c96f70fc2b63ddc3200b8ce9ba120e08145694d1bdafd2859c7f84df74d8c7e8dd111e21ff7710db11e1648c377ea3bb64c13066
   languageName: node
   linkType: hard
 
@@ -5707,9 +5707,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"vite@npm:5.0.0-beta.20, vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0":
-  version: 5.0.0-beta.20
-  resolution: "vite@npm:5.0.0-beta.20"
+"vite@npm:5.0.0, vite@npm:^3.0.0 || ^4.0.0 || ^5.0.0-0, vite@npm:^3.1.0 || ^4.0.0 || ^5.0.0-0":
+  version: 5.0.0
+  resolution: "vite@npm:5.0.0"
   dependencies:
     esbuild: "npm:^0.19.3"
     fsevents: "npm:~2.3.3"
@@ -5743,7 +5743,7 @@ __metadata:
       optional: true
   bin:
     vite: bin/vite.js
-  checksum: 8d87b37923d4b2d2a9ac58aeff9e1e1a627146ce3c4cb6a55d1b1d6ac796bc3a2dea3e195b8de3d25e612e296a09697d0cf8ba630dbfd1091efec1189ed5cb30
+  checksum: 357fef1558d21fcdcc667d99c87b95220f3a3eb7c83cd49bbb57d4be775a1b9a96c6ed53b4e01534510d9005245cf0dd8bc40b9aeed73458e46079a18a27b74f
   languageName: node
   linkType: hard
 
