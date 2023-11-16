@@ -19,11 +19,11 @@
       }
     },
     "redirections": {
-      "type": "array",
-      "items": {
+      "type": "object",
+      "additionalProperties": {
         "$ref": "#/definitions/redirection"
       },
-      "minItems": 1
+      "minProperties": 1
     }
   },
   "definitions": {
@@ -56,11 +56,8 @@
     "redirection": {
       "type": "object",
       "additionalProperties": false,
-      "required": ["url", "outputs"],
+      "required": ["outputs"],
       "properties": {
-        "url": {
-          "type": "string"
-        },
         "outputs": {
           "type": "object",
           "additionalProperties": {

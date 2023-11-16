@@ -13,7 +13,6 @@ export interface OutputConfig {
  * Redirected url inputs
  */
 export interface RedirectionConfig {
-  readonly url: string;
   readonly outputs: Readonly<Record<string, OutputConfig>>;
 }
 
@@ -30,5 +29,5 @@ export interface IProxyConfig {
 export interface Config {
   readonly pidfile: string;
   readonly proxy: IProxyConfig;
-  readonly redirections: readonly RedirectionConfig[];
+  readonly redirections: Readonly<Record<string, RedirectionConfig>>;
 }

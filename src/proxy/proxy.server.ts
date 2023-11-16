@@ -2,7 +2,7 @@ import { Inject, inject$, Service } from '@jujulego/injector';
 import { Flag } from '@jujulego/utils';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
-import { createProxy, ServerOptions } from 'http-proxy';
+import proxy, { ServerOptions } from 'http-proxy';
 
 import { LabelledLogger } from '../logger.config.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
@@ -11,7 +11,7 @@ import { RedirectionStore } from '../data/redirection.store.ts';
 @Service()
 export class ProxyServer {
   // Attributes
-  private readonly _proxy = createProxy();
+  private readonly _proxy = proxy.createProxy();
   private readonly _server = createServer((req, res) => this._handleRequest(req, res));
   private readonly _logger = inject$(LabelledLogger('proxy'));
 
