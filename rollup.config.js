@@ -1,5 +1,8 @@
 import { swc } from '@jujulego/vite-plugin-swc';
 import json from '@rollup/plugin-json';
+import { nodeResolve } from '@rollup/plugin-node-resolve';
+
+import pkg from './package.json' assert { type: 'json' };
 
 /** @type {import('rollup').RollupOptions} */
 const options = {
@@ -10,27 +13,15 @@ const options = {
     sourcemap: true,
   },
   plugins: [
-    swc(),
+    nodeResolve({
+      exportConditions: ['node']
+    }),
     json(),
+    swc(),
   ],
   external: [
-    '@jujulego/aegis',
-    '@jujulego/injector',
-    '@jujulego/logger',
-    '@jujulego/quick-tag',
-    '@jujulego/utils',
-    'ajv',
-    'chalk-template',
-    'cosmiconfig',
-    'http-errors',
-    'http-proxy',
-    'node:crypto',
-    'node:http',
-    'node:os',
-    'node:stream',
-    'reflect-metadata',
-    'yargs',
-    'yargs/helpers'
+    ...Object.keys(pkg.dependencies),
+    'yargs/helpers',
   ],
 };
 
