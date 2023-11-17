@@ -6,6 +6,7 @@
     "outDir": "./dist"
   },
   "files": [
+    "./src/@types/graphql.d.ts",
     "./src/main.ts",
   ]
 }

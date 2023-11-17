@@ -1,0 +1,18 @@
+type RedirectionOutput {
+    name: String!
+    target: String!
+    enabled: Boolean!
+    changeOrigin: Boolean!
+    secure: Boolean!
+    ws: Boolean!
+}
+
+type Redirection {
+    id: ID!
+    url: String!
+    outputs: [RedirectionOutput!]!
+}
+
+type Query {
+    hello: String!
+}

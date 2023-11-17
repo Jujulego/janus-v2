@@ -3,6 +3,7 @@ import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
+import { ControlServer } from './control/control.server.ts';
 import { LabelledLogger } from './logger.config.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
 import { renderHttpError, sendHttpError } from './utils/http-error.ts';
@@ -13,6 +14,9 @@ export class HttpServer {
   // Attributes
   private readonly _server = createServer((req, res) => this._handleRequest(req, res));
   private readonly _logger = inject$(LabelledLogger('http'));
+
+  @Inject(ControlServer)
+  private readonly _control: ControlServer;
 
   @Inject(ProxyServer)
   private readonly _proxy: ProxyServer;
@@ -28,7 +32,11 @@ export class HttpServer {
 
   private async _handleRequest(req: IncomingMessage, res: ServerResponse) {
     try {
-      await this._proxy.handleRequest(req, res);
+      if (req.url?.startsWith('/_janus')) {
+        await this._control.handleRequest(req, res);
+      } else {
+        await this._proxy.handleRequest(req, res);
+      }
     } catch (err) {
       const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
 
