@@ -3,18 +3,18 @@ import 'reflect-metadata';
 
 import { Config } from './config/loader.ts';
 import { RedirectionStore } from './data/redirection.store.ts';
-import { ProxyServer } from './proxy/proxy.server.ts';
+import { HttpServer } from './http.server.ts';
 
 // Bootstrap
 (async () => {
   try {
     const config = await inject$(Config);
     const redirections = inject$(RedirectionStore);
-    const proxy = inject$(ProxyServer);
+    const server = inject$(HttpServer);
 
     await redirections.loadConfig();
 
-    proxy.listen(config.server.port);
+    server.listen(config.server.port);
   } catch (err) {
     console.error(err);
     process.exit(1);

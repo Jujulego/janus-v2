@@ -1,17 +1,19 @@
 import { overrideInject$ } from '@jujulego/injector/tests';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { AddressInfo } from 'node:net';
+import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, vi } from 'vitest';
 
 import { RedirectionStore } from '@/src/data/redirection.store.js';
 import { redirection$ } from '@/src/data/redirection.js';
 import { ProxyServer } from '@/src/proxy/proxy.server.js';
+import { createHttpServer, ignoreServer } from '../utils.js';
 
 // Setup
 let store: RedirectionStore;
 let proxy: ProxyServer;
+let server: Server;
 
 const targetServer = setupServer(
   http.get('http://localhost:3000/life/toto', () => {}),
@@ -28,16 +30,9 @@ const targetServer = setupServer(
 beforeAll(() => {
   targetServer.listen({
     onUnhandledRequest(req, print) {
-      const url = new URL(req.url);
-
-      // Ignore request to proxy
-      const addr = proxy.server.address() as AddressInfo;
-
-      if (url.host === `127.0.0.1:${addr.port}`) {
-        return;
+      if (!ignoreServer(req, server)) {
+        print.warning();
       }
-
-      print.warning();
     }
   });
 });
@@ -47,6 +42,8 @@ beforeEach(() => {
 
   store = overrideInject$(RedirectionStore, new RedirectionStore());
   proxy = overrideInject$(ProxyServer, new ProxyServer());
+
+  server = createHttpServer((req, res) => proxy.handleRequest(req, res));
 });
 
 afterAll(() => {
@@ -58,9 +55,12 @@ describe('ProxyServer', () => {
   it('should return 404 if not redirection matched', async () => {
     vi.spyOn(store, 'resolve').mockReturnValue(null);
 
-    await request(proxy.server)
+    await request(server)
       .get('/life/toto')
-      .expect(404, { message: 'No redirection found' });
+      .expect(404, {
+        status: 404,
+        message: 'No redirection found'
+      });
   });
 
   it('should return 503 if redirection has no output', async () => {
@@ -70,9 +70,12 @@ describe('ProxyServer', () => {
       outputs: []
     }));
 
-    await request(proxy.server)
+    await request(server)
       .get('/life/toto')
-      .expect(503, { message: 'No outputs available' });
+      .expect(503, {
+        status: 503,
+        message: 'No outputs available'
+      });
   });
 
   it('should return 503 if redirection all outputs are disabled', async () => {
@@ -91,9 +94,12 @@ describe('ProxyServer', () => {
       ]
     }));
 
-    await request(proxy.server)
+    await request(server)
       .get('/life/toto')
-      .expect(503, { message: 'No outputs available' });
+      .expect(503, {
+        status: 503,
+        message: 'No outputs available'
+      });
   });
 
   it('should return data from test output', async () => {
@@ -112,7 +118,7 @@ describe('ProxyServer', () => {
       ]
     }));
 
-    await request(proxy.server)
+    await request(server)
       .get('/life/toto')
       .expect(200, { from: 'http://localhost:3001' });
   });
@@ -144,7 +150,7 @@ describe('ProxyServer', () => {
     vi.spyOn(store, 'resolve').mockReturnValue(redirection);
     vi.spyOn(redirection, 'disableOutput');
 
-    await request(proxy.server)
+    await request(server)
       .get('/life/toto')
       .expect(200, { from: 'http://localhost:3001' });
 
@@ -167,7 +173,7 @@ describe('ProxyServer', () => {
       ]
     }));
 
-    await request(proxy.server)
+    await request(server)
       .post('/life/echo')
       .send('cool')
       .expect(200, { from: 'http://localhost:3001', body: 'cool' });
@@ -200,7 +206,7 @@ describe('ProxyServer', () => {
     vi.spyOn(store, 'resolve').mockReturnValue(redirection);
     vi.spyOn(redirection, 'disableOutput');
 
-    await request(proxy.server)
+    await request(server)
       .post('/life/echo')
       .send('cool')
       .expect(200, { from: 'http://localhost:3001', body: 'cool' });
