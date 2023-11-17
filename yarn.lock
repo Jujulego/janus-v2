@@ -429,7 +429,7 @@ __metadata:
   dependencies:
     "@jujulego/aegis": "npm:^2.1.1"
     "@jujulego/injector": "npm:^0.1.3"
-    "@jujulego/jill": "npm:2.4.0-alpha.4"
+    "@jujulego/jill": "npm:2.4.0-alpha.5"
     "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^2.1.1"
@@ -466,9 +466,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.4.0-alpha.4":
-  version: 2.4.0-alpha.4
-  resolution: "@jujulego/jill@npm:2.4.0-alpha.4"
+"@jujulego/jill@npm:2.4.0-alpha.5":
+  version: 2.4.0-alpha.5
+  resolution: "@jujulego/jill@npm:2.4.0-alpha.5"
   dependencies:
     "@jujulego/aegis": "npm:^2.1.0"
     "@jujulego/event-tree": "npm:^4.3.0"
@@ -497,7 +497,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     jill: ./bin/jill.js
-  checksum: 98cf09177f3dd9a1914becc74907bfd6fee55fd46e7cdc7fdfa018e1ac04b8fdb7ffeeef48b85af0989c1ffc77d98f26b0292bea7b61e33c276f3037d031e371
+  checksum: 708c16d1bd7e2671b0cfb83ad444de40f7b134651513b34838f02dd88d3a330983f261cec79967c831791f093b3cd95d0d0251ef4603c96f9e6a0739347c160e
   languageName: node
   linkType: hard
 
