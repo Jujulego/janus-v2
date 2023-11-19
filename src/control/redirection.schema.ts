@@ -26,6 +26,24 @@ export const RedirectionSchema = token$(() => makeExecutableSchema({
         return redirections;
       }
     },
+    Mutation: {
+      enableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
+        const store = inject$(RedirectionStore);
+        const ref = store.get(args.redirectionId);
+
+        if (ref) {
+          return ref.enableOutput(args.outputName);
+        }
+      },
+      disableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
+        const store = inject$(RedirectionStore);
+        const ref = store.get(args.redirectionId);
+
+        if (ref) {
+          return ref.disableOutput(args.outputName);
+        }
+      }
+    },
     Subscription: {
       redirection: {
         resolve: (redirection: Redirection | null) => redirection,

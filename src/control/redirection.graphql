@@ -18,6 +18,11 @@ type Query {
     redirections: [Redirection!]!
 }
 
+type Mutation {
+    enableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+    disableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+}
+
 type Subscription {
     redirection(id: ID!): Redirection
 }

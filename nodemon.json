@@ -1,0 +1,4 @@
+{
+  "exec": "yarn node",
+  "watch": ["./dist"]
+}
