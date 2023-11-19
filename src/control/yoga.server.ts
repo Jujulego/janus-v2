@@ -1,14 +1,14 @@
-import { inject$, token$ } from '@jujulego/injector';
+import { inject$, singleton$, token$ } from '@jujulego/injector';
 import { createYoga } from 'graphql-yoga';
 
 import { LabelledLogger } from '../logger.config.ts';
-import { ControlSchema } from './control.schema.js';
+import { RedirectionSchema } from './redirection.schema.ts';
 
 // Tokens
 export const YogaServer = token$(() => {
   return createYoga({
     graphqlEndpoint: '/_janus/graphql',
     logging: inject$(LabelledLogger('yoga')),
-    schema: inject$(ControlSchema),
+    schema: inject$(RedirectionSchema),
   });
-});
+}, { modifiers: [singleton$()] });

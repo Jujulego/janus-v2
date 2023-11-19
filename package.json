@@ -30,6 +30,7 @@
   "dependencies": {
     "@graphql-tools/schema": "^10.0.0",
     "@jujulego/aegis": "^2.1.1",
+    "@jujulego/event-tree": "^4.3.0",
     "@jujulego/injector": "^0.1.3",
     "@jujulego/logger": "^0.2.4",
     "@jujulego/quick-tag": "^0.3.3",

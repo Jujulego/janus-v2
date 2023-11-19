@@ -14,5 +14,9 @@ type Redirection {
 }
 
 type Query {
-    hello: String!
+    redirection(id: ID!): Redirection
+}
+
+type Subscription {
+    redirection(id: ID!): Redirection
 }

@@ -14,7 +14,7 @@ export class HttpServer {
   // Attributes
   private readonly _server = createServer((req, res) => this._handleRequest(req, res));
   private readonly _logger = inject$(LabelledLogger('http'));
-  private readonly _control = inject$(YogaServer);
+  private readonly _yoga = inject$(YogaServer);
 
   @Inject(ProxyServer)
   private readonly _proxy: ProxyServer;
@@ -31,7 +31,7 @@ export class HttpServer {
   private async _handleRequest(req: IncomingMessage | Request, res: ServerResponse) {
     try {
       if (req.url?.startsWith('/_janus')) {
-        await this._control.handleRequest(req as Request, res);
+        await this._yoga(req as Request, res);
       } else {
         await this._proxy.handleRequest(req as IncomingMessage, res);
       }

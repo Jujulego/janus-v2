@@ -543,6 +543,7 @@ __metadata:
   dependencies:
     "@graphql-tools/schema": "npm:^10.0.0"
     "@jujulego/aegis": "npm:^2.1.1"
+    "@jujulego/event-tree": "npm:^4.3.0"
     "@jujulego/injector": "npm:^0.1.3"
     "@jujulego/jill": "npm:2.4.0-alpha.5"
     "@jujulego/logger": "npm:^0.2.4"
