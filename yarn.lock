@@ -429,7 +429,7 @@ __metadata:
   dependencies:
     "@jujulego/aegis": "npm:^2.1.1"
     "@jujulego/injector": "npm:^0.1.3"
-    "@jujulego/jill": "npm:2.4.0-alpha.5"
+    "@jujulego/jill": "npm:2.4.0-alpha.6"
     "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^2.1.1"
@@ -469,9 +469,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.4.0-alpha.5":
-  version: 2.4.0-alpha.5
-  resolution: "@jujulego/jill@npm:2.4.0-alpha.5"
+"@jujulego/jill@npm:2.4.0-alpha.6":
+  version: 2.4.0-alpha.6
+  resolution: "@jujulego/jill@npm:2.4.0-alpha.6"
   dependencies:
     "@jujulego/aegis": "npm:^2.1.0"
     "@jujulego/event-tree": "npm:^4.3.0"
@@ -479,6 +479,7 @@ __metadata:
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/tasks": "npm:^2.2.0"
     "@jujulego/utils": "npm:^2.0.2"
+    "@swc/helpers": "npm:^0.5.3"
     ajv: "npm:^8.12.0"
     chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
@@ -500,7 +501,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     jill: ./bin/jill.js
-  checksum: 708c16d1bd7e2671b0cfb83ad444de40f7b134651513b34838f02dd88d3a330983f261cec79967c831791f093b3cd95d0d0251ef4603c96f9e6a0739347c160e
+  checksum: 142a329775783a339650c28778e84a70e0cbfda68075cbc1a51d5204974b29bfb71c1e0287c614b49db1cde6a33cf83eeabde917d58a73b7ef78f564eb1b94a5
   languageName: node
   linkType: hard
 
@@ -963,6 +964,15 @@ __metadata:
   version: 0.1.2
   resolution: "@swc/counter@npm:0.1.2"
   checksum: 18be012107d4ba1f79776c48d83391ca2159103d7d31a59ff52fcc8024db51b71c5f46714a9fb73981739bc8a38dc6f385a046b71cc08f6043f3c47f5c409eab
+  languageName: node
+  linkType: hard
+
+"@swc/helpers@npm:^0.5.3":
+  version: 0.5.3
+  resolution: "@swc/helpers@npm:0.5.3"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 7003b9dafad38e27a4474a3dcf78d2aee85ce4bb7ee171ecc2d5b533768fb4f8fc9dbd6a1c3a9df5f8001e61ff416b93681e0a7dcbdc0df109b3e09c50cd4615
   languageName: node
   linkType: hard
 
@@ -5556,7 +5566,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tslib@npm:^2.0.3, tslib@npm:^2.1.0":
+"tslib@npm:^2.0.3, tslib@npm:^2.1.0, tslib@npm:^2.4.0":
   version: 2.6.2
   resolution: "tslib@npm:2.6.2"
   checksum: e03a8a4271152c8b26604ed45535954c0a45296e32445b4b87f8a5abdb2421f40b59b4ca437c4346af0f28179780d604094eb64546bee2019d903d01c6c19bdb
