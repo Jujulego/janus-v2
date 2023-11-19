@@ -15,6 +15,7 @@ type Redirection {
 
 type Query {
     redirection(id: ID!): Redirection
+    redirections: [Redirection!]!
 }
 
 type Subscription {

@@ -2,9 +2,9 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { iterate$ } from '@jujulego/event-tree';
 import { inject$, token$ } from '@jujulego/injector';
 
+import { type Redirection } from '../data/redirection.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
 import typeDefs from './redirection.graphql';
-import { Redirection } from '../data/redirection.js';
 
 // Tokens
 export const RedirectionSchema = token$(() => makeExecutableSchema({
@@ -14,6 +14,16 @@ export const RedirectionSchema = token$(() => makeExecutableSchema({
       redirection(_, args: { id: string }) {
         const store = inject$(RedirectionStore);
         return store.get(args.id)?.read();
+      },
+      redirections() {
+        const store = inject$(RedirectionStore);
+        const redirections: Redirection[] = [];
+
+        for (const ref of store.find()) {
+          redirections.push(ref.read());
+        }
+
+        return redirections;
       }
     },
     Subscription: {
@@ -25,10 +35,7 @@ export const RedirectionSchema = token$(() => makeExecutableSchema({
 
           if (ref) {
             yield ref.read();
-
-            for await (const redirection of iterate$(ref)) {
-              yield redirection;
-            }
+            yield* iterate$(ref);
           }
         },
       }
