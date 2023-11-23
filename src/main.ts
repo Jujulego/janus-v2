@@ -1,5 +1,6 @@
 import { inject$ } from '@jujulego/injector';
 import 'reflect-metadata';
+import './graphql.d.ts';
 
 import { Config } from './config/loader.ts';
 import { RedirectionStore } from './data/redirection.store.ts';
