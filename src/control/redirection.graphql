@@ -1,0 +1,28 @@
+type RedirectionOutput {
+    name: String!
+    target: String!
+    enabled: Boolean!
+    changeOrigin: Boolean!
+    secure: Boolean!
+    ws: Boolean!
+}
+
+type Redirection {
+    id: ID!
+    url: String!
+    outputs: [RedirectionOutput!]!
+}
+
+type Query {
+    redirection(id: ID!): Redirection
+    redirections: [Redirection!]!
+}
+
+type Mutation {
+    enableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+    disableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+}
+
+type Subscription {
+    redirection(id: ID!): Redirection
+}

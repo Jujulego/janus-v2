@@ -47,12 +47,16 @@ export class RedirectionStore {
     this._logger.verbose(`Loaded ${count} redirections from config`);
   }
 
+  find() {
+    return this._redirections.references();
+  }
+
   get(id: string) {
     return this._redirections.get(id) ?? null;
   }
 
   resolve(url: string) {
-    for (const ref of this._redirections.references()) {
+    for (const ref of this.find()) {
       if (url.startsWith(ref.read().url)) {
         return ref;
       }
