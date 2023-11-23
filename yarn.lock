@@ -548,7 +548,7 @@ __metadata:
     "@jujulego/jill": "npm:2.4.0-alpha.6"
     "@jujulego/logger": "npm:^0.2.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
-    "@jujulego/utils": "npm:^2.1.1"
+    "@jujulego/utils": "npm:^3.0.0"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@rollup/plugin-graphql": "npm:2.0.4"
@@ -660,12 +660,22 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.2, @jujulego/utils@npm:^2.1.1":
+"@jujulego/utils@npm:^2.0.0, @jujulego/utils@npm:^2.0.2":
   version: 2.1.1
   resolution: "@jujulego/utils@npm:2.1.1"
   dependencies:
     "@jujulego/event-tree": "npm:^4.1.0"
   checksum: cf408db0d8825a632c34ae3e8c18044556372a29111d29db17165cc4c4f4b70a582edef31f82f3033729da62c86ca7307fef83663e3cf95b7fe3ceff0ef32a8b
+  languageName: node
+  linkType: hard
+
+"@jujulego/utils@npm:^3.0.0":
+  version: 3.0.0
+  resolution: "@jujulego/utils@npm:3.0.0"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.3"
+    kyrielle: "npm:^0.4.0"
+  checksum: 6fe8ecbae62f84888d33b6284461ff5965ba53ba841316d345bdd3c674691ff46bcaf00371e27f8537ac13daaafb3b6d4ab53dfb55adfbde90c87c6aa7305047
   languageName: node
   linkType: hard
 
@@ -4023,6 +4033,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"kyrielle@npm:^0.4.0":
+  version: 0.4.1
+  resolution: "kyrielle@npm:0.4.1"
+  dependenciesMeta:
+    vitest@0.34.6:
+      unplugged: true
+  checksum: d0718cf44796e622909347075b43dd2dc1af8b54a8aaaae5c0b3ddac57bb85668dfb81e0ddd6774c2c2b4725a72ae15409bf1273f0d483bd154f77ec7ad5a080
+  languageName: node
+  linkType: hard
+
 "levn@npm:^0.4.1":
   version: 0.4.1
   resolution: "levn@npm:0.4.1"
@@ -4117,19 +4137,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lru-cache@npm:^10.0.0":
+"lru-cache@npm:^10.0.0, lru-cache@npm:^10.0.1, lru-cache@npm:^9.1.1 || ^10.0.0":
   version: 10.0.2
   resolution: "lru-cache@npm:10.0.2"
   dependencies:
     semver: "npm:^7.3.5"
   checksum: 5c83a7a2a320a445129cb67a1794437db5483942df63536026fba1cb7ba2e1f7456037876cc9d31076132010f92cb943bee358d336dd94105e50ea971e6d737d
-  languageName: node
-  linkType: hard
-
-"lru-cache@npm:^10.0.1, lru-cache@npm:^9.1.1 || ^10.0.0":
-  version: 10.0.1
-  resolution: "lru-cache@npm:10.0.1"
-  checksum: 982dabfb227b9a2daf56d712ae0e72e01115a28c0a2068cd71277bca04568f3417bbf741c6c7941abc5c620fd8059e34f15607f90ebccbfa0a17533322d27a8e
   languageName: node
   linkType: hard
 
