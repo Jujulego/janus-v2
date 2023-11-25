@@ -1,5 +1,6 @@
-import { RefMap, SyncMutableRef } from '@jujulego/aegis';
 import { inject$, Service } from '@jujulego/injector';
+import { SyncMutableRef } from 'kyrielle';
+import { RefMap } from 'kyrielle/collections';
 import { createHash } from 'node:crypto';
 
 import { Config } from '../config/loader.ts';

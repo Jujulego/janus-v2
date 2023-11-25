@@ -1,5 +1,6 @@
-import { actions$, SyncMutableRef, var$ } from '@jujulego/aegis';
 import { inject$ } from '@jujulego/injector';
+import { actions$, SyncMutableRef } from 'kyrielle';
+import { var$ } from 'kyrielle/refs';
 
 import { LabelledLogger } from '../logger.config.ts';
 

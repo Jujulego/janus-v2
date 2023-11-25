@@ -1,5 +1,3 @@
-import { chalkTemplateStderr } from 'chalk-template';
-import { filter$, flow$, var$ } from '@jujulego/aegis';
 import { inject$, singleton$, token$ } from '@jujulego/injector';
 import {
   logger$,
@@ -12,6 +10,10 @@ import {
   withTimestamp
 } from '@jujulego/logger';
 import { qprop } from '@jujulego/quick-tag';
+import { chalkTemplateStderr } from 'chalk-template';
+import { flow$ } from 'kyrielle/operators';
+import { var$ } from 'kyrielle/refs';
+import { filter$ } from 'kyrielle/steps';
 import os from 'node:os';
 
 // Types
