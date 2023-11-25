@@ -1,6 +1,6 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
-import { iterate$ } from '@jujulego/event-tree';
 import { inject$, token$ } from '@jujulego/injector';
+import { iterate$ } from 'kyrielle/subscriptions';
 
 import { type Redirection } from '../data/redirection.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
