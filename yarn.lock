@@ -501,7 +501,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/aegis@npm:^2.0.1, @jujulego/aegis@npm:^2.1.0, @jujulego/aegis@npm:^2.1.1":
+"@jujulego/aegis@npm:^2.1.0, @jujulego/aegis@npm:^2.1.1":
   version: 2.1.1
   resolution: "@jujulego/aegis@npm:2.1.1"
   dependencies:
@@ -526,14 +526,14 @@ __metadata:
   linkType: hard
 
 "@jujulego/injector@npm:^0.1.3":
-  version: 0.1.3
-  resolution: "@jujulego/injector@npm:0.1.3"
+  version: 0.1.5
+  resolution: "@jujulego/injector@npm:0.1.5"
   dependencies:
-    "@jujulego/aegis": "npm:^2.0.1"
-    "@jujulego/utils": "npm:^2.0.2"
+    "@swc/helpers": "npm:^0.5.3"
+    kyrielle: "npm:^0.5.0"
   peerDependencies:
     reflect-metadata: ^0.1.13
-  checksum: f8f9c149a4d1f4a93c8f7d8e650dcb33c41a3fdc8c9d960474938c4783c77f854cdde7337de497a82d77bb57abc41a4a8c973dd982afdf8c8ce0126e1651c928
+  checksum: fc38027f1fbddf54bac6f9baea859f9e31b2309a9f435c648ccdf9af4d02d756f0a220d85751ba972949d231f037b637db3013d0e1e313cbbbd871c42a1b8976
   languageName: node
   linkType: hard
 
@@ -4020,6 +4020,18 @@ __metadata:
   dependencies:
     json-buffer: "npm:3.0.1"
   checksum: aa52f3c5e18e16bb6324876bb8b59dd02acf782a4b789c7b2ae21107fab95fab3890ed448d4f8dba80ce05391eeac4bfabb4f02a20221342982f806fa2cf271e
+  languageName: node
+  linkType: hard
+
+"kyrielle@npm:^0.5.0":
+  version: 0.5.2
+  resolution: "kyrielle@npm:0.5.2"
+  dependencies:
+    immer: "npm:^10.0.3"
+  dependenciesMeta:
+    vitest@0.34.6:
+      unplugged: true
+  checksum: d69982e6886859aaaece3ac321a6f0222b60c0b66786f47dbf168af75f43e035cf2a1b8a7758cbe7e087ab9ec2a79f3a74bd9b99459989c2a38129dddbe4290a
   languageName: node
   linkType: hard
 
