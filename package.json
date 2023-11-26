@@ -1,6 +1,6 @@
 {
   "name": "@jujulego/janus",
-  "version": "2.0.0-alpha.1",
+  "version": "2.0.0-alpha.2",
   "license": "MIT",
   "author": "Julien Capellari <julien.capellari@gmail.com>",
   "repository": {
@@ -20,7 +20,7 @@
   "scripts": {
     "lint": "eslint .",
     "clean": "shx rm -r dist",
-    "build": "jill group 'build:bundle // build:types'",
+    "build": "jill run 'build:bundle // build:types'",
     "build:bundle": "rollup -c",
     "build:types": "tsc -p tsconfig.build.json",
     "watch": "rollup -c --watch",
