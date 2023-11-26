@@ -5,7 +5,7 @@
   "author": "Julien Capellari <julien.capellari@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jujulego/janus"
+    "url": "https://github.com/jujulego/janus-v2"
   },
   "publishConfig": {
     "access": "public"
