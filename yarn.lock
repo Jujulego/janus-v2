@@ -543,7 +543,7 @@ __metadata:
   dependencies:
     "@graphql-tools/schema": "npm:^10.0.0"
     "@jujulego/injector": "npm:^0.1.5"
-    "@jujulego/jill": "npm:2.4.0-alpha.6"
+    "@jujulego/jill": "npm:2.4.0"
     "@jujulego/logger": "npm:^0.3.0"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^3.0.1"
@@ -589,9 +589,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.4.0-alpha.6":
-  version: 2.4.0-alpha.6
-  resolution: "@jujulego/jill@npm:2.4.0-alpha.6"
+"@jujulego/jill@npm:2.4.0":
+  version: 2.4.0
+  resolution: "@jujulego/jill@npm:2.4.0"
   dependencies:
     "@jujulego/aegis": "npm:^2.1.0"
     "@jujulego/event-tree": "npm:^4.3.0"
@@ -621,7 +621,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     jill: ./bin/jill.js
-  checksum: 142a329775783a339650c28778e84a70e0cbfda68075cbc1a51d5204974b29bfb71c1e0287c614b49db1cde6a33cf83eeabde917d58a73b7ef78f564eb1b94a5
+  checksum: 44e142d8f3110fd888bca79e7a8ce5757709a8e85c177e0baa4870a2a21d517513c4cc7a307296b1054757e29720fe4b9a0f074769d160e0f7af30b34c1c66e3
   languageName: node
   linkType: hard
 
@@ -4044,19 +4044,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^0.5.0":
-  version: 0.5.1
-  resolution: "kyrielle@npm:0.5.1"
-  dependencies:
-    immer: "npm:^10.0.3"
-  dependenciesMeta:
-    vitest@0.34.6:
-      unplugged: true
-  checksum: 84db755d24f787884976650c2512bd22cb9174b6d5a0da6381dd8898c4af46839412266466b7e83e5b1a2797a086d139d2e1458fbc17c7a9e2d8125bfb201080
-  languageName: node
-  linkType: hard
-
-"kyrielle@npm:^0.5.2":
+"kyrielle@npm:^0.5.0, kyrielle@npm:^0.5.2":
   version: 0.5.2
   resolution: "kyrielle@npm:0.5.2"
   dependencies:
