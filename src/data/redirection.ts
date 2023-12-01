@@ -41,7 +41,7 @@ export function redirection$(state: Redirection): RedirectionRef {
     disableOutput: (name: string) => (draft) => {
       const output = draft.outputs.find((out) => out.name === name);
 
-      if (output && output.enabled) {
+      if (output?.enabled) {
         output.enabled = false;
         logger.info(`Output ${name} disabled`);
       }

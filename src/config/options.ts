@@ -1,4 +1,4 @@
-import { singleton$, token$ } from '@jujulego/injector';
+import { token$ } from '@jujulego/injector';
 import { LogLevelKey } from '@jujulego/logger';
 import yargs, { type Argv } from 'yargs';
 import { hideBin } from 'yargs/helpers';
@@ -35,13 +35,10 @@ export function buildConfigOptions(parser: Argv) {
 }
 
 // Token
-export const ConfigOptions = token$(
-  () => {
-    const parser = yargs(hideBin(process.argv))
-      .help(false)
-      .version(false);
+export const ConfigOptions = token$(() => {
+  const parser = yargs(hideBin(process.argv))
+    .help(false)
+    .version(false);
 
-    return buildConfigOptions(parser).parseSync();
-  },
-  { modifiers: [singleton$()] }
-);
+  return buildConfigOptions(parser).parseSync();
+});

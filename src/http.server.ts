@@ -1,4 +1,4 @@
-import { Inject, inject$, Service } from '@jujulego/injector';
+import { Inject, inject$, Injectable } from '@jujulego/injector';
 import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
@@ -9,7 +9,7 @@ import { ProxyServer } from './proxy/proxy.server.ts';
 import { renderHttpError, sendHttpError } from './utils/http-error.ts';
 
 // Http server
-@Service()
+@Injectable()
 export class HttpServer {
   // Attributes
   private readonly _server = createServer((req, res) => this._handleRequest(req, res));

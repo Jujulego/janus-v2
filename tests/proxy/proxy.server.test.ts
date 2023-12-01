@@ -1,9 +1,9 @@
-import { overrideInject$ } from '@jujulego/injector/tests';
+import { ActiveScope, override$, scope$ } from '@jujulego/injector';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { Server } from 'node:http';
 import request from 'supertest';
-import { afterAll, beforeAll, beforeEach, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest';
 
 import { RedirectionStore } from '@/src/data/redirection.store.js';
 import { redirection$ } from '@/src/data/redirection.js';
@@ -11,6 +11,7 @@ import { ProxyServer } from '@/src/proxy/proxy.server.js';
 import { createHttpServer, ignoreServer } from '../utils.js';
 
 // Setup
+let scope: ActiveScope;
 let store: RedirectionStore;
 let proxy: ProxyServer;
 let server: Server;
@@ -38,12 +39,17 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
+  scope = scope$('tests');
   targetServer.resetHandlers();
 
-  store = overrideInject$(RedirectionStore, new RedirectionStore());
-  proxy = overrideInject$(ProxyServer, new ProxyServer());
+  store = override$(RedirectionStore, new RedirectionStore());
+  proxy = override$(ProxyServer, new ProxyServer());
 
   server = createHttpServer((req, res) => proxy.handleRequest(req, res));
+});
+
+afterEach(() => {
+  scope.deactivate();
 });
 
 afterAll(() => {

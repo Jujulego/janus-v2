@@ -11,15 +11,13 @@ export const ConfigValidator = token$(
   () => inject$(Ajv).compile<Config>(schema)
 );
 
-export const ConfigExplorer = token$(
-  () => cosmiconfig('janus', {
-    loaders: {
-      '.cjs': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
-      '.js': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
-      '.json': defaultLoaders['.json'],
-      '.yaml': defaultLoaders['.yaml'],
-      '.yml': defaultLoaders['.yml'],
-      noExt: defaultLoaders.noExt,
-    }
-  })
-);
+export const ConfigExplorer = token$(() => cosmiconfig('janus', {
+  loaders: {
+    '.cjs': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
+    '.js': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
+    '.json': defaultLoaders['.json'],
+    '.yaml': defaultLoaders['.yaml'],
+    '.yml': defaultLoaders['.yml'],
+    noExt: defaultLoaders.noExt,
+  }
+}));

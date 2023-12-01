@@ -1,4 +1,4 @@
-import { Inject, inject$, Service } from '@jujulego/injector';
+import { Inject, inject$, Injectable } from '@jujulego/injector';
 import { Flag } from '@jujulego/utils';
 import createHttpError from 'http-errors';
 import proxy, { ServerOptions } from 'http-proxy';
@@ -9,7 +9,7 @@ import { LabelledLogger } from '../logger.config.ts';
 import { RedirectionStore } from '../data/redirection.store.ts';
 
 // Proxy server
-@Service()
+@Injectable()
 export class ProxyServer {
   // Attributes
   private readonly _proxy = proxy.createProxy();

@@ -1,4 +1,4 @@
-import { inject$, Service } from '@jujulego/injector';
+import { inject$, Injectable } from '@jujulego/injector';
 import { SyncMutableRef } from 'kyrielle';
 import { RefMap } from 'kyrielle/collections';
 import { createHash } from 'node:crypto';
@@ -8,7 +8,7 @@ import { LabelledLogger } from '../logger.config.ts';
 import { Redirection, redirection$ } from './redirection.ts';
 
 // Repository
-@Service()
+@Injectable()
 export class RedirectionStore {
   // Attributes
   private readonly _logger = inject$(LabelledLogger('redirections'));

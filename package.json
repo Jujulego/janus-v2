@@ -30,10 +30,10 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.0",
-    "@jujulego/injector": "^0.1.5",
-    "@jujulego/logger": "^0.3.0",
+    "@jujulego/injector": "^0.2.5",
+    "@jujulego/logger": "^0.3.1",
     "@jujulego/quick-tag": "^0.3.3",
-    "@jujulego/utils": "^3.0.1",
+    "@jujulego/utils": "^3.0.4",
     "@swc/helpers": "^0.5.3",
     "ajv": "^8.12.0",
     "chalk-template": "^1.1.0",
@@ -42,7 +42,7 @@
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
-    "kyrielle": "^0.5.2",
+    "kyrielle": "^0.7.0",
     "reflect-metadata": "^0.1.13",
     "yargs": "^17.7.2"
   },

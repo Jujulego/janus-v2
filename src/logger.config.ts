@@ -1,4 +1,4 @@
-import { inject$, singleton$, token$ } from '@jujulego/injector';
+import { inject$, token$ } from '@jujulego/injector';
 import {
   logger$,
   LogLabel, LogLevel,
@@ -27,20 +27,17 @@ export const logFormat = qlevelColor(
 );
 
 // Tokens
-export const Logger = token$(
-  () => {
-    const logger = logger$(withTimestamp());
+export const Logger = token$(() => {
+  const logger = logger$(withTimestamp());
 
-    flow$(
-      logger,
-      filter$((log) => log.level >= logLevel.read()),
-      toStderr(logFormat)
-    );
+  flow$(
+    logger,
+    filter$((log) => log.level >= logLevel.read()),
+    toStderr(logFormat)
+  );
 
-    return logger;
-  },
-  { modifiers: [singleton$()] }
-);
+  return logger;
+});
 
 export function LabelledLogger(label: string) {
   return token$(() => {
