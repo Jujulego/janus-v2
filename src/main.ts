@@ -1,14 +1,24 @@
-import { inject$ } from '@jujulego/injector';
 import 'reflect-metadata';
-import './graphql.d.ts';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-import { JanusProxy } from './janus-proxy.ts';
+import { start } from './commands/index.ts';
+import { buildConfigOptions } from './config/options.ts';
+import { version } from '../package.json' assert { type: 'json' };
+import './graphql.d.ts';
 
 // Bootstrap
 (async () => {
   try {
-    const proxy = inject$(JanusProxy);
-    await proxy.start();
+    const parser = yargs(hideBin(process.argv))
+      .scriptName('janus')
+      .version(version);
+
+    buildConfigOptions(parser);
+
+    parser.command(start);
+
+    await parser.parseAsync();
   } catch (err) {
     console.error(err);
     process.exit(1);
