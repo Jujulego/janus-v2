@@ -3,7 +3,7 @@ import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
-import { YogaServer } from './control/yoga.server.ts';
+import { YogaServer } from './graphql/yoga.server.ts';
 import { LabelledLogger } from './logger.config.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
 import { renderHttpError, sendHttpError } from './utils/http-error.ts';

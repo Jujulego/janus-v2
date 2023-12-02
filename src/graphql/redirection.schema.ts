@@ -2,8 +2,8 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { inject$, token$ } from '@jujulego/injector';
 import { iterate$ } from 'kyrielle/subscriptions';
 
-import { type Redirection } from '../data/redirection.ts';
-import { RedirectionStore } from '../data/redirection.store.ts';
+import { type Redirection } from '../state/redirection.ref.ts';
+import { RedirectionStore } from '../state/redirection.store.ts';
 import typeDefs from './redirection.graphql';
 
 // Tokens

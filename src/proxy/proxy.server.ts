@@ -6,7 +6,7 @@ import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
 import { LabelledLogger } from '../logger.config.ts';
-import { RedirectionStore } from '../data/redirection.store.ts';
+import { RedirectionStore } from '../state/redirection.store.ts';
 
 // Proxy server
 @Injectable()

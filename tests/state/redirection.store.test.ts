@@ -1,7 +1,7 @@
 import { beforeEach } from 'vitest';
 
 import { Config } from '@/src/config/loader.ts';
-import { RedirectionStore } from '@/src/data/redirection.store.ts';
+import { RedirectionStore } from '@/src/state/redirection.store.ts';
 
 // Setup
 let repository: RedirectionStore;

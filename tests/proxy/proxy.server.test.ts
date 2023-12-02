@@ -5,8 +5,8 @@ import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, afterEach, beforeAll, beforeEach, vi } from 'vitest';
 
-import { RedirectionStore } from '@/src/data/redirection.store.js';
-import { redirection$ } from '@/src/data/redirection.js';
+import { RedirectionStore } from '@/src/state/redirection.store.js';
+import { redirection$ } from '@/src/state/redirection.ref.js';
 import { ProxyServer } from '@/src/proxy/proxy.server.js';
 import { createHttpServer, ignoreServer } from '../utils.js';
 

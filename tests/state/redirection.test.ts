@@ -1,4 +1,4 @@
-import { redirection$ } from '@/src/data/redirection.js';
+import { redirection$ } from '@/src/state/redirection.ref.js';
 
 // Tests
 describe('redirection$().enableOutput', () => {

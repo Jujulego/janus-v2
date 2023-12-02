@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import './graphql.d.ts';
 
 import { Config } from './config/loader.ts';
-import { RedirectionStore } from './data/redirection.store.ts';
+import { RedirectionStore } from './state/redirection.store.ts';
 import { HttpServer } from './http.server.ts';
 
 // Bootstrap

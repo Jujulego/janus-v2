@@ -5,7 +5,7 @@ import { createHash } from 'node:crypto';
 
 import { Config } from '../config/loader.ts';
 import { LabelledLogger } from '../logger.config.ts';
-import { Redirection, redirection$ } from './redirection.ts';
+import { Redirection, redirection$ } from './redirection.ref.ts';
 
 // Repository
 @Injectable()
