@@ -3,6 +3,7 @@ import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
+import { Config } from './config/loader.ts';
 import { YogaServer } from './graphql/yoga.server.ts';
 import { LabelledLogger } from './logger.config.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
@@ -20,11 +21,16 @@ export class HttpServer {
   private readonly _proxy: ProxyServer;
 
   // Methods
-  listen(port: number) {
+  async listen(): Promise<void> {
     this._server.on('upgrade', (req, socket, head) => this._handleUpgrade(req, socket, head));
 
-    this._server.listen(port, () => {
-      this._logger.info(`Listening on port ${port}`);
+    const config = await inject$(Config);
+
+    return new Promise<void>((resolve) => {
+      this._server.listen(config.server.port, () => {
+        this._logger.info(`Listening on port ${config.server.port}`);
+        resolve();
+      });
     });
   }
 
