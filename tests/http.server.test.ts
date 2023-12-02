@@ -1,4 +1,4 @@
-import { overrideInject$ } from '@jujulego/injector/tests';
+import { ActiveScope, override$, scope$ } from '@jujulego/injector';
 import createHttpError from 'http-errors';
 import { ServerResponse } from 'node:http';
 import request from 'supertest';
@@ -8,12 +8,19 @@ import { HttpServer } from '@/src/http.server.ts';
 import { ProxyServer } from '@/src/proxy/proxy.server.ts';
 
 // Setup
+let scope: ActiveScope;
 let proxy: ProxyServer;
 let server: HttpServer;
 
 beforeEach(() => {
-  proxy = overrideInject$(ProxyServer, new ProxyServer());
+  scope = scope$('tests');
+
+  proxy = override$(ProxyServer, new ProxyServer());
   server = new HttpServer();
+});
+
+afterEach(() => {
+  scope.deactivate();
 });
 
 // Tests
