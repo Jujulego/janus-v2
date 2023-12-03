@@ -24,7 +24,7 @@
     "build:bundle": "rollup -c",
     "build:types": "tsc -p tsconfig.build.json",
     "watch": "rollup -c --watch",
-    "dev:start": "nodemon ./bin/janus.js",
+    "dev:start": "nodemon ./bin/janus.js start",
     "test": "vitest run",
     "test:types": "vitest typecheck"
   },

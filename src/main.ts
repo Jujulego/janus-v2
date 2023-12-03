@@ -1,21 +1,24 @@
-import { inject$ } from '@jujulego/injector';
 import 'reflect-metadata';
-import './graphql.d.ts';
+import yargs from 'yargs';
+import { hideBin } from 'yargs/helpers';
 
-import { Config } from './config/loader.ts';
-import { RedirectionStore } from './state/redirection.store.ts';
-import { HttpServer } from './http.server.ts';
+import { start } from './commands/index.ts';
+import { buildConfigOptions } from './config/options.ts';
+import { version } from '../package.json' assert { type: 'json' };
+import './graphql.d.ts';
 
 // Bootstrap
 (async () => {
   try {
-    const config = await inject$(Config);
-    const redirections = inject$(RedirectionStore);
-    const server = inject$(HttpServer);
+    const parser = yargs(hideBin(process.argv))
+      .scriptName('janus')
+      .version(version);
 
-    await redirections.loadConfig();
+    buildConfigOptions(parser);
 
-    server.listen(config.server.port);
+    parser.command(start);
+
+    await parser.parseAsync();
   } catch (err) {
     console.error(err);
     process.exit(1);

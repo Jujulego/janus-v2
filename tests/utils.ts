@@ -2,7 +2,18 @@ import http, { RequestListener, Server } from 'node:http';
 import { AddressInfo } from 'node:net';
 import { isHttpError } from 'http-errors';
 
-import { sendHttpError } from '@/src/utils/http-error.js';
+import { Config } from '@/src/config/type.ts';
+import { sendHttpError } from '@/src/utils/http-error.ts';
+
+// Constants
+export const DEFAULT_CONFIG: Config = {
+  verbose: 'info',
+  server: {
+    port: 3000,
+    pidfile: '.janus.pid',
+  },
+  redirections: {},
+};
 
 // Utils
 export function createHttpServer(listener: RequestListener): Server {

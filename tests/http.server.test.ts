@@ -6,6 +6,9 @@ import { beforeEach } from 'vitest';
 
 import { HttpServer } from '@/src/http.server.ts';
 import { ProxyServer } from '@/src/proxy/proxy.server.ts';
+import { Config } from '@/src/config/loader.ts';
+
+import { DEFAULT_CONFIG } from './utils.js';
 
 // Setup
 let scope: ActiveScope;
@@ -25,10 +28,15 @@ afterEach(() => {
 
 // Tests
 describe('HttpServer.listen', () => {
-  it('should call internal server listen method', () => {
-    vi.spyOn(server.server, 'listen').mockReturnThis();
+  it('should call internal server listen method', async () => {
+    override$(Config, DEFAULT_CONFIG);
+    vi.spyOn(server.server, 'listen')
+      .mockImplementation(function (_, cb) {
+        cb && cb();
+        return server.server;
+      });
 
-    server.listen(3000);
+      await server.listen();
 
     expect(server.server.listen).toHaveBeenCalledWith(3000, expect.any(Function));
   });
