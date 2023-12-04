@@ -65,7 +65,7 @@
     "@vitest/coverage-v8": "0.34.6",
     "eslint": "8.55.0",
     "eslint-plugin-vitest": "0.3.10",
-    "msw": "2.0.9",
+    "msw": "2.0.10",
     "nodemon": "3.0.2",
     "rollup": "4.6.1",
     "shx": "0.3.4",
