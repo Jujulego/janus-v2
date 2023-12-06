@@ -525,14 +525,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/injector@npm:^0.2.5":
-  version: 0.2.5
-  resolution: "@jujulego/injector@npm:0.2.5"
+"@jujulego/injector@npm:^0.3.0":
+  version: 0.3.0
+  resolution: "@jujulego/injector@npm:0.3.0"
   dependencies:
-    "@jujulego/utils": "npm:^3.0.4"
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^0.7.0"
-  checksum: 6f2e6a5b7c880adc874df136225b422e8bbfb04a05aa66ce9cfe7d3e99986489e9d99d9e423d1387b08031344c125ec11b40ea8fddfcf51dfa1b1467900386bf
+    kyrielle: "npm:^0.8.1"
+  checksum: d5ed68110a72a66466c153974395195642016114aae533d166b64284e1add34dee3c396b93e70f39993c960a437980c533fae145b8fa2ed70878dbad63e21d12
   languageName: node
   linkType: hard
 
@@ -541,7 +540,7 @@ __metadata:
   resolution: "@jujulego/janus@workspace:."
   dependencies:
     "@graphql-tools/schema": "npm:^10.0.0"
-    "@jujulego/injector": "npm:^0.2.5"
+    "@jujulego/injector": "npm:^0.3.0"
     "@jujulego/jill": "npm:2.4.0"
     "@jujulego/logger": "npm:^0.3.1"
     "@jujulego/quick-tag": "npm:^0.3.3"
@@ -4055,6 +4054,18 @@ __metadata:
     vitest@0.34.5:
       unplugged: true
   checksum: 7a9e5f9bbb1b0fa3969125d0b4d069c9f6befe17bfaba02cf54fb161c414f21e2b746063c8792abdbed9270adc4709aa73b014442471637bc7d2b06e4d67a81b
+  languageName: node
+  linkType: hard
+
+"kyrielle@npm:^0.8.1":
+  version: 0.8.1
+  resolution: "kyrielle@npm:0.8.1"
+  dependencies:
+    immer: "npm:^10.0.3"
+  dependenciesMeta:
+    vitest@0.34.5:
+      unplugged: true
+  checksum: 1087574786a864513f04a95905358438e27e1f7e5643f8577a63cd10efef52ca65705f792b0dcd48cc67b41eed6c968b840e89bdcf988322b0c3ee0646a4d6a4
   languageName: node
   linkType: hard
 
