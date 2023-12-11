@@ -565,7 +565,7 @@ __metadata:
     chalk-template: "npm:^1.1.0"
     cosmiconfig: "npm:^8.3.6"
     eslint: "npm:8.55.0"
-    eslint-plugin-vitest: "npm:0.3.13"
+    eslint-plugin-vitest: "npm:0.3.14"
     graphql: "npm:^16.8.1"
     graphql-yoga: "npm:^5.0.0"
     http-errors: "npm:^2.0.0"
@@ -2666,9 +2666,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest@npm:0.3.13":
-  version: 0.3.13
-  resolution: "eslint-plugin-vitest@npm:0.3.13"
+"eslint-plugin-vitest@npm:0.3.14":
+  version: 0.3.14
+  resolution: "eslint-plugin-vitest@npm:0.3.14"
   dependencies:
     "@typescript-eslint/utils": "npm:^6.13.2"
   peerDependencies:
@@ -2679,7 +2679,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 0bd85c04163675ad92ea114466f4093165dcec2861371b4af4b04f85661e04a11d0dfada4246d7e1dfa488ff1fade8c8fac5b577824d1917a35d1de04ae9732d
+  checksum: 8d05ce5c7b1e2aadc73ad87097bf7197a7b5b88c22f523e212bfd58a2b1f81cc900e1f712b559905e15c8fb9c3bb1414fe9969d38c2b7bf71f01266be7909c31
   languageName: node
   linkType: hard
 
