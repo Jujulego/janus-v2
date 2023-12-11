@@ -67,7 +67,7 @@
     "eslint-plugin-vitest": "0.3.15",
     "msw": "2.0.10",
     "nodemon": "3.0.2",
-    "rollup": "4.7.0",
+    "rollup": "4.8.0",
     "shx": "0.3.4",
     "supertest": "6.3.3",
     "typescript": "5.3.3",
