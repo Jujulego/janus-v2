@@ -573,7 +573,7 @@ __metadata:
     kyrielle: "npm:^0.8.0"
     msw: "npm:2.0.11"
     nodemon: "npm:3.0.2"
-    reflect-metadata: "npm:^0.1.13"
+    reflect-metadata: "npm:^0.2.0"
     rollup: "npm:4.9.0"
     shx: "npm:0.3.4"
     supertest: "npm:6.3.3"
@@ -5102,6 +5102,13 @@ __metadata:
   version: 0.1.13
   resolution: "reflect-metadata@npm:0.1.13"
   checksum: 728bff0b376b05639fd11ed80c648b61f7fe653c5b506d7ca118e58b6752b9b00810fe0c86227ecf02bd88da6251ab3eb19fd403aaf2e9ff5ef36a2fda643026
+  languageName: node
+  linkType: hard
+
+"reflect-metadata@npm:^0.2.0":
+  version: 0.2.0
+  resolution: "reflect-metadata@npm:0.2.0"
+  checksum: 818c7b99d71a80da9374f85ffdc611ebdf851c60db3d5ad3c22a866c11cdd19f233c38b4d8ccd0bdb589b38ada28616a67f99abc256352896f002849a0d20cff
   languageName: node
   linkType: hard
 
