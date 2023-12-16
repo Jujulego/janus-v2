@@ -37,7 +37,7 @@
     "@swc/helpers": "^0.5.3",
     "ajv": "^8.12.0",
     "chalk-template": "^1.1.0",
-    "cosmiconfig": "^8.3.6",
+    "cosmiconfig": "^9.0.0",
     "graphql": "^16.8.1",
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
