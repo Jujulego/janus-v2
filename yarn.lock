@@ -552,13 +552,13 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/injector@npm:^0.3.0":
-  version: 0.3.0
-  resolution: "@jujulego/injector@npm:0.3.0"
+"@jujulego/injector@npm:^0.4.0":
+  version: 0.4.0
+  resolution: "@jujulego/injector@npm:0.4.0"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^0.8.1"
-  checksum: d5ed68110a72a66466c153974395195642016114aae533d166b64284e1add34dee3c396b93e70f39993c960a437980c533fae145b8fa2ed70878dbad63e21d12
+    kyrielle: "npm:^0.8.2"
+  checksum: 5688b0c5c0b04aed9d24793a2bdef025aac4c846f8e356c65188b20e740f9c906113e4f26e0af6c134bacb9a8a1eaeab1e3ca7aa8f72d48a8729bbdedcd52e42
   languageName: node
   linkType: hard
 
@@ -567,7 +567,7 @@ __metadata:
   resolution: "@jujulego/janus@workspace:."
   dependencies:
     "@graphql-tools/schema": "npm:^10.0.0"
-    "@jujulego/injector": "npm:^0.3.0"
+    "@jujulego/injector": "npm:^0.4.0"
     "@jujulego/jill": "npm:2.5.0"
     "@jujulego/logger": "npm:^0.3.1"
     "@jujulego/quick-tag": "npm:^0.3.3"
@@ -4113,7 +4113,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^0.8.0, kyrielle@npm:^0.8.1":
+"kyrielle@npm:^0.8.0, kyrielle@npm:^0.8.2":
   version: 0.8.2
   resolution: "kyrielle@npm:0.8.2"
   dependencies:
