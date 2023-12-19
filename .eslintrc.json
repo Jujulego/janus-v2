@@ -33,7 +33,7 @@
       ],
       "rules": {
         "vitest/expect-expect": ["error", {
-          "customExpressions": ["expect", "request.**.expect"]
+          "assertFunctionNames": ["expect", "request.**.expect"]
         }]
       }
     }
