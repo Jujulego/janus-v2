@@ -12,6 +12,7 @@ export const ConfigValidator = token$(
 );
 
 export const ConfigExplorer = token$(() => cosmiconfig('janus', {
+  searchStrategy: 'global',
   loaders: {
     '.cjs': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
     '.js': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
