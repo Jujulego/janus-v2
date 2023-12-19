@@ -1,4 +1,4 @@
-import { ActiveScope, override$, scope$ } from '@jujulego/injector';
+import { globalScope$, override$ } from '@jujulego/injector';
 import createHttpError from 'http-errors';
 import { ServerResponse } from 'node:http';
 import request from 'supertest';
@@ -11,19 +11,14 @@ import { Config } from '@/src/config/loader.ts';
 import { DEFAULT_CONFIG } from './utils.js';
 
 // Setup
-let scope: ActiveScope;
 let proxy: ProxyServer;
 let server: HttpServer;
 
 beforeEach(() => {
-  scope = scope$('tests');
+  globalScope$().reset();
 
   proxy = override$(ProxyServer, new ProxyServer());
   server = new HttpServer();
-});
-
-afterEach(() => {
-  scope.deactivate();
 });
 
 // Tests

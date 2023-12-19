@@ -1,3 +1,4 @@
+import { globalScope$, override$ } from '@jujulego/injector';
 import { beforeEach } from 'vitest';
 
 import { Config } from '@/src/config/loader.ts';
@@ -7,13 +8,14 @@ import { RedirectionStore } from '@/src/state/redirection.store.ts';
 let repository: RedirectionStore;
 
 beforeEach(() => {
+  globalScope$().reset();
   repository = new RedirectionStore();
 });
 
 // Tests
 describe('RedirectionStore.loadConfig', () => {
   beforeEach(() => {
-    vi.spyOn(Config, 'read').mockResolvedValue({
+    override$(Config, {
       redirections: {
         '/life': {
           outputs: {
