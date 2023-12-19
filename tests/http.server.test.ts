@@ -2,7 +2,7 @@ import { globalScope$, override$ } from '@jujulego/injector';
 import createHttpError from 'http-errors';
 import { ServerResponse } from 'node:http';
 import request from 'supertest';
-import { beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { HttpServer } from '@/src/http.server.ts';
 import { ProxyServer } from '@/src/proxy/proxy.server.ts';

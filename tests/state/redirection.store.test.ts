@@ -1,5 +1,5 @@
 import { globalScope$, override$ } from '@jujulego/injector';
-import { beforeEach } from 'vitest';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Config } from '@/src/config/loader.ts';
 import { RedirectionStore } from '@/src/state/redirection.store.ts';
