@@ -42,6 +42,8 @@ export class ConfigService {
       pidfile: path.resolve(config.server.pidfile, this.baseDir)
     });
 
+    this._logger.debug`Loaded config:\n#!json:${config}`;
+
     return config;
   }
 

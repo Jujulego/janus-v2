@@ -4,11 +4,11 @@ import { ServerResponse } from 'node:http';
 import request from 'supertest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { HttpServer } from '@/src/http.server.ts';
-import { ProxyServer } from '@/src/proxy/proxy.server.ts';
+import { HttpServer } from '@/src/server/http.server.ts';
+import { ProxyServer } from '@/src/server/proxy/proxy.server.ts';
 import { Config } from '@/src/config/loader.ts';
 
-import { DEFAULT_CONFIG } from './utils.js';
+import { DEFAULT_CONFIG } from '../utils.js';
 
 // Setup
 let proxy: ProxyServer;

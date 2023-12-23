@@ -5,8 +5,8 @@ import { multiplexer$ } from 'kyrielle/events';
 
 import { ConfigService } from './config/config.service.ts';
 import { Config } from './config/type.ts';
-import { HttpServer } from './http.server.ts';
-import { StateHolder } from './state.holder.ts';
+import { HttpServer } from './server/http.server.ts';
+import { StateHolder } from './state/state.holder.ts';
 
 // Types
 export type JanusProxyEventMap = {

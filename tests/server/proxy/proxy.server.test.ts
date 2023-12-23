@@ -7,8 +7,8 @@ import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vites
 
 import { RedirectionStore } from '@/src/state/redirection.store.js';
 import { redirection$ } from '@/src/state/redirection.ref.js';
-import { ProxyServer } from '@/src/proxy/proxy.server.js';
-import { createHttpServer, ignoreServer } from '../utils.js';
+import { ProxyServer } from '@/src/server/proxy/proxy.server.js';
+import { createHttpServer, ignoreServer } from '../../utils.js';
 
 // Setup
 let store: RedirectionStore;

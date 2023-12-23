@@ -3,11 +3,11 @@ import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
-import { Config } from './config/type.ts';
+import { Config } from '../config/type.ts';
 import { YogaServer } from './graphql/yoga.server.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
-import { StateHolder } from './state.holder.ts';
-import { renderHttpError, sendHttpError } from './utils/http-error.ts';
+import { StateHolder } from '../state/state.holder.ts';
+import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
 
 // Http server
 export class HttpServer {

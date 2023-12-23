@@ -16,9 +16,6 @@ import { var$ } from 'kyrielle/refs';
 import { filter$ } from 'kyrielle/steps';
 import os from 'node:os';
 
-// Types
-export type JanusLog = WithTimestamp & Partial<LogLabel>;
-
 // Utils
 export const logLevel = var$(LogLevel.info);
 export const logFormat = qlevelColor(

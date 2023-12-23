@@ -1,6 +1,6 @@
 import { Logger } from '@jujulego/logger';
 
-import { RedirectionStore } from './state/redirection.store.ts';
+import { RedirectionStore } from './redirection.store.ts';
 
 // Service
 export class StateHolder {

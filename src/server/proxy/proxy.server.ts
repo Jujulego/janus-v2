@@ -5,8 +5,8 @@ import proxy, { ServerOptions } from 'http-proxy';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
-import { RedirectionStore } from '../state/redirection.store.ts';
-import { StateHolder } from '../state.holder.ts';
+import { RedirectionStore } from '../../state/redirection.store.ts';
+import { StateHolder } from '../../state/state.holder.ts';
 
 // Proxy server
 export class ProxyServer {
