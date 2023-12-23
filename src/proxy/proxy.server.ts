@@ -1,22 +1,25 @@
-import { Inject, inject$, Injectable } from '@jujulego/injector';
+import { Logger, withLabel } from '@jujulego/logger';
 import { Flag } from '@jujulego/utils';
 import createHttpError from 'http-errors';
 import proxy, { ServerOptions } from 'http-proxy';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
-import { LabelledLogger } from '../logger.config.ts';
 import { RedirectionStore } from '../state/redirection.store.ts';
+import { StateHolder } from '../state.holder.ts';
 
 // Proxy server
-@Injectable()
 export class ProxyServer {
   // Attributes
+  private readonly _logger: Logger;
   private readonly _proxy = proxy.createProxy();
-  private readonly _logger = inject$(LabelledLogger('proxy'));
-
-  @Inject(RedirectionStore)
   private readonly _redirections: RedirectionStore;
+
+  // Constructor
+  constructor(logger: Logger, state: StateHolder) {
+    this._logger = logger.child(withLabel('proxy'));
+    this._redirections = state.redirections;
+  }
 
   // Methods
   private _bodyLength(req: IncomingMessage): number {

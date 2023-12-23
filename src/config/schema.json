@@ -24,11 +24,6 @@
           "default": ".janus.pid"
         }
       }
-    },
-    "verbose": {
-      "type": "string",
-      "enum": ["info", "verbose", "debug"],
-      "default": "info"
     }
   },
   "definitions": {
