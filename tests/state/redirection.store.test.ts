@@ -3,6 +3,7 @@ import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Config } from '@/src/config/type.ts';
 import { RedirectionStore } from '@/src/state/redirection.store.ts';
+import { DEFAULT_CONFIG } from '../utils.js';
 
 // Setup
 let logger: Logger;
@@ -16,6 +17,7 @@ beforeEach(() => {
 // Tests
 describe('RedirectionStore.fromConfig', () => {
   const config: Config = {
+    ...DEFAULT_CONFIG,
     redirections: {
       '/life': {
         outputs: {
@@ -46,10 +48,6 @@ describe('RedirectionStore.fromConfig', () => {
           },
         },
       },
-    },
-    server: {
-      pidfile: '.janus.pid',
-      port: 3000,
     },
   };
 

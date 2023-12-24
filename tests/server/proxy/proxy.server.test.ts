@@ -1,4 +1,4 @@
-import { globalScope$, override$ } from '@jujulego/injector';
+import { logger$, Logger } from '@jujulego/logger';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { Server } from 'node:http';
@@ -11,7 +11,8 @@ import { ProxyServer } from '@/src/server/proxy/proxy.server.js';
 import { createHttpServer, ignoreServer } from '../../utils.js';
 
 // Setup
-let store: RedirectionStore;
+let logger: Logger;
+let redirections: RedirectionStore;
 let proxy: ProxyServer;
 let server: Server;
 
@@ -38,11 +39,11 @@ beforeAll(() => {
 });
 
 beforeEach(() => {
-  globalScope$().reset();
   targetServer.resetHandlers();
 
-  store = override$(RedirectionStore, new RedirectionStore());
-  proxy = override$(ProxyServer, new ProxyServer());
+  logger = logger$();
+  redirections = new RedirectionStore(logger);
+  proxy = new ProxyServer(logger, { redirections });
 
   server = createHttpServer((req, res) => proxy.handleRequest(req, res));
 });
@@ -54,7 +55,7 @@ afterAll(() => {
 // Tests
 describe('ProxyServer', () => {
   it('should return 404 if not redirection matched', async () => {
-    vi.spyOn(store, 'resolve').mockReturnValue(null);
+    vi.spyOn(redirections, 'resolve').mockReturnValue(null);
 
     await request(server)
       .get('/life/toto')
@@ -65,11 +66,11 @@ describe('ProxyServer', () => {
   });
 
   it('should return 503 if redirection has no output', async () => {
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection$({
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
       id: 'life',
       url: '/life',
       outputs: []
-    }));
+    }, logger));
 
     await request(server)
       .get('/life/toto')
@@ -80,7 +81,7 @@ describe('ProxyServer', () => {
   });
 
   it('should return 503 if redirection all outputs are disabled', async () => {
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection$({
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
       id: 'life',
       url: '/life',
       outputs: [
@@ -93,7 +94,7 @@ describe('ProxyServer', () => {
           ws: true,
         }
       ]
-    }));
+    }, logger));
 
     await request(server)
       .get('/life/toto')
@@ -104,7 +105,7 @@ describe('ProxyServer', () => {
   });
 
   it('should return data from test output', async () => {
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection$({
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
       id: 'life',
       url: '/life',
       outputs: [
@@ -117,7 +118,7 @@ describe('ProxyServer', () => {
           ws: true,
         }
       ]
-    }));
+    }, logger));
 
     await request(server)
       .get('/life/toto')
@@ -146,9 +147,9 @@ describe('ProxyServer', () => {
           ws: true,
         }
       ]
-    });
+    }, logger);
 
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection);
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection);
     vi.spyOn(redirection, 'disableOutput');
 
     await request(server)
@@ -159,7 +160,7 @@ describe('ProxyServer', () => {
   });
 
   it('should pass body to test output', async () => {
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection$({
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
       id: 'life',
       url: '/life',
       outputs: [
@@ -172,7 +173,7 @@ describe('ProxyServer', () => {
           ws: true,
         }
       ]
-    }));
+    }, logger));
 
     await request(server)
       .post('/life/echo')
@@ -202,9 +203,9 @@ describe('ProxyServer', () => {
           ws: true,
         }
       ]
-    });
+    }, logger);
 
-    vi.spyOn(store, 'resolve').mockReturnValue(redirection);
+    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection);
     vi.spyOn(redirection, 'disableOutput');
 
     await request(server)

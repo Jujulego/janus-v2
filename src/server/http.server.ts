@@ -13,15 +13,17 @@ import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
 export class HttpServer {
   // Attributes
   private readonly _logger: Logger;
-  private readonly _proxy: ProxyServer;
-  private readonly _yoga: ReturnType<typeof YogaServer>;
   private readonly _server = createServer((req, res) => this._handleRequest(req, res));
+
+  readonly proxy: ProxyServer;
+  readonly yoga: ReturnType<typeof YogaServer>;
 
   // Constructor
   constructor(logger: Logger, state: StateHolder) {
     this._logger = logger.child(withLabel('http'));
-    this._proxy = new ProxyServer(this._logger, state);
-    this._yoga = YogaServer(this._logger, state);
+
+    this.proxy = new ProxyServer(this._logger, state);
+    this.yoga = YogaServer(this._logger, state);
   }
 
   // Methods
@@ -39,9 +41,9 @@ export class HttpServer {
   private async _handleRequest(req: IncomingMessage | Request, res: ServerResponse) {
     try {
       if (req.url?.startsWith('/_janus')) {
-        await this._yoga(req as Request, res);
+        await this.yoga(req as Request, res);
       } else {
-        await this._proxy.handleRequest(req as IncomingMessage, res);
+        await this.proxy.handleRequest(req as IncomingMessage, res);
       }
     } catch (err) {
       const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
@@ -56,7 +58,7 @@ export class HttpServer {
 
   private async _handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
     try {
-      await this._proxy.handleUpgrade(req, socket, head);
+      await this.proxy.handleUpgrade(req, socket, head);
     } catch (err) {
       const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
 
