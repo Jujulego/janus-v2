@@ -1,6 +1,6 @@
-import 'reflect-metadata';
 import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
+import 'reflect-metadata/lite';
 
 import { start } from './commands/index.ts';
 import { configMiddleware } from './middlewares/config.middleware.ts';
@@ -18,7 +18,10 @@ import './graphql.d.ts';
     loggerMiddleware(parser);
     configMiddleware(parser);
 
-    parser.command(start);
+    parser.command(start)
+      .demandCommand()
+      .strictCommands()
+      .recommendCommands();
 
     await parser.parseAsync();
   } catch (err) {
