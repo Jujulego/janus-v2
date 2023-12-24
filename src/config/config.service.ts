@@ -1,12 +1,16 @@
 import { Logger, withLabel } from '@jujulego/logger';
-import { Inject, inject$ } from '@jujulego/injector';
-import { ValidateFunction } from 'ajv';
+import { Inject } from '@jujulego/injector';
+import Ajv from 'ajv';
 import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
 
-import { Ajv } from '../ajv.config.ts';
-import { ConfigExplorer, ConfigValidator } from './utils.ts';
+import { ConfigExplorer } from './config-explorer.ts';
+import schema from './schema.json';
 import { Config } from './type.ts';
+
+// Types
+export type AjvParser = Ajv.default;
+export type AjvParserType = new (opts: Ajv.Options) => AjvParser;
 
 // Service
 export class ConfigService {
@@ -19,9 +23,6 @@ export class ConfigService {
   @Inject(ConfigExplorer, { lazy: true })
   private accessor _explorer: PublicExplorer;
 
-  @Inject(ConfigValidator, { lazy: true })
-  private accessor _validator: ValidateFunction<Config>;
-
   // Constructor
   constructor(logger: Logger) {
     this._logger = logger.child(withLabel('config'));
@@ -29,9 +30,18 @@ export class ConfigService {
 
   // Methods
   private _validateConfig(config: unknown): Config {
-    if (!this._validator(config)) {
-      const ajv = inject$(Ajv);
-      const errors = ajv.errorsText(this._validator.errors, { separator: '\n- ', dataVar: 'config' });
+    // Validate config
+    const ajv = new (Ajv as unknown as AjvParserType)({
+      allErrors: true,
+      useDefaults: true,
+      logger: this._logger.child(withLabel('ajv')),
+      strict: process.env.NODE_ENV === 'development' ? 'log' : true,
+    });
+
+    const validator = ajv.compile<Config>(schema);
+
+    if (!validator(config)) {
+      const errors = ajv.errorsText(validator.errors, { separator: '\n- ', dataVar: 'config' });
 
       this._logger.error(`Errors in config file:\n- ${errors}`);
       throw new Error('Error in config file');
@@ -78,11 +88,11 @@ export class ConfigService {
   }
 
   // Attributes
-  get config(): Config | undefined {
-    return this._config;
-  }
-
   get baseDir(): string {
     return this._filepath ? path.dirname(this._filepath) : process.cwd();
+  }
+
+  get config(): Config | undefined {
+    return this._config;
   }
 }

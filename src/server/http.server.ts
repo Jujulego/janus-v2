@@ -6,7 +6,7 @@ import { Duplex } from 'node:stream';
 import { Config } from '../config/type.ts';
 import { YogaServer } from './graphql/yoga.server.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
-import { StateHolder } from '../state/state.holder.ts';
+import { StateHolder } from '../state/state-holder.ts';
 import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
 
 // Http server

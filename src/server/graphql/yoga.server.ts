@@ -1,7 +1,7 @@
 import { Logger, withLabel } from '@jujulego/logger';
 import { createYoga } from 'graphql-yoga';
 
-import { StateHolder } from '../../state/state.holder.ts';
+import { StateHolder } from '../../state/state-holder.ts';
 import { RedirectionResolver } from './redirection.resolver.ts';
 
 // Tokens
