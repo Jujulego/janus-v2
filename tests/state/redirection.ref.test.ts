@@ -1,4 +1,14 @@
-import { redirection$ } from '@/src/state/redirection.ref.js';
+import { Logger, logger$ } from '@jujulego/logger';
+import { beforeEach, describe, expect, it } from 'vitest';
+
+import { redirection$ } from '@/src/state/redirection.ref.ts';
+
+// Setup
+let logger: Logger;
+
+beforeEach(() => {
+  logger = logger$();
+});
 
 // Tests
 describe('redirection$().enableOutput', () => {
@@ -16,7 +26,7 @@ describe('redirection$().enableOutput', () => {
           ws: false,
         },
       ]
-    });
+    }, logger);
 
     expect(ref.enableOutput('book')).toStrictEqual({
       id: 'life',
@@ -50,7 +60,7 @@ describe('redirection$().disableOutput', () => {
           ws: false,
         },
       ]
-    });
+    }, logger);
 
     expect(ref.disableOutput('book')).toStrictEqual({
       id: 'life',
