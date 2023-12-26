@@ -1,18 +1,23 @@
-import { inject$, Injectable } from '@jujulego/injector';
+import { Logger, withLabel } from '@jujulego/logger';
 import { SyncMutableRef } from 'kyrielle';
 import { RefMap } from 'kyrielle/collections';
 import { createHash } from 'node:crypto';
 
-import { Config } from '../config/loader.ts';
-import { LabelledLogger } from '../logger.config.ts';
+import { Config } from '../config/type.ts';
 import { Redirection, redirection$ } from './redirection.ref.ts';
 
 // Repository
-@Injectable()
 export class RedirectionStore {
   // Attributes
-  private readonly _logger = inject$(LabelledLogger('redirections'));
-  private readonly _redirections = new RefMap((_: string, value: Redirection) => redirection$(value));
+  private readonly _logger: Logger;
+  private readonly _redirections = new RefMap(
+    (id: string, value: Redirection) => redirection$(value, this._logger.child(withLabel(`#${id}`)))
+  );
+
+  // Constructor
+  constructor(logger: Logger) {
+    this._logger = logger.child(withLabel('redirections'));
+  }
 
   // Methods
   private _generateId(url: string) {
@@ -27,13 +32,12 @@ export class RedirectionStore {
     const ref = this._redirections.set(id, { ...redirection, id });
 
     const gates = Object.values(redirection.outputs);
-    this._logger.verbose(`Registered ${redirection.url} with ${gates.length} gates (#${id})`);
+    this._logger.verbose`Registered ${redirection.url} with ${gates.length} gates (#${id})`;
 
     return ref;
   }
 
-  async loadConfig(): Promise<void> {
-    const config = await inject$(Config);
+  fromConfig(config: Config): void {
     let count = 0;
 
     for (const [url, { outputs }] of Object.entries(config.redirections)) {
@@ -45,7 +49,7 @@ export class RedirectionStore {
       ++count;
     }
 
-    this._logger.verbose(`Loaded ${count} redirections from config`);
+    this._logger.verbose`Loaded ${count} redirections from config`;
   }
 
   find() {

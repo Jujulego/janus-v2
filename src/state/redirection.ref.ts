@@ -1,8 +1,6 @@
-import { inject$ } from '@jujulego/injector';
+import { Logger } from '@jujulego/logger';
 import { actions$, SyncMutableRef } from 'kyrielle';
 import { var$ } from 'kyrielle/refs';
-
-import { LabelledLogger } from '../logger.config.ts';
 
 // Types
 export interface RedirectionOutput {
@@ -26,16 +24,14 @@ export interface RedirectionRef extends SyncMutableRef<Redirection> {
 }
 
 // Reference
-export function redirection$(state: Redirection): RedirectionRef {
-  const logger = inject$(LabelledLogger(`#${state.id}`));
-
+export function redirection$(state: Redirection, logger: Logger): RedirectionRef {
   return actions$(var$(state), {
     enableOutput: (name: string) => (draft) => {
       const output = draft.outputs.find((out) => out.name === name);
 
       if (output && !output.enabled) {
         output.enabled = true;
-        logger.info(`Output ${name} enabled`);
+        logger.info`Output ${name} enabled`;
       }
     },
     disableOutput: (name: string) => (draft) => {
@@ -43,7 +39,7 @@ export function redirection$(state: Redirection): RedirectionRef {
 
       if (output?.enabled) {
         output.enabled = false;
-        logger.info(`Output ${name} disabled`);
+        logger.info`Output ${name} disabled`;
       }
     }
   });

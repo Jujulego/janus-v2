@@ -7,12 +7,11 @@ import { sendHttpError } from '@/src/utils/http-error.ts';
 
 // Constants
 export const DEFAULT_CONFIG: Config = {
-  verbose: 'info',
+  redirections: {},
   server: {
     port: 3000,
     pidfile: '.janus.pid',
   },
-  redirections: {},
 };
 
 // Utils

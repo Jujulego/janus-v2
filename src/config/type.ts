@@ -1,5 +1,3 @@
-import { LogLevelKey } from '@jujulego/logger';
-
 /**
  * Possible proxy output
  */
@@ -32,5 +30,4 @@ export interface IServerConfig {
 export interface Config {
   readonly redirections: Readonly<Record<string, RedirectionConfig>>;
   readonly server: IServerConfig;
-  readonly verbose: LogLevelKey;
 }

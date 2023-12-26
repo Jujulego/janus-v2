@@ -1,64 +1,60 @@
-import { globalScope$, override$ } from '@jujulego/injector';
+import { Logger, logger$ } from '@jujulego/logger';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { Config } from '@/src/config/loader.ts';
+import { Config } from '@/src/config/type.ts';
 import { RedirectionStore } from '@/src/state/redirection.store.ts';
+import { DEFAULT_CONFIG } from '../utils.js';
 
 // Setup
+let logger: Logger;
 let repository: RedirectionStore;
 
 beforeEach(() => {
-  globalScope$().reset();
-  repository = new RedirectionStore();
+  logger = logger$();
+  repository = new RedirectionStore(logger);
 });
 
 // Tests
-describe('RedirectionStore.loadConfig', () => {
-  beforeEach(() => {
-    override$(Config, {
-      redirections: {
-        '/life': {
-          outputs: {
-            book: {
-              target: 'http://localhost:3042',
-              enabled: true,
-              changeOrigin: false,
-              secure: false,
-              ws: false,
-            },
-          },
-        },
-        '/test': {
-          outputs: {
-            book: {
-              target: 'http://localhost:3042',
-              enabled: true,
-              changeOrigin: false,
-              secure: false,
-              ws: false,
-            },
-            example: {
-              target: 'https://example.com',
-              enabled: true,
-              changeOrigin: true,
-              secure: true,
-              ws: false,
-            },
+describe('RedirectionStore.fromConfig', () => {
+  const config: Config = {
+    ...DEFAULT_CONFIG,
+    redirections: {
+      '/life': {
+        outputs: {
+          book: {
+            target: 'http://localhost:3042',
+            enabled: true,
+            changeOrigin: false,
+            secure: false,
+            ws: false,
           },
         },
       },
-      server: {
-        pidfile: '.janus.pid',
-        port: 3000,
+      '/test': {
+        outputs: {
+          book: {
+            target: 'http://localhost:3042',
+            enabled: true,
+            changeOrigin: false,
+            secure: false,
+            ws: false,
+          },
+          example: {
+            target: 'https://example.com',
+            enabled: true,
+            changeOrigin: true,
+            secure: true,
+            ws: false,
+          },
+        },
       },
-      verbose: 'info',
-    });
-  });
+    },
+  };
 
-  it('should add redirections from config', async () => {
+  it('should add redirections from config', () => {
     vi.spyOn(repository, 'register');
 
-    await repository.loadConfig();
+    repository.fromConfig(config);
 
     expect(repository.register).toHaveBeenCalledTimes(2);
     expect(repository.register).toHaveBeenCalledWith({

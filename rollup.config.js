@@ -14,17 +14,22 @@ const options = {
     sourcemap: true,
   },
   plugins: [
-    nodeResolve({
-      exportConditions: ['node']
-    }),
+    nodeResolve({ exportConditions: ['node'] }),
     graphql(),
     json(),
     swc(),
   ],
   external: [
     ...Object.keys(pkg.dependencies),
+    'kyrielle/collections',
+    'kyrielle/events',
+    'kyrielle/operators',
+    'kyrielle/refs',
+    'kyrielle/subscriptions',
+    'kyrielle/steps',
+    'reflect-metadata/lite',
     'yargs/helpers',
-  ],
+  ]
 };
 
 export default options;
