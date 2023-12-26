@@ -4,7 +4,6 @@ import path from 'node:path';
 import url from 'node:url';
 
 import { ConfigService } from './config/config.service.ts';
-import { Config } from './config/type.js';
 
 export class JanusDaemon {
   // Attributes
@@ -12,7 +11,6 @@ export class JanusDaemon {
 
   private readonly _configService: ConfigService;
 
-  private _config?: Config;
   private _process?: ChildProcess;
 
   // Constructor
@@ -23,21 +21,23 @@ export class JanusDaemon {
     this.logger = logger;
 
     this._configService = configService ?? new ConfigService(this.logger);
-
-    if (configService?.config) {
-      this._config = configService?.config;
-    }
   }
 
   // Methods
+  private _handleOutputs() {
+    this._process!.stdout!.on('data', (msg: Buffer) => {
+      process.stdout.write(msg);
+    });
+
+    this._process!.stderr!.on('data', (msg: Buffer) => {
+      process.stderr.write(msg);
+    });
+  }
+
   /**
    * Starts proxy server inside a fork
    */
   fork() {
-    if (!this._config) {
-      throw new Error('Configuration not yet loaded');
-    }
-
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
     this._process = fork(path.resolve(dirname, './daemon.js'), [], {
@@ -46,18 +46,12 @@ export class JanusDaemon {
       stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
     });
 
-    // Print outputs
-    this._process.stdout?.on('data', (msg: Buffer) => {
-      process.stdout.write(msg);
-    });
-
-    this._process.stderr?.on('data', (msg: Buffer) => {
-      process.stderr.write(msg);
-    });
-
-    // Handle end
+    // Handle events
+    this._handleOutputs();
     this._process.on('close', (code) => {
       process.exit(code ?? 0);
     });
+
+    this._process.send(this._configService.state);
   }
 }
