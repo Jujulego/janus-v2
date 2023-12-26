@@ -4,6 +4,7 @@ import path from 'node:path';
 import url from 'node:url';
 
 import { ConfigService } from './config/config.service.ts';
+import { Config } from './config/type.js';
 
 export class JanusDaemon {
   // Attributes
@@ -11,6 +12,7 @@ export class JanusDaemon {
 
   private readonly _configService: ConfigService;
 
+  private _config?: Config;
   private _process?: ChildProcess;
 
   // Constructor
@@ -21,6 +23,10 @@ export class JanusDaemon {
     this.logger = logger;
 
     this._configService = configService ?? new ConfigService(this.logger);
+
+    if (configService?.config) {
+      this._config = configService?.config;
+    }
   }
 
   // Methods
@@ -28,9 +34,13 @@ export class JanusDaemon {
    * Starts proxy server inside a fork
    */
   fork() {
+    if (!this._config) {
+      throw new Error('Configuration not yet loaded');
+    }
+
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
 
-   this._process = fork(path.resolve(dirname, './daemon.js'), [], {
+    this._process = fork(path.resolve(dirname, './daemon.js'), [], {
       cwd: process.cwd(),
       detached: true,
       stdio: ['ignore', 'pipe', 'pipe', 'ipc'],

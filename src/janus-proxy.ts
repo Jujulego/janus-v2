@@ -40,6 +40,10 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
     this._configService = configService ?? new ConfigService(this.logger);
     this._state = new StateHolder(this.logger);
     this._server = new HttpServer(this.logger, this._state);
+
+    if (configService?.config) {
+      this._config = configService?.config;
+    }
   }
 
   // Methods
