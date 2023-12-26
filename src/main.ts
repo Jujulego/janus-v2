@@ -2,9 +2,9 @@ import yargs from 'yargs';
 import { hideBin } from 'yargs/helpers';
 import 'reflect-metadata/lite';
 
-import { start } from './commands/index.ts';
-import { configMiddleware } from './middlewares/config.middleware.ts';
-import { loggerMiddleware } from './middlewares/logger.middleware.ts';
+import { start } from './cli/commands.ts';
+import { configMiddleware } from './cli/middlewares/config.middleware.ts';
+import { loggerMiddleware } from './cli/middlewares/logger.middleware.ts';
 import { version } from '../package.json' assert { type: 'json' };
 import './graphql.d.ts';
 
