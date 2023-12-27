@@ -15,6 +15,7 @@ const options = {
     dir: 'dist',
     format: 'esm',
     sourcemap: true,
+    chunkFileNames: '[name].js'
   },
   plugins: [
     nodeResolve({ exportConditions: ['node'] }),
