@@ -1,4 +1,4 @@
-import { logger$, toStdout, withLabel, withTimestamp } from '@jujulego/logger';
+import { jsonFormat, logger$, toStdout, withLabel, withTimestamp } from '@jujulego/logger';
 import { flow$ } from 'kyrielle/operators';
 import process from 'node:process';
 
@@ -7,7 +7,7 @@ import { JanusProxy } from './janus-proxy.ts';
 
 // Setup logger
 const logger = logger$(withTimestamp(), withLabel('daemon'));
-flow$(logger, toStdout());
+flow$(logger, toStdout(jsonFormat()));
 
 // Receive config & start proxy
 process.once('message', async (configState: ConfigState) => {

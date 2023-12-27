@@ -1,5 +1,6 @@
 import { Logger, logger$ } from '@jujulego/logger';
 import { ChildProcess, fork } from 'node:child_process';
+import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';
 import url from 'node:url';
@@ -25,13 +26,14 @@ export class JanusDaemon {
   }
 
   // Methods
-  private _handleOutputs() {
+  private _handleLogs() {
     this._process!.stdout!.on('data', (msg: Buffer) => {
-      process.stdout.write(msg);
-    });
+      const logs = msg.toString().split(os.EOL);
 
-    this._process!.stderr!.on('data', (msg: Buffer) => {
-      process.stderr.write(msg);
+      for (const log of logs) {
+        if (log == '') continue;
+        this.logger.next(JSON.parse(log));
+      }
     });
   }
 
@@ -48,7 +50,12 @@ export class JanusDaemon {
     });
 
     // Handle events
-    this._handleOutputs();
+    this._handleLogs();
+
+    this._process!.stderr!.on('data', (msg: Buffer) => {
+      process.stderr.write(msg);
+    });
+
     this._process.on('close', (code) => {
       process.exit(code ?? 0);
     });
