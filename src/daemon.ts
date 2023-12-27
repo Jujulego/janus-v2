@@ -1,5 +1,6 @@
 import { logger$, toStdout, withLabel, withTimestamp } from '@jujulego/logger';
 import { flow$ } from 'kyrielle/operators';
+import process from 'node:process';
 
 import { ConfigService, ConfigState } from './config/config.service.ts';
 import { JanusProxy } from './janus-proxy.ts';

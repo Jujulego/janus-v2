@@ -3,6 +3,7 @@ import { Inject } from '@jujulego/injector';
 import Ajv from 'ajv';
 import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
+import process from 'node:process';
 
 import { ConfigExplorer } from './config-explorer.ts';
 import schema from './schema.json';
