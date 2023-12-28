@@ -31,7 +31,7 @@ export class HttpServer {
     this._server.on('upgrade', (req, socket, head) => this._handleUpgrade(req, socket, head));
 
     this._server.listen(config.server.port, () => {
-      this._logger.info`Listening on port ${config.server.port}`;
+      this._logger.info`Listening at http://localhost:${config.server.port}`;
     });
 
     return new Promise((resolve, reject) => {
