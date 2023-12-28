@@ -20,7 +20,9 @@ process.once('message', async (configState: ConfigState) => {
     const proxy = new JanusProxy(logger, configService);
     await proxy.start();
 
-    process.send!('started');
+    if (proxy.started) {
+      process.send!('started');
+    }
   } catch (err) {
     logger.error('Error while starting proxy server', err as Error);
   }
