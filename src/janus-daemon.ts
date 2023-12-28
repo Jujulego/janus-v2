@@ -82,7 +82,7 @@ export class JanusDaemon {
           this.logger.warn`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
         }
 
-        reject(new Error('Daemon exited'));
+        reject(new Error('Daemon process exited'));
       });
     });
   }

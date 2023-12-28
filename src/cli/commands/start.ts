@@ -1,7 +1,8 @@
 import { inject$ } from '@jujulego/injector';
+import process from 'node:process';
 import { CommandModule } from 'yargs';
 
-import { CliJanusDaemon, CliJanusProxy } from '../cli-tokens.ts';
+import { CliJanusDaemon, CliJanusProxy, CliLogger } from '../cli-tokens.ts';
 
 // Types
 export interface StartArgs {
@@ -20,12 +21,19 @@ const command: CommandModule<unknown, StartArgs> = {
       describe: 'Start Janus as a proxy',
     }),
   async handler(args) {
-    if (args.daemon) {
-      const daemon = await inject$(CliJanusDaemon);
-      await daemon.fork();
-    } else {
-      const proxy = await inject$(CliJanusProxy);
-      await proxy.start();
+    const logger = inject$(CliLogger);
+
+    try {
+      if (args.daemon) {
+        const daemon = await inject$(CliJanusDaemon);
+        await daemon.fork();
+      } else {
+        const proxy = await inject$(CliJanusProxy);
+        await proxy.start();
+      }
+    } catch (err) {
+      logger.error('Error while starting proxy:', err as Error);
+      process.exit(1);
     }
   }
 };
