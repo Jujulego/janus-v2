@@ -1,4 +1,4 @@
-import { Logger, logger$ } from '@jujulego/logger';
+import { Logger, logger$, withLabel } from '@jujulego/logger';
 import { ChildProcess, fork } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -13,21 +13,19 @@ export class JanusDaemon {
 
   private readonly _configService: ConfigService;
 
-  private _process?: ChildProcess;
-
   // Constructor
   constructor(
     logger: Logger = logger$(),
     configService?: ConfigService,
   ) {
-    this.logger = logger;
+    this.logger = logger.child(withLabel('daemon'));
 
     this._configService = configService ?? new ConfigService(this.logger);
   }
 
   // Methods
-  private _handleLogs() {
-    this._process!.stdout!.on('data', (msg: Buffer) => {
+  private _handleLogs(daemon: ChildProcess) {
+    daemon.stdout!.on('data', (msg: Buffer) => {
       const logs = msg.toString().split(os.EOL);
 
       for (const log of logs) {
@@ -40,26 +38,52 @@ export class JanusDaemon {
   /**
    * Starts proxy server inside a fork
    */
-  fork() {
+  fork(): Promise<void> {
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
-
-    this._process = fork(path.resolve(dirname, './daemon.js'), [], {
+    const daemon = fork(path.resolve(dirname, './daemon.js'), [], {
       cwd: process.cwd(),
       detached: true,
       stdio: ['ignore', 'pipe', 'pipe', 'ipc'],
     });
 
     // Handle events
-    this._handleLogs();
+    this._handleLogs(daemon);
 
-    this._process!.stderr!.on('data', (msg: Buffer) => {
-      process.stderr.write(msg);
+    daemon.stderr!.on('data', (msg: Buffer) => {
+      this.logger.error(msg.toString('utf-8'));
     });
 
-    this._process.on('close', (code) => {
-      process.exit(code ?? 0);
-    });
+    daemon.send(this._configService.state);
 
-    this._process.send(this._configService.state);
+    return new Promise((resolve, reject) => {
+      daemon.on('message', (msg) => {
+        if (msg === 'started') {
+          this.logger.verbose`Proxy successfully started in process ${daemon.pid}`;
+
+          daemon.stdout!.destroy();
+          daemon.stderr!.destroy();
+          daemon.disconnect();
+          daemon.unref();
+
+          resolve();
+        }
+      });
+
+      daemon.once('error', (err: Error) => {
+        this.logger.error('Error while forking proxy server', err);
+
+        reject(err);
+      });
+
+      daemon.once('exit', (code, signal) => {
+        if (code) {
+          this.logger.error`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
+        } else {
+          this.logger.warn`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
+        }
+
+        reject(new Error('Daemon exited'));
+      });
+    });
   }
 }

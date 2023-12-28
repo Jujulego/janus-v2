@@ -18,4 +18,6 @@ process.once('message', async (configState: ConfigState) => {
   // Start proxy
   const proxy = new JanusProxy(logger, configService);
   await proxy.start();
+
+  process.send!('started');
 });

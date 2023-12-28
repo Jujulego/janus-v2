@@ -22,7 +22,7 @@ const command: CommandModule<unknown, StartArgs> = {
   async handler(args) {
     if (args.daemon) {
       const daemon = await inject$(CliJanusDaemon);
-      daemon.fork();
+      await daemon.fork();
     } else {
       const proxy = await inject$(CliJanusProxy);
       await proxy.start();
