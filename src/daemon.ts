@@ -11,13 +11,17 @@ flow$(logger, toStdout(jsonFormat()));
 
 // Receive config & start proxy
 process.once('message', async (configState: ConfigState) => {
-  // Load config state
-  const configService = new ConfigService(logger, configState);
-  logger.debug`Received config:\n#!json:${configService.config}`;
+  try {
+    // Load config state
+    const configService = new ConfigService(logger, configState);
+    logger.debug`Received config:\n#!json:${configService.config}`;
 
-  // Start proxy
-  const proxy = new JanusProxy(logger, configService);
-  await proxy.start();
+    // Start proxy
+    const proxy = new JanusProxy(logger, configService);
+    await proxy.start();
 
-  process.send!('started');
+    process.send!('started');
+  } catch (err) {
+    logger.error('Error while starting proxy server', err as Error);
+  }
 });

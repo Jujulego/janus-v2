@@ -6,7 +6,7 @@ import path from 'node:path';
 import process from 'node:process';
 
 import { ConfigExplorer } from './config-explorer.ts';
-import schema from './schema.json';
+import schema from './schema.json' assert { type: 'json' };
 import { Config } from './type.ts';
 
 // Types
