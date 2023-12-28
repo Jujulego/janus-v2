@@ -24,10 +24,11 @@ describe('HttpServer.listen', () => {
     vi.spyOn(server.server, 'listen')
       .mockImplementation(function (_, cb) {
         cb && cb();
+        setTimeout(() => server.server.emit('listening'));
         return server.server;
       });
 
-      await server.listen(DEFAULT_CONFIG);
+    await server.listen(DEFAULT_CONFIG);
 
     expect(server.server.listen).toHaveBeenCalledWith(3000, expect.any(Function));
   });
