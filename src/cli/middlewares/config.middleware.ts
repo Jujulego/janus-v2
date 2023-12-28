@@ -1,6 +1,8 @@
 import { inject$ } from '@jujulego/injector';
 import { Argv } from 'yargs';
 
+import { CliConfigService } from '../cli-tokens.ts';
+
 // Middleware
 export function configMiddleware(parser: Argv) {
   return parser
@@ -10,13 +12,12 @@ export function configMiddleware(parser: Argv) {
       description: 'Configuration file'
     })
     .middleware(async (args) => {
-      const { JanusProxy } = await import('../janus-proxy.ts');
-      const proxy = inject$(JanusProxy);
+      const config = inject$(CliConfigService);
 
       if (args.configFile) {
-        await proxy.loadConfig(args.configFile);
+        await config.loadConfig(args.configFile);
       } else {
-        await proxy.searchConfig();
+        await config.searchConfig();
       }
     });
 }

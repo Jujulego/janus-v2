@@ -3,14 +3,20 @@ import { Inject } from '@jujulego/injector';
 import Ajv from 'ajv';
 import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
+import process from 'node:process';
 
 import { ConfigExplorer } from './config-explorer.ts';
-import schema from './schema.json';
+import schema from './schema.json' assert { type: 'json' };
 import { Config } from './type.ts';
 
 // Types
-export type AjvParser = Ajv.default;
-export type AjvParserType = new (opts: Ajv.Options) => AjvParser;
+type AjvParser = Ajv.default;
+type AjvParserType = new (opts: Ajv.Options) => AjvParser;
+
+export interface ConfigState {
+  readonly filepath: string | undefined;
+  readonly config: Config | undefined;
+}
 
 // Service
 export class ConfigService {
@@ -24,8 +30,11 @@ export class ConfigService {
   private accessor _explorer: PublicExplorer;
 
   // Constructor
-  constructor(logger: Logger) {
+  constructor(logger: Logger, state?: ConfigState) {
     this._logger = logger.child(withLabel('config'));
+
+    if (state?.filepath) { this._filepath = state.filepath; }
+    if (state?.config)   { this._config   = state.config;   }
   }
 
   // Methods
@@ -94,5 +103,12 @@ export class ConfigService {
 
   get config(): Config | undefined {
     return this._config;
+  }
+
+  get state(): ConfigState {
+    return {
+      filepath: this._filepath,
+      config: this.config
+    };
   }
 }

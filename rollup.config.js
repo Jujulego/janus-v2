@@ -7,11 +7,15 @@ import pkg from './package.json' assert { type: 'json' };
 
 /** @type {import('rollup').RollupOptions} */
 const options = {
-  input: 'src/main.ts',
+  input: {
+    main: 'src/main.ts',
+    daemon: 'src/daemon.ts'
+  },
   output: {
     dir: 'dist',
     format: 'esm',
     sourcemap: true,
+    chunkFileNames: '[name].js'
   },
   plugins: [
     nodeResolve({ exportConditions: ['node'] }),

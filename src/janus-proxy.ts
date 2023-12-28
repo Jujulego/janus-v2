@@ -1,4 +1,4 @@
-import { logger$, withTimestamp } from '@jujulego/logger';
+import { Logger, logger$ } from '@jujulego/logger';
 import { Lock } from '@jujulego/utils';
 import { Listenable, source$ } from 'kyrielle';
 import { multiplexer$ } from 'kyrielle/events';
@@ -16,11 +16,11 @@ export type JanusProxyEventMap = {
 
 export class JanusProxy implements Listenable<JanusProxyEventMap> {
   // Attributes
-  readonly logger = logger$(withTimestamp());
+  readonly logger: Logger;
 
-  private readonly _configService = new ConfigService(this.logger);
-  private readonly _state = new StateHolder(this.logger);
-  private readonly _server = new HttpServer(this.logger, this._state);
+  private readonly _configService: ConfigService;
+  private readonly _state: StateHolder;
+  private readonly _server: HttpServer;
 
   private _config?: Config;
   private _started = false;
@@ -29,6 +29,22 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
     loaded: source$<Config>(),
     started: source$<JanusProxy>(),
   });
+
+  // Constructor
+  constructor(
+    logger: Logger = logger$(),
+    configService?: ConfigService,
+  ) {
+    this.logger = logger;
+
+    this._configService = configService ?? new ConfigService(this.logger);
+    this._state = new StateHolder(this.logger);
+    this._server = new HttpServer(this.logger, this._state);
+
+    if (configService?.config) {
+      this._config = configService?.config;
+    }
+  }
 
   // Methods
   readonly on = this._events.on;

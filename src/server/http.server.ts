@@ -27,14 +27,16 @@ export class HttpServer {
   }
 
   // Methods
-  async listen(config: Config): Promise<void> {
+  listen(config: Config): Promise<void> {
     this._server.on('upgrade', (req, socket, head) => this._handleUpgrade(req, socket, head));
 
-    return new Promise<void>((resolve) => {
-      this._server.listen(config.server.port, () => {
-        this._logger.info`Listening on port ${config.server.port}`;
-        resolve();
-      });
+    this._server.listen(config.server.port, () => {
+      this._logger.info`Listening on port ${config.server.port}`;
+    });
+
+    return new Promise((resolve, reject) => {
+      this._server.once('listening', resolve);
+      this._server.once('error', reject);
     });
   }
 

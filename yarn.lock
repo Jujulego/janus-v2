@@ -569,7 +569,7 @@ __metadata:
     "@graphql-tools/schema": "npm:^10.0.0"
     "@jujulego/injector": "npm:^0.4.0"
     "@jujulego/jill": "npm:2.5.0"
-    "@jujulego/logger": "npm:^0.3.1"
+    "@jujulego/logger": "npm:^0.3.4"
     "@jujulego/quick-tag": "npm:^0.3.3"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
@@ -662,15 +662,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/logger@npm:^0.3.1":
-  version: 0.3.1
-  resolution: "@jujulego/logger@npm:0.3.1"
+"@jujulego/logger@npm:^0.3.4":
+  version: 0.3.4
+  resolution: "@jujulego/logger@npm:0.3.4"
   dependencies:
     "@jujulego/quick-tag": "npm:^0.3.3"
+    "@swc/helpers": "npm:^0.5.3"
     chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
-    kyrielle: "npm:^0.6.0"
-  checksum: fb7baf2d3c180a04db77251f16021eb00fcf618fc3127584dcdc731563471199361411a08dc1557623edaa417022b3a11ae84f6ba6dafc06df74a1d37ddeb5fe
+    kyrielle: "npm:^0.8.0"
+  checksum: f9d025ef7e5b3ae2b33523bc9d3517ff2f088b5effceef916b443bc7b0309a527057fb693c02b20366fc669b25c7e2ae207a1b0d38c601bd5207607ca3cda8aa
   languageName: node
   linkType: hard
 
