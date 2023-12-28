@@ -1,7 +1,9 @@
 import { Logger, logger$ } from '@jujulego/logger';
+import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
 import { Listenable, source$ } from 'kyrielle';
 import { multiplexer$ } from 'kyrielle/events';
+import process from 'node:process';
 
 import { ConfigService } from './config/config.service.ts';
 import { Config } from './config/type.ts';
@@ -23,6 +25,7 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
   private readonly _server: HttpServer;
 
   private _config?: Config;
+  private _pidfile?: PidFile;
   private _started = false;
   private readonly _lock = new Lock();
   private readonly _events = multiplexer$({
@@ -78,17 +81,26 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
       throw new Error('Configuration not yet loaded');
     }
 
+    this._pidfile ??= new PidFile(this._config.server.pidfile, this.logger);
+
     await this._lock.with(async () => {
       if (this._started) {
         return;
       }
 
-      // Load redirections & start server
-      this._state.redirections.fromConfig(this._config!);
-      await this._server.listen(this._config!);
+      // Create pid file to ensure only one instance of janus is running
+      if (await this._pidfile!.create()) {
+        // Load redirections & start server
+        this._state.redirections.fromConfig(this._config!);
+        await this._server.listen(this._config!);
 
-      this._started = true;
-      this._events.emit('started', this);
+        this._started = true;
+        this._events.emit('started', this);
+
+        process.on('beforeExit', () => this._pidfile?.delete());
+      } else {
+        this.logger.warn('Looks like janus is already running.');
+      }
     });
   }
 

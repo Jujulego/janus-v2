@@ -32,6 +32,7 @@
     "@graphql-tools/schema": "^10.0.0",
     "@jujulego/injector": "^0.4.0",
     "@jujulego/logger": "^0.3.4",
+    "@jujulego/pid-file": "^2.0.0",
     "@jujulego/quick-tag": "^0.3.3",
     "@jujulego/utils": "^3.0.4",
     "@swc/helpers": "^0.5.3",

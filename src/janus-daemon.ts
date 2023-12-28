@@ -38,7 +38,7 @@ export class JanusDaemon {
   /**
    * Starts proxy server inside a fork
    */
-  fork(): Promise<void> {
+  fork(): Promise<boolean> {
     const dirname = path.dirname(url.fileURLToPath(import.meta.url));
     const daemon = fork(path.resolve(dirname, './daemon.js'), [], {
       cwd: process.cwd(),
@@ -55,7 +55,7 @@ export class JanusDaemon {
 
     daemon.send(this._configService.state);
 
-    return new Promise((resolve, reject) => {
+    return new Promise<boolean>((resolve, reject) => {
       daemon.on('message', (msg) => {
         if (msg === 'started') {
           this.logger.verbose`Proxy successfully started in process ${daemon.pid}`;
@@ -65,7 +65,7 @@ export class JanusDaemon {
           daemon.disconnect();
           daemon.unref();
 
-          resolve();
+          resolve(true);
         }
       });
 
@@ -82,7 +82,7 @@ export class JanusDaemon {
           this.logger.warn`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
         }
 
-        reject(new Error('Daemon process exited'));
+        resolve(false);
       });
     });
   }
