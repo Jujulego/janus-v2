@@ -677,13 +677,13 @@ __metadata:
   linkType: hard
 
 "@jujulego/pid-file@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "@jujulego/pid-file@npm:2.0.0"
+  version: 2.0.1
+  resolution: "@jujulego/pid-file@npm:2.0.1"
   dependencies:
     "@jujulego/logger": "npm:^0.3.4"
     "@swc/helpers": "npm:^0.5.3"
     proper-lockfile: "npm:^4.1.2"
-  checksum: 1f4af9b2e6333cee0bd58f1892308143f0e0f262359ac0d19c56fdae983569189b6389e6ab8c37c7d3667718ee5bdbf52609dd2b74198f49be38229d21d372a2
+  checksum: 19d783aa9c3bf1cbcfa3e99719168e57ef814629db6b692c016ec12f9c62fe6a322f39ea59730abc458d15e9d23cd69816c8f80e5b6453c8f996eac753503b3f
   languageName: node
   linkType: hard
 
