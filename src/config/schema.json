@@ -23,6 +23,10 @@
         "pidfile": {
           "type": "string",
           "default": ".janus.pid"
+        },
+        "logfile": {
+          "type": "string",
+          "default": ".janus.log"
         }
       }
     }

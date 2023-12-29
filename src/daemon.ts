@@ -6,8 +6,8 @@ import { ConfigService, ConfigState } from './config/config.service.ts';
 import { JanusProxy } from './janus-proxy.ts';
 
 // Setup logger
-const logger = logger$(withTimestamp(), withLabel('daemon'));
-flow$(logger, toStdout(jsonFormat()));
+const logger = logger$(withLabel('daemon'), withTimestamp());
+const disableStdoutLog = flow$(logger, toStdout(jsonFormat()));
 
 // Receive config & start proxy
 process.once('message', async (configState: ConfigState) => {
@@ -22,8 +22,9 @@ process.once('message', async (configState: ConfigState) => {
 
     if (proxy.started) {
       process.send!('started');
+      disableStdoutLog();
     }
   } catch (err) {
-    logger.error('Error while starting proxy server', err as Error);
+    logger.error('Error while running proxy server', err as Error);
   }
 });

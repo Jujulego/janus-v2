@@ -1,4 +1,4 @@
-import { Logger, logger$ } from '@jujulego/logger';
+import { logger$, withTimestamp } from '@jujulego/logger';
 import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
 import { Listenable, source$ } from 'kyrielle';
@@ -9,6 +9,7 @@ import { ConfigService } from './config/config.service.ts';
 import { Config } from './config/type.ts';
 import { HttpServer } from './server/http.server.ts';
 import { StateHolder } from './state/state-holder.ts';
+import { LogFile } from './utils/log-file.ts';
 
 // Types
 export type JanusProxyEventMap = {
@@ -18,8 +19,6 @@ export type JanusProxyEventMap = {
 
 export class JanusProxy implements Listenable<JanusProxyEventMap> {
   // Attributes
-  readonly logger: Logger;
-
   private readonly _configService: ConfigService;
   private readonly _state: StateHolder;
   private readonly _server: HttpServer;
@@ -27,6 +26,7 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
   private _config?: Config;
   private _pidfile?: PidFile;
   private _started = false;
+  private readonly _logfile = new LogFile();
   private readonly _lock = new Lock();
   private readonly _events = multiplexer$({
     loaded: source$<Config>(),
@@ -35,17 +35,16 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
 
   // Constructor
   constructor(
-    logger: Logger = logger$(),
+    readonly logger = logger$(withTimestamp()),
     configService?: ConfigService,
   ) {
-    this.logger = logger;
-
     this._configService = configService ?? new ConfigService(this.logger);
     this._state = new StateHolder(this.logger);
     this._server = new HttpServer(this.logger, this._state);
 
     if (configService?.config) {
       this._config = configService?.config;
+      this._setupLogFile();
     }
   }
 
@@ -55,11 +54,17 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
   readonly clear = this._events.clear;
   readonly eventKeys = this._events.eventKeys;
 
+  private _setupLogFile() {
+    this._logfile.open(this._config!.server.logfile, this.logger);
+  }
+
   /**
    * Searches and load configuration file
    */
   async searchConfig(): Promise<void> {
     this._config = await this._configService.searchConfig();
+    this._setupLogFile();
+
     this._events.emit('loaded', this._config);
   }
 
@@ -70,6 +75,8 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
    */
   async loadConfig(filepath: string): Promise<void> {
     this._config = await this._configService.loadConfig(filepath);
+    this._setupLogFile();
+
     this._events.emit('loaded', this._config);
   }
 
