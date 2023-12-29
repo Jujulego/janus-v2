@@ -1,10 +1,10 @@
 import { inject$, token$ } from '@jujulego/injector';
-import { logger$ } from '@jujulego/logger';
+import { logger$, withTimestamp } from '@jujulego/logger';
 
 import { ConfigService } from '../config/config.service.ts';
 
 // Tokens
-export const CliLogger = token$(() => logger$());
+export const CliLogger = token$(() => logger$(withTimestamp()));
 
 export const CliConfigService = token$(() => new ConfigService(inject$(CliLogger)));
 
