@@ -1,5 +1,5 @@
 import { inject$ } from '@jujulego/injector';
-import { Log, LogLabel, LogLevel, LogLevelKey, qlevelColor, quick, toStderr } from '@jujulego/logger';
+import { debugFilter, Log, LogLabel, LogLevel, LogLevelKey, qlevelColor, quick, toStderr } from '@jujulego/logger';
 import { qprop } from '@jujulego/quick-tag';
 import { chalkTemplateStderr } from 'chalk-template';
 import { flow$ } from 'kyrielle/operators';
@@ -34,6 +34,7 @@ export function loggerMiddleware(parser: Argv) {
       flow$(
         logger,
         filter$((log) => log.level >= logLevel),
+        debugFilter(),
         toStderr(qlevelColor(
           quick.wrap(chalkTemplateStderr)
             .function<JanusLog>`#?:${qprop('label')}{grey [#$]} ?#${qprop('message')}#?:${qprop('error')}${os.EOL}#!error$?#  `
