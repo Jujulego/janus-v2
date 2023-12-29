@@ -22,6 +22,7 @@ export interface RedirectionConfig {
 export interface IServerConfig {
   readonly port: number;
   readonly pidfile: string;
+  readonly logfile: string;
 }
 
 /**

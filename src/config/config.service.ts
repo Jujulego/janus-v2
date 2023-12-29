@@ -58,7 +58,8 @@ export class ConfigService {
 
     // Resolve paths
     Object.assign(config.server, {
-      pidfile: path.resolve(this.baseDir, config.server.pidfile)
+      pidfile: path.resolve(this.baseDir, config.server.pidfile),
+      logfile: path.resolve(this.baseDir, config.server.logfile),
     });
 
     this._logger.debug`Loaded config:\n#!json:${config}`;
