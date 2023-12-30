@@ -3,6 +3,7 @@ import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
+import { version } from '../../package.json' assert { type: 'json' };
 import { Config } from '../config/type.ts';
 import { YogaServer } from './graphql/yoga.server.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
@@ -40,12 +41,23 @@ export class HttpServer {
     });
   }
 
-  private async _handleRequest(req: IncomingMessage | Request, res: ServerResponse) {
+  private _handleHealth(req: IncomingMessage, res: ServerResponse) {
+    res.setHeader('Content-Type', 'application/json');
+    res.write(JSON.stringify({ version }));
+    res.end();
+  }
+
+  private async _handleRequest(req: IncomingMessage, res: ServerResponse) {
     try {
       if (req.url?.startsWith('/_janus')) {
-        await this.yoga(req as Request, res);
+        if (req.url === '/_janus/health') {
+          this._handleHealth(req, res);
+        } else {
+          // @ts-expect-error Yoga poorly typed
+          await this.yoga.handle(req, res);
+        }
       } else {
-        await this.proxy.handleRequest(req as IncomingMessage, res);
+        await this.proxy.handleRequest(req, res);
       }
     } catch (err) {
       const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
