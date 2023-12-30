@@ -5,10 +5,10 @@ import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { RedirectionStore } from '@/src/state/redirection.store.js';
-import { redirection$ } from '@/src/state/redirection.ref.js';
-import { ProxyServer } from '@/src/server/proxy/proxy.server.js';
-import { createHttpServer, ignoreServer } from '../../utils.js';
+import { RedirectionStore } from '@/src/server/state/redirection.store.ts';
+import { redirection$ } from '@/src/server/state/redirection.ref.ts';
+import { ProxyServer } from '@/src/server/proxy/proxy.server.ts';
+import { createHttpServer, ignoreServer } from '@/tests/utils.ts';
 
 // Setup
 let logger: Logger;

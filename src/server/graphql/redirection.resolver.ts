@@ -1,8 +1,8 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { iterate$ } from 'kyrielle/subscriptions';
 
-import { type Redirection } from '../../state/redirection.ref.ts';
-import { StateHolder } from '../../state/state-holder.ts';
+import { type Redirection } from '../state/redirection.ref.ts';
+import { StateHolder } from '../state/state-holder.ts';
 import typeDefs from './redirection.graphql';
 
 // Resolver

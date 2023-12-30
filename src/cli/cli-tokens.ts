@@ -9,12 +9,12 @@ export const CliLogger = token$(() => logger$(withTimestamp()));
 export const CliConfigService = token$(() => new ConfigService(inject$(CliLogger)));
 
 export const CliJanusDaemon = token$(async () => {
-  const { JanusDaemon } = await import('../janus-daemon.ts');
+  const { JanusDaemon } = await import('../daemon/janus-daemon.ts');
 
   return new JanusDaemon(inject$(CliLogger), inject$(CliConfigService));
 });
 export const CliJanusProxy = token$(async () => {
-  const { JanusProxy } = await import('../janus-proxy.ts');
+  const { JanusServer } = await import('../server/janus-server.ts');
 
-  return new JanusProxy(inject$(CliLogger), inject$(CliConfigService));
+  return new JanusServer(inject$(CliLogger), inject$(CliConfigService));
 });

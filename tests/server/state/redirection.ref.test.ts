@@ -1,7 +1,7 @@
 import { Logger, logger$ } from '@jujulego/logger';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { redirection$ } from '@/src/state/redirection.ref.ts';
+import { redirection$ } from '@/src/server/state/redirection.ref.ts';
 
 // Setup
 let logger: Logger;

@@ -2,8 +2,8 @@ import { Logger, logger$ } from '@jujulego/logger';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { Config } from '@/src/config/type.ts';
-import { RedirectionStore } from '@/src/state/redirection.store.ts';
-import { DEFAULT_CONFIG } from '../utils.js';
+import { RedirectionStore } from '@/src/server/state/redirection.store.ts';
+import { DEFAULT_CONFIG } from '@/tests/utils.ts';
 
 // Setup
 let logger: Logger;

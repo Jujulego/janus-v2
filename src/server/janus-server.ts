@@ -5,19 +5,19 @@ import { Listenable, source$ } from 'kyrielle';
 import { multiplexer$ } from 'kyrielle/events';
 import process from 'node:process';
 
-import { ConfigService } from './config/config.service.ts';
-import { Config } from './config/type.ts';
-import { HttpServer } from './server/http.server.ts';
+import { ConfigService } from '../config/config.service.ts';
+import { Config } from '../config/type.ts';
+import { LogFile } from './log-file.ts';
+import { HttpServer } from './http.server.ts';
 import { StateHolder } from './state/state-holder.ts';
-import { LogFile } from './utils/log-file.ts';
 
 // Types
 export type JanusProxyEventMap = {
   loaded: Config;
-  started: JanusProxy;
+  started: JanusServer;
 }
 
-export class JanusProxy implements Listenable<JanusProxyEventMap> {
+export class JanusServer implements Listenable<JanusProxyEventMap> {
   // Attributes
   private readonly _configService: ConfigService;
   private readonly _state: StateHolder;
@@ -30,7 +30,7 @@ export class JanusProxy implements Listenable<JanusProxyEventMap> {
   private readonly _lock = new Lock();
   private readonly _events = multiplexer$({
     loaded: source$<Config>(),
-    started: source$<JanusProxy>(),
+    started: source$<JanusServer>(),
   });
 
   // Constructor

@@ -2,8 +2,8 @@ import { jsonFormat, logger$, toStdout, withLabel, withTimestamp } from '@jujule
 import { flow$ } from 'kyrielle/operators';
 import process from 'node:process';
 
-import { ConfigService, ConfigState } from './config/config.service.ts';
-import { JanusProxy } from './janus-proxy.ts';
+import { ConfigService, ConfigState } from '../config/config.service.ts';
+import { JanusServer } from '../server/janus-server.ts';
 
 // Setup logger
 const logger = logger$(withLabel('daemon'), withTimestamp());
@@ -17,7 +17,7 @@ process.once('message', async (configState: ConfigState) => {
     logger.debug`Received config:\n#!json:${configService.config}`;
 
     // Start proxy
-    const proxy = new JanusProxy(logger, configService);
+    const proxy = new JanusServer(logger, configService);
     await proxy.start();
 
     if (proxy.started) {

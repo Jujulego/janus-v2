@@ -5,9 +5,8 @@ import request from 'supertest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { HttpServer } from '@/src/server/http.server.ts';
-import { StateHolder } from '@/src/state/state-holder.js';
-
-import { DEFAULT_CONFIG } from '../utils.js';
+import { StateHolder } from '@/src/server/state/state-holder.ts';
+import { DEFAULT_CONFIG } from '@/tests/utils.ts';
 
 // Setup
 let logger: Logger;

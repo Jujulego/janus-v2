@@ -5,7 +5,7 @@ import path from 'node:path';
 import process from 'node:process';
 import url from 'node:url';
 
-import { ConfigService } from './config/config.service.ts';
+import { ConfigService } from '../config/config.service.ts';
 
 export class JanusDaemon {
   // Attributes

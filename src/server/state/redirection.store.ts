@@ -3,7 +3,7 @@ import { SyncMutableRef } from 'kyrielle';
 import { RefMap } from 'kyrielle/collections';
 import { createHash } from 'node:crypto';
 
-import { Config } from '../config/type.ts';
+import { Config } from '../../config/type.ts';
 import { Redirection, redirection$ } from './redirection.ref.ts';
 
 // Repository
