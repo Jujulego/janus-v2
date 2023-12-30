@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.0",
+    "@graphql-yoga/plugin-graphql-sse": "^3.1.0",
     "@jujulego/injector": "^0.4.0",
     "@jujulego/logger": "^0.3.5",
     "@jujulego/pid-file": "^2.0.0",
@@ -40,6 +41,7 @@
     "chalk-template": "^1.1.0",
     "cosmiconfig": "^9.0.0",
     "graphql": "^16.8.1",
+    "graphql-sse": "^2.5.2",
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
