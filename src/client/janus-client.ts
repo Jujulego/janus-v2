@@ -1,10 +1,11 @@
-import { logger$ } from '@jujulego/logger';
+import { Log, Logger, logger$, LogLabel, withLabel } from '@jujulego/logger';
 import { Client, createClient } from 'graphql-sse';
-import { Listenable, source$ } from 'kyrielle';
+import { Listenable, source$, SyncRef } from 'kyrielle';
 import { multiplexer$ } from 'kyrielle/events';
+import { var$ } from 'kyrielle/refs';
 import { waitFor$ } from 'kyrielle/subscriptions';
 
-import { HealthPayload, isHealthPayload } from './dto/health.js';
+import { HealthPayload, isHealthPayload } from './dto/health.ts';
 
 // Types
 export type JanusClientEventMap = {
@@ -19,6 +20,8 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
   private _client?: Client<true>;
   private _healthcheckTimeout?: number | NodeJS.Timeout;
 
+  readonly logger: Logger<Log & LogLabel>;
+  private readonly _serverHealth$ = var$<HealthPayload>();
   private readonly _events = multiplexer$({
     connected: source$<HealthPayload>(),
     disconnected: source$<true>(),
@@ -27,8 +30,10 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
   // Constructor
   constructor(
     readonly janusUrl = 'http://localhost:3000/',
-    readonly logger = logger$(),
-  ) {}
+    logger = logger$(),
+  ) {
+    this.logger = logger.child(withLabel('janus'));
+  }
 
   // Methods
   readonly on = this._events.on;
@@ -47,7 +52,6 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
         const payload = await res.json();
 
         if (isHealthPayload(payload)) {
-          this.logger.debug`Janus server reached (${payload})`;
           return payload;
         } else {
           this.logger.warn`Server answered but health payload is invalid`;
@@ -56,15 +60,7 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
         this.logger.warn`Server responded with a ${res.status} error: ${await res.text()}`;
       }
     } catch (err) {
-      if (err instanceof DOMException) {
-        if (err.name === 'TimeoutError') {
-          this.logger.warn`Server did not respond in time`;
-        } else {
-          throw err;
-        }
-      } else {
-        throw err;
-      }
+      this.logger.warn('Error while fetching server health', err as Error);
     }
 
     return null;
@@ -80,6 +76,7 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
 
     if (health && !this._connected) {
       this._connected = true;
+      this._serverHealth$.mutate(health);
       this._events.emit('connected', health);
     }
 
@@ -99,6 +96,7 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
 
     if (health) {
       this.logger.verbose`Janus client connected (server version: ${health.version})`;
+      this._serverHealth$.mutate(health);
 
       this._client = createClient({
         lazy: true,
@@ -128,5 +126,10 @@ export class JanusClient implements Listenable<JanusClientEventMap> {
 
     this._client?.dispose();
     this._connected = false;
+  }
+
+  // Properties
+  get serverHealth$(): SyncRef<HealthPayload | undefined> {
+    return this._serverHealth$;
   }
 }
