@@ -13,6 +13,8 @@ export class JanusDaemon {
 
   private readonly _configService: ConfigService;
 
+  private _started =  false;
+
   // Constructor
   constructor(
     logger: Logger = logger$(),
@@ -58,6 +60,7 @@ export class JanusDaemon {
     return new Promise<boolean>((resolve, reject) => {
       daemon.on('message', (msg) => {
         if (msg === 'started') {
+          this._started = true;
           this.logger.verbose`Proxy successfully started in process ${daemon.pid}`;
 
           daemon.stdout!.destroy();
@@ -85,5 +88,10 @@ export class JanusDaemon {
         resolve(false);
       });
     });
+  }
+
+  // Properties
+  get started() {
+    return this._started;
   }
 }

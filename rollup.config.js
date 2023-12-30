@@ -8,8 +8,9 @@ import pkg from './package.json' assert { type: 'json' };
 /** @type {import('rollup').RollupOptions} */
 const options = {
   input: {
-    main: 'src/main.ts',
-    daemon: 'src/daemon.ts'
+    daemon: 'src/daemon.ts',
+    index: 'src/index.ts',
+    main: 'src/main.ts'
   },
   output: {
     dir: 'dist',

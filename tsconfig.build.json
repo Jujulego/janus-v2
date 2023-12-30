@@ -6,6 +6,8 @@
     "outDir": "./dist"
   },
   "files": [
+    "./src/daemon.ts",
+    "./src/index.ts",
     "./src/main.ts",
   ]
 }
