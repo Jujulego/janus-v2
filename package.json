@@ -25,14 +25,13 @@
     "build:types": "tsc -p tsconfig.build.json",
     "watch": "rollup -c --watch",
     "dev:start": "nodemon ./bin/janus.js start",
-    "test": "vitest run",
-    "test:types": "vitest typecheck"
+    "test": "vitest run --typecheck"
   },
   "dependencies": {
     "@graphql-tools/schema": "^10.0.0",
     "@jujulego/injector": "^0.4.0",
-    "@jujulego/logger": "^0.3.5",
-    "@jujulego/pid-file": "^2.0.0",
+    "@jujulego/logger": "^0.4.2",
+    "@jujulego/pid-file": "^2.0.2",
     "@jujulego/quick-tag": "^0.4.0",
     "@jujulego/utils": "^3.0.4",
     "@swc/helpers": "^0.5.3",
@@ -43,7 +42,7 @@
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
-    "kyrielle": "^0.8.0",
+    "kyrielle": "^0.9.1",
     "reflect-metadata": "^0.2.0",
     "yargs": "^17.7.2"
   },

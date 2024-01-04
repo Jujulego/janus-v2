@@ -569,8 +569,8 @@ __metadata:
     "@graphql-tools/schema": "npm:^10.0.0"
     "@jujulego/injector": "npm:^0.4.0"
     "@jujulego/jill": "npm:2.5.0"
-    "@jujulego/logger": "npm:^0.3.5"
-    "@jujulego/pid-file": "npm:^2.0.0"
+    "@jujulego/logger": "npm:^0.4.2"
+    "@jujulego/pid-file": "npm:^2.0.2"
     "@jujulego/quick-tag": "npm:^0.4.0"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
@@ -598,7 +598,7 @@ __metadata:
     graphql-yoga: "npm:^5.0.0"
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
-    kyrielle: "npm:^0.8.0"
+    kyrielle: "npm:^0.9.1"
     msw: "npm:2.0.11"
     nodemon: "npm:3.0.2"
     reflect-metadata: "npm:^0.2.0"
@@ -663,27 +663,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/logger@npm:^0.3.4, @jujulego/logger@npm:^0.3.5":
-  version: 0.3.5
-  resolution: "@jujulego/logger@npm:0.3.5"
+"@jujulego/logger@npm:^0.4.0, @jujulego/logger@npm:^0.4.2":
+  version: 0.4.2
+  resolution: "@jujulego/logger@npm:0.4.2"
   dependencies:
-    "@jujulego/quick-tag": "npm:^0.3.3"
+    "@jujulego/quick-tag": "npm:^0.4.0"
     "@swc/helpers": "npm:^0.5.3"
     chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
-    kyrielle: "npm:^0.8.0"
-  checksum: f286b6d6bc60ee4602a447ca8cc7332839127893b0d971d509fdfb28dca6d6b29eab077f098c270359ff64650ffa916c9e8ec1c3bae35ff244b2ebdf7894a0af
+    kyrielle: "npm:^0.9.0"
+  checksum: b4fb5766434e3c9847fa2503f70d2a70836ac190ac894908e70bbe04dd844fdb16bc529a007bed2552cf4466d309046f1be7aacbbfb96d388c6f439c19892ad1
   languageName: node
   linkType: hard
 
-"@jujulego/pid-file@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@jujulego/pid-file@npm:2.0.1"
+"@jujulego/pid-file@npm:^2.0.2":
+  version: 2.0.2
+  resolution: "@jujulego/pid-file@npm:2.0.2"
   dependencies:
-    "@jujulego/logger": "npm:^0.3.4"
+    "@jujulego/logger": "npm:^0.4.0"
     "@swc/helpers": "npm:^0.5.3"
     proper-lockfile: "npm:^4.1.2"
-  checksum: 19d783aa9c3bf1cbcfa3e99719168e57ef814629db6b692c016ec12f9c62fe6a322f39ea59730abc458d15e9d23cd69816c8f80e5b6453c8f996eac753503b3f
+  checksum: 259dc71c97c31dfed17c572080a628b74234c448a3e12d15178c8cb022d11dd86a23e02e761e711e8032421fbade5146c8466a623ad2463df5c28127d2c23a14
   languageName: node
   linkType: hard
 
@@ -4158,28 +4158,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^0.8.0":
-  version: 0.8.2
-  resolution: "kyrielle@npm:0.8.2"
-  dependencies:
-    immer: "npm:^10.0.3"
-  dependenciesMeta:
-    vitest@0.34.6:
-      unplugged: true
-  checksum: 8f3bf7c93974faca45e83ab1fdf36c0988fa73e086ca6f6f031fe4f2ac035e286fd8155f08fcfddf8cd14346a464ca6e515c42685d714b3776a0b455ee19495b
-  languageName: node
-  linkType: hard
-
-"kyrielle@npm:^0.9.0":
-  version: 0.9.0
-  resolution: "kyrielle@npm:0.9.0"
+"kyrielle@npm:^0.9.0, kyrielle@npm:^0.9.1":
+  version: 0.9.1
+  resolution: "kyrielle@npm:0.9.1"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
     immer: "npm:^10.0.3"
   dependenciesMeta:
-    vitest@1.1.1:
+    vitest@1.1.2:
       unplugged: true
-  checksum: f73f0507e7afc6128be4faaadded77fc35808999ccf5ad5baf47344f9fad589e7dafa6e25d0a1c6f8382b1f4bc2e1e74df563a7578fe1d254ad3f97a8e8874ba
+  checksum: 03a2c574464ccadc9fdc669818022c100c14b860ed125e4e04df41c9e09cbcf8ca04410eef90c7a6f59267acecb333b2faac5abe66006084a2a05da52390ce88
   languageName: node
   linkType: hard
 

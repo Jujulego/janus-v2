@@ -1,8 +1,8 @@
 import { logger$, withTimestamp } from '@jujulego/logger';
 import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
-import { Listenable, source$ } from 'kyrielle';
-import { multiplexer$ } from 'kyrielle/events';
+import { Listenable } from 'kyrielle';
+import { multiplexer$, source$ } from 'kyrielle/events';
 import process from 'node:process';
 
 import { ConfigService } from '../config/config.service.ts';

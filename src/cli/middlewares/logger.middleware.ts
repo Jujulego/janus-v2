@@ -2,8 +2,7 @@ import { inject$ } from '@jujulego/injector';
 import { debugFilter, Log, LogLabel, LogLevel, LogLevelKey, qlevelColor, quick, toStderr } from '@jujulego/logger';
 import { qprop } from '@jujulego/quick-tag';
 import { chalkTemplateStderr } from 'chalk-template';
-import { flow$ } from 'kyrielle/operators';
-import { filter$ } from 'kyrielle/steps';
+import { filter$, flow$ } from 'kyrielle/pipe';
 import os from 'node:os';
 import { Argv } from 'yargs';
 
