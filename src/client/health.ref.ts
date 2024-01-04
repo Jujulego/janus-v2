@@ -1,8 +1,7 @@
 import { Logger } from '@jujulego/logger';
 import { dom$ } from 'kyrielle/browser';
-import { pipe$ } from 'kyrielle/operators';
 import { ref$ } from 'kyrielle/refs';
-import { dedupeRead$ } from 'kyrielle/steps';
+import { dedupeRead$, pipe$ } from 'kyrielle/pipe';
 import { once$ } from 'kyrielle/subscriptions';
 
 import { AbortError } from './errors.ts';
