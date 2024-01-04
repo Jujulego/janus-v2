@@ -553,12 +553,12 @@ __metadata:
   linkType: hard
 
 "@jujulego/injector@npm:^0.4.0":
-  version: 0.4.0
-  resolution: "@jujulego/injector@npm:0.4.0"
+  version: 0.4.1
+  resolution: "@jujulego/injector@npm:0.4.1"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^0.8.2"
-  checksum: 5688b0c5c0b04aed9d24793a2bdef025aac4c846f8e356c65188b20e740f9c906113e4f26e0af6c134bacb9a8a1eaeab1e3ca7aa8f72d48a8729bbdedcd52e42
+    kyrielle: "npm:^0.9.0"
+  checksum: c18907fd1d87d5839d968e59759e5018bc796bbc26318e0b3127fd2cb75cfb91d7fa6980a8c62cb7cf2bf037ee3f0af3b37ac1c532886b306c9cb350e0bc0f14
   languageName: node
   linkType: hard
 
@@ -4136,7 +4136,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^0.8.0, kyrielle@npm:^0.8.2":
+"kyrielle@npm:^0.8.0":
   version: 0.8.2
   resolution: "kyrielle@npm:0.8.2"
   dependencies:
@@ -4145,6 +4145,19 @@ __metadata:
     vitest@0.34.6:
       unplugged: true
   checksum: 8f3bf7c93974faca45e83ab1fdf36c0988fa73e086ca6f6f031fe4f2ac035e286fd8155f08fcfddf8cd14346a464ca6e515c42685d714b3776a0b455ee19495b
+  languageName: node
+  linkType: hard
+
+"kyrielle@npm:^0.9.0":
+  version: 0.9.0
+  resolution: "kyrielle@npm:0.9.0"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.3"
+    immer: "npm:^10.0.3"
+  dependenciesMeta:
+    vitest@1.1.1:
+      unplugged: true
+  checksum: f73f0507e7afc6128be4faaadded77fc35808999ccf5ad5baf47344f9fad589e7dafa6e25d0a1c6f8382b1f4bc2e1e74df563a7578fe1d254ad3f97a8e8874ba
   languageName: node
   linkType: hard
 
