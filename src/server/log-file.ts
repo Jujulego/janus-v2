@@ -1,6 +1,6 @@
 import { jsonFormat, Log, toStream } from '@jujulego/logger';
 import { Observable, OffFn } from 'kyrielle';
-import { flow$ } from 'kyrielle/operators';
+import { flow$ } from 'kyrielle/pipe';
 import { createWriteStream, WriteStream } from 'node:fs';
 
 // Class

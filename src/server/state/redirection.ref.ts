@@ -1,6 +1,6 @@
 import { Logger } from '@jujulego/logger';
-import { actions$, SyncMutableRef } from 'kyrielle';
-import { var$ } from 'kyrielle/refs';
+import { SyncMutableRef } from 'kyrielle';
+import { bind$, produce$, var$ } from 'kyrielle/refs';
 
 // Types
 export interface RedirectionOutput {
@@ -25,22 +25,26 @@ export interface RedirectionRef extends SyncMutableRef<Redirection> {
 
 // Reference
 export function redirection$(state: Redirection, logger: Logger): RedirectionRef {
-  return actions$(var$(state), {
-    enableOutput: (name: string) => (draft) => {
-      const output = draft.outputs.find((out) => out.name === name);
+  return bind$(var$(state), {
+    enableOutput(name: string) {
+      return produce$(this, (draft) => {
+        const output = draft.outputs.find((out) => out.name === name);
 
-      if (output && !output.enabled) {
-        output.enabled = true;
-        logger.info`Output ${name} enabled`;
-      }
+        if (output && !output.enabled) {
+          output.enabled = true;
+          logger.info`Output ${name} enabled`;
+        }
+      });
     },
-    disableOutput: (name: string) => (draft) => {
-      const output = draft.outputs.find((out) => out.name === name);
+    disableOutput(name: string) {
+      return produce$(this, (draft) => {
+        const output = draft.outputs.find((out) => out.name === name);
 
-      if (output?.enabled) {
-        output.enabled = false;
-        logger.info`Output ${name} disabled`;
-      }
+        if (output?.enabled) {
+          output.enabled = false;
+          logger.info`Output ${name} disabled`;
+        }
+      });
     }
   });
 }
