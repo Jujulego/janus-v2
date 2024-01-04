@@ -663,7 +663,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/logger@npm:^0.3.4, @jujulego/logger@npm:^0.3.5":
+"@jujulego/logger@npm:^0.3.5":
   version: 0.3.5
   resolution: "@jujulego/logger@npm:0.3.5"
   dependencies:
@@ -676,14 +676,27 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/pid-file@npm:^2.0.0":
-  version: 2.0.1
-  resolution: "@jujulego/pid-file@npm:2.0.1"
+"@jujulego/logger@npm:^0.4.0":
+  version: 0.4.2
+  resolution: "@jujulego/logger@npm:0.4.2"
   dependencies:
-    "@jujulego/logger": "npm:^0.3.4"
+    "@jujulego/quick-tag": "npm:^0.4.0"
+    "@swc/helpers": "npm:^0.5.3"
+    chalk: "npm:^5.3.0"
+    chalk-template: "npm:^1.1.0"
+    kyrielle: "npm:^0.9.0"
+  checksum: b4fb5766434e3c9847fa2503f70d2a70836ac190ac894908e70bbe04dd844fdb16bc529a007bed2552cf4466d309046f1be7aacbbfb96d388c6f439c19892ad1
+  languageName: node
+  linkType: hard
+
+"@jujulego/pid-file@npm:^2.0.0":
+  version: 2.0.2
+  resolution: "@jujulego/pid-file@npm:2.0.2"
+  dependencies:
+    "@jujulego/logger": "npm:^0.4.0"
     "@swc/helpers": "npm:^0.5.3"
     proper-lockfile: "npm:^4.1.2"
-  checksum: 19d783aa9c3bf1cbcfa3e99719168e57ef814629db6b692c016ec12f9c62fe6a322f39ea59730abc458d15e9d23cd69816c8f80e5b6453c8f996eac753503b3f
+  checksum: 259dc71c97c31dfed17c572080a628b74234c448a3e12d15178c8cb022d11dd86a23e02e761e711e8032421fbade5146c8466a623ad2463df5c28127d2c23a14
   languageName: node
   linkType: hard
 
