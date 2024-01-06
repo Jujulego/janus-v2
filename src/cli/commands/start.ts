@@ -6,7 +6,7 @@ import { CliJanusDaemon, CliJanusProxy, CliLogger } from '../cli-tokens.ts';
 
 // Types
 export interface StartArgs {
-  daemon: boolean;
+  readonly daemon: boolean;
 }
 
 // Command
