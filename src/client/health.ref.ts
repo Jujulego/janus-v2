@@ -1,10 +1,8 @@
 import { Logger } from '@jujulego/logger';
-import { dom$ } from 'kyrielle/browser';
+import { timer$ } from 'kyrielle/events';
+import { deduplicate$, pipe$, retry$ } from 'kyrielle/pipe';
 import { ref$ } from 'kyrielle/refs';
-import { dedupeRead$, pipe$ } from 'kyrielle/pipe';
-import { once$ } from 'kyrielle/subscriptions';
-
-import { AbortError } from './errors.ts';
+import { waitFor$ } from 'kyrielle/subscriptions';
 
 // Type
 export interface HealthPayload {
@@ -17,46 +15,32 @@ export function isHealthPayload(payload: unknown): payload is HealthPayload {
 }
 
 // Reference
-export function health$(url: URL, logger: Logger, signal: AbortSignal) {
+export function health$(url: URL, logger: Logger) {
   return pipe$(
-    ref$(async () => {
-      while (!signal.aborted) {
-        const ctrl = new AbortController();
-        const timeout = setTimeout(() => ctrl.abort(), 1000);
-        const off = once$(dom$<AbortSignalEventMap>(signal), 'abort', () => ctrl.abort());
+    ref$(async (signal) => {
+      logger.debug`Requesting server health at ${url}`;
+      const res = await fetch(url, { signal: signal ?? null });
 
-        try {
-          logger.debug`Requesting server health at ${url}`;
+      if (res.ok) {
+        const payload = await res.json();
 
-          const res = await fetch(url, { signal: ctrl.signal });
-
-          if (res.ok) {
-            const payload = await res.json();
-
-            if (isHealthPayload(payload)) {
-              return payload;
-            } else {
-              logger.debug`Server answered but health payload is invalid`;
-            }
-          } else {
-            logger.debug`Server responded with a ${res.status} error: ${await res.text()}`;
-          }
-        } catch (err) {
-          if (!signal.aborted) {
-            logger.debug('Error while fetching server health', err as Error);
-          }
-        } finally {
-          off();
-          clearTimeout(timeout);
+        if (isHealthPayload(payload)) {
+          return payload;
+        } else {
+          logger.debug`Server answered but health payload is invalid: #!json:${payload}`;
+          throw new Error('Invalid health payload');
         }
-
-        if (!signal.aborted) {
-          await new Promise((resolve) => setTimeout(resolve, 1000));
-        }
+      } else {
+        logger.debug`Server responded with a ${res.status} error: ${await res.text()}`;
+        throw new Error(`Server responded with a ${res.status} error`);
       }
-
-      throw new AbortError('Health loading aborted');
     }),
-    dedupeRead$(),
+    retry$('read', {
+      tryTimeout: 1000,
+      async onRetry() {
+        await waitFor$(timer$(1000));
+      },
+    }),
+    deduplicate$('read'),
   );
 }
