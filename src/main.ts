@@ -4,7 +4,7 @@ import { hideBin } from 'yargs/helpers';
 import 'reflect-metadata/lite';
 
 import { version } from '../package.json' assert { type: 'json' };
-import { start } from './cli/commands.ts';
+import * as commands from './cli/commands.ts';
 import { configMiddleware } from './cli/middlewares/config.middleware.ts';
 import { loggerMiddleware } from './cli/middlewares/logger.middleware.ts';
 import './graphql.d.ts';
@@ -18,7 +18,8 @@ import './graphql.d.ts';
   loggerMiddleware(parser);
   configMiddleware(parser);
 
-  parser.command(start)
+  parser.command(commands.start)
+    .command(commands.version)
     .demandCommand()
     .strictCommands()
     .recommendCommands();

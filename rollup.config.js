@@ -15,7 +15,8 @@ const options = {
     dir: 'dist',
     format: 'esm',
     sourcemap: true,
-    chunkFileNames: '[name].js'
+    chunkFileNames: '[name].js',
+    generatedCode: 'es5'
   },
   plugins: [
     nodeResolve({ exportConditions: ['node'] }),
@@ -28,9 +29,9 @@ const options = {
     'kyrielle/collections',
     'kyrielle/events',
     'kyrielle/operators',
+    'kyrielle/pipe',
     'kyrielle/refs',
     'kyrielle/subscriptions',
-    'kyrielle/steps',
     'reflect-metadata/lite',
     'yargs/helpers',
   ]
