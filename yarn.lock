@@ -410,14 +410,14 @@ __metadata:
   linkType: hard
 
 "@graphql-yoga/plugin-graphql-sse@npm:^3.1.0":
-  version: 3.1.0
-  resolution: "@graphql-yoga/plugin-graphql-sse@npm:3.1.0"
+  version: 3.1.1
+  resolution: "@graphql-yoga/plugin-graphql-sse@npm:3.1.1"
   dependencies:
     graphql-sse: "npm:^2.0.0"
   peerDependencies:
     graphql: ^15.2.0 || ^16.0.0
-    graphql-yoga: ^5.1.0
-  checksum: c67d7708260fc8cd50980a0cf34aeddf6c4dd2dd8ec07446b627770f495c60b2ef8b85337f1ac95eb49400dd873d370eb1d7bbc94e2cc34412ff40c543b560cd
+    graphql-yoga: ^5.1.1
+  checksum: e4adfbce8b0c50be9f384df5477a285615e2a54c602b57cbc4448d4b0874d2052892b6cddd6a96d85a75820683ebdfb22b56db08ce61a34e080e0e7f39c63297
   languageName: node
   linkType: hard
 
