@@ -614,7 +614,7 @@ __metadata:
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
     kyrielle: "npm:^0.9.3"
-    msw: "npm:2.0.13"
+    msw: "npm:2.0.14"
     nodemon: "npm:3.0.2"
     reflect-metadata: "npm:^0.2.0"
     rollup: "npm:4.9.5"
@@ -4614,9 +4614,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.0.13":
-  version: 2.0.13
-  resolution: "msw@npm:2.0.13"
+"msw@npm:2.0.14":
+  version: 2.0.14
+  resolution: "msw@npm:2.0.14"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/js-levenshtein": "npm:^2.0.1"
@@ -4646,7 +4646,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 4e446a778e1cd36612057209f230d08c0db85d49442629796ce0ed639073e7e49cb72aa83d002ecec658fd04051f75e0b66725342be382e094c4a8e54d7353e0
+  checksum: 00f65bfac7b7df82c5dc6e7abfa29bb7d0f0ea06d8a0512e8e529c68e5464cc350410a37bbc7f7df644add0337a265b1439b94dbc2f20cd6c392cb5eee49b5b3
   languageName: node
   linkType: hard
 
