@@ -45,7 +45,7 @@
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
-    "kyrielle": "^0.9.3",
+    "kyrielle": "^0.10.0",
     "reflect-metadata": "^0.2.0",
     "yargs": "^17.7.2"
   },
