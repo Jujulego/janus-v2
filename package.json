@@ -33,7 +33,7 @@
     "@jujulego/injector": "^0.4.0",
     "@jujulego/logger": "^0.4.2",
     "@jujulego/pid-file": "^2.0.2",
-    "@jujulego/quick-tag": "^0.4.0",
+    "@jujulego/quick-tag": "^0.5.0",
     "@jujulego/utils": "^3.0.4",
     "@swc/helpers": "^0.5.3",
     "ajv": "^8.12.0",
