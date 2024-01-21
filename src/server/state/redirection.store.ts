@@ -1,10 +1,9 @@
 import { Logger, withLabel } from '@jujulego/logger';
-import { SyncMutableRef } from 'kyrielle';
 import { RefMap } from 'kyrielle/collections';
 import { createHash } from 'node:crypto';
 
 import { Config } from '../../config/type.ts';
-import { Redirection, redirection$ } from './redirection.ref.ts';
+import { Redirection, redirection$, RedirectionRef } from './redirection.ref.ts';
 
 // Repository
 export class RedirectionStore {
@@ -27,7 +26,7 @@ export class RedirectionStore {
     return hash.digest().toString('base64url');
   }
 
-  register(redirection: Omit<Redirection, 'id'>): SyncMutableRef<Redirection> {
+  register(redirection: Omit<Redirection, 'id'>): RedirectionRef {
     const id = this._generateId(redirection.url);
     const ref = this._redirections.set(id, { ...redirection, id });
 

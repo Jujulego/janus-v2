@@ -1,5 +1,5 @@
 import { Logger } from '@jujulego/logger';
-import { SyncMutableRef } from 'kyrielle';
+import { MutableRef } from 'kyrielle';
 import { bind$, produce$, var$ } from 'kyrielle/refs';
 
 // Types
@@ -18,7 +18,7 @@ export interface Redirection {
   readonly outputs: readonly RedirectionOutput[];
 }
 
-export interface RedirectionRef extends SyncMutableRef<Redirection> {
+export interface RedirectionRef extends MutableRef<Redirection> {
   enableOutput(name: string): Redirection;
   disableOutput(name: string): Redirection;
 }
