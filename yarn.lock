@@ -584,7 +584,7 @@ __metadata:
     "@jujulego/jill": "npm:2.5.0"
     "@jujulego/logger": "npm:^0.4.2"
     "@jujulego/pid-file": "npm:^2.0.2"
-    "@jujulego/quick-tag": "npm:^0.4.0"
+    "@jujulego/quick-tag": "npm:^1.0.0"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
@@ -721,6 +721,19 @@ __metadata:
     vitest@1.1.1:
       unplugged: true
   checksum: dcc254181263853cd86724c43ec52c32c553d60d88ed0c0e20b7d71abfc58762795ef28111f148e76df61d44bb6541f60f8965b5656c63d24f868e30db2591ae
+  languageName: node
+  linkType: hard
+
+"@jujulego/quick-tag@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@jujulego/quick-tag@npm:1.0.0"
+  dependencies:
+    "@swc/helpers": "npm:^0.5.3"
+    safe-stable-stringify: "npm:^2.4.3"
+  dependenciesMeta:
+    vitest@1.2.1:
+      unplugged: true
+  checksum: dbb68e2c3b82946197524d25bbefe4a359b0beb86584f7e3ee0630570d18be8450293debe12732f7038176058cc55b34eebedb99f3a7dc6c7c1d9488941c5428
   languageName: node
   linkType: hard
 
@@ -5491,6 +5504,13 @@ __metadata:
   version: 5.2.1
   resolution: "safe-buffer@npm:5.2.1"
   checksum: 6501914237c0a86e9675d4e51d89ca3c21ffd6a31642efeba25ad65720bce6921c9e7e974e5be91a786b25aa058b5303285d3c15dbabf983a919f5f630d349f3
+  languageName: node
+  linkType: hard
+
+"safe-stable-stringify@npm:^2.4.3":
+  version: 2.4.3
+  resolution: "safe-stable-stringify@npm:2.4.3"
+  checksum: 81dede06b8f2ae794efd868b1e281e3c9000e57b39801c6c162267eb9efda17bd7a9eafa7379e1f1cacd528d4ced7c80d7460ad26f62ada7c9e01dec61b2e768
   languageName: node
   linkType: hard
 
