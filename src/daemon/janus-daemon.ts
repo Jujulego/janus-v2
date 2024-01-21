@@ -1,4 +1,5 @@
 import { Logger, logger$, withLabel } from '@jujulego/logger';
+import { q$ } from '@jujulego/quick-tag';
 import { ChildProcess, fork } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -77,9 +78,9 @@ export class JanusDaemon {
 
       daemon.once('exit', (code, signal) => {
         if (code) {
-          this.logger.error`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
+          this.logger.error`Proxy exited with code ${code}#?:${signal}, due to signal ${q$}?#`;
         } else {
-          this.logger.warn`Proxy exited with code ${code}#?:${signal}, due to signal #$?#`;
+          this.logger.warn`Proxy exited with code ${code}#?:${signal}, due to signal ${q$}?#`;
         }
 
         resolve(false);

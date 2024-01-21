@@ -1,4 +1,4 @@
-import { Logger, withLabel } from '@jujulego/logger';
+import { Logger, qLogRelative, withLabel } from '@jujulego/logger';
 import { Inject } from '@jujulego/injector';
 import { qjson } from '@jujulego/quick-tag';
 import Ajv from 'ajv';
@@ -63,7 +63,7 @@ export class ConfigService {
       logfile: path.resolve(this.baseDir, config.server.logfile),
     });
 
-    this._logger.debug`Loaded config:\n#!json:${qjson(config, { pretty: true })}`;
+    this._logger.debug`Loaded config:\n${qjson(config, { pretty: true })}`;
 
     return config;
   }
@@ -72,7 +72,7 @@ export class ConfigService {
     const loaded = await this._explorer.search();
 
     if (loaded) {
-      this._logger.verbose`Loaded file #!cwd:${loaded.filepath}`;
+      this._logger.verbose`Loaded file ${qLogRelative(loaded.filepath)}`;
       this._filepath = loaded.filepath;
       this._config = this._validateConfig(loaded.config);
     } else {
@@ -87,11 +87,11 @@ export class ConfigService {
     const loaded = await this._explorer.load(filepath);
 
     if (loaded) {
-      this._logger.verbose`Loaded file #!cwd:${loaded.filepath}`;
+      this._logger.verbose`Loaded file ${qLogRelative(loaded.filepath)}`;
       this._filepath = loaded.filepath;
       this._config = this._validateConfig(loaded.config);
     } else {
-      this._logger.error`Config file #!cwd:${filepath} not found`;
+      this._logger.error`Config file ${qLogRelative(filepath)} not found`;
       throw new Error('Config file not found');
     }
 
