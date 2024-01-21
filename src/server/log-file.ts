@@ -1,4 +1,5 @@
-import { jsonFormat, Log, toStream } from '@jujulego/logger';
+import { Log, toStream } from '@jujulego/logger';
+import { qjson } from '@jujulego/quick-tag';
 import { Observable, OffFn } from 'kyrielle';
 import { flow$ } from 'kyrielle/pipe';
 import { createWriteStream, WriteStream } from 'node:fs';
@@ -19,6 +20,6 @@ export class LogFile {
 
     // Subscribe to logger
     this._off?.();
-    this._off = flow$(logger, toStream(this._stream, jsonFormat()));
+    this._off = flow$(logger, toStream(this._stream, (log) => qjson(log)!));
   }
 }
