@@ -1,5 +1,6 @@
 import { Logger, withLabel } from '@jujulego/logger';
 import { Inject } from '@jujulego/injector';
+import { qjson } from '@jujulego/quick-tag';
 import Ajv from 'ajv';
 import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
@@ -62,7 +63,7 @@ export class ConfigService {
       logfile: path.resolve(this.baseDir, config.server.logfile),
     });
 
-    this._logger.debug`Loaded config:\n#!json:${config}`;
+    this._logger.debug`Loaded config:\n#!json:${qjson(config, { pretty: true })}`;
 
     return config;
   }

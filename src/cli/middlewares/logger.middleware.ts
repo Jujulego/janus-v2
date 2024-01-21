@@ -1,15 +1,12 @@
 import { inject$ } from '@jujulego/injector';
-import { debugFilter, Log, LogLabel, LogLevel, LogLevelKey, qlevelColor, quick, toStderr } from '@jujulego/logger';
-import { qprop } from '@jujulego/quick-tag';
+import { debugFilter, Log, LogLevel, LogLevelKey, qLevelColor, toStderr } from '@jujulego/logger';
+import { q$, qerror, qprop, qwrap } from '@jujulego/quick-tag';
 import { chalkTemplateStderr } from 'chalk-template';
 import { filter$, flow$ } from 'kyrielle/pipe';
 import os from 'node:os';
 import { Argv } from 'yargs';
 
 import { CliLogger } from '../cli-tokens.ts';
-
-// Types
-type JanusLog = Log & Partial<LogLabel>;
 
 // Utils
 const VERBOSITY_LEVEL: Record<number, LogLevelKey> = {
@@ -34,9 +31,9 @@ export function loggerMiddleware(parser: Argv) {
         logger,
         filter$((log) => log.level >= logLevel),
         debugFilter(),
-        toStderr(qlevelColor(
-          quick.wrap(chalkTemplateStderr)
-            .function<JanusLog>`#?:${qprop('label')}{grey [#$]} ?#${qprop('message')}#?:${qprop('error')}${os.EOL}#!error$?#  `
+        toStderr(qLevelColor(
+          qwrap(chalkTemplateStderr)
+            .fun<Log>`#?:${qprop('label')}{grey [${q$}]} ?#${qprop('message')}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#`
         ))
       );
     });

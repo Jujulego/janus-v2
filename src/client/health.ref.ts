@@ -19,7 +19,7 @@ export function health$(url: URL, logger: Logger) {
   return pipe$(
     ref$({
       async read(signal) {
-        logger.debug`Requesting server health at ${url}`;
+        logger.debug`Requesting server health at ${url.toString()}`;
         const res = await fetch(url, { signal: signal ?? null });
 
         if (res.ok) {
