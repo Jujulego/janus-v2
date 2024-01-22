@@ -1,17 +1,9 @@
-import { Logger } from '@jujulego/logger';
 import { MutableRef } from 'kyrielle';
-import { bind$, produce$, var$ } from 'kyrielle/refs';
+import { bind$, ref$, var$ } from 'kyrielle/refs';
+
+import { RedirectionOutput, redirectionOutput$ } from './redirection-output.ref.ts';
 
 // Types
-export interface RedirectionOutput {
-  readonly name: string;
-  readonly target: string;
-  readonly enabled: boolean;
-  readonly changeOrigin: boolean;
-  readonly secure: boolean;
-  readonly ws: boolean;
-}
-
 export interface Redirection {
   readonly id: string;
   readonly url: string;
@@ -24,27 +16,58 @@ export interface RedirectionRef extends MutableRef<Redirection> {
 }
 
 // Reference
-export function redirection$(state: Redirection, logger: Logger): RedirectionRef {
-  return bind$(var$(state), {
-    enableOutput(name: string) {
-      return produce$(this, (draft) => {
-        const output = draft.outputs.find((out) => out.name === name);
+export function redirection$(initial: Redirection): RedirectionRef {
+  const state$ = var$({ id: initial.id, url: initial.url });
+  const outputs$ = initial.outputs.map((output) => redirectionOutput$(output));
 
-        if (output && !output.enabled) {
-          output.enabled = true;
-          logger.info`Output ${name} enabled`;
+  const ref = ref$({
+    read(): Redirection {
+      return {
+        ...state$.read(),
+        outputs: outputs$.map((r) => r.read()),
+      };
+    },
+    mutate(arg: Redirection): Redirection {
+      state$.mutate({ id: arg.id, url: arg.url });
+
+      for (let i = 0; i < arg.outputs.length; ++i) {
+        if (outputs$.length > i) {
+          outputs$[i]!.mutate(arg.outputs[i]!);
+        } else {
+          const r = redirectionOutput$(arg.outputs[i]!);
+
+          outputs$.push(r);
+          r.subscribe(() => ref.next(ref.read()));
         }
-      });
+      }
+
+      outputs$.splice(arg.outputs.length, outputs$.length);
+
+      return arg;
+    }
+  });
+
+  state$.subscribe(() => ref.next(ref.read()));
+  outputs$.forEach((r) => r.subscribe(() => ref.next(ref.read())));
+
+  return bind$(ref, {
+    enableOutput(name: string) {
+      for (const output$ of outputs$) {
+        if (output$.read().name === name) {
+          output$.enable();
+        }
+      }
+
+      return this.read();
     },
     disableOutput(name: string) {
-      return produce$(this, (draft) => {
-        const output = draft.outputs.find((out) => out.name === name);
-
-        if (output?.enabled) {
-          output.enabled = false;
-          logger.info`Output ${name} disabled`;
+      for (const output$ of outputs$) {
+        if (output$.read().name === name) {
+          output$.disable();
         }
-      });
+      }
+
+      return this.read();
     }
   });
 }

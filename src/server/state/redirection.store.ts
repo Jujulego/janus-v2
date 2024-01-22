@@ -9,9 +9,7 @@ import { Redirection, redirection$, RedirectionRef } from './redirection.ref.ts'
 export class RedirectionStore {
   // Attributes
   private readonly _logger: Logger;
-  private readonly _redirections = new RefMap(
-    (id: string, value: Redirection) => redirection$(value, this._logger.child(withLabel(`#${id}`)))
-  );
+  private readonly _redirections = new RefMap((id: string, value: Redirection) => redirection$(value));
 
   // Constructor
   constructor(logger: Logger) {
