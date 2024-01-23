@@ -10,6 +10,8 @@ import { Config } from '../config/type.ts';
 import { LogFile } from './log-file.ts';
 import { HttpServer } from './http.server.ts';
 import { StateHolder } from './state/state-holder.ts';
+import { serverStore } from './store/server.store.ts';
+import { loadConfig } from './store/load-config.thunk.ts';
 
 // Types
 export type JanusProxyEventMap = {
@@ -22,6 +24,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
   private readonly _configService: ConfigService;
   private readonly _state: StateHolder;
   private readonly _server: HttpServer;
+  private readonly _store = serverStore();
 
   private _config?: Config;
   private _pidfile?: PidFile;
@@ -99,6 +102,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
       if (await this._pidfile!.create()) {
         // Load redirections & start server
         this._state.redirections.fromConfig(this._config!);
+        this._store.dispatch(loadConfig(this._config!));
         await this._server.listen(this._config!);
 
         this._started = true;

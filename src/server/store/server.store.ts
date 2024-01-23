@@ -3,7 +3,7 @@ import { configureStore } from '@reduxjs/toolkit';
 import { outputsReducer } from './outputs.slice.ts';
 import { redirectionsReducer } from './redirections.slice.ts';
 
-export const ServerStateStore = () => configureStore({
+export const serverStore = () => configureStore({
   reducer: {
     outputs: outputsReducer,
     redirections: redirectionsReducer,

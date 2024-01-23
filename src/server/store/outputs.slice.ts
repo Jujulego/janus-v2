@@ -18,8 +18,10 @@ const outputsSlice = createSlice({
   name: 'outputs',
   initialState,
   reducers: {
-    putOutput(state, action: PayloadAction<OutputState>) {
-      state[action.payload.id] = action.payload;
+    putOutputs(state, action: PayloadAction<OutputState[]>) {
+      for (const output of action.payload) {
+        state[output.id] = output;
+      }
     },
     enableOutput(state, action: PayloadAction<string>) {
       if (state[action.payload]) {
@@ -34,5 +36,5 @@ const outputsSlice = createSlice({
   }
 });
 
-export const { putOutput, enableOutput, disableOutput } = outputsSlice.actions;
+export const { putOutputs, enableOutput, disableOutput } = outputsSlice.actions;
 export const outputsReducer = outputsSlice.reducer;

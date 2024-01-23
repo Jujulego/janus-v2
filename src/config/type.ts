@@ -19,7 +19,7 @@ export interface RedirectionConfig {
 /**
  * Proxy server config
  */
-export interface IServerConfig {
+export interface ServerConfig {
   readonly port: number;
   readonly pidfile: string;
   readonly logfile: string;
@@ -30,5 +30,5 @@ export interface IServerConfig {
  */
 export interface Config {
   readonly redirections: Readonly<Record<string, RedirectionConfig>>;
-  readonly server: IServerConfig;
+  readonly server: ServerConfig;
 }
