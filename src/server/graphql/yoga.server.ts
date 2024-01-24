@@ -2,13 +2,13 @@ import { useGraphQLSSE } from '@graphql-yoga/plugin-graphql-sse';
 import { Logger, withLabel } from '@jujulego/logger';
 import { createYoga } from 'graphql-yoga';
 
-import { StateHolder } from '../state/state-holder.ts';
-import { RedirectionResolver } from './redirection.resolver.ts';
+import type { ServerStore } from '../store/types.ts';
+import { redirectionResolver } from './redirection.resolver.ts';
 
 // Tokens
-export const YogaServer = (logger: Logger, state: StateHolder) => createYoga({
+export const YogaServer = (logger: Logger, store: ServerStore) => createYoga({
   graphqlEndpoint: '/_janus/graphql',
   logging: logger.child(withLabel('yoga')),
-  schema: RedirectionResolver(state),
+  schema: redirectionResolver(store),
   plugins: [useGraphQLSSE()]
 });

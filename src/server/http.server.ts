@@ -9,6 +9,7 @@ import { YogaServer } from './graphql/yoga.server.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
 import { StateHolder } from './state/state-holder.ts';
 import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
+import { ServerStore } from './store/types.js';
 
 // Http server
 export class HttpServer {
@@ -20,11 +21,11 @@ export class HttpServer {
   readonly yoga: ReturnType<typeof YogaServer>;
 
   // Constructor
-  constructor(logger: Logger, state: StateHolder) {
+  constructor(logger: Logger, state: StateHolder, store: ServerStore) {
     this._logger = logger.child(withLabel('http'));
 
     this.proxy = new ProxyServer(this._logger, state);
-    this.yoga = YogaServer(this._logger, state);
+    this.yoga = YogaServer(this._logger, store);
   }
 
   // Methods
