@@ -2,7 +2,8 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { iterate$ } from 'kyrielle/subscriptions';
 
 import { selector$ } from '../../utils/selector.ts';
-import { disableRedirectionOutput, enableRedirectionOutput, RedirectionState } from '../store/redirections.slice.ts';
+import { disableRedirectionOutput, enableRedirectionOutput } from '../store/redirections/actions.ts';
+import type { RedirectionState } from '../store/redirections/types.ts';
 import type { ServerStore } from '../store/types.ts';
 import typeDefs from './redirection.graphql';
 

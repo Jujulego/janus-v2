@@ -1,4 +1,5 @@
 {
   "exec": "yarn node",
-  "watch": ["./dist"]
+  "watch": ["./dist"],
+  "delay": 0.1
 }
