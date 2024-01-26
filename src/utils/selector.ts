@@ -5,10 +5,15 @@ import { source$ } from 'kyrielle/events';
 // Utils
 export function selector$<S, D>(store: Store<S>, selector: (state: S) => D): Readable<D> & Observable<D> {
   const src = source$<D>();
+  let last: D | undefined;
 
   function read(): D {
     const data = selector(store.getState());
-    src.next(data);
+
+    if (data !== last) {
+      last = data;
+      src.next(data);
+    }
 
     return data;
   }

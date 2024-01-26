@@ -2,8 +2,7 @@ import { makeExecutableSchema } from '@graphql-tools/schema';
 import { iterate$ } from 'kyrielle/subscriptions';
 
 import { selector$ } from '../../utils/selector.ts';
-import { disableOutput, enableOutput } from '../store/outputs.slice.ts';
-import { RedirectionState } from '../store/redirections.slice.js';
+import { disableRedirectionOutput, enableRedirectionOutput, RedirectionState } from '../store/redirections.slice.ts';
 import type { ServerStore } from '../store/types.ts';
 import typeDefs from './redirection.graphql';
 
@@ -13,10 +12,8 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
   resolvers: {
     Redirection: {
       outputs: function* (redirection: RedirectionState) {
-        const state = store.getState();
-
-        for (const outputId of redirection.outputs) {
-          yield state.outputs[outputId];
+        for (const outputName of redirection.outputs) {
+          yield redirection.outputsByName[outputName];
         }
       }
     },
@@ -32,13 +29,13 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
     },
     Mutation: {
       enableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
-        store.dispatch(enableOutput(`${args.redirectionId}-${args.outputName}`));
+        store.dispatch(enableRedirectionOutput(args));
         const state = store.getState();
 
         return state.redirections[args.redirectionId];
       },
       disableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
-        store.dispatch(disableOutput(`${args.redirectionId}-${args.outputName}`));
+        store.dispatch(disableRedirectionOutput(args));
         const state = store.getState();
 
         return state.redirections[args.redirectionId];

@@ -11,7 +11,7 @@ import { LogFile } from './log-file.ts';
 import { HttpServer } from './http.server.ts';
 import { StateHolder } from './state/state-holder.ts';
 import { serverStore } from './store/server.store.ts';
-import { loadConfig } from './store/load-config.thunk.ts';
+import { loadConfig } from './store/redirections.slice.ts';
 
 // Types
 export type JanusProxyEventMap = {
