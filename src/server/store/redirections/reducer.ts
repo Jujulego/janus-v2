@@ -3,11 +3,14 @@ import { createReducer, Reducer } from '@reduxjs/toolkit';
 
 import { loadConfig } from '../actions.ts';
 import { disableRedirectionOutput, enableRedirectionOutput } from './actions.ts';
-import { RedirectionState } from './types.ts';
+import { RedirectionsState, RedirectionState } from './types.ts';
 import { generateRedirectionId } from './utils.ts';
 
 // Reducer
-const initialState: Record<string, RedirectionState> = {};
+const initialState: RedirectionsState = {
+  ids: [],
+  byId: {},
+};
 
 export function redirectionsReducer(logger: Logger): Reducer<typeof initialState> {
   logger = logger.child(withLabel('redirections'));
@@ -33,7 +36,8 @@ export function redirectionsReducer(logger: Logger): Reducer<typeof initialState
           };
         }
 
-        state[id] = redirection;
+        state.ids.push(id);
+        state.byId[id] = redirection;
 
         ++count;
         logger.verbose`Loaded ${redirection.url} with ${redirection.outputs.length} outputs (#${id})`;
@@ -44,7 +48,7 @@ export function redirectionsReducer(logger: Logger): Reducer<typeof initialState
 
     // Output management
     .addCase(enableRedirectionOutput, (state, { payload }) => {
-      const redirection = state[payload.redirectionId];
+      const redirection = state.byId[payload.redirectionId];
 
       if (redirection) {
         const output = redirection.outputsByName[payload.outputName];
@@ -56,7 +60,7 @@ export function redirectionsReducer(logger: Logger): Reducer<typeof initialState
       }
     })
     .addCase(disableRedirectionOutput, (state, { payload }) => {
-      const redirection = state[payload.redirectionId];
+      const redirection = state.byId[payload.redirectionId];
 
       if (redirection) {
         const output = redirection.outputsByName[payload.outputName];

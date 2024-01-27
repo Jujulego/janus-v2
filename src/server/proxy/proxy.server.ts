@@ -2,23 +2,25 @@ import { Logger, withLabel } from '@jujulego/logger';
 import { Flag } from '@jujulego/utils';
 import createHttpError from 'http-errors';
 import proxy, { ServerOptions } from 'http-proxy';
+import assert from 'node:assert';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
-import { RedirectionStore } from '../state/redirection.store.ts';
-import { StateHolder } from '../state/state-holder.ts';
+import { disableRedirectionOutput } from '../store/redirections/actions.ts';
+import { RedirectionState } from '../store/redirections/types.ts';
+import { ServerStore } from '../store/types.ts';
 
 // Proxy server
 export class ProxyServer {
   // Attributes
   private readonly _logger: Logger;
   private readonly _proxy = proxy.createProxy();
-  private readonly _redirections: RedirectionStore;
+  private readonly _store: ServerStore;
 
   // Constructor
-  constructor(logger: Logger, state: StateHolder) {
+  constructor(logger: Logger, store: ServerStore) {
     this._logger = logger.child(withLabel('proxy'));
-    this._redirections = state.redirections;
+    this._store = store;
   }
 
   // Methods
@@ -27,8 +29,23 @@ export class ProxyServer {
     return length ? parseInt(length) : 0;
   }
 
+  private _resolveRedirection(url: string): RedirectionState | null {
+    const { redirections } = this._store.getState();
+
+    for (const id of redirections.ids) {
+      const redirection = redirections.byId[id];
+      assert(redirection, `Invalid state: missing ${id} redirection`);
+
+      if (url.startsWith(redirection.url)) {
+        return redirection;
+      }
+    }
+
+    return null;
+  }
+
   async handleRequest(req: IncomingMessage, res: ServerResponse) {
-    const redirection = this._redirections.resolve(req.url ?? '');
+    const redirection = this._resolveRedirection(req.url!);
 
     // No redirection found
     if (!redirection) {
@@ -36,35 +53,32 @@ export class ProxyServer {
       throw new createHttpError.NotFound('No redirection found');
     }
 
-    // Get outputs
-    const outputs = redirection.read().outputs;
-    const count = outputs.reduce((cnt, out) => cnt + (out.enabled ? 1 : 0), 0);
-
     // Save body for future requests
-    const buffer = Buffer.allocUnsafe(count > 1 ? this._bodyLength(req) : 0);
+    const buffer = Buffer.allocUnsafe(this._bodyLength(req));
     const isComplete = new Flag();
 
-    if (count > 1) {
-      let cursor = 0;
+    let cursor = 0;
 
-      req.on('data', (chunk: Buffer) => {
-        cursor += chunk.copy(buffer, cursor);
-      });
+    req.on('data', (chunk: Buffer) => {
+      cursor += chunk.copy(buffer, cursor);
+    });
 
-      req.once('end', () => {
-        isComplete.raise();
-      });
-    }
+    req.once('end', () => {
+      isComplete.raise();
+    });
 
     // Iterate on outputs
     let first = true;
 
-    for (const output of outputs) {
+    for (const outputName of redirection.outputs) {
+      const output = redirection.outputsByName[outputName];
+      assert(output, `Invalid state: missing ${outputName} output in ${redirection.id} redirection`);
+
       if (!output.enabled) {
         continue;
       }
 
-      this._logger.info(`${req.url} => ${output.target} (#${redirection.read().id}.${output.name})`);
+      this._logger.info(`${req.url} => ${output.target} (#${redirection.id}.${output.name})`);
       const options: ServerOptions = { ...output };
 
       if (!first) {
@@ -77,8 +91,8 @@ export class ProxyServer {
       if (await this._redirectWebTo(req, res, options)) {
         return;
       } else {
-        this._logger.warn(`#${redirection.read().id}.${output.name} is not responding`);
-        redirection.disableOutput(output.name);
+        this._logger.warn(`#${redirection.id}.${output.name} is not responding`);
+        this._store.dispatch(disableRedirectionOutput({ redirectionId: redirection.id, outputName: output.name }));
       }
     }
 

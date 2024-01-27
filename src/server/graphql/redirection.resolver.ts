@@ -20,35 +20,37 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
     },
     Query: {
       redirection(_, args: { id: string }) {
-        const state = store.getState();
-        return state.redirections[args.id];
+        const { redirections } = store.getState();
+        return redirections.byId[args.id];
       },
-      redirections() {
-        const state = store.getState();
-        return Object.values(state.redirections);
+      redirections: function* () {
+        const { redirections } = store.getState();
+
+        for (const id of redirections.ids) {
+          yield redirections.byId[id];
+        }
       }
     },
     Mutation: {
       enableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
         store.dispatch(enableRedirectionOutput(args));
-        const state = store.getState();
 
-        return state.redirections[args.redirectionId];
+        const { redirections } = store.getState();
+        return redirections.byId[args.redirectionId];
       },
       disableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
         store.dispatch(disableRedirectionOutput(args));
-        const state = store.getState();
 
-        return state.redirections[args.redirectionId];
+        const { redirections } = store.getState();
+        return redirections.byId[args.redirectionId];
       }
     },
     Subscription: {
       redirection: {
         resolve: (redirection: RedirectionState | null) => redirection,
         async* subscribe(_, args: { id: string }) {
-          const ref = selector$(store, (state) => state.redirections[args.id]);
+          const ref = selector$(store, (state) => state.redirections.byId[args.id]);
 
-          yield ref.read();
           yield* iterate$(ref);
         },
       }

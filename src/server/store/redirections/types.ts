@@ -14,3 +14,8 @@ export interface RedirectionState {
   outputs: string[];
   outputsByName: Record<string, RedirectionOutputState>;
 }
+
+export interface RedirectionsState {
+  ids: string[];
+  byId: Record<string, RedirectionState>;
+}
