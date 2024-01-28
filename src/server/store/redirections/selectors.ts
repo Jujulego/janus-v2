@@ -27,6 +27,8 @@ export const resolveRedirection = createSelector(
         return redirection;
       }
     }
+
+    return null;
   }
 );
 

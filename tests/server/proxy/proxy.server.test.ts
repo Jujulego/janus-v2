@@ -5,14 +5,19 @@ import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { RedirectionStore } from '@/src/server/state/redirection.store.ts';
-import { redirection$ } from '@/src/server/state/redirection.ref.ts';
-import { ProxyServer } from '@/src/server/proxy/proxy.server.ts';
 import { createHttpServer, ignoreServer } from '@/tests/utils.ts';
+import { ProxyServer } from '@/src/server/proxy/proxy.server.ts';
+import { listEnabledOutputs, resolveRedirection } from '@/src/server/store/redirections/selectors.ts';
+import { ServerStore } from '@/src/server/store/types.ts';
+import { serverStore } from '@/src/server/store/server.store.ts';
+import { disableRedirectionOutput } from '@/src/server/store/redirections/actions.js';
+
+// Mocks
+vi.mock('@/src/server/store/redirections/selectors.ts');
 
 // Setup
 let logger: Logger;
-let redirections: RedirectionStore;
+let store: ServerStore;
 let proxy: ProxyServer;
 let server: Server;
 
@@ -42,10 +47,12 @@ beforeEach(() => {
   targetServer.resetHandlers();
 
   logger = logger$();
-  redirections = new RedirectionStore(logger);
-  proxy = new ProxyServer(logger, { redirections });
+  store = serverStore(logger);
+  proxy = new ProxyServer(logger, store);
 
   server = createHttpServer((req, res) => proxy.handleRequest(req, res));
+
+  vi.spyOn(store, 'dispatch').mockImplementation((a) => a);
 });
 
 afterAll(() => {
@@ -55,7 +62,7 @@ afterAll(() => {
 // Tests
 describe('ProxyServer', () => {
   it('should return 404 if not redirection matched', async () => {
-    vi.spyOn(redirections, 'resolve').mockReturnValue(null);
+    vi.mocked(resolveRedirection).mockReturnValue(null);
 
     await request(server)
       .get('/life/toto')
@@ -66,11 +73,13 @@ describe('ProxyServer', () => {
   });
 
   it('should return 503 if redirection has no output', async () => {
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: []
-    }, logger));
+      outputs: [],
+      outputsByName: {},
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([]);
 
     await request(server)
       .get('/life/toto')
@@ -81,20 +90,13 @@ describe('ProxyServer', () => {
   });
 
   it('should return 503 if redirection all outputs are disabled', async () => {
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: [
-        {
-          name: 'test',
-          target: 'http://localhost:3001',
-          enabled: false,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        }
-      ]
-    }, logger));
+      outputs: [],
+      outputsByName: {}
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([]);
 
     await request(server)
       .get('/life/toto')
@@ -105,20 +107,22 @@ describe('ProxyServer', () => {
   });
 
   it('should return data from test output', async () => {
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: [
-        {
-          name: 'test',
-          target: 'http://localhost:3001',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        }
-      ]
-    }, logger));
+      outputs: [],
+      outputsByName: {}
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([
+      {
+        name: 'test',
+        target: 'http://localhost:3001',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      }
+    ]);
 
     await request(server)
       .get('/life/toto')
@@ -126,54 +130,55 @@ describe('ProxyServer', () => {
   });
 
   it('should return data from test output after disabling miss output', async () => {
-    const redirection = redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: [
-        {
-          name: 'miss',
-          target: 'http://localhost:3000',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        },
-        {
-          name: 'test',
-          target: 'http://localhost:3001',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        }
-      ]
-    }, logger);
-
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection);
-    vi.spyOn(redirection, 'disableOutput');
+      outputs: [],
+      outputsByName: {}
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([
+      {
+        name: 'miss',
+        target: 'http://localhost:3000',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      },
+      {
+        name: 'test',
+        target: 'http://localhost:3001',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      }
+    ]);
 
     await request(server)
       .get('/life/toto')
       .expect(200, { from: 'http://localhost:3001' });
 
-    expect(redirection.disableOutput).toHaveBeenCalledWith('miss');
+    expect(store.dispatch).toHaveBeenCalledWith(disableRedirectionOutput({ redirectionId: 'life', outputName: 'miss' }));
   });
 
   it('should pass body to test output', async () => {
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: [
-        {
-          name: 'test',
-          target: 'http://localhost:3001',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        }
-      ]
-    }, logger));
+      outputs: [],
+      outputsByName: {},
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([
+      {
+        name: 'test',
+        target: 'http://localhost:3001',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      }
+    ]);
 
     await request(server)
       .post('/life/echo')
@@ -182,37 +187,36 @@ describe('ProxyServer', () => {
   });
 
   it('should pass body to test output after disabling miss output', async () => {
-    const redirection = redirection$({
+    vi.mocked(resolveRedirection).mockReturnValue({
       id: 'life',
       url: '/life',
-      outputs: [
-        {
-          name: 'miss',
-          target: 'http://localhost:3000',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        },
-        {
-          name: 'test',
-          target: 'http://localhost:3001',
-          enabled: true,
-          changeOrigin: true,
-          secure: true,
-          ws: true,
-        }
-      ]
-    }, logger);
-
-    vi.spyOn(redirections, 'resolve').mockReturnValue(redirection);
-    vi.spyOn(redirection, 'disableOutput');
+      outputs: [],
+      outputsByName: {}
+    });
+    vi.mocked(listEnabledOutputs).mockReturnValue([
+      {
+        name: 'miss',
+        target: 'http://localhost:3000',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      },
+      {
+        name: 'test',
+        target: 'http://localhost:3001',
+        enabled: true,
+        changeOrigin: true,
+        secure: true,
+        ws: true,
+      }
+    ]);
 
     await request(server)
       .post('/life/echo')
       .send('cool')
       .expect(200, { from: 'http://localhost:3001', body: 'cool' });
 
-    expect(redirection.disableOutput).toHaveBeenCalledWith('miss');
+    expect(store.dispatch).toHaveBeenCalledWith(disableRedirectionOutput({ redirectionId: 'life', outputName: 'miss' }));
   });
 });

@@ -37,24 +37,29 @@ export class ProxyServer {
       throw new createHttpError.NotFound('No redirection found');
     }
 
+    // Get outputs
+    const outputs = listEnabledOutputs(redirection);
+
     // Save body for future requests
-    const buffer = Buffer.allocUnsafe(this._bodyLength(req));
+    const buffer = Buffer.allocUnsafe(outputs.length > 1 ? this._bodyLength(req) : 0);
     const isComplete = new Flag();
 
-    let cursor = 0;
+    if (outputs.length > 1) {
+      let cursor = 0;
 
-    req.on('data', (chunk: Buffer) => {
-      cursor += chunk.copy(buffer, cursor);
-    });
+      req.on('data', (chunk: Buffer) => {
+        cursor += chunk.copy(buffer, cursor);
+      });
 
-    req.once('end', () => {
-      isComplete.raise();
-    });
+      req.once('end', () => {
+        isComplete.raise();
+      });
+    }
 
     // Iterate on outputs
     let first = true;
 
-    for (const output of listEnabledOutputs(redirection)) {
+    for (const output of outputs) {
       this._logger.info(`${req.url} => ${output.target} (#${redirection.id}.${output.name})`);
       const options: ServerOptions = { ...output };
 
