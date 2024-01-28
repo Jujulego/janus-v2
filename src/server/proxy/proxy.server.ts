@@ -2,12 +2,11 @@ import { Logger, withLabel } from '@jujulego/logger';
 import { Flag } from '@jujulego/utils';
 import createHttpError from 'http-errors';
 import proxy, { ServerOptions } from 'http-proxy';
-import assert from 'node:assert';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
 import { disableRedirectionOutput } from '../store/redirections/actions.ts';
-import { RedirectionState } from '../store/redirections/types.ts';
+import { listEnabledOutputs, resolveRedirection } from '../store/redirections/selectors.ts';
 import { ServerStore } from '../store/types.ts';
 
 // Proxy server
@@ -29,23 +28,8 @@ export class ProxyServer {
     return length ? parseInt(length) : 0;
   }
 
-  private _resolveRedirection(url: string): RedirectionState | null {
-    const { redirections } = this._store.getState();
-
-    for (const id of redirections.ids) {
-      const redirection = redirections.byId[id];
-      assert(redirection, `Invalid state: missing ${id} redirection`);
-
-      if (url.startsWith(redirection.url)) {
-        return redirection;
-      }
-    }
-
-    return null;
-  }
-
   async handleRequest(req: IncomingMessage, res: ServerResponse) {
-    const redirection = this._resolveRedirection(req.url!);
+    const redirection = resolveRedirection(this._store.getState(), req.url!);
 
     // No redirection found
     if (!redirection) {
@@ -70,14 +54,7 @@ export class ProxyServer {
     // Iterate on outputs
     let first = true;
 
-    for (const outputName of redirection.outputs) {
-      const output = redirection.outputsByName[outputName];
-      assert(output, `Invalid state: missing ${outputName} output in ${redirection.id} redirection`);
-
-      if (!output.enabled) {
-        continue;
-      }
-
+    for (const output of listEnabledOutputs(redirection)) {
       this._logger.info(`${req.url} => ${output.target} (#${redirection.id}.${output.name})`);
       const options: ServerOptions = { ...output };
 

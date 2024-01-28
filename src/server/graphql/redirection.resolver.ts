@@ -3,6 +3,7 @@ import { iterate$ } from 'kyrielle/subscriptions';
 
 import { selector$ } from '../../utils/selector.ts';
 import { disableRedirectionOutput, enableRedirectionOutput } from '../store/redirections/actions.ts';
+import { listRedirections } from '../store/redirections/selectors.ts';
 import type { RedirectionState } from '../store/redirections/types.ts';
 import type { ServerStore } from '../store/types.ts';
 import typeDefs from './redirection.graphql';
@@ -23,12 +24,8 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
         const { redirections } = store.getState();
         return redirections.byId[args.id];
       },
-      redirections: function* () {
-        const { redirections } = store.getState();
-
-        for (const id of redirections.ids) {
-          yield redirections.byId[id];
-        }
+      redirections() {
+        return listRedirections(store.getState());
       }
     },
     Mutation: {
@@ -53,7 +50,15 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
 
           yield* iterate$(ref);
         },
-      }
+      },
+      redirections: {
+        resolve: (redirections: RedirectionState[]) => redirections,
+        async* subscribe() {
+          const ref = selector$(store, listRedirections);
+
+          yield* iterate$(ref);
+        },
+      },
     }
   }
 });

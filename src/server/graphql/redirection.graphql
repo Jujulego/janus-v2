@@ -25,4 +25,5 @@ type Mutation {
 
 type Subscription {
     redirection(id: ID!): Redirection
+    redirections: [Redirection!]!
 }
