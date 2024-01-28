@@ -5,8 +5,8 @@ import request from 'supertest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { HttpServer } from '@/src/server/http.server.ts';
-import { StateHolder } from '@/src/server/state/state-holder.ts';
 import { DEFAULT_CONFIG } from '@/tests/utils.ts';
+import { serverStore } from '@/src/server/store/server.store.js';
 
 // Setup
 let logger: Logger;
@@ -14,7 +14,7 @@ let server: HttpServer;
 
 beforeEach(() => {
   logger = logger$();
-  server = new HttpServer(logger, {} as StateHolder);
+  server = new HttpServer(logger, serverStore(logger));
 });
 
 // Tests
