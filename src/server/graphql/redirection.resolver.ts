@@ -1,56 +1,64 @@
 import { makeExecutableSchema } from '@graphql-tools/schema';
 import { iterate$ } from 'kyrielle/subscriptions';
 
-import { type Redirection } from '../state/redirection.ref.ts';
-import { StateHolder } from '../state/state-holder.ts';
+import { selector$ } from '../../utils/selector.ts';
+import { disableRedirectionOutput, enableRedirectionOutput } from '../store/redirections/actions.ts';
+import { listRedirections } from '../store/redirections/selectors.ts';
+import type { RedirectionState } from '../store/redirections/types.ts';
+import type { ServerStore } from '../store/types.ts';
 import typeDefs from './redirection.graphql';
 
 // Resolver
-export const RedirectionResolver = (state: StateHolder) => makeExecutableSchema({
+export const redirectionResolver = (store: ServerStore) => makeExecutableSchema({
   typeDefs,
   resolvers: {
+    Redirection: {
+      outputs: function* (redirection: RedirectionState) {
+        for (const outputName of redirection.outputs) {
+          yield redirection.outputsByName[outputName];
+        }
+      }
+    },
     Query: {
       redirection(_, args: { id: string }) {
-        return state.redirections.get(args.id)?.read();
+        const { redirections } = store.getState();
+        return redirections.byId[args.id];
       },
       redirections() {
-        const redirections: Redirection[] = [];
-
-        for (const ref of state.redirections.find()) {
-          redirections.push(ref.read());
-        }
-
-        return redirections;
+        return listRedirections(store.getState());
       }
     },
     Mutation: {
       enableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
-        const ref = state.redirections.get(args.redirectionId);
+        store.dispatch(enableRedirectionOutput(args));
 
-        if (ref) {
-          return ref.enableOutput(args.outputName);
-        }
+        const { redirections } = store.getState();
+        return redirections.byId[args.redirectionId];
       },
       disableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {
-        const ref = state.redirections.get(args.redirectionId);
+        store.dispatch(disableRedirectionOutput(args));
 
-        if (ref) {
-          return ref.disableOutput(args.outputName);
-        }
+        const { redirections } = store.getState();
+        return redirections.byId[args.redirectionId];
       }
     },
     Subscription: {
       redirection: {
-        resolve: (redirection: Redirection | null) => redirection,
+        resolve: (redirection: RedirectionState | null) => redirection,
         async* subscribe(_, args: { id: string }) {
-          const ref = state.redirections.get(args.id);
+          const ref = selector$(store, (state) => state.redirections.byId[args.id]);
 
-          if (ref) {
-            yield ref.read();
-            yield* iterate$(ref);
-          }
+          yield* iterate$(ref);
         },
-      }
+      },
+      redirections: {
+        resolve: (redirections: RedirectionState[]) => redirections,
+        async* subscribe() {
+          const ref = selector$(store, listRedirections);
+
+          yield* iterate$(ref);
+        },
+      },
     }
   }
 });

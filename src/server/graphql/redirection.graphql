@@ -1,4 +1,4 @@
-type RedirectionOutput {
+type Output {
     name: String!
     target: String!
     enabled: Boolean!
@@ -10,7 +10,7 @@ type RedirectionOutput {
 type Redirection {
     id: ID!
     url: String!
-    outputs: [RedirectionOutput!]!
+    outputs: [Output!]!
 }
 
 type Query {
@@ -25,4 +25,5 @@ type Mutation {
 
 type Subscription {
     redirection(id: ID!): Redirection
+    redirections: [Redirection!]!
 }

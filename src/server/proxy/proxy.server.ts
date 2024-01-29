@@ -5,20 +5,21 @@ import proxy, { ServerOptions } from 'http-proxy';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
-import { RedirectionStore } from '../state/redirection.store.ts';
-import { StateHolder } from '../state/state-holder.ts';
+import { disableRedirectionOutput } from '../store/redirections/actions.ts';
+import { listEnabledOutputs, resolveRedirection } from '../store/redirections/selectors.ts';
+import { ServerStore } from '../store/types.ts';
 
 // Proxy server
 export class ProxyServer {
   // Attributes
   private readonly _logger: Logger;
   private readonly _proxy = proxy.createProxy();
-  private readonly _redirections: RedirectionStore;
+  private readonly _store: ServerStore;
 
   // Constructor
-  constructor(logger: Logger, state: StateHolder) {
+  constructor(logger: Logger, store: ServerStore) {
     this._logger = logger.child(withLabel('proxy'));
-    this._redirections = state.redirections;
+    this._store = store;
   }
 
   // Methods
@@ -28,7 +29,7 @@ export class ProxyServer {
   }
 
   async handleRequest(req: IncomingMessage, res: ServerResponse) {
-    const redirection = this._redirections.resolve(req.url ?? '');
+    const redirection = resolveRedirection(this._store.getState(), req.url!);
 
     // No redirection found
     if (!redirection) {
@@ -37,14 +38,13 @@ export class ProxyServer {
     }
 
     // Get outputs
-    const outputs = redirection.read().outputs;
-    const count = outputs.reduce((cnt, out) => cnt + (out.enabled ? 1 : 0), 0);
+    const outputs = listEnabledOutputs(redirection);
 
     // Save body for future requests
-    const buffer = Buffer.allocUnsafe(count > 1 ? this._bodyLength(req) : 0);
+    const buffer = Buffer.allocUnsafe(outputs.length > 1 ? this._bodyLength(req) : 0);
     const isComplete = new Flag();
 
-    if (count > 1) {
+    if (outputs.length > 1) {
       let cursor = 0;
 
       req.on('data', (chunk: Buffer) => {
@@ -60,11 +60,7 @@ export class ProxyServer {
     let first = true;
 
     for (const output of outputs) {
-      if (!output.enabled) {
-        continue;
-      }
-
-      this._logger.info(`${req.url} => ${output.target} (#${redirection.read().id}.${output.name})`);
+      this._logger.info(`${req.url} => ${output.target} (#${redirection.id}.${output.name})`);
       const options: ServerOptions = { ...output };
 
       if (!first) {
@@ -77,8 +73,8 @@ export class ProxyServer {
       if (await this._redirectWebTo(req, res, options)) {
         return;
       } else {
-        this._logger.warn(`#${redirection.read().id}.${output.name} is not responding`);
-        redirection.disableOutput(output.name);
+        this._logger.warn(`#${redirection.id}.${output.name} is not responding`);
+        this._store.dispatch(disableRedirectionOutput({ redirectionId: redirection.id, outputName: output.name }));
       }
     }
 
