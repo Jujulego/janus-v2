@@ -16,6 +16,9 @@ export const listRedirections = createSelector(
   }
 );
 
+/**
+ * Resolve redirection according to given url
+ */
 export const resolveRedirection = createSelector(
   [
     listRedirections,
