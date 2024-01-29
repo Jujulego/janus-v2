@@ -1,4 +1,4 @@
-type Output {
+type RedirectionOutput {
     name: String!
     target: String!
     enabled: Boolean!
@@ -10,7 +10,7 @@ type Output {
 type Redirection {
     id: ID!
     url: String!
-    outputs: [Output!]!
+    outputs: [RedirectionOutput!]!
 }
 
 type Query {
