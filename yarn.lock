@@ -588,7 +588,7 @@ __metadata:
     "@swc/helpers": "npm:^0.5.3"
     "@types/http-errors": "npm:2.0.4"
     "@types/http-proxy": "npm:1.17.14"
-    "@types/node": "npm:18.19.13"
+    "@types/node": "npm:18.19.14"
     "@types/supertest": "npm:6.0.2"
     "@types/yargs": "npm:17.0.32"
     "@typescript-eslint/eslint-plugin": "npm:6.20.0"
@@ -1353,12 +1353,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.19.13":
-  version: 18.19.13
-  resolution: "@types/node@npm:18.19.13"
+"@types/node@npm:18.19.14":
+  version: 18.19.14
+  resolution: "@types/node@npm:18.19.14"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 3b909fdf4795f90e59cefd0787db065f11f1ef10983754661202e62e0d76de3668f8b8af00187941134bb2658e71b91a2f7cf0fb35f4f0a1e3fdad2e9006969e
+  checksum: a614e85d3d75e9bb73c1155f77843804506806629d20774e0479e88678efd64ab57f7bb2ba290b226fe732b6aead037ac181db04851a2f37e1c2a14744ffdb96
   languageName: node
   linkType: hard
 
