@@ -611,7 +611,7 @@ __metadata:
     "@graphql-tools/schema": "npm:^10.0.0"
     "@graphql-yoga/plugin-graphql-sse": "npm:^3.1.0"
     "@jujulego/injector": "npm:^0.4.0"
-    "@jujulego/jill": "npm:2.5.1"
+    "@jujulego/jill": "npm:2.5.2"
     "@jujulego/logger": "npm:^1.0.1"
     "@jujulego/pid-file": "npm:^2.1.0"
     "@jujulego/quick-tag": "npm:^1.0.1"
@@ -661,9 +661,9 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:2.5.1":
-  version: 2.5.1
-  resolution: "@jujulego/jill@npm:2.5.1"
+"@jujulego/jill@npm:2.5.2":
+  version: 2.5.2
+  resolution: "@jujulego/jill@npm:2.5.2"
   dependencies:
     "@jujulego/aegis": "npm:^2.1.0"
     "@jujulego/event-tree": "npm:^4.3.0"
@@ -693,7 +693,7 @@ __metadata:
     yargs: "npm:^17.7.2"
   bin:
     jill: ./bin/jill.js
-  checksum: bcfbcc6116b28f9145636ccd10591ad85a980fa94819230663d0e8da8778813e8c830cd1156bd73087376f4259223ef5e3cedbad029308c75a6b52ed40d6bf45
+  checksum: 69198c8c227938c434d2a81e54638aad14b3ff5bbcf5902a99dead8fc17f0e495948a458369a554c77dbc73b20d1d678a785439034dd6decb65a3f704fcc4327
   languageName: node
   linkType: hard
 
