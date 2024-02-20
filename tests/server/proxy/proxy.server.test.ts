@@ -104,7 +104,7 @@ describe('ProxyServer', () => {
       });
   });
 
-  it('should return data from test output', async () => {
+  it('should return model from test output', async () => {
     vi.spyOn(redirections, 'resolve').mockReturnValue(redirection$({
       id: 'life',
       url: '/life',
@@ -125,7 +125,7 @@ describe('ProxyServer', () => {
       .expect(200, { from: 'http://localhost:3001' });
   });
 
-  it('should return data from test output after disabling miss output', async () => {
+  it('should return model from test output after disabling miss output', async () => {
     const redirection = redirection$({
       id: 'life',
       url: '/life',

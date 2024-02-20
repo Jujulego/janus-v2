@@ -10,9 +10,6 @@ export const RedirectionResolver = (state: StateHolder) => makeExecutableSchema(
   typeDefs,
   resolvers: {
     Query: {
-      redirection(_, args: { id: string }) {
-        return state.redirections.get(args.id)?.read();
-      },
       redirections() {
         const redirections: Redirection[] = [];
 
@@ -21,7 +18,10 @@ export const RedirectionResolver = (state: StateHolder) => makeExecutableSchema(
         }
 
         return redirections;
-      }
+      },
+      redirection(_, args: { id: string }) {
+        return state.redirections.get(args.id)?.read();
+      },
     },
     Mutation: {
       enableRedirectionOutput(_, args: { redirectionId: string, outputName: string }) {

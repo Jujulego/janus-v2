@@ -19,8 +19,7 @@ type Query {
 }
 
 type Mutation {
-    enableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
-    disableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+    putRedirection(id: ID!, url: String!, ): Redirection
 }
 
 type Subscription {
