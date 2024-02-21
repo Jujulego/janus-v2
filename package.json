@@ -31,7 +31,7 @@
     "@graphql-tools/schema": "^10.0.0",
     "@graphql-yoga/plugin-graphql-sse": "^3.1.0",
     "@jujulego/injector": "^0.4.0",
-    "@jujulego/pid-file": "^2.1.0",
+    "@jujulego/pid-file": "^2.2.0",
     "@jujulego/quick-tag": "^1.0.1",
     "@jujulego/utils": "^3.0.4",
     "@kyrielle/logger": "^1.0.0-alpha.3",
