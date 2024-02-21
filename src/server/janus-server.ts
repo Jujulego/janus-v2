@@ -1,8 +1,6 @@
-import { logger$, withTimestamp } from '@jujulego/logger';
 import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
-import { Listenable } from 'kyrielle';
-import { multiplexer$, source$ } from 'kyrielle/events';
+import { logger$, withTimestamp } from '@kyrielle/logger';
 import process from 'node:process';
 
 import { ConfigService } from '../config/config.service.ts';
@@ -19,7 +17,7 @@ export type JanusProxyEventMap = {
   started: JanusServer;
 }
 
-export class JanusServer implements Listenable<JanusProxyEventMap> {
+export class JanusServer /*implements Listenable<JanusProxyEventMap>*/ {
   // Attributes
   private readonly _configService: ConfigService;
   private readonly _server: HttpServer;
@@ -30,10 +28,10 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
   private _started = false;
   private readonly _logfile = new LogFile();
   private readonly _lock = new Lock();
-  private readonly _events = multiplexer$({
-    loaded: source$<Config>(),
-    started: source$<JanusServer>(),
-  });
+  // private readonly _events = multiplexer$({
+  //   loaded: source$<Config>(),
+  //   started: source$<JanusServer>(),
+  // });
 
   // Constructor
   constructor(
@@ -51,10 +49,10 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
   }
 
   // Methods
-  readonly on = this._events.on;
-  readonly off = this._events.off;
-  readonly clear = this._events.clear;
-  readonly eventKeys = this._events.eventKeys;
+  // readonly on = this._events.on;
+  // readonly off = this._events.off;
+  // readonly clear = this._events.clear;
+  // readonly eventKeys = this._events.eventKeys;
 
   private _setupLogFile() {
     this._logfile.open(this._config!.server.logfile, this.logger);
@@ -67,7 +65,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
     this._config = await this._configService.searchConfig();
     this._setupLogFile();
 
-    this._events.emit('loaded', this._config);
+    // this._events.emit('loaded', this._config);
   }
 
   /**
@@ -79,7 +77,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
     this._config = await this._configService.loadConfig(filepath);
     this._setupLogFile();
 
-    this._events.emit('loaded', this._config);
+    // this._events.emit('loaded', this._config);
   }
 
   /**
@@ -104,7 +102,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
         await this._server.listen(this._config!);
 
         this._started = true;
-        this._events.emit('started', this);
+        // this._events.emit('started', this);
 
         process.on('beforeExit', () => this._pidfile?.delete());
       } else {

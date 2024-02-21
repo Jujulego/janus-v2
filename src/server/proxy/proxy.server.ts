@@ -1,5 +1,5 @@
-import { Logger, withLabel } from '@jujulego/logger';
 import { Flag } from '@jujulego/utils';
+import { Logger, withLabel } from '@kyrielle/logger';
 import createHttpError from 'http-errors';
 import proxy, { ServerOptions } from 'http-proxy';
 import { IncomingMessage, ServerResponse } from 'node:http';

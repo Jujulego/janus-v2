@@ -1,6 +1,6 @@
-import { Log, Logger, logger$, LogLabel, withLabel } from '@jujulego/logger';
+import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { Client, createClient } from 'graphql-sse';
-import { AsyncRef } from 'kyrielle';
+import { AsyncReadable } from 'kyrielle';
 
 import { health$, HealthPayload } from './health.ref.ts';
 
@@ -10,8 +10,8 @@ export class JanusClient implements Disposable {
   private _sseClient: Client<true> | null = null;
   private _healthController = new AbortController();
 
-  readonly logger: Logger<Log & LogLabel>;
-  readonly serverHealth$: AsyncRef<HealthPayload>;
+  readonly logger: Logger;
+  readonly serverHealth$: AsyncReadable<HealthPayload>;
 
   // Constructor
   constructor(

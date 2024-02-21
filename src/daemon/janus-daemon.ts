@@ -1,5 +1,5 @@
-import { Logger, logger$, withLabel } from '@jujulego/logger';
 import { q$ } from '@jujulego/quick-tag';
+import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { ChildProcess, fork } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';

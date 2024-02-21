@@ -1,4 +1,4 @@
-import { Logger, withLabel } from '@jujulego/logger';
+import { Logger, withLabel } from '@kyrielle/logger';
 import createHttpError, { isHttpError } from 'http-errors';
 import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';

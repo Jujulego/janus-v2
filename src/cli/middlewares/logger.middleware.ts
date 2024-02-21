@@ -1,8 +1,8 @@
 import { inject$ } from '@jujulego/injector';
-import { debugFilter, Log, LogLevel, LogLevelKey, qLevelColor, toStderr } from '@jujulego/logger';
 import { q$, qerror, qprop, qwrap } from '@jujulego/quick-tag';
+import { envDebugFilter, Log, LogLevel, LogLevelKey, toStderr } from '@kyrielle/logger';
 import { chalkTemplateStderr } from 'chalk-template';
-import { filter$, flow$ } from 'kyrielle/pipe';
+import { filter$, flow$ } from 'kyrielle';
 import os from 'node:os';
 import { Argv } from 'yargs';
 
@@ -30,8 +30,8 @@ export function loggerMiddleware(parser: Argv) {
       flow$(
         logger,
         filter$((log) => log.level >= logLevel),
-        debugFilter(),
-        toStderr(qLevelColor(
+        envDebugFilter(),
+        toStderr(/*qLevelColor*/(
           qwrap(chalkTemplateStderr)
             .fun<Log>`#?:${qprop('label')}{grey [${q$}]} ?#${qprop('message')}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#`
         ))

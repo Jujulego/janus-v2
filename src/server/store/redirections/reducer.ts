@@ -1,4 +1,4 @@
-import { Logger, withLabel } from '@jujulego/logger';
+import { Logger, withLabel } from '@kyrielle/logger';
 import { createReducer, Reducer } from '@reduxjs/toolkit';
 
 import { loadConfig } from '../actions.ts';

@@ -1,5 +1,5 @@
 import { inject$, token$ } from '@jujulego/injector';
-import { logger$, withTimestamp } from '@jujulego/logger';
+import { logger$, withTimestamp } from '@kyrielle/logger';
 
 import { ConfigService } from '../config/config.service.ts';
 
