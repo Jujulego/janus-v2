@@ -1,7 +1,7 @@
 import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
 import { logger$, withTimestamp } from '@kyrielle/logger';
-import { multiplexer$, source$ } from 'kyrielle';
+import { Listenable, multiplexer$, source$ } from 'kyrielle';
 import process from 'node:process';
 
 import { ConfigService } from '../config/config.service.ts';
@@ -18,7 +18,7 @@ export type JanusProxyEventMap = {
   started: JanusServer;
 }
 
-export class JanusServer /*implements Listenable<JanusProxyEventMap>*/ {
+export class JanusServer implements Listenable<JanusProxyEventMap> {
   // Attributes
   private readonly _configService: ConfigService;
   private readonly _server: HttpServer;

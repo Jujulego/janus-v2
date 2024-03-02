@@ -72,7 +72,7 @@ export class ConfigService {
     const loaded = await this._explorer.search();
 
     if (loaded) {
-      this._logger.verbose`Loaded file ${/*qLogRelative*/(loaded.filepath)}`;
+      this._logger.verbose`Loaded file ${loaded.filepath}`;
       this._filepath = loaded.filepath;
       this._config = this._validateConfig(loaded.config);
     } else {
@@ -87,11 +87,11 @@ export class ConfigService {
     const loaded = await this._explorer.load(filepath);
 
     if (loaded) {
-      this._logger.verbose`Loaded file ${/*qLogRelative*/(loaded.filepath)}`;
+      this._logger.verbose`Loaded file ${loaded.filepath}`;
       this._filepath = loaded.filepath;
       this._config = this._validateConfig(loaded.config);
     } else {
-      this._logger.error`Config file ${/*qLogRelative*/(filepath)} not found`;
+      this._logger.error`Config file ${filepath} not found`;
       throw new Error('Config file not found');
     }
 
