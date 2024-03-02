@@ -1,11 +1,11 @@
 import { Store } from '@reduxjs/toolkit';
-import { each$, Observable, pipe$, Readable, resourceBuilder$ } from 'kyrielle';
+import { each$, Observable, pipe$, Readable, resource$ } from 'kyrielle';
 
 // Utils
 export function selector$<S, D>(store: Store<S>, selector: (state: S) => D): Readable<D> & Observable<D> {
   return pipe$(
-    resourceBuilder$<S>()
-      .add(store[Symbol.observable]() as Observable<S>)
+    resource$<S>()
+      .add(store)
       .add({ read: () => store.getState() })
       .build(),
     each$(selector)

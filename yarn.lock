@@ -612,11 +612,11 @@ __metadata:
     "@graphql-yoga/plugin-graphql-sse": "npm:^3.1.0"
     "@jujulego/injector": "npm:^0.4.0"
     "@jujulego/jill": "npm:2.5.2"
-    "@jujulego/pid-file": "npm:^2.2.0"
+    "@jujulego/pid-file": "npm:^2.2.1"
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.1.1"
-    "@kyrielle/logger": "npm:^1.0.0-alpha.3"
+    "@kyrielle/logger": "npm:^1.0.0-alpha.6"
     "@microsoft/eslint-formatter-sarif": "npm:3.0.0"
     "@reduxjs/toolkit": "npm:^2.0.1"
     "@rollup/plugin-graphql": "npm:2.0.4"
@@ -644,7 +644,7 @@ __metadata:
     graphql-yoga: "npm:^5.0.0"
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
-    kyrielle: "npm:^1.0.0-alpha.2"
+    kyrielle: "npm:^1.0.0-alpha.3"
     msw: "npm:2.2.1"
     nodemon: "npm:3.0.3"
     reflect-metadata: "npm:^0.2.0"
@@ -709,14 +709,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@jujulego/pid-file@npm:^2.2.0":
-  version: 2.2.0
-  resolution: "@jujulego/pid-file@npm:2.2.0"
+"@jujulego/pid-file@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "@jujulego/pid-file@npm:2.2.1"
   dependencies:
-    "@kyrielle/logger": "npm:^1.0.0-alpha.3"
-    "@swc/helpers": "npm:^0.5.3"
+    "@kyrielle/logger": "npm:^1.0.0-alpha.6"
+    "@swc/helpers": "npm:^0.5.6"
     proper-lockfile: "npm:^4.1.2"
-  checksum: 10c0/eed6e52392cb03ff5ad64a9e6a5d2c0d524bfda7189926a1d680ae37d6679ce559fe12940e67c0f00c029c41f0cbc78762d4ce6bb3a4af3fcd9c3f751a9a368e
+  checksum: 10c0/77f4f380cdbfcb4253ab02a9593e2656752ca44e801d7591c4d9b2537ac00d9c6db406800b6f30e59bc4818d1a5865f8072cf8d838f7d9a5713b20b5d8da81d4
   languageName: node
   linkType: hard
 
@@ -783,17 +783,17 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kyrielle/logger@npm:^1.0.0-alpha.3":
-  version: 1.0.0-alpha.3
-  resolution: "@kyrielle/logger@npm:1.0.0-alpha.3"
+"@kyrielle/logger@npm:^1.0.0-alpha.6":
+  version: 1.0.0-alpha.6
+  resolution: "@kyrielle/logger@npm:1.0.0-alpha.6"
   dependencies:
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^1.0.0-alpha.2"
+    kyrielle: "npm:^1.0.0-alpha.3"
   dependenciesMeta:
-    vitest@1.3.0:
+    vitest@1.3.1:
       unplugged: true
-  checksum: 10c0/c283969b43e4611f89f959c0c7eb98d48b6d9a0b5a1bc3c787d18324edfc4c2cbd3c3942d7aa27ece4aece94645eab8d452aeb233168e1428f318c9f0dd9366b
+  checksum: 10c0/6a34a3dd04f800b0ceb7a84b7f32f6a25b656b8aecdc0f45c179cf1cc1d3ccb4b9e68756051474f2292c0394aea683c88f17b1e9fe60e654231c4fbec28e4829
   languageName: node
   linkType: hard
 
@@ -933,7 +933,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@repeaterjs/repeater@npm:^3.0.4":
+"@repeaterjs/repeater@npm:^3.0.4, @repeaterjs/repeater@npm:^3.0.5":
   version: 3.0.5
   resolution: "@repeaterjs/repeater@npm:3.0.5"
   checksum: 10c0/e6e1aca2bbfe0b8e974bc5185a6839f9e78ec8acb96b6d6911a9dfc958443689f9bc38bcc6d554e6c8598f597f0151841aafbd1ee3ef16262ee93d18b2c1d4b5
@@ -1266,6 +1266,15 @@ __metadata:
   dependencies:
     tslib: "npm:^2.4.0"
   checksum: 10c0/7003b9dafad38e27a4474a3dcf78d2aee85ce4bb7ee171ecc2d5b533768fb4f8fc9dbd6a1c3a9df5f8001e61ff416b93681e0a7dcbdc0df109b3e09c50cd4615
+  languageName: node
+  linkType: hard
+
+"@swc/helpers@npm:^0.5.6":
+  version: 0.5.6
+  resolution: "@swc/helpers@npm:0.5.6"
+  dependencies:
+    tslib: "npm:^2.4.0"
+  checksum: 10c0/ae43e2130b0c47a8c5dc51148925604707ee7801fef90674f71d2266a98b272c8f16145931fc7d51daf6795c4f3a86ccecd472e94a7ea562e0db7c333447d9e6
   languageName: node
   linkType: hard
 
@@ -4143,15 +4152,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^1.0.0-alpha.2":
-  version: 1.0.0-alpha.2
-  resolution: "kyrielle@npm:1.0.0-alpha.2"
+"kyrielle@npm:^1.0.0-alpha.3":
+  version: 1.0.0-alpha.3
+  resolution: "kyrielle@npm:1.0.0-alpha.3"
   dependencies:
+    "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
-    vitest@1.3.0:
+    vitest@1.3.1:
       unplugged: true
-  checksum: 10c0/c4704e35c7d08580a4e0381b87416f59d6c95d715a293db2225b7aff90a72eb5a041efd904078e0fb238c0afed53e874d48211447ca669d7ef4d02220cff6314
+  checksum: 10c0/84180c713a6ff303a7dc0ae3666aa05ef32dd4462a6883fdd097ded90b658f96d48cd00169918a0835334a48091fc7c5ca4d9f4e20ba2ddea4d56e6025c3ae34
   languageName: node
   linkType: hard
 

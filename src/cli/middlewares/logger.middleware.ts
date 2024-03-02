@@ -29,7 +29,7 @@ export function loggerMiddleware(parser: Argv) {
 
       flow$(
         logger,
-        filter$((log) => log.level >= logLevel),
+        filter$((log: Log) => log.level >= logLevel),
         envDebugFilter(),
         toStderr(/*qLevelColor*/(
           qwrap(chalkTemplateStderr)

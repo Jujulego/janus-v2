@@ -12,6 +12,7 @@ export class JanusClient implements Disposable {
 
   readonly logger: Logger;
   readonly serverHealth$: AsyncReadable<HealthPayload>;
+  readonly [Symbol.dispose]: () => void;
 
   // Constructor
   constructor(
@@ -24,6 +25,8 @@ export class JanusClient implements Disposable {
       new URL('/_janus/health', janusUrl),
       this.logger.child(withLabel('janus:health')),
     );
+
+    this[Symbol.dispose ?? Symbol.for('Symbol.dispose')] = this.dispose.bind(this);
   }
 
   // Methods
@@ -60,9 +63,5 @@ export class JanusClient implements Disposable {
       this._sseClient.dispose();
       this._sseClient = null;
     }
-  }
-
-  [Symbol.dispose]() {
-    this.dispose();
   }
 }
