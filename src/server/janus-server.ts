@@ -1,8 +1,7 @@
-import { logger$, withTimestamp } from '@jujulego/logger';
 import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
-import { Listenable } from 'kyrielle';
-import { multiplexer$, source$ } from 'kyrielle/events';
+import { logger$, withTimestamp } from '@kyrielle/logger';
+import { Listenable, multiplexer$, source$ } from 'kyrielle';
 import process from 'node:process';
 
 import { ConfigService } from '../config/config.service.ts';
@@ -52,9 +51,6 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
 
   // Methods
   readonly on = this._events.on;
-  readonly off = this._events.off;
-  readonly clear = this._events.clear;
-  readonly eventKeys = this._events.eventKeys;
 
   private _setupLogFile() {
     this._logfile.open(this._config!.server.logfile, this.logger);

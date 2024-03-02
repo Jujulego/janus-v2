@@ -1,8 +1,9 @@
 import { inject$ } from '@jujulego/injector';
-import { debugFilter, Log, LogLevel, LogLevelKey, qLevelColor, toStderr } from '@jujulego/logger';
-import { q$, qerror, qprop, qwrap } from '@jujulego/quick-tag';
+import { defineQuickFormat, q$, qerror, qprop, qwrap } from '@jujulego/quick-tag';
+import { envDebugFilter, Log, LogLevel, LogLevelKey, toStderr } from '@kyrielle/logger';
+import { ColorName, ModifierName } from 'chalk';
 import { chalkTemplateStderr } from 'chalk-template';
-import { filter$, flow$ } from 'kyrielle/pipe';
+import { filter$, flow$ } from 'kyrielle';
 import os from 'node:os';
 import { Argv } from 'yargs';
 
@@ -13,6 +14,19 @@ const VERBOSITY_LEVEL: Record<number, LogLevelKey> = {
   1: 'verbose',
   2: 'debug',
 };
+
+const LEVEL_COLORS = {
+  [LogLevel.debug]: 'grey',
+  [LogLevel.verbose]: 'blue',
+  [LogLevel.info]: 'reset',
+  [LogLevel.warning]: 'yellow',
+  [LogLevel.error]: 'red',
+} satisfies Record<LogLevel, ColorName | ModifierName>;
+
+const logColor = defineQuickFormat((level: LogLevel) => LEVEL_COLORS[level])(qprop<Log, 'level'>('level'));
+
+const logFormat = qwrap(chalkTemplateStderr)
+  .fun<Log>`#?:${qprop('label')}{grey [${q$}]} ?#{${logColor} ${qprop('message')}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#}`;
 
 // Middleware
 export function loggerMiddleware(parser: Argv) {
@@ -29,12 +43,9 @@ export function loggerMiddleware(parser: Argv) {
 
       flow$(
         logger,
-        filter$((log) => log.level >= logLevel),
-        debugFilter(),
-        toStderr(qLevelColor(
-          qwrap(chalkTemplateStderr)
-            .fun<Log>`#?:${qprop('label')}{grey [${q$}]} ?#${qprop('message')}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#`
-        ))
+        filter$((log: Log) => log.level >= logLevel),
+        envDebugFilter(),
+        toStderr(logFormat)
       );
     });
 }

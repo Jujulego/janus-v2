@@ -1,4 +1,4 @@
-import { Logger, logger$ } from '@jujulego/logger';
+import { Logger, logger$ } from '@kyrielle/logger';
 import { beforeEach, describe, expect, it } from 'vitest';
 
 import { DEFAULT_CONFIG } from '@/tests/utils.ts';

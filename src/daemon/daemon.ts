@@ -1,6 +1,6 @@
-import { logger$, toStdout, withLabel, withTimestamp } from '@jujulego/logger';
 import { qjson } from '@jujulego/quick-tag';
-import { flow$ } from 'kyrielle/pipe';
+import { logger$, toStdout, withLabel, withTimestamp } from '@kyrielle/logger';
+import { flow$ } from 'kyrielle';
 import process from 'node:process';
 
 import { ConfigService, ConfigState } from '../config/config.service.ts';
@@ -23,7 +23,7 @@ process.once('message', async (configState: ConfigState) => {
 
     if (proxy.started) {
       process.send!('started');
-      disableStdoutLog();
+      disableStdoutLog.unsubscribe();
     }
   } catch (err) {
     logger.error('Error while running proxy server', err as Error);

@@ -1,4 +1,4 @@
-import { Logger } from '@jujulego/logger';
+import { Logger } from '@kyrielle/logger';
 import { configureStore } from '@reduxjs/toolkit';
 
 import { redirectionsReducer } from './redirections/reducer.ts';

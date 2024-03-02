@@ -1,4 +1,4 @@
-import { logger$, Logger } from '@jujulego/logger';
+import { logger$, Logger } from '@kyrielle/logger';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { Server } from 'node:http';

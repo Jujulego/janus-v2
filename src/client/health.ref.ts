@@ -1,9 +1,6 @@
-import { Logger } from '@jujulego/logger';
 import { qjson } from '@jujulego/quick-tag';
-import { timer$ } from 'kyrielle/events';
-import { deduplicate$, pipe$, retry$ } from 'kyrielle/pipe';
-import { ref$ } from 'kyrielle/refs';
-import { waitFor$ } from 'kyrielle/subscriptions';
+import { Logger } from '@kyrielle/logger';
+import { pipe$, readable$, resource$, retry$, timeout$ } from 'kyrielle';
 
 // Type
 export interface HealthPayload {
@@ -18,8 +15,8 @@ export function isHealthPayload(payload: unknown): payload is HealthPayload {
 // Reference
 export function health$(url: URL, logger: Logger) {
   return pipe$(
-    ref$({
-      async read(signal) {
+    resource$<HealthPayload>()
+      .add(readable$(async (signal) => {
         logger.debug`Requesting server health at ${url.toString()}`;
         const res = await fetch(url, { signal: signal ?? null });
 
@@ -36,14 +33,11 @@ export function health$(url: URL, logger: Logger) {
           logger.debug`Server responded with a ${res.status} error: ${await res.text()}`;
           throw new Error(`Server responded with a ${res.status} error`);
         }
-      }
-    }),
+      }))
+      .build(),
     retry$('read', {
       tryTimeout: 1000,
-      async onRetry() {
-        await waitFor$(timer$(1000));
-      },
-    }),
-    deduplicate$('read'),
+      onRetry: () => timeout$(1000),
+    })
   );
 }
