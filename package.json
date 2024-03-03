@@ -20,7 +20,7 @@
   "scripts": {
     "lint": "eslint .",
     "clean": "shx rm -r dist",
-    "codegen": "graphql-codegen-esm --config codegen.js",
+    "codegen": "graphql-codegen-esm --config codegen.config.js",
     "build": "jill run 'build:bundle // build:types'",
     "build:bundle": "rollup -c",
     "build:types": "tsc -p tsconfig.build.json",

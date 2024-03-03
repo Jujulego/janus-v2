@@ -1,11 +1,11 @@
 import { inject$ } from '@jujulego/injector';
+import chalk from 'chalk';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
 import { listRedirections$ } from '../../client/resources/list-redirections$.ts';
 import { isTimeoutError } from '../../utils/error.ts';
 import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
-import chalk from 'chalk';
 
 // Command
 const command: CommandModule = {

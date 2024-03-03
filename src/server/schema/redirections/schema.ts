@@ -6,11 +6,11 @@ import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/r
 import { listRedirections } from '../../store/redirections/selectors.ts';
 import type { RedirectionState } from '../../store/redirections/types.ts';
 import type { ServerStore } from '../../store/types.ts';
-import typeDefs from './schema.graphql';
+import schema from './schema.graphql';
 
 // Resolver
 export const redirectionsSchema = (store: ServerStore) => createSchema({
-  typeDefs,
+  typeDefs: schema,
   resolvers: {
     Redirection: {
       outputs: function* (redirection: RedirectionState) {
