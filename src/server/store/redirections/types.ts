@@ -1,5 +1,6 @@
 // Types
 export interface RedirectionOutputState {
+  id: string;
   name: string;
   target: string;
   enabled: boolean;

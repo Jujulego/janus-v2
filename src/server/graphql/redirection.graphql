@@ -1,4 +1,6 @@
+"""Possible output given redirection"""
 type RedirectionOutput {
+    id: ID!
     name: String!
     target: String!
     enabled: Boolean!
@@ -7,23 +9,36 @@ type RedirectionOutput {
     ws: Boolean!
 }
 
+"""Configured redirection"""
 type Redirection {
     id: ID!
     url: String!
     outputs: [RedirectionOutput!]!
 }
 
+"""Janus queries"""
 type Query {
+    """Returns state of a given redirection"""
     redirection(id: ID!): Redirection
+
+    """Returns state of all redirections"""
     redirections: [Redirection!]!
 }
 
+"""Janus mutations"""
 type Mutation {
+    """Enables a specific output of a given redirection"""
     enableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
+
+    """Disables a specific output of a given redirection"""
     disableRedirectionOutput(redirectionId: ID!, outputName: String!): Redirection
 }
 
+"""Janus subscriptions"""
 type Subscription {
+    """Subscribe to a redirection state changes"""
     redirection(id: ID!): Redirection
+
+    """Subscribe to all redirections states changes"""
     redirections: [Redirection!]!
 }

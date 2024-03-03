@@ -10,7 +10,7 @@
   ],
   "overrides": [
     {
-      "files": "**/*.{js,jsx,ts,tsx}",
+      "files": "./**/*.{js,jsx,ts,tsx}",
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
@@ -25,7 +25,7 @@
       }
     },
     {
-      "files": "**/*.test.{js,jsx,ts,tsx}",
+      "files": "./**/*.test.{js,jsx,ts,tsx}",
       "extends": [
         "plugin:vitest/recommended"
       ],
@@ -34,6 +34,21 @@
           "assertFunctionNames": ["expect", "request.**.expect"]
         }]
       }
+    },
+    {
+      "files": "./src/client/**/*.{js,jsx,ts,tsx}",
+      "processor": "@graphql-eslint/graphql",
+      "env": {
+        "node": true
+      }
+    },
+    {
+      "files": "./src/server/**/*.graphql",
+      "extends": "plugin:@graphql-eslint/schema-recommended"
+    },
+    {
+      "files": "./src/client/**/*.graphql",
+      "extends": "plugin:@graphql-eslint/operations-recommended"
     }
   ]
 }

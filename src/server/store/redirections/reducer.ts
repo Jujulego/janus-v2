@@ -32,6 +32,7 @@ export function redirectionsReducer(logger: Logger): Reducer<typeof initialState
           redirection.outputs.push(name);
           redirection.outputsByName[name] = {
             ...output,
+            id: `${id}#${name}`,
             name
           };
         }
