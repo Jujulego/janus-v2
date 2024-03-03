@@ -1,0 +1,15 @@
+query ListRedirections {
+    redirections {
+        id
+        url
+        outputs {
+            id
+            name
+            target
+            enabled
+            changeOrigin
+            secure
+            ws
+        }
+    }
+}

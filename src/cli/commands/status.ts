@@ -1,10 +1,10 @@
 import { inject$ } from '@jujulego/injector';
-import { gql } from 'graphql-tag';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
 import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
 import { isTimeoutError } from '../../utils/error.ts';
+import { redirections$ } from '../../client/resources/redirections$.ts';
 
 // Command
 const command: CommandModule = {
@@ -15,14 +15,10 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      await client.initiate(AbortSignal.timeout(5000));
-      const res = await client.send(gql`
-        query ServerStatus {
-            redirections {
-                id
-            }
-        }
-      `, {});
+      //await client.initiate(AbortSignal.timeout(5000));
+      const redirections = redirections$(client);
+
+      console.log(await redirections.read());
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
