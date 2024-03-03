@@ -36,11 +36,19 @@
       }
     },
     {
-      "files": "./src/server/**/*.graphql",
-      "extends": "plugin:@graphql-eslint/schema-recommended",
-      "parserOptions": {
-        "schema": "./src/server/**/*.graphql"
+      "files": "./src/client/**/*.{js,jsx,ts,tsx}",
+      "processor": "@graphql-eslint/graphql",
+      "env": {
+        "node": true
       }
+    },
+    {
+      "files": "./src/server/**/*.graphql",
+      "extends": "plugin:@graphql-eslint/schema-recommended"
+    },
+    {
+      "files": "./src/client/**/*.graphql",
+      "extends": "plugin:@graphql-eslint/operations-recommended"
     }
   ]
 }
