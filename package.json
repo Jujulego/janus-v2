@@ -51,6 +51,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@graphql-eslint/eslint-plugin": "3.20.1",
     "@jujulego/jill": "2.5.2",
     "@jujulego/vite-plugin-swc": "1.1.1",
     "@microsoft/eslint-formatter-sarif": "3.0.0",
