@@ -1,8 +1,16 @@
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
-import { Client, createClient } from 'graphql-sse';
-import { AsyncReadable } from 'kyrielle';
+import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
+import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
+import { AsyncReadable, Observer } from 'kyrielle';
+import assert from 'node:assert';
 
 import { health$, HealthPayload } from './health.ref.ts';
+
+// Types
+export interface OperationOptions {
+  readonly variables?: Record<string, unknown>;
+  readonly signal?: AbortSignal;
+}
 
 // Class
 export class JanusClient implements Disposable {
@@ -30,6 +38,23 @@ export class JanusClient implements Disposable {
   }
 
   // Methods
+  private _prepareQuery(document: DocumentNode, variables?: Record<string, unknown>): RequestParams {
+    const operation = document.definitions
+      .find((def): def is OperationDefinitionNode => def.kind === 'OperationDefinition');
+
+    const request: RequestParams = { query: print(document) };
+
+    if (operation?.name?.value) {
+      request.operationName = operation.name.value;
+    }
+
+    if (variables) {
+      request.variables = variables;
+    }
+
+    return request;
+  }
+
   /**
    * Connects client to server, and setup healthcheck.
    * @returns `true` if connection is successful, `false` otherwise.
@@ -51,6 +76,35 @@ export class JanusClient implements Disposable {
     }
 
     return health;
+  }
+
+  /**
+   * Send query to the server
+   */
+  async send<R>(document: DocumentNode, opts: OperationOptions = {}): Promise<FormattedExecutionResult<R>> {
+    const res = await fetch(new URL('/_janus/graphql', this.janusUrl), {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json; charset=utf-8'
+      },
+      body: JSON.stringify(this._prepareQuery(document, opts.variables)),
+      signal: opts.signal ?? null,
+    });
+
+    return await res.json();
+  }
+
+  /**
+   * Subscribes to an event stream
+   */
+  subscribe<D>(observer: Observer<ExecutionResult<D>>, document: DocumentNode, opts: OperationOptions = {}): void {
+    assert(!!this._sseClient, 'Client should be initiated before any observe call');
+
+    const off = this._sseClient.subscribe<D>(this._prepareQuery(document, opts.variables), observer);
+
+    if (opts.signal) {
+      opts.signal.addEventListener('abort', off, { once: true });
+    }
   }
 
   /**
