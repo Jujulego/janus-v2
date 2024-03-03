@@ -1,4 +1,3 @@
-import { generate } from '@graphql-codegen/cli'
 import { swc } from '@jujulego/vite-plugin-swc';
 import graphql from '@rollup/plugin-graphql';
 import json from '@rollup/plugin-json';

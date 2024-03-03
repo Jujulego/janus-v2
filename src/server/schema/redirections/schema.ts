@@ -1,15 +1,15 @@
-import { makeExecutableSchema } from '@graphql-tools/schema';
+import { createSchema } from 'graphql-yoga';
 import { iterate$ } from 'kyrielle';
 
-import { selector$ } from '../../utils/selector.ts';
-import { disableRedirectionOutput, enableRedirectionOutput } from '../store/redirections/actions.ts';
-import { listRedirections } from '../store/redirections/selectors.ts';
-import type { RedirectionState } from '../store/redirections/types.ts';
-import type { ServerStore } from '../store/types.ts';
-import typeDefs from './redirection.graphql';
+import { selector$ } from '../../../utils/selector.ts';
+import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/redirections/actions.ts';
+import { listRedirections } from '../../store/redirections/selectors.ts';
+import type { RedirectionState } from '../../store/redirections/types.ts';
+import type { ServerStore } from '../../store/types.ts';
+import typeDefs from './schema.graphql';
 
 // Resolver
-export const redirectionResolver = (store: ServerStore) => makeExecutableSchema({
+export const redirectionsSchema = (store: ServerStore) => createSchema({
   typeDefs,
   resolvers: {
     Redirection: {
@@ -45,19 +45,11 @@ export const redirectionResolver = (store: ServerStore) => makeExecutableSchema(
     Subscription: {
       redirection: {
         resolve: (redirection: RedirectionState | null) => redirection,
-        async* subscribe(_, args: { id: string }) {
-          const ref = selector$(store, (state) => state.redirections.byId[args.id]);
-
-          yield* iterate$(ref);
-        },
+        subscribe: (_, args: { id: string }) => iterate$(selector$(store, (state) => state.redirections.byId[args.id])),
       },
       redirections: {
         resolve: (redirections: RedirectionState[]) => redirections,
-        async* subscribe() {
-          const ref = selector$(store, listRedirections);
-
-          yield* iterate$(ref);
-        },
+        subscribe: () => iterate$(selector$(store, listRedirections)),
       },
     }
   }

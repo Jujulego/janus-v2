@@ -1,11 +1,19 @@
-import { RedirectionOutput } from '../../../types/redirection.js';
-
 // Types
+export interface RedirectionOutputState {
+  id: string;
+  name: string;
+  target: string;
+  enabled: boolean;
+  changeOrigin: boolean;
+  secure: boolean;
+  ws: boolean;
+}
+
 export interface RedirectionState {
   id: string;
   url: string;
   outputs: string[];
-  outputsByName: Record<string, RedirectionOutput>;
+  outputsByName: Record<string, RedirectionOutputState>;
 }
 
 export interface RedirectionsState {

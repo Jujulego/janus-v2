@@ -6,7 +6,8 @@
   ],
   "ignorePatterns": [
     "coverage/**",
-    "dist/**"
+    "dist/**",
+    "src/client/gql/**"
   ],
   "overrides": [
     {
@@ -43,12 +44,19 @@
       }
     },
     {
-      "files": "./src/server/**/*.graphql",
+      "files": "./src/server/**/schema.graphql",
       "extends": "plugin:@graphql-eslint/schema-recommended"
     },
     {
       "files": "./src/client/**/*.graphql",
-      "extends": "plugin:@graphql-eslint/operations-recommended"
+      "extends": "plugin:@graphql-eslint/operations-recommended",
+      "parserOptions": {
+        "schema": "./src/server/**/schema.graphql",
+        "operations": [
+          "./src/client/**/*.graphql",
+          "./src/client/**/*.{ts,tsx}"
+        ]
+      }
     }
   ]
 }
