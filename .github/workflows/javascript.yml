@@ -28,6 +28,9 @@ jobs:
       - name: Install
         run: yarn install --immutable
 
+      - name: Codegen
+        run: yarn codegen
+
       - name: Build
         run: yarn build
 
@@ -81,6 +84,9 @@ jobs:
 
       - name: Install
         run: yarn install --immutable
+
+      - name: Codegen
+        run: yarn codegen
 
       - name: Run tests
         run: yarn test --coverage

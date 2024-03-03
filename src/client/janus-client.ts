@@ -1,3 +1,4 @@
+import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
@@ -81,7 +82,7 @@ export class JanusClient implements Disposable {
   /**
    * Send query to the server
    */
-  async send<R>(document: DocumentNode, opts: OperationOptions = {}): Promise<FormattedExecutionResult<R>> {
+  async send<R, V>(document: TypedDocumentNode<R, V>, opts: OperationOptions = {}): Promise<FormattedExecutionResult<R>> {
     const res = await fetch(new URL('/_janus/graphql', this.janusUrl), {
       method: 'POST',
       headers: {
