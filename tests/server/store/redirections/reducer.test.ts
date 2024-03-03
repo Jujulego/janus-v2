@@ -71,6 +71,7 @@ describe('redirectionsReducer', () => {
               outputs: ['book'],
               outputsByName: {
                 'book': {
+                  id: 'omVzIg0g3QXUooNYIRfq4w#book',
                   name: 'book',
                   target: 'http://localhost:3042',
                   enabled: true,
@@ -86,6 +87,7 @@ describe('redirectionsReducer', () => {
               outputs: ['book', 'example'],
               outputsByName: {
                 'book': {
+                  id: 'RTkzBki4D5TvO_kR9td6yQ#book',
                   name: 'book',
                   target: 'http://localhost:3042',
                   enabled: true,
@@ -94,6 +96,7 @@ describe('redirectionsReducer', () => {
                   ws: false,
                 },
                 'example': {
+                  id: 'RTkzBki4D5TvO_kR9td6yQ#example',
                   name: 'example',
                   target: 'https://example.com',
                   enabled: true,
@@ -146,6 +149,7 @@ describe('redirectionsReducer', () => {
             outputs: ['test'],
             outputsByName: {
               test: {
+                id: 'life#test',
                 name: 'test',
                 target: 'https://example.com',
                 enabled: true,
@@ -172,6 +176,7 @@ describe('redirectionsReducer', () => {
             outputs: ['test'],
             outputsByName: {
               test: {
+                id: 'life#test',
                 name: 'test',
                 target: 'https://example.com',
                 enabled: false,
@@ -194,6 +199,7 @@ describe('redirectionsReducer', () => {
               outputs: ['test'],
               outputsByName: {
                 test: {
+                  id: 'life#test',
                   name: 'test',
                   target: 'https://example.com',
                   enabled: true, // <= true !!!
@@ -246,6 +252,7 @@ describe('redirectionsReducer', () => {
             outputs: ['test'],
             outputsByName: {
               test: {
+                id: 'life#test',
                 name: 'test',
                 target: 'https://example.com',
                 enabled: false,
@@ -272,6 +279,7 @@ describe('redirectionsReducer', () => {
             outputs: ['test'],
             outputsByName: {
               test: {
+                id: 'life#test',
                 name: 'test',
                 target: 'https://example.com',
                 enabled: true,
@@ -294,6 +302,7 @@ describe('redirectionsReducer', () => {
               outputs: ['test'],
               outputsByName: {
                 test: {
+                  id: 'life#test',
                   name: 'test',
                   target: 'https://example.com',
                   enabled: false, // <= false !!!
