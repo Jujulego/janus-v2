@@ -22,7 +22,7 @@ const ListRedirectionsQuery = graphql(/* GraphQL */ `
     }
 `);
 
-export function redirections$(client: JanusClient) {
+export function listRedirections$(client: JanusClient) {
   return pipe$(
     resource$()
       .add(readable$((signal) => client.send(ListRedirectionsQuery, { signal })))

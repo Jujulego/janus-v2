@@ -2,9 +2,10 @@ import { inject$ } from '@jujulego/injector';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
-import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
+import { listRedirections$ } from '../../client/resources/list-redirections$.ts';
 import { isTimeoutError } from '../../utils/error.ts';
-import { redirections$ } from '../../client/resources/redirections$.ts';
+import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
+import chalk from 'chalk';
 
 // Command
 const command: CommandModule = {
@@ -15,10 +16,19 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      //await client.initiate(AbortSignal.timeout(5000));
-      const redirections = redirections$(client);
+      const redirections = await listRedirections$(client).read();
+      const length = redirections.reduce((max, { url }) => Math.max(max, url.length), 0);
 
-      console.log(await redirections.read());
+      for (const redirection of redirections) {
+        const output = redirection.outputs.find((output) => output.enabled);
+        const spaces = ' '.repeat(length - redirection.url.length);
+
+        if (output) {
+          logger.info`${redirection.url + spaces} -> ${output.name} (${output.target})`;
+        } else {
+          logger.warn`${redirection.url + spaces} |> ${chalk.bold('all outputs are disabled')}`;
+        }
+      }
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
