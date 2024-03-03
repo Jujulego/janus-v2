@@ -26,12 +26,6 @@ const options = {
   ],
   external: [
     ...Object.keys(pkg.dependencies),
-    'kyrielle/collections',
-    'kyrielle/events',
-    'kyrielle/operators',
-    'kyrielle/pipe',
-    'kyrielle/refs',
-    'kyrielle/subscriptions',
     'reflect-metadata/lite',
     'yargs/helpers',
   ]
