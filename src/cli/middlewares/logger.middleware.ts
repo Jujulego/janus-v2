@@ -7,7 +7,7 @@ import { filter$, flow$ } from 'kyrielle';
 import os from 'node:os';
 import { Argv } from 'yargs';
 
-import { CliLogger } from '../cli-tokens.ts';
+import { CliLogger } from '../cli-tokens.js';
 
 // Utils
 const VERBOSITY_LEVEL: Record<number, LogLevelKey> = {

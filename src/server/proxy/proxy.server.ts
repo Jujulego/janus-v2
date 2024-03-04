@@ -5,9 +5,9 @@ import proxy, { ServerOptions } from 'http-proxy';
 import { IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex, Readable } from 'node:stream';
 
-import { disableRedirectionOutput } from '../store/redirections/actions.ts';
-import { listEnabledOutputs, resolveRedirection } from '../store/redirections/selectors.ts';
-import { ServerStore } from '../store/types.ts';
+import { disableRedirectionOutput } from '../store/redirections/actions.js';
+import { listEnabledOutputs, resolveRedirection } from '../store/redirections/selectors.js';
+import { ServerStore } from '../store/types.js';
 
 // Proxy server
 export class ProxyServer {

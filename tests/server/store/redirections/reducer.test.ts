@@ -1,12 +1,12 @@
 import { Logger, logger$ } from '@kyrielle/logger';
 import { beforeEach, describe, expect, it } from 'vitest';
 
-import { DEFAULT_CONFIG } from '@/tests/utils.ts';
-import { Config } from '@/src/config/type.ts';
-import { loadConfig } from '@/src/server/store/actions.ts';
-import { disableRedirectionOutput, enableRedirectionOutput } from '@/src/server/store/redirections/actions.ts';
-import { redirectionsReducer } from '@/src/server/store/redirections/reducer.ts';
-import { RedirectionsState } from '@/src/server/store/redirections/types.ts';
+import { DEFAULT_CONFIG } from '@/tests/utils.js';
+import { Config } from '@/src/config/type.js';
+import { loadConfig } from '@/src/server/store/actions.js';
+import { disableRedirectionOutput, enableRedirectionOutput } from '@/src/server/store/redirections/actions.js';
+import { redirectionsReducer } from '@/src/server/store/redirections/reducer.js';
+import { RedirectionsState } from '@/src/server/store/redirections/types.js';
 
 // Setup
 let logger: Logger;

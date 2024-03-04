@@ -1,10 +1,10 @@
 import { Logger, withLabel } from '@kyrielle/logger';
 import { createReducer, Reducer } from '@reduxjs/toolkit';
 
-import { loadConfig } from '../actions.ts';
-import { disableRedirectionOutput, enableRedirectionOutput } from './actions.ts';
-import { RedirectionsState, RedirectionState } from './types.ts';
-import { generateRedirectionId } from './utils.ts';
+import { loadConfig } from '../actions.js';
+import { disableRedirectionOutput, enableRedirectionOutput } from './actions.js';
+import { RedirectionsState, RedirectionState } from './types.js';
+import { generateRedirectionId } from './utils.js';
 
 // Reducer
 const initialState: RedirectionsState = {

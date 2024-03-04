@@ -5,11 +5,11 @@ import { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { createHttpServer, ignoreServer } from '@/tests/utils.ts';
-import { ProxyServer } from '@/src/server/proxy/proxy.server.ts';
-import { listEnabledOutputs, resolveRedirection } from '@/src/server/store/redirections/selectors.ts';
-import { ServerStore } from '@/src/server/store/types.ts';
-import { serverStore } from '@/src/server/store/server.store.ts';
+import { createHttpServer, ignoreServer } from '@/tests/utils.js';
+import { ProxyServer } from '@/src/server/proxy/proxy.server.js';
+import { listEnabledOutputs, resolveRedirection } from '@/src/server/store/redirections/selectors.js';
+import { ServerStore } from '@/src/server/store/types.js';
+import { serverStore } from '@/src/server/store/server.store.js';
 import { disableRedirectionOutput } from '@/src/server/store/redirections/actions.js';
 
 // Mocks

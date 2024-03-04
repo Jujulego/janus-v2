@@ -5,7 +5,7 @@ import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-ss
 import { AsyncReadable, Observer } from 'kyrielle';
 import assert from 'node:assert';
 
-import { health$, HealthPayload } from './health.ref.ts';
+import { health$, HealthPayload } from './health.ref.js';
 
 // Types
 export interface OperationOptions {

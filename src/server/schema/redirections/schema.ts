@@ -1,11 +1,11 @@
 import { createSchema } from 'graphql-yoga';
 import { iterate$ } from 'kyrielle';
 
-import { selector$ } from '../../../utils/selector.ts';
-import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/redirections/actions.ts';
-import { listRedirections } from '../../store/redirections/selectors.ts';
-import type { RedirectionState } from '../../store/redirections/types.ts';
-import type { ServerStore } from '../../store/types.ts';
+import { selector$ } from '../../../utils/selector.js';
+import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/redirections/actions.js';
+import { listRedirections } from '../../store/redirections/selectors.js';
+import type { RedirectionState } from '../../store/redirections/types.js';
+import type { ServerStore } from '../../store/types.js';
 import schema from './schema.graphql';
 
 // Resolver

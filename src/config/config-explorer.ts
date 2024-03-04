@@ -1,7 +1,7 @@
 import { token$ } from '@jujulego/injector';
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
-import { dynamicImport } from '../utils/import.ts';
+import { dynamicImport } from '../utils/import.js';
 
 // Tokens
 export const ConfigExplorer = token$(() => cosmiconfig('janus', {

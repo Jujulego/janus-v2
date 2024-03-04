@@ -4,8 +4,8 @@ import { ServerResponse } from 'node:http';
 import request from 'supertest';
 import { beforeEach, describe, expect, it, vi } from 'vitest';
 
-import { HttpServer } from '@/src/server/http.server.ts';
-import { DEFAULT_CONFIG } from '@/tests/utils.ts';
+import { HttpServer } from '@/src/server/http.server.js';
+import { DEFAULT_CONFIG } from '@/tests/utils.js';
 import { serverStore } from '@/src/server/store/server.store.js';
 
 // Setup

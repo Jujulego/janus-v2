@@ -1,7 +1,7 @@
 import { inject$ } from '@jujulego/injector';
 import { Argv } from 'yargs';
 
-import { CliConfigService } from '../cli-tokens.ts';
+import { CliConfigService } from '../cli-tokens.js';
 
 // Middleware
 export function configMiddleware(parser: Argv) {

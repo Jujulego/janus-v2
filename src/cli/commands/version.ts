@@ -4,8 +4,8 @@ import process from 'node:process';
 import { CommandModule } from 'yargs';
 
 import { version } from '../../../package.json' assert { type: 'json' };
-import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
-import { isTimeoutError } from '../../utils/error.ts';
+import { CliJanusClient, CliLogger } from '../cli-tokens.js';
+import { isTimeoutError } from '../../utils/error.js';
 
 // Command
 const command: CommandModule = {

@@ -4,12 +4,12 @@ import { logger$, withTimestamp } from '@kyrielle/logger';
 import { Listenable, multiplexer$, source$ } from 'kyrielle';
 import process from 'node:process';
 
-import { ConfigService } from '../config/config.service.ts';
-import { Config } from '../config/type.ts';
-import { LogFile } from './log-file.ts';
-import { HttpServer } from './http.server.ts';
-import { serverStore } from './store/server.store.ts';
-import { loadConfig } from './store/actions.ts';
+import { ConfigService } from '../config/config.service.js';
+import { Config } from '../config/type.js';
+import { LogFile } from './log-file.js';
+import { HttpServer } from './http.server.js';
+import { serverStore } from './store/server.store.js';
+import { loadConfig } from './store/actions.js';
 import { ServerStore } from './store/types.js';
 
 // Types

@@ -1,2 +1,2 @@
-import 'reflect-metadata';
-import '@/src/graphql.d.ts';
+import 'reflect-metadata/lite';
+import '@/src/graphql.d.js';

@@ -1,7 +1,7 @@
 import { each$, observable$, pipe$, readable$, resource$ } from 'kyrielle';
 
-import { JanusClient } from '../janus-client.ts';
-import { graphql, useFragment } from '../gql/index.ts';
+import { JanusClient } from '../janus-client.js';
+import { graphql, useFragment } from '../gql/index.js';
 
 // Fragments
 export const RedirectionItem = graphql(/* GraphQL */ `

@@ -5,8 +5,8 @@ import {
   listOutputs,
   listRedirections,
   resolveRedirection
-} from '@/src/server/store/redirections/selectors.ts';
-import { ServerState } from '@/src/server/store/types.ts';
+} from '@/src/server/store/redirections/selectors.js';
+import { ServerState } from '@/src/server/store/types.js';
 
 // Setup
 const state = {
