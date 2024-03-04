@@ -49,14 +49,7 @@
     },
     {
       "files": "./src/client/**/*.graphql",
-      "extends": "plugin:@graphql-eslint/operations-recommended",
-      "parserOptions": {
-        "schema": "./src/server/**/schema.graphql",
-        "operations": [
-          "./src/client/**/*.graphql",
-          "./src/client/**/*.{ts,tsx}"
-        ]
-      }
+      "extends": "plugin:@graphql-eslint/operations-recommended"
     }
   ]
 }

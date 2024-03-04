@@ -1,0 +1,12 @@
+schema: './src/server/**/schema.graphql'
+documents:
+  - './src/client/**/*.ts'
+
+extensions:
+  codegen:
+    ignoreNoDocuments: true
+    emitLegacyCommonJSImports: false
+
+    generates:
+      './src/client/gql/':
+        preset: 'client'
