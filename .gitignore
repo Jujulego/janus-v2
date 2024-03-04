@@ -11,5 +11,6 @@
 .vitest
 coverage
 dist
+src/client/gql
 *.log
 *.pid

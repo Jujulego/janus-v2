@@ -6,7 +6,7 @@ import { Duplex } from 'node:stream';
 import { version } from '../../package.json' assert { type: 'json' };
 import { Config } from '../config/type.ts';
 import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
-import { YogaServer } from './graphql/yoga.server.ts';
+import { YogaServer } from './yoga.server.ts';
 import { ProxyServer } from './proxy/proxy.server.ts';
 import { ServerStore } from './store/types.js';
 
