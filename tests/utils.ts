@@ -2,8 +2,8 @@ import http, { RequestListener, Server } from 'node:http';
 import { AddressInfo } from 'node:net';
 import { isHttpError } from 'http-errors';
 
-import { Config } from '@/src/config/type.ts';
-import { sendHttpError } from '@/src/utils/http-error.ts';
+import { Config } from '@/src/config/type.js';
+import { sendHttpError } from '@/src/utils/http-error.js';
 
 // Constants
 export const DEFAULT_CONFIG: Config = {

@@ -4,10 +4,10 @@ import { hideBin } from 'yargs/helpers';
 import 'reflect-metadata/lite';
 
 import { version } from '../package.json' assert { type: 'json' };
-import * as commands from './cli/commands.ts';
-import { configMiddleware } from './cli/middlewares/config.middleware.ts';
-import { loggerMiddleware } from './cli/middlewares/logger.middleware.ts';
-import './graphql.d.ts';
+import * as commands from './cli/commands.js';
+import { configMiddleware } from './cli/middlewares/config.middleware.js';
+import { loggerMiddleware } from './cli/middlewares/logger.middleware.js';
+import './graphql.d.js';
 
 // Bootstrap
 (async () => {

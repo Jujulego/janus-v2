@@ -2,7 +2,7 @@ import { inject$ } from '@jujulego/injector';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
-import { CliJanusDaemon, CliJanusProxy, CliLogger } from '../cli-tokens.ts';
+import { CliJanusDaemon, CliJanusProxy, CliLogger } from '../cli-tokens.js';
 
 // Types
 export interface StartArgs {

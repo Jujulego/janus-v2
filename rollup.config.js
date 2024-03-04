@@ -22,14 +22,6 @@ const options = {
     nodeResolve({ exportConditions: ['node'] }),
     graphql(),
     json(),
-    {
-      async resolveId (source, importer, options) {
-        if (source.match(/\.jsx?$/)) {
-          const ts = source.replace(/\.js(x?)$/, '.ts$1');
-          return await this.resolve(ts, importer, options);
-        }
-      }
-    },
     swc(),
   ],
   external: [

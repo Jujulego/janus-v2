@@ -6,9 +6,9 @@ import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
 import process from 'node:process';
 
-import { ConfigExplorer } from './config-explorer.ts';
+import { ConfigExplorer } from './config-explorer.js';
 import schema from './schema.json' assert { type: 'json' };
-import { Config } from './type.ts';
+import { Config } from './type.js';
 
 // Types
 type AjvParser = Ajv.default;

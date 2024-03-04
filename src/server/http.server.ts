@@ -4,10 +4,10 @@ import { createServer, IncomingMessage, ServerResponse } from 'node:http';
 import { Duplex } from 'node:stream';
 
 import { version } from '../../package.json' assert { type: 'json' };
-import { Config } from '../config/type.ts';
-import { renderHttpError, sendHttpError } from '../utils/http-error.ts';
-import { YogaServer } from './yoga.server.ts';
-import { ProxyServer } from './proxy/proxy.server.ts';
+import { Config } from '../config/type.js';
+import { renderHttpError, sendHttpError } from '../utils/http-error.js';
+import { YogaServer } from './yoga.server.js';
+import { ProxyServer } from './proxy/proxy.server.js';
 import { ServerStore } from './store/types.js';
 
 // Http server

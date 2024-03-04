@@ -3,9 +3,9 @@ import chalk from 'chalk';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
-import { listRedirections$ } from '../../client/resources/list-redirections$.ts';
-import { isTimeoutError } from '../../utils/error.ts';
-import { CliJanusClient, CliLogger } from '../cli-tokens.ts';
+import { listRedirections$ } from '../../client/resources/list-redirections$.js';
+import { isTimeoutError } from '../../utils/error.js';
+import { CliJanusClient, CliLogger } from '../cli-tokens.js';
 
 // Command
 const command: CommandModule = {
