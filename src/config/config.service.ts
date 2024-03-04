@@ -6,8 +6,8 @@ import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
 import process from 'node:process';
 
-import { ConfigExplorer } from './config-explorer.js';
 import schema from './schema.json' assert { type: 'json' };
+import { ConfigExplorer } from './config-explorer.js';
 import { Config } from './type.js';
 
 // Types
