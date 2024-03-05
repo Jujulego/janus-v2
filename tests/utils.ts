@@ -10,6 +10,7 @@ export const DEFAULT_CONFIG: Config = {
   redirections: {},
   server: {
     port: 3000,
+    logfile: '.janus.log',
     pidfile: '.janus.pid',
   },
 };
