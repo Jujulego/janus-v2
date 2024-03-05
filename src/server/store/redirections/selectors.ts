@@ -25,7 +25,7 @@ export const getRedirection = createSelector(
     (state: ServerState) => state.redirections.byId,
   ],
   (id, index) => {
-    return index[id];
+    return index[id] ?? null;
   }
 );
 
