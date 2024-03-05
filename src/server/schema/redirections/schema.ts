@@ -3,7 +3,7 @@ import { iterate$ } from 'kyrielle';
 
 import { selector$ } from '../../../utils/selector.js';
 import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/redirections/actions.js';
-import { listRedirections } from '../../store/redirections/selectors.js';
+import { allRedirections } from '../../store/redirections/selectors.js';
 import type { RedirectionState } from '../../store/redirections/types.js';
 import type { ServerStore } from '../../store/types.js';
 import schema from '../schema.graphql';
@@ -25,7 +25,7 @@ export const redirectionsSchema = (store: ServerStore) => createSchema({
         return redirections.byId[args.id];
       },
       redirections() {
-        return listRedirections(store.getState());
+        return allRedirections(store.getState());
       }
     },
     Mutation: {
@@ -49,7 +49,7 @@ export const redirectionsSchema = (store: ServerStore) => createSchema({
       },
       redirections: {
         resolve: (redirections: RedirectionState[]) => redirections,
-        subscribe: () => iterate$(selector$(store, listRedirections)),
+        subscribe: () => iterate$(selector$(store, allRedirections)),
       },
     }
   }

@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import {
   listEnabledOutputs,
   listOutputs,
-  listRedirections,
+  allRedirections,
   resolveRedirection
 } from '@/src/server/store/redirections/selectors.js';
 import { ServerState } from '@/src/server/store/types.js';
@@ -58,7 +58,7 @@ const state = {
 // Tests
 describe('listRedirections', () => {
   it('should return list of all stored redirections', () => {
-    expect(listRedirections(state)).toStrictEqual([
+    expect(allRedirections(state)).toStrictEqual([
       state.redirections.byId['omVzIg0g3QXUooNYIRfq4w'],
       state.redirections.byId['RTkzBki4D5TvO_kR9td6yQ'],
     ]);

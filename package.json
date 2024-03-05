@@ -29,6 +29,7 @@
     "test": "vitest run --typecheck"
   },
   "dependencies": {
+    "@graphql-tools/merge": "^9.0.3",
     "@graphql-yoga/plugin-graphql-sse": "^3.1.0",
     "@jujulego/injector": "^0.4.0",
     "@jujulego/pid-file": "^2.2.1",
