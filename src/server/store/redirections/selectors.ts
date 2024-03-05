@@ -6,7 +6,7 @@ import { RedirectionState } from './types.js';
 /**
  * Returns list of all redirections, in config order
  */
-export const listRedirections = createSelector(
+export const allRedirections = createSelector(
   [
     (state: ServerState) => state.redirections.ids,
     (state: ServerState) => state.redirections.byId,
@@ -17,11 +17,24 @@ export const listRedirections = createSelector(
 );
 
 /**
+ * Returns list of all redirections, in config order
+ */
+export const getRedirection = createSelector(
+  [
+    (_: ServerState, id: string) => id,
+    (state: ServerState) => state.redirections.byId,
+  ],
+  (id, index) => {
+    return index[id] ?? null;
+  }
+);
+
+/**
  * Resolve redirection according to given url
  */
 export const resolveRedirection = createSelector(
   [
-    listRedirections,
+    allRedirections,
     (_: ServerState, url: string) => url,
   ],
   (redirections, url) => {

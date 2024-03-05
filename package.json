@@ -29,7 +29,7 @@
     "test": "vitest run --typecheck"
   },
   "dependencies": {
-    "@graphql-tools/schema": "^10.0.0",
+    "@graphql-tools/merge": "^9.0.3",
     "@graphql-yoga/plugin-graphql-sse": "^3.1.0",
     "@jujulego/injector": "^0.4.0",
     "@jujulego/pid-file": "^2.2.1",
@@ -54,6 +54,8 @@
   "devDependencies": {
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/client-preset": "4.2.4",
+    "@graphql-codegen/typescript": "4.0.6",
+    "@graphql-codegen/typescript-resolvers": "4.0.6",
     "@graphql-eslint/eslint-plugin": "3.20.1",
     "@graphql-typed-document-node/core": "3.2.0",
     "@jujulego/jill": "2.5.2",
