@@ -69,7 +69,7 @@
     "@swc/core": "1.4.5",
     "@types/http-errors": "2.0.4",
     "@types/http-proxy": "1.17.14",
-    "@types/node": "18.19.21",
+    "@types/node": "18.19.22",
     "@types/supertest": "6.0.2",
     "@types/yargs": "17.0.32",
     "@typescript-eslint/eslint-plugin": "7.1.1",
