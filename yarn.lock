@@ -1846,18 +1846,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@graphql-yoga/plugin-graphql-sse@npm:^3.1.0":
-  version: 3.1.1
-  resolution: "@graphql-yoga/plugin-graphql-sse@npm:3.1.1"
-  dependencies:
-    graphql-sse: "npm:^2.0.0"
-  peerDependencies:
-    graphql: ^15.2.0 || ^16.0.0
-    graphql-yoga: ^5.1.1
-  checksum: 10c0/e4adfbce8b0c50be9f384df5477a285615e2a54c602b57cbc4448d4b0874d2052892b6cddd6a96d85a75820683ebdfb22b56db08ce61a34e080e0e7f39c63297
-  languageName: node
-  linkType: hard
-
 "@graphql-yoga/subscription@npm:^5.0.0":
   version: 5.0.0
   resolution: "@graphql-yoga/subscription@npm:5.0.0"
@@ -2071,7 +2059,6 @@ __metadata:
     "@graphql-eslint/eslint-plugin": "npm:3.20.1"
     "@graphql-tools/merge": "npm:^9.0.3"
     "@graphql-typed-document-node/core": "npm:3.2.0"
-    "@graphql-yoga/plugin-graphql-sse": "npm:^3.1.0"
     "@jujulego/injector": "npm:^0.4.0"
     "@jujulego/jill": "npm:2.5.2"
     "@jujulego/pid-file": "npm:^2.2.1"
@@ -5810,7 +5797,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"graphql-sse@npm:^2.0.0, graphql-sse@npm:^2.5.2":
+"graphql-sse@npm:^2.5.2":
   version: 2.5.2
   resolution: "graphql-sse@npm:2.5.2"
   peerDependencies:
