@@ -16,19 +16,21 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      const redirections = await listRedirections$(client).read();
-      const length = redirections.reduce((max, { url }) => Math.max(max, url.length), 0);
-
-      for (const redirection of redirections) {
-        const output = redirection.outputs.find((output) => output.enabled);
-        const spaces = ' '.repeat(length - redirection.url.length);
-
-        if (output) {
-          logger.info`${redirection.url + spaces} -> ${output.name} (${output.target})`;
-        } else {
-          logger.warn`${redirection.url + spaces} |> ${chalk.bold('all outputs are disabled')}`;
-        }
-      }
+      const { default: StatusCommand } = await import('../components/StatusCommand.jsx');
+      await StatusCommand(client);
+      // const redirections = await listRedirections$(client).read();
+      // const length = redirections.reduce((max, { url }) => Math.max(max, url.length), 0);
+      //
+      // for (const redirection of redirections) {
+      //   const output = redirection.outputs.find((output) => output.enabled);
+      //   const spaces = ' '.repeat(length - redirection.url.length);
+      //
+      //   if (output) {
+      //     logger.info`${redirection.url + spaces} -> ${output.name} (${output.target})`;
+      //   } else {
+      //     logger.warn`${redirection.url + spaces} |> ${chalk.bold('all outputs are disabled')}`;
+      //   }
+      // }
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);

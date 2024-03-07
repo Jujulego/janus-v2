@@ -47,7 +47,9 @@
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
+    "ink": "^4.4.1",
     "kyrielle": "^1.0.0-alpha.3",
+    "react": "^18.2.0",
     "reflect-metadata": "^0.2.0",
     "yargs": "^17.7.2"
   },
@@ -70,6 +72,7 @@
     "@types/http-errors": "2.0.4",
     "@types/http-proxy": "1.17.14",
     "@types/node": "18.19.21",
+    "@types/react": "18.2.63",
     "@types/supertest": "6.0.2",
     "@types/yargs": "17.0.32",
     "@typescript-eslint/eslint-plugin": "7.1.1",
