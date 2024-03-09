@@ -16,7 +16,7 @@ export interface OperationOptions {
 // Class
 export class JanusClient implements Disposable {
   // Attributes
-  private _sseClient: Client<true> | null = null;
+  private _sseClient: Client<false> | null = null;
   private _healthController = new AbortController();
 
   readonly logger: Logger;
@@ -67,8 +67,6 @@ export class JanusClient implements Disposable {
       this.logger.verbose`Janus client connected (server version: ${health.version})`;
 
       this._sseClient = createClient({
-        lazy: true,
-        singleConnection: true,
         url: new URL('/_janus/graphql/stream', this.janusUrl).toString(),
         retry: async () => {
           await this.serverHealth$.read(this._healthController.signal);
