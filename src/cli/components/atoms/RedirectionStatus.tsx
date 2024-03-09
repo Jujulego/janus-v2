@@ -28,17 +28,11 @@ export default function RedirectionStatus(props: RedirectionStatusProps) {
 
   if (enabledOutput) {
     return (
-      <>
-        <Text>{ redirection.url }</Text>
-        <Text>{'->'} { enabledOutput.name } ({ enabledOutput.target })</Text>
-      </>
+      <Text>{ redirection.url } {'->'} { enabledOutput.name } ({ enabledOutput.target })</Text>
     );
   } else {
     return (
-      <>
-        <Text color="grey">{ redirection.url }</Text>
-        <Text color="grey">{'|>'} <Text bold>all outputs are disabled</Text></Text>
-      </>
+      <Text color="grey">{ redirection.url } {'|>'} <Text bold>all outputs are disabled</Text></Text>
     );
   }
 }

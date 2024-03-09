@@ -10,9 +10,9 @@ export interface RedirectionStatusTableProps {
 
 export default function RedirectionStatusTable({ redirections }: RedirectionStatusTableProps) {
   return (
-    <Box flexDirection={'column'}>
+    <Box flexDirection="column">
       { redirections.map((redirection) => (
-        <Box justifyContent="space-between" key={unmask(RedirectionStatusItem, redirection).id}>
+        <Box key={unmask(RedirectionStatusItem, redirection).id}>
           <RedirectionStatus redirection={redirection} />
         </Box>
       )) }
