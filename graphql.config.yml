@@ -1,5 +1,7 @@
 schema: './src/server/schema/schema.graphql'
-documents: './src/client/**/*.ts'
+documents:
+  - './src/cli/**/*.{ts,tsx}'
+  - './src/client/**/*.ts'
 
 extensions:
   codegen:
@@ -7,8 +9,12 @@ extensions:
     emitLegacyCommonJSImports: false
 
     generates:
-      './src/client/gql/':
+      './src/gql/':
         preset: 'client'
+
+        presetConfig:
+          fragmentMasking:
+            unmaskFunctionName: 'unmask'
 
       './src/server/schema/schema.types.ts':
         plugins: ['typescript', 'typescript-resolvers']

@@ -4,12 +4,20 @@
   "plugins": [
     "@typescript-eslint"
   ],
+  "settings": {
+    "react": {
+      "version": "detect"
+    }
+  },
   "ignorePatterns": [
     "coverage/**",
     "dist/**",
-    "src/client/gql/**",
+    "src/gql/**",
     "src/server/schema/schema.types.ts"
   ],
+  "env": {
+    "node": true
+  },
   "overrides": [
     {
       "files": "./**/*.{js,jsx,ts,tsx}",
@@ -17,13 +25,22 @@
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
       ],
-      "env": {
-        "node": true
-      },
       "rules": {
         "quotes": ["error", "single"],
         "semi": ["error", "always"],
         "no-console": "error"
+      }
+    },
+    {
+      "files": "./**/*.{jsx,tsx}",
+      "extends": [
+        "plugin:react/recommended",
+        "plugin:react/jsx-runtime",
+        "plugin:react-hooks/recommended"
+      ],
+      "rules": {
+        "jsx-quotes": ["error", "prefer-double"],
+        "react/prop-types": "off"
       }
     },
     {
@@ -38,18 +55,21 @@
       }
     },
     {
-      "files": "./src/client/**/*.{js,jsx,ts,tsx}",
-      "processor": "@graphql-eslint/graphql",
-      "env": {
-        "node": true
-      }
+      "files": [
+        "./src/cli/**/*.{js,jsx,ts,tsx}",
+        "./src/client/**/*.{js,jsx,ts,tsx}"
+      ],
+      "processor": "@graphql-eslint/graphql"
     },
     {
-      "files": "./src/server/**/schema.graphql",
+      "files": "./src/server/schema/schema.graphql",
       "extends": "plugin:@graphql-eslint/schema-recommended"
     },
     {
-      "files": "./src/client/**/*.graphql",
+      "files": [
+        "./src/cli/**/*.graphql",
+        "./src/client/**/*.graphql"
+      ],
       "extends": "plugin:@graphql-eslint/operations-recommended"
     }
   ]

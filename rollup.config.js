@@ -26,6 +26,7 @@ const options = {
   ],
   external: [
     ...Object.keys(pkg.dependencies),
+    'react/jsx-runtime',
     'reflect-metadata/lite',
     'yargs/helpers',
   ]

@@ -1,19 +1,24 @@
 {
+  "env": {
+    "targets": "node 18"
+  },
   "jsc": {
     "externalHelpers": true,
     "parser": {
       "syntax": "typescript",
-      "decorators": true
+      "tsx": true,
+      "decorators": true,
+      "dynamicImport": true
     },
     "transform": {
-      "decoratorVersion": "2022-03"
+      "decoratorVersion": "2022-03",
+      "react": {
+        "runtime": "automatic"
+      }
     }
   },
   "module": {
     "type": "es6"
-  },
-  "env": {
-    "targets": "node 18"
   },
   "sourceMaps": true
 }
