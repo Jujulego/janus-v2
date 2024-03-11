@@ -2091,7 +2091,7 @@ __metadata:
     eslint: "npm:8.57.0"
     eslint-plugin-react: "npm:7.34.0"
     eslint-plugin-react-hooks: "npm:4.6.0"
-    eslint-plugin-vitest: "npm:0.3.24"
+    eslint-plugin-vitest: "npm:0.3.25"
     graphql: "npm:^16.8.1"
     graphql-sse: "npm:^2.5.2"
     graphql-yoga: "npm:^5.0.0"
@@ -5255,9 +5255,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-vitest@npm:0.3.24":
-  version: 0.3.24
-  resolution: "eslint-plugin-vitest@npm:0.3.24"
+"eslint-plugin-vitest@npm:0.3.25":
+  version: 0.3.25
+  resolution: "eslint-plugin-vitest@npm:0.3.25"
   dependencies:
     "@typescript-eslint/utils": "npm:^7.1.1"
   peerDependencies:
@@ -5268,7 +5268,7 @@ __metadata:
       optional: true
     vitest:
       optional: true
-  checksum: 10c0/6dce1c25e55b66fd1b716bcad355ceec11275d7a30e1223046d1d5599046a47ddf36412fec029aba17997dcbb740b2f1cac3f431a84848db13c7de8c8bb7b5c7
+  checksum: 10c0/859dd948689310cdabac88a5206647c383e2baca3f5f2f3b0592fd925f38c886104e21e624014b6cefb54a6eef522a620cc63f28451a4aeb1233884213120e13
   languageName: node
   linkType: hard
 
