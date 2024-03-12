@@ -80,7 +80,7 @@
     "eslint": "8.57.0",
     "eslint-plugin-react": "7.34.0",
     "eslint-plugin-react-hooks": "4.6.0",
-    "eslint-plugin-vitest": "0.3.25",
+    "eslint-plugin-vitest": "0.3.26",
     "msw": "2.2.3",
     "nodemon": "3.1.0",
     "rollup": "4.12.1",
