@@ -2099,7 +2099,7 @@ __metadata:
     http-proxy: "npm:^1.18.1"
     ink: "npm:^4.4.1"
     kyrielle: "npm:^1.0.0-alpha.3"
-    msw: "npm:2.2.5"
+    msw: "npm:2.2.6"
     nodemon: "npm:3.1.0"
     react: "npm:^18.2.0"
     reflect-metadata: "npm:^0.2.0"
@@ -7874,9 +7874,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.2.5":
-  version: 2.2.5
-  resolution: "msw@npm:2.2.5"
+"msw@npm:2.2.6":
+  version: 2.2.6
+  resolution: "msw@npm:2.2.6"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -7902,7 +7902,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/c48b043170015fad14b712a625c40c807ca9bb979a8b64bddadd76f0384c7b85fddf0b6afcfc4087128b9e42b795c739e850e0798b8234dff499bb2eb60e7a4b
+  checksum: 10c0/19f3a7a19f387524b92ee677a5c9c4e39187d759f98aee52cd6cc4294cb0315bff434a6caf75c68428faaa66c7478dcbea31099756a8c6f932c56337dfacffe0
   languageName: node
   linkType: hard
 
