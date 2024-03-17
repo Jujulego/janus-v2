@@ -1,8 +1,6 @@
 import { qjson } from '@jujulego/quick-tag';
 import { Logger } from '@kyrielle/logger';
-import { pipe$, retry$, timeout$ } from 'kyrielle';
-import { fetch$ } from '../utils/fetch.js';
-import { validate$ } from '../utils/validate.js';
+import { fetch$, pipe$, retry$, timeout$, validate$ } from 'kyrielle';
 
 // Type
 export interface HealthPayload {
@@ -17,8 +15,9 @@ export function isHealthPayload(payload: unknown): payload is HealthPayload {
 // Reference
 export function health$(url: URL, logger: Logger) {
   return pipe$(
-    fetch$(url, {
-      onFetch: (url) => logger.debug`Requesting server health at ${url.toString()}`
+    fetch$<unknown>(url, {
+      onFetch: (url) => logger.debug`Requesting server health at ${url.toString()}`,
+      onSuccess: (res) => res.json(),
     }),
     retry$('read', {
       tryTimeout: 1000,
