@@ -70,7 +70,7 @@
     "@swc/core": "1.4.8",
     "@types/http-errors": "2.0.4",
     "@types/http-proxy": "1.17.14",
-    "@types/node": "18.19.24",
+    "@types/node": "18.19.25",
     "@types/react": "18.2.67",
     "@types/supertest": "6.0.2",
     "@types/yargs": "17.0.32",
