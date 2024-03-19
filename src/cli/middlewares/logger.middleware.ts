@@ -1,6 +1,6 @@
 import { inject$ } from '@jujulego/injector';
-import { defineQuickFormat, q$, qerror, qprop, qwrap } from '@jujulego/quick-tag';
-import { envDebugFilter, Log, LogLevel, LogLevelKey, toStderr } from '@kyrielle/logger';
+import { defineQuickFormat, q$, qarg, qerror, qprop, qwrap } from '@jujulego/quick-tag';
+import { Log, logDebugFilter$, logDelay$, LogLevel, LogLevelKey, qLogDelay, toStderr, WithDelay } from '@kyrielle/logger';
 import { ColorName, ModifierName } from 'chalk';
 import { chalkTemplateStderr } from 'chalk-template';
 import { filter$, flow$ } from 'kyrielle';
@@ -25,9 +25,6 @@ const LEVEL_COLORS = {
 
 const logColor = defineQuickFormat((level: LogLevel) => LEVEL_COLORS[level])(qprop<Log, 'level'>('level'));
 
-const logFormat = qwrap(chalkTemplateStderr)
-  .fun<Log>`#?:${qprop('label')}{grey [${q$}]} ?#{${logColor} ${qprop('message')}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#}`;
-
 // Middleware
 export function loggerMiddleware(parser: Argv) {
   return parser
@@ -43,9 +40,12 @@ export function loggerMiddleware(parser: Argv) {
 
       flow$(
         logger,
-        filter$((log: Log) => log.level >= logLevel),
-        envDebugFilter(),
-        toStderr(logFormat)
+        filter$((log) => log.level >= logLevel),
+        logDebugFilter$(),
+        logDelay$(),
+        toStderr(qwrap(chalkTemplateStderr)
+          .fun`#?:${qprop('label')}{grey [${q$}]} ?#{${logColor} ${qprop('message')} {grey +${qLogDelay(qarg<WithDelay>())}}#?:${qerror(qprop<Log>('error'))}${os.EOL}${q$}?#}`
+        )
       );
     });
 }

@@ -34,7 +34,7 @@
     "@jujulego/pid-file": "^2.2.1",
     "@jujulego/quick-tag": "^1.0.1",
     "@jujulego/utils": "^3.0.4",
-    "@kyrielle/logger": "^1.0.0-alpha.6",
+    "@kyrielle/logger": "^1.0.0-alpha.8",
     "@reduxjs/toolkit": "^2.0.1",
     "@swc/helpers": "^0.5.3",
     "ajv": "^8.12.0",
@@ -47,7 +47,7 @@
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
     "ink": "^4.4.1",
-    "kyrielle": "^1.0.0-alpha.4",
+    "kyrielle": "^1.0.0-alpha.5",
     "react": "^18.2.0",
     "reflect-metadata": "^0.2.0",
     "yargs": "^17.7.2"
