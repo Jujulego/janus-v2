@@ -7,8 +7,8 @@ import { useLayoutEffect } from 'react';
 import { logFormat } from '../middlewares/logger.middleware.js';
 
 // Component
-export function StaticLogs() {
-  const { stderr } = useStderr();
+export default function StaticLogs() {
+  const stderr = useStderr();
 
   useLayoutEffect(() => {
     const gateway: LogGateway<WithDelay> = inject$(LogGateway);
