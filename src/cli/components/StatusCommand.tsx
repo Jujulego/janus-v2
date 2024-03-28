@@ -1,5 +1,5 @@
 import { render, Text } from 'ink';
-import { each$, pipe$, readable$, var$, yield$ } from 'kyrielle';
+import { each$, pipe$, readable$, retry$, timeout$, var$, yield$ } from 'kyrielle';
 import { Suspense } from 'react';
 
 import { JanusClient } from '../../client/janus-client.js';
@@ -19,21 +19,24 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 
 // Component
 export default function StatusCommand(client: JanusClient) {
-  const redirections = pipe$(
+  const redirections$ = pipe$(
     readable$((signal) => client.send(StatusCommandQuery, { signal })),
-    each$(({ data }) => data.redirections),
+    retry$('read', {
+      tryTimeout: 1000,
+      onRetry: () => timeout$(1000),
+    }),
+    each$(({ data }) => data!.redirections),
     yield$(),
+    store$(var$()),
   );
 
-  redirections.read();
-
-  setTimeout(() => client.logger.warn('Cool !'), 2000);
+  redirections$.refresh();
 
   render(
     <>
       <StaticLogs />
       <Suspense fallback={<Text>Loading...</Text>}>
-        <RedirectionStatusTable redirections={pipe$(redirections, store$(var$()))} />
+        <RedirectionStatusTable redirections$={redirections$} />
       </Suspense>
     </>
   );

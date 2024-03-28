@@ -1,22 +1,34 @@
-import { type Mutable, type Observable, observable$, type PipeStep, type Readable, resource$ } from 'kyrielle';
+import {
+  type Mutable,
+  type Observable,
+  observable$,
+  type ObservedValue,
+  type PipeStep,
+  type Readable,
+  resource$,
+  Awaitable, type ReadValue
+} from 'kyrielle';
 import { useSyncExternalStore } from 'react';
 
 // Types
-export interface StoreReference<in out D> extends Readable<D | undefined>, Mutable<D, D> {}
+export interface StoreOrigin<in out D = unknown> extends Observable<D>, Partial<Readable<Awaitable<D>>> {}
+export interface StoreReference<in out D = unknown> extends Readable<D | undefined>, Mutable<D, D> {}
 
-export interface StoredResource<out D> extends Readable<D | undefined>, Observable<D> {}
+export interface StoredResource<out D = unknown> extends Readable<D | undefined>, Observable<D> {}
 
 /**
  * Stores loaded data within given reference.
  */
-export function store$<D>(ref: StoreReference<D>): PipeStep<Observable<D>, StoredResource<D>> {
-  return (origin: Observable<D> & Partial<Readable<D>>) => {
-    return resource$<D>()
-      .add(observable$((obs, signal) => {
+export function store$<O extends Observable & Readable>(ref: StoreReference<ObservedValue<O>>): PipeStep<O, StoredResource<ObservedValue<O>> & { refresh: () => ReadValue<O> }>;
+export function store$<O extends Observable>(ref: StoreReference<ObservedValue<O>>): PipeStep<O, StoredResource<ObservedValue<O>>>;
+export function store$<O extends StoreOrigin>(ref: StoreReference<ObservedValue<O>>): PipeStep<O, StoredResource<ObservedValue<O>>> {
+  return (origin: O) => {
+    const result = resource$()
+      .add(observable$<ObservedValue<O>>((obs, signal) => {
         const sub = origin.subscribe({
-          next(data: D) {
+          next(data: ObservedValue<O>) {
             ref.mutate(data);
-            setTimeout(() => obs.next(data), 5000);
+            obs.next(data);
           },
           error: obs.error,
           complete: obs.complete,
@@ -26,6 +38,14 @@ export function store$<D>(ref: StoreReference<D>): PipeStep<Observable<D>, Store
       }))
       .add({ read: ref.read })
       .build();
+
+    if (typeof origin.read === 'function') {
+      Object.assign(result, {
+        refresh: () => origin.read!()
+      });
+    }
+
+    return result;
   };
 }
 

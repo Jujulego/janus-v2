@@ -81,12 +81,15 @@ export class JanusClient implements Disposable {
    * Send query to the server
    */
   async send<R, V>(document: TypedDocumentNode<R, V>, opts: OperationOptions = {}): Promise<FormattedExecutionResult<R>> {
+    const query = this._prepareQuery(document, opts.variables);
+    this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;
+
     const res = await fetch(new URL('/_janus/graphql', this.janusUrl), {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json; charset=utf-8'
       },
-      body: JSON.stringify(this._prepareQuery(document, opts.variables)),
+      body: JSON.stringify(query),
       signal: opts.signal ?? null,
     });
 

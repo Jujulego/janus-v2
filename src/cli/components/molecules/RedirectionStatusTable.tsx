@@ -6,11 +6,11 @@ import RedirectionStatus, { RedirectionStatusItem } from '../atoms/RedirectionSt
 
 // Component
 export interface RedirectionStatusTableProps {
-  readonly redirections: StoredResource<FragmentType<typeof RedirectionStatusItem>[]>;
+  readonly redirections$: StoredResource<FragmentType<typeof RedirectionStatusItem>[]>;
 }
 
 export default function RedirectionStatusTable(props: RedirectionStatusTableProps) {
-  const redirections = useStore$(props.redirections);
+  const redirections = useStore$(props.redirections$);
 
   return (
     <Box flexDirection="column">
