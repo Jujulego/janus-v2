@@ -1,5 +1,5 @@
 import { render, Text } from 'ink';
-import { each$, pipe$, readable$, retry$, timeout$, var$, yield$ } from 'kyrielle';
+import { each$, observable$, pipe$, readable$, retry$, timeout$, var$, yield$ } from 'kyrielle';
 import { Suspense } from 'react';
 
 import { JanusClient } from '../../client/janus-client.js';
@@ -10,7 +10,7 @@ import StaticLogs from './StaticLogs.jsx';
 
 // Query
 const StatusCommandQuery = graphql(/* GraphQL */ `
-  query StatusCommand {
+  subscription StatusCommand {
     redirections {
       ...RedirectionStatusItem
     }
@@ -18,19 +18,19 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 `);
 
 // Component
-export default function StatusCommand(client: JanusClient) {
+export default async function StatusCommand(client: JanusClient) {
+  await client.initiate();
   const redirections$ = pipe$(
-    readable$((signal) => client.send(StatusCommandQuery, { signal })),
-    retry$('read', {
-      tryTimeout: 1000,
-      onRetry: () => timeout$(1000),
+    observable$((observer) => {
+      client.subscribe(observer, StatusCommandQuery);
+      return 'cool';
     }),
     each$(({ data }) => data!.redirections),
-    yield$(),
+    //yield$(),
     store$(var$()),
   );
 
-  redirections$.refresh();
+//  redirections$.refresh();
 
   render(
     <>

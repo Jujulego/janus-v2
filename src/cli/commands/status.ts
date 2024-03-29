@@ -10,7 +10,7 @@ const command: CommandModule = {
   command: 'status',
   describe: 'Prints redirection status of janus proxy server',
   async handler() {
-    using client = await inject$(CliJanusClient);
+    const client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {

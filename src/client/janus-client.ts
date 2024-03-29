@@ -66,11 +66,19 @@ export class JanusClient implements Disposable {
     if (!this._sseClient) {
       this.logger.verbose`Janus client connected (server version: ${health.version})`;
 
+      const url = new URL('/_janus/graphql', this.janusUrl).toString();
+      this.logger.debug`Initiate sse client against ${url}`;
+
       this._sseClient = createClient({
-        url: new URL('/_janus/graphql/stream', this.janusUrl).toString(),
+        url,
         retry: async () => {
           await this.serverHealth$.read(this._healthController.signal);
         },
+        on: {
+          connecting: () => this.logger.debug`Connecting to sse stream`,
+          message: (message) => this.logger.debug`Sending ${message.event} to sse stream`,
+          connected: () => this.logger.debug`Connected to sse stream`,
+        }
       });
     }
 
@@ -100,12 +108,16 @@ export class JanusClient implements Disposable {
    * Subscribes to an event stream
    */
   subscribe<D>(observer: Observer<ExecutionResult<D>>, document: DocumentNode, opts: OperationOptions = {}): void {
-    assert(!!this._sseClient, 'Client should be initiated before any observe call');
+    try {
+      assert(!!this._sseClient, 'Client should be initiated before any observe call');
 
-    const off = this._sseClient.subscribe<D>(this._prepareQuery(document, opts.variables), observer);
+      const off = this._sseClient.subscribe<D>(this._prepareQuery(document, opts.variables), observer);
 
-    if (opts.signal) {
-      opts.signal.addEventListener('abort', off, { once: true });
+      if (opts.signal) {
+        opts.signal.addEventListener('abort', off, { once: true });
+      }
+    } catch (err) {
+      this.logger.error('Failure !', err as Error);
     }
   }
 
@@ -118,6 +130,8 @@ export class JanusClient implements Disposable {
     if (this._sseClient) {
       this._sseClient.dispose();
       this._sseClient = null;
+
+      this.logger.verbose`Janus client disconnected`;
     }
   }
 }
