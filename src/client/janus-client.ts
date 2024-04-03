@@ -76,7 +76,6 @@ export class JanusClient implements Disposable {
         },
         on: {
           connecting: () => this.logger.debug`Connecting to sse stream`,
-          message: (message) => this.logger.debug`Sending ${message.event} to sse stream`,
           connected: () => this.logger.debug`Connected to sse stream`,
         }
       });
@@ -113,7 +112,10 @@ export class JanusClient implements Disposable {
     assert(!!this._sseClient, 'Client should be initiated before any observe call');
 
     return observable$<ExecutionResult<D>>((observer, signal) => {
-      const off = this._sseClient!.subscribe<D>(this._prepareQuery(document, variables), observer);
+      const query = this._prepareQuery(document, variables);
+      this.logger.debug`Sending ${query.operationName ?? 'graphql'} subscription to server at ${this.janusUrl}`;
+
+      const off = this._sseClient!.subscribe<D>(query, observer);
       signal.addEventListener('abort', off, { once: true });
     });
   }
