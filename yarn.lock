@@ -2105,7 +2105,7 @@ __metadata:
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
     ink: "npm:^4.4.1"
-    kyrielle: "npm:^1.0.0-alpha.5"
+    kyrielle: "npm:^1.0.0-alpha.7"
     msw: "npm:2.2.13"
     nodemon: "npm:3.1.0"
     react: "npm:^18.2.0"
@@ -2554,8 +2554,8 @@ __metadata:
   linkType: hard
 
 "@reduxjs/toolkit@npm:^2.0.1":
-  version: 2.2.3
-  resolution: "@reduxjs/toolkit@npm:2.2.3"
+  version: 2.2.1
+  resolution: "@reduxjs/toolkit@npm:2.2.1"
   dependencies:
     immer: "npm:^10.0.3"
     redux: "npm:^5.0.1"
@@ -2569,7 +2569,7 @@ __metadata:
       optional: true
     react-redux:
       optional: true
-  checksum: 10c0/f10f2c8f4b6c5c7a65d8d60246bdfde86b6cd2f542210ebdda8002223c7f4e99ed32964825e63f37345d9d12532671150fcec2809a40690931ae44afe8aba7f8
+  checksum: 10c0/675f816b311d6d703259e00c73977c9c5968e41b039d6d149e34e9084d5e6718aff3b692d2b7697974fb57a056687932117da1dd5202d392811d8d4e91d09322
   languageName: node
   linkType: hard
 
@@ -2922,11 +2922,11 @@ __metadata:
   linkType: hard
 
 "@swc/helpers@npm:^0.5.3, @swc/helpers@npm:^0.5.6":
-  version: 0.5.8
-  resolution: "@swc/helpers@npm:0.5.8"
+  version: 0.5.7
+  resolution: "@swc/helpers@npm:0.5.7"
   dependencies:
     tslib: "npm:^2.4.0"
-  checksum: 10c0/53a52b3654edb1b22ab317feb4ab7fa805eb368082530d2835647e5d0cc497f5c3aa8e16d568df6eee301982aac532674345acbaaa45354ffb58043768d4db36
+  checksum: 10c0/1f52e76668e12b5b991b9fc9e74e433bad671406812473c1639f79e4f46e72c85d37397adabaf9a8bbac54386ac0c887f067ceb8aaf51bcb99de697831eb4921
   languageName: node
   linkType: hard
 
@@ -5733,12 +5733,12 @@ __metadata:
   linkType: hard
 
 "follow-redirects@npm:^1.0.0":
-  version: 1.15.6
-  resolution: "follow-redirects@npm:1.15.6"
+  version: 1.15.4
+  resolution: "follow-redirects@npm:1.15.4"
   peerDependenciesMeta:
     debug:
       optional: true
-  checksum: 10c0/9ff767f0d7be6aa6870c82ac79cf0368cd73e01bbc00e9eb1c2a16fbb198ec105e3c9b6628bb98e9f3ac66fe29a957b9645bcb9a490bb7aa0d35f908b6b85071
+  checksum: 10c0/5f37ed9170c9eb19448c5418fdb0f2b73f644b5364834e70791a76ecc7db215246f9773bbef4852cfae4067764ffc852e047f744b661b0211532155b73556a6a
   languageName: node
   linkType: hard
 
@@ -6154,11 +6154,11 @@ __metadata:
   linkType: hard
 
 "graphql-sse@npm:^2.5.2":
-  version: 2.5.3
-  resolution: "graphql-sse@npm:2.5.3"
+  version: 2.5.2
+  resolution: "graphql-sse@npm:2.5.2"
   peerDependencies:
     graphql: ">=0.11 <=16"
-  checksum: 10c0/b556564aaddd8dfcc4e7fd25da37cfe95dbf5e100fca287b1b15ab6874a772fda96088b66e7d02739076fb769d60279c17afe54d5ab196eeca67972247c6c73e
+  checksum: 10c0/0ceb6fd4b858d9a89a3e77e15157b94cc04f8ed0077a1581169f9bd4e6114940a448f5bcc8cc22be0562056b5e0f515960b239cccf1e7907e708ed4da6f12279
   languageName: node
   linkType: hard
 
@@ -7341,16 +7341,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^1.0.0-alpha.4, kyrielle@npm:^1.0.0-alpha.5":
-  version: 1.0.0-alpha.5
-  resolution: "kyrielle@npm:1.0.0-alpha.5"
+"kyrielle@npm:^1.0.0-alpha.4, kyrielle@npm:^1.0.0-alpha.7":
+  version: 1.0.0-alpha.7
+  resolution: "kyrielle@npm:1.0.0-alpha.7"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
     vitest@1.4.0:
       unplugged: true
-  checksum: 10c0/9f0a79c3552dda76acc321d09e90bc2d5dcec5b44adea1afa5cb1cccdcb50a954c4ef434cc492973d0ce15598f34f57a3fa9360ffeeb85d76db5eb62273d7e60
+  checksum: 10c0/3610ecd246ad3817b14ac20907f511386a8740d1954fcd9cc106451e6b82697faa446754282781b23e6a0abc95de9f867eefe908c2204f85187cfc778840aec3
   languageName: node
   linkType: hard
 
@@ -8890,9 +8890,9 @@ __metadata:
   linkType: hard
 
 "reflect-metadata@npm:^0.2.0":
-  version: 0.2.2
-  resolution: "reflect-metadata@npm:0.2.2"
-  checksum: 10c0/1cd93a15ea291e420204955544637c264c216e7aac527470e393d54b4bb075f10a17e60d8168ec96600c7e0b9fcc0cb0bb6e91c3fbf5b0d8c9056f04e6ac1ec2
+  version: 0.2.1
+  resolution: "reflect-metadata@npm:0.2.1"
+  checksum: 10c0/6ca3c674bb43cf8ec3a3f5f38c8730a6116335f8e562fcdcdf3a492af168c5a7f0e8f17476a5710c3fe6bf9b5d22e8a463f14c0e26e326339cab65e099900ef7
   languageName: node
   linkType: hard
 

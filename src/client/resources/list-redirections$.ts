@@ -1,7 +1,7 @@
 import { each$, observable$, pipe$, readable$, resource$ } from 'kyrielle';
 
 import { JanusClient } from '../janus-client.js';
-import { graphql, useFragment } from '../../gql/index.js';
+import { graphql, unmask } from '../../gql/index.js';
 
 // Fragments
 export const RedirectionItem = graphql(/* GraphQL */ `
@@ -44,6 +44,6 @@ export function listRedirections$(client: JanusClient) {
       .add(observable$((observer, signal) => client.subscribe(observer, ListRedirectionsStream, { signal })))
       .build(),
     each$(({ data }) => data?.redirections ?? []),
-    each$((redirections) => redirections.map((r) => useFragment(RedirectionItem, r)))
+    each$((redirections) => redirections.map((r) => unmask(RedirectionItem, r)))
   );
 }
