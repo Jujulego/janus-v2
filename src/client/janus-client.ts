@@ -2,7 +2,7 @@ import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
-import { AsyncReadable, Observer } from 'kyrielle';
+import { AsyncReadable, type Observable, observable$ } from 'kyrielle';
 import assert from 'node:assert';
 
 import { health$, HealthPayload } from './health.ref.js';
@@ -107,18 +107,15 @@ export class JanusClient implements Disposable {
   /**
    * Subscribes to an event stream
    */
-  subscribe<D>(observer: Observer<ExecutionResult<D>>, document: TypedDocumentNode<D, Record<string, never>>, opts: OperationOptions = {}): void {
-    try {
-      assert(!!this._sseClient, 'Client should be initiated before any observe call');
+  subscribe$<D>(document: TypedDocumentNode<D, Record<string, never>>): Observable<ExecutionResult<D>>;
+  subscribe$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Observable<ExecutionResult<D>>;
+  subscribe$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Observable<ExecutionResult<D>> {
+    assert(!!this._sseClient, 'Client should be initiated before any observe call');
 
-      const off = this._sseClient.subscribe<D>(this._prepareQuery(document, opts.variables), observer);
-
-      if (opts.signal) {
-        opts.signal.addEventListener('abort', off, { once: true });
-      }
-    } catch (err) {
-      this.logger.error('Failure !', err as Error);
-    }
+    return observable$<ExecutionResult<D>>((observer, signal) => {
+      const off = this._sseClient!.subscribe<D>(this._prepareQuery(document, variables), observer);
+      signal.addEventListener('abort', off, { once: true });
+    });
   }
 
   /**

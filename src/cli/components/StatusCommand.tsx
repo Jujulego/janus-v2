@@ -1,7 +1,5 @@
-import type { ResultOf } from '@graphql-typed-document-node/core';
-import type { ExecutionResult } from 'graphql-sse';
 import { render, Text } from 'ink';
-import { each$, observable$, pipe$, store$, var$ } from 'kyrielle';
+import { each$, pipe$, store$, var$ } from 'kyrielle';
 import { Suspense } from 'react';
 
 import { JanusClient } from '../../client/janus-client.js';
@@ -21,8 +19,9 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 // Component
 export default async function StatusCommand(client: JanusClient) {
   await client.initiate();
+
   const redirections$ = pipe$(
-    observable$<ExecutionResult<ResultOf<typeof StatusCommandQuery>>>((observer) => client.subscribe(observer, StatusCommandQuery)),
+    client.subscribe$(StatusCommandQuery),
     each$(({ data }) => data!.redirections),
     store$(var$()),
   );
