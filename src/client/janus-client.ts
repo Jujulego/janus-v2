@@ -107,7 +107,7 @@ export class JanusClient implements Disposable {
   /**
    * Subscribes to an event stream
    */
-  subscribe<D>(observer: Observer<ExecutionResult<D>>, document: DocumentNode, opts: OperationOptions = {}): void {
+  subscribe<D>(observer: Observer<ExecutionResult<D>>, document: TypedDocumentNode<D, Record<string, never>>, opts: OperationOptions = {}): void {
     try {
       assert(!!this._sseClient, 'Client should be initiated before any observe call');
 

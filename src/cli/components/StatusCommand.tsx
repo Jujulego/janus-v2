@@ -1,10 +1,11 @@
+import type { ResultOf } from '@graphql-typed-document-node/core';
+import type { ExecutionResult } from 'graphql-sse';
 import { render, Text } from 'ink';
-import { each$, observable$, pipe$, readable$, retry$, timeout$, var$, yield$ } from 'kyrielle';
+import { each$, observable$, pipe$, store$, var$ } from 'kyrielle';
 import { Suspense } from 'react';
 
 import { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
-import { store$ } from '../../utils/store.js';
 import RedirectionStatusTable from './molecules/RedirectionStatusTable.jsx';
 import StaticLogs from './StaticLogs.jsx';
 
@@ -21,16 +22,10 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 export default async function StatusCommand(client: JanusClient) {
   await client.initiate();
   const redirections$ = pipe$(
-    observable$((observer) => {
-      client.subscribe(observer, StatusCommandQuery);
-      return 'cool';
-    }),
+    observable$<ExecutionResult<ResultOf<typeof StatusCommandQuery>>>((observer) => client.subscribe(observer, StatusCommandQuery)),
     each$(({ data }) => data!.redirections),
-    //yield$(),
     store$(var$()),
   );
-
-//  redirections$.refresh();
 
   render(
     <>

@@ -47,7 +47,7 @@
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
     "ink": "^4.4.1",
-    "kyrielle": "^1.0.0-alpha.5",
+    "kyrielle": "^1.0.0-alpha.7",
     "react": "^18.2.0",
     "reflect-metadata": "^0.2.0",
     "yargs": "^17.7.2"

@@ -2105,7 +2105,7 @@ __metadata:
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
     ink: "npm:^4.4.1"
-    kyrielle: "npm:^1.0.0-alpha.5"
+    kyrielle: "npm:^1.0.0-alpha.7"
     msw: "npm:2.2.9"
     nodemon: "npm:3.1.0"
     react: "npm:^18.2.0"
@@ -7335,16 +7335,29 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^1.0.0-alpha.4, kyrielle@npm:^1.0.0-alpha.5":
-  version: 1.0.0-alpha.5
-  resolution: "kyrielle@npm:1.0.0-alpha.5"
+"kyrielle@npm:^1.0.0-alpha.4":
+  version: 1.0.0-alpha.6
+  resolution: "kyrielle@npm:1.0.0-alpha.6"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
     vitest@1.4.0:
       unplugged: true
-  checksum: 10c0/9f0a79c3552dda76acc321d09e90bc2d5dcec5b44adea1afa5cb1cccdcb50a954c4ef434cc492973d0ce15598f34f57a3fa9360ffeeb85d76db5eb62273d7e60
+  checksum: 10c0/b4fa6444c7799f83dc6b51c50b268dc69d26886da6a36427463a1eb5cfb47c8e98232be9ece15100db4f6b44a1712182e0ee77150f1510a5ef83898c6a2112fe
+  languageName: node
+  linkType: hard
+
+"kyrielle@npm:^1.0.0-alpha.7":
+  version: 1.0.0-alpha.7
+  resolution: "kyrielle@npm:1.0.0-alpha.7"
+  dependencies:
+    "@repeaterjs/repeater": "npm:^3.0.5"
+    "@swc/helpers": "npm:^0.5.3"
+  dependenciesMeta:
+    vitest@1.4.0:
+      unplugged: true
+  checksum: 10c0/3610ecd246ad3817b14ac20907f511386a8740d1954fcd9cc106451e6b82697faa446754282781b23e6a0abc95de9f867eefe908c2204f85187cfc778840aec3
   languageName: node
   linkType: hard
 
