@@ -28,7 +28,7 @@ export class JanusClient implements Disposable {
     readonly janusUrl = 'http://localhost:3000/',
     logger = logger$(),
   ) {
-    this.logger = logger.child(withLabel('janus'));
+    this.logger = logger.child(withLabel('janus:client'));
 
     this.serverHealth$ = health$(
       new URL('/_janus/health', janusUrl),
@@ -75,8 +75,8 @@ export class JanusClient implements Disposable {
           await this.serverHealth$.read(this._healthController.signal);
         },
         on: {
-          connecting: () => this.logger.debug`Connecting to sse stream`,
-          connected: () => this.logger.debug`Connected to sse stream`,
+          connecting: (reconnecting) => this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`,
+          connected: (reconnected) => this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`,
         }
       });
     }
