@@ -6154,11 +6154,11 @@ __metadata:
   linkType: hard
 
 "graphql-sse@npm:^2.5.2":
-  version: 2.5.2
-  resolution: "graphql-sse@npm:2.5.2"
+  version: 2.5.3
+  resolution: "graphql-sse@npm:2.5.3"
   peerDependencies:
     graphql: ">=0.11 <=16"
-  checksum: 10c0/0ceb6fd4b858d9a89a3e77e15157b94cc04f8ed0077a1581169f9bd4e6114940a448f5bcc8cc22be0562056b5e0f515960b239cccf1e7907e708ed4da6f12279
+  checksum: 10c0/b556564aaddd8dfcc4e7fd25da37cfe95dbf5e100fca287b1b15ab6874a772fda96088b66e7d02739076fb769d60279c17afe54d5ab196eeca67972247c6c73e
   languageName: node
   linkType: hard
 
