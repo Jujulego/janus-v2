@@ -2,16 +2,9 @@ import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
-import { AsyncReadable, type Observable, observable$ } from 'kyrielle';
-import assert from 'node:assert';
+import { AsyncReadable, type Observable, observable$, type Readable, readable$ } from 'kyrielle';
 
 import { health$, HealthPayload } from './health.ref.js';
-
-// Types
-export interface OperationOptions {
-  readonly variables?: Record<string, unknown>;
-  readonly signal?: AbortSignal;
-}
 
 // Class
 export class JanusClient implements Disposable {
@@ -75,22 +68,26 @@ export class JanusClient implements Disposable {
   }
 
   /**
-   * Send query to the server
+   * Send a request to the server
    */
-  async send<R, V>(document: TypedDocumentNode<R, V>, opts: OperationOptions = {}): Promise<FormattedExecutionResult<R>> {
-    const query = this._prepareQuery(document, opts.variables);
-    this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;
+  read$<D>(document: TypedDocumentNode<D, Record<string, never>>): Readable<Promise<FormattedExecutionResult<D>>>;
+  read$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Readable<Promise<FormattedExecutionResult<D>>>;
+  read$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Readable<Promise<FormattedExecutionResult<D>>> {
+    return readable$(async (signal) => {
+      const query = this._prepareQuery(document, variables);
+      this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;
 
-    const res = await fetch(new URL('/_janus/graphql', this.janusUrl), {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json; charset=utf-8'
-      },
-      body: JSON.stringify(query),
-      signal: opts.signal ?? null,
+      const res = await fetch(new URL('/_janus/graphql', this.janusUrl), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json; charset=utf-8'
+        },
+        body: JSON.stringify(query),
+        signal,
+      });
+
+      return await res.json();
     });
-
-    return await res.json();
   }
 
   /**

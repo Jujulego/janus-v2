@@ -16,7 +16,7 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      const health = await client.initiate(AbortSignal.timeout(5000));
+      const health = await client.serverHealth$.read(AbortSignal.timeout(5000));
 
       logger.info`client/${version} proxy/${health.version}`;
     } catch (err) {
