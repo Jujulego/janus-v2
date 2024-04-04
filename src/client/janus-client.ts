@@ -99,13 +99,11 @@ export class JanusClient implements Disposable {
   subscribe$<D>(document: TypedDocumentNode<D, Record<string, never>>): Observable<ExecutionResult<D>>;
   subscribe$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Observable<ExecutionResult<D>>;
   subscribe$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Observable<ExecutionResult<D>> {
-    assert(!!this._sseClient, 'Client should be initiated before any observe call');
-
     return observable$<ExecutionResult<D>>((observer, signal) => {
       const query = this._prepareQuery(document, variables);
       this.logger.debug`Sending ${query.operationName ?? 'graphql'} subscription to server at ${this.janusUrl}`;
 
-      const off = this._sseClient!.subscribe<D>(query, observer);
+      const off = this._sseClient.subscribe<D>(query, observer);
       signal.addEventListener('abort', off, { once: true });
     });
   }
