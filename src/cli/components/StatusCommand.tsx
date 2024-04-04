@@ -18,8 +18,6 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 
 // Component
 export default async function StatusCommand(client: JanusClient) {
-  await client.initiate();
-
   const redirections$ = pipe$(
     client.subscribe$(StatusCommandQuery),
     each$(({ data }) => data!.redirections),

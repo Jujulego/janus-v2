@@ -16,8 +16,8 @@ export interface OperationOptions {
 // Class
 export class JanusClient implements Disposable {
   // Attributes
-  private _sseClient: Client<false> | null = null;
-  private _healthController = new AbortController();
+  private readonly _sseClient: Client<false>;
+  private readonly _healthController = new AbortController();
 
   readonly logger: Logger;
   readonly serverHealth$: AsyncReadable<HealthPayload>;
@@ -35,10 +35,28 @@ export class JanusClient implements Disposable {
       this.logger.child(withLabel('janus:health')),
     );
 
+    this._sseClient = this._prepareClient();
+
     this[Symbol.dispose ?? Symbol.for('Symbol.dispose')] = this.dispose.bind(this);
   }
 
   // Methods
+  private _prepareClient(): Client<false> {
+    const url = new URL('/_janus/graphql', this.janusUrl).toString();
+    this.logger.debug`Initiate sse client against ${url}`;
+
+    return createClient({
+      url,
+      retry: async () => {
+        await this.serverHealth$.read(this._healthController.signal);
+      },
+      on: {
+        connecting: (reconnecting) => this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`,
+        connected: (reconnected) => this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`,
+      }
+    });
+  }
+
   private _prepareQuery(document: DocumentNode, variables?: Record<string, unknown>): RequestParams {
     const operation = document.definitions
       .find((def): def is OperationDefinitionNode => def.kind === 'OperationDefinition');
@@ -54,34 +72,6 @@ export class JanusClient implements Disposable {
     }
 
     return request;
-  }
-
-  /**
-   * Connects client to server, and setup healthcheck.
-   * @returns `true` if connection is successful, `false` otherwise.
-   */
-  async initiate(signal?: AbortSignal): Promise<HealthPayload> {
-    const health = await this.serverHealth$.read(signal);
-
-    if (!this._sseClient) {
-      this.logger.verbose`Janus client connected (server version: ${health.version})`;
-
-      const url = new URL('/_janus/graphql', this.janusUrl).toString();
-      this.logger.debug`Initiate sse client against ${url}`;
-
-      this._sseClient = createClient({
-        url,
-        retry: async () => {
-          await this.serverHealth$.read(this._healthController.signal);
-        },
-        on: {
-          connecting: (reconnecting) => this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`,
-          connected: (reconnected) => this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`,
-        }
-      });
-    }
-
-    return health;
   }
 
   /**
@@ -125,12 +115,8 @@ export class JanusClient implements Disposable {
    */
   dispose(): void {
     this._healthController.abort();
+    this._sseClient.dispose();
 
-    if (this._sseClient) {
-      this._sseClient.dispose();
-      this._sseClient = null;
-
-      this.logger.verbose`Janus client disconnected`;
-    }
+    this.logger.verbose`Janus client disconnected`;
   }
 }
