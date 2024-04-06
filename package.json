@@ -18,15 +18,18 @@
   "type": "module",
   "bin": "./bin/janus.js",
   "module": "./dist/index.js",
+  "types": "./dist/index.d.ts",
   "exports": {
+    "types": "./dist/index.d.ts",
     "default": "./dist/index.js"
   },
   "scripts": {
     "lint": "eslint .",
     "clean": "shx rm -r dist",
     "codegen": "graphql-codegen-esm --config graphql.config.yml",
-    "build": "jill run 'build:bundle // build:types'",
+    "build": "jill run 'build:bundle // build:dts // build:types'",
     "build:bundle": "rollup -c",
+    "build:dts": "tsc -p tsconfig.dts.json",
     "build:types": "tsc -p tsconfig.build.json",
     "watch": "rollup -c --watch",
     "dev:start": "nodemon ./bin/janus.js start",
