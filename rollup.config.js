@@ -9,6 +9,7 @@ import pkg from './package.json' assert { type: 'json' };
 const options = {
   input: {
     main: 'src/main.ts',
+    index: 'src/index.ts',
     daemon: 'src/daemon/daemon.ts'
   },
   output: {
