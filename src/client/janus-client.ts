@@ -2,9 +2,12 @@ import { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
-import { AsyncReadable, type Observable, observable$, type Readable, readable$ } from 'kyrielle';
+import { AsyncReadable, type Observable, observable$, type Readable, readable$, var$ } from 'kyrielle';
 
 import { health$, HealthPayload } from './health.ref.js';
+
+// Type
+export type JanusClientStatus = 'connecting' | 'connected' | 'disconnected';
 
 // Class
 export class JanusClient implements Disposable {
@@ -14,6 +17,7 @@ export class JanusClient implements Disposable {
 
   readonly logger: Logger;
   readonly serverHealth$: AsyncReadable<HealthPayload>;
+  readonly status$ = var$<JanusClientStatus>('disconnected');
   readonly [Symbol.dispose]: () => void;
 
   // Constructor
@@ -41,11 +45,18 @@ export class JanusClient implements Disposable {
     return createClient({
       url,
       retry: async () => {
+        this.status$.mutate('connecting');
         await this.serverHealth$.read(this._healthController.signal);
       },
       on: {
-        connecting: (reconnecting) => this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`,
-        connected: (reconnected) => this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`,
+        connecting: (reconnecting) => {
+          this.status$.mutate('connecting');
+          this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`;
+        },
+        connected: (reconnected) => {
+          this.status$.mutate('connected');
+          this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`;
+        },
       }
     });
   }
@@ -112,6 +123,7 @@ export class JanusClient implements Disposable {
     this._healthController.abort();
     this._sseClient.dispose();
 
+    this.status$.mutate('disconnected');
     this.logger.verbose`Janus client disconnected`;
   }
 }

@@ -1,11 +1,10 @@
-import { render, Text } from 'ink';
+import { render } from 'ink';
 import { each$, pipe$, store$, var$ } from 'kyrielle';
-import { Suspense } from 'react';
 
 import { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
+import WithClientLayout from './layouts/WithClientLayout.jsx';
 import RedirectionStatusTable from './molecules/RedirectionStatusTable.jsx';
-import StaticLogs from './StaticLogs.jsx';
 
 // Query
 const StatusCommandQuery = graphql(/* GraphQL */ `
@@ -17,7 +16,7 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 `);
 
 // Component
-export default async function StatusCommand(client: JanusClient) {
+export default function StatusCommand(client: JanusClient) {
   const redirections$ = pipe$(
     client.subscribe$(StatusCommandQuery),
     each$(({ data }) => data!.redirections),
@@ -25,11 +24,8 @@ export default async function StatusCommand(client: JanusClient) {
   );
 
   render(
-    <>
-      <StaticLogs />
-      <Suspense fallback={<Text>Loading...</Text>}>
-        <RedirectionStatusTable redirections$={redirections$} />
-      </Suspense>
-    </>
+    <WithClientLayout client={client}>
+      <RedirectionStatusTable redirections$={redirections$} />
+    </WithClientLayout>
   );
 }
