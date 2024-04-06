@@ -1,7 +1,8 @@
 schema: './src/server/schema/schema.graphql'
 documents:
   - './src/cli/**/*.{ts,tsx}'
-  - './src/client/**/*.ts'
+  - './src/client/**/*.{ts,tsx}'
+  - './tests/**/*.{ts,tsx}'
 
 extensions:
   codegen:
@@ -9,8 +10,21 @@ extensions:
     emitLegacyCommonJSImports: false
 
     generates:
-      './src/gql/':
+      './src/cli/gql/':
         preset: 'client'
+        documents:
+          - '!./src/client/**/*.{ts,tsx}'
+          - '!./tests/**/*.{ts,tsx}'
+
+        presetConfig:
+          fragmentMasking:
+            unmaskFunctionName: 'unmask'
+
+      './src/client/gql/':
+        preset: 'client'
+        documents:
+          - '!./src/cli/**/*.{ts,tsx}'
+          - '!./tests/**/*.{ts,tsx}'
 
         presetConfig:
           fragmentMasking:
@@ -18,7 +32,9 @@ extensions:
 
       './tests/gql/':
         preset: 'client'
-        documents: './tests/**/*.test.{ts,tsx}'
+        documents:
+          - '!./src/cli/**/*.{ts,tsx}'
+          - '!./src/client/**/*.{ts,tsx}'
 
         presetConfig:
           fragmentMasking:

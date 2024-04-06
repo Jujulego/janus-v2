@@ -11,7 +11,7 @@ let logger: Logger;
 let client: JanusClient;
 
 const TestQuery = graphql(`
-  query TestQuery {
+  query TestJanusClient {
     redirections {
       id
     }

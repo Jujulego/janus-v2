@@ -12,8 +12,10 @@
   "ignorePatterns": [
     "coverage/**",
     "dist/**",
-    "src/gql/**",
-    "src/server/schema/schema.types.ts"
+    "src/cli/gql/**",
+    "src/client/gql/**",
+    "src/server/schema/schema.types.ts",
+    "tests/gql/**"
   ],
   "env": {
     "node": true
@@ -57,7 +59,8 @@
     {
       "files": [
         "./src/cli/**/*.{js,jsx,ts,tsx}",
-        "./src/client/**/*.{js,jsx,ts,tsx}"
+        "./src/client/**/*.{js,jsx,ts,tsx}",
+        "./tests/**/*.{js,jsx,ts,tsx}"
       ],
       "processor": "@graphql-eslint/graphql"
     },
@@ -68,7 +71,8 @@
     {
       "files": [
         "./src/cli/**/*.graphql",
-        "./src/client/**/*.graphql"
+        "./src/client/**/*.graphql",
+        "./tests/**/*.graphql"
       ],
       "extends": "plugin:@graphql-eslint/operations-recommended"
     }
