@@ -17,6 +17,10 @@
   ],
   "type": "module",
   "bin": "./bin/janus.js",
+  "module": "./dist/index.js",
+  "exports": {
+    "default": "./dist/index.js"
+  },
   "scripts": {
     "lint": "eslint .",
     "clean": "shx rm -r dist",
