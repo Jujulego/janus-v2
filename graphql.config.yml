@@ -16,6 +16,14 @@ extensions:
           fragmentMasking:
             unmaskFunctionName: 'unmask'
 
+      './tests/gql/':
+        preset: 'client'
+        documents: './tests/**/*.test.{ts,tsx}'
+
+        presetConfig:
+          fragmentMasking:
+            unmaskFunctionName: 'unmask'
+
       './src/server/schema/schema.types.ts':
         plugins: ['typescript', 'typescript-resolvers']
 
