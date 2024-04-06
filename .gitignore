@@ -10,9 +10,10 @@
 # Codegen files
 src/gql
 src/server/schema/schema.types.ts
+tests/gql
 
 # Generated files
-.vitest
+.vite
 coverage
 dist
 *.log

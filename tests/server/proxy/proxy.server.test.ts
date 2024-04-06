@@ -115,6 +115,7 @@ describe('ProxyServer', () => {
     });
     vi.mocked(listEnabledOutputs).mockReturnValue([
       {
+        id: 'life#test',
         name: 'test',
         target: 'http://localhost:3001',
         enabled: true,
@@ -138,6 +139,7 @@ describe('ProxyServer', () => {
     });
     vi.mocked(listEnabledOutputs).mockReturnValue([
       {
+        id: 'life#miss',
         name: 'miss',
         target: 'http://localhost:3000',
         enabled: true,
@@ -146,6 +148,7 @@ describe('ProxyServer', () => {
         ws: true,
       },
       {
+        id: 'life#test',
         name: 'test',
         target: 'http://localhost:3001',
         enabled: true,
@@ -171,6 +174,7 @@ describe('ProxyServer', () => {
     });
     vi.mocked(listEnabledOutputs).mockReturnValue([
       {
+        id: 'life#test',
         name: 'test',
         target: 'http://localhost:3001',
         enabled: true,
@@ -195,6 +199,7 @@ describe('ProxyServer', () => {
     });
     vi.mocked(listEnabledOutputs).mockReturnValue([
       {
+        id: 'life#miss',
         name: 'miss',
         target: 'http://localhost:3000',
         enabled: true,
@@ -203,6 +208,7 @@ describe('ProxyServer', () => {
         ws: true,
       },
       {
+        id: 'life#test',
         name: 'test',
         target: 'http://localhost:3001',
         enabled: true,
