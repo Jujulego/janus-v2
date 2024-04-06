@@ -44,7 +44,7 @@ beforeEach(() => {
 // Tests
 describe('JanusClient.read$', () => {
   it('should call janus server and return it\'s response', async () => {
-    const test$ = client.read$(TestQuery);
+    const test$ = client.request$(TestQuery);
 
     await expect(test$.read()).resolves.toStrictEqual({
       data: {
