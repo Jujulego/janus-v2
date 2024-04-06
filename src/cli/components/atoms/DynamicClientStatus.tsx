@@ -1,4 +1,4 @@
-import { useLayoutEffect, useState } from 'react';
+import { startTransition, useLayoutEffect, useState } from 'react';
 
 import type { JanusClient } from '../../../client/janus-client.js';
 import { useStore$ } from '../../../utils/store.js';
@@ -17,7 +17,9 @@ export default function DynamicClientStatus({ client }: DynamicClientStatusProps
     setShowStatus(true);
 
     if (status === 'connected') {
-      const timeout = setTimeout(() => setShowStatus(false), 2000);
+      const timeout = setTimeout(() => startTransition(() => {
+        setShowStatus(false);
+      }), 2000);
       return () => clearTimeout(timeout);
     }
   }, [status]);
