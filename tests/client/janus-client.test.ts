@@ -21,7 +21,7 @@ const TestQuery = graphql(`
 const janusGql = mockGql.link('http://localhost:3000/_janus/graphql');
 
 const mockServer = setupServer(
-  janusGql.query('TestQuery', () => HttpResponse.json({
+  janusGql.query('TestJanusClient', () => HttpResponse.json({
     data: {
       redirections: [
         { id: 'test-1' }
