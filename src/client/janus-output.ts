@@ -143,5 +143,6 @@ export class JanusOutput implements Disposable {
    */
   dispose(): void {
     this._client?.dispose();
+    delete this._client;
   }
 }
