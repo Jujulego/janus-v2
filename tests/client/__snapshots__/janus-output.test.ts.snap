@@ -1,0 +1,473 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`JanusOutput.disable > should load given config file 1`] = `
+[
+  {
+    "definitions": [
+      {
+        "kind": "OperationDefinition",
+        "name": {
+          "kind": "Name",
+          "value": "DisableJanusOutput",
+        },
+        "operation": "mutation",
+        "selectionSet": {
+          "kind": "SelectionSet",
+          "selections": [
+            {
+              "arguments": [
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "redirectionId",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "redirectionId",
+                    },
+                  },
+                },
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "outputName",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "outputName",
+                    },
+                  },
+                },
+              ],
+              "kind": "Field",
+              "name": {
+                "kind": "Name",
+                "value": "disableRedirectionOutput",
+              },
+              "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                  {
+                    "kind": "Field",
+                    "name": {
+                      "kind": "Name",
+                      "value": "id",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        "variableDefinitions": [
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "ID",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "redirectionId",
+              },
+            },
+          },
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "String",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "outputName",
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "kind": "Document",
+  },
+  {
+    "outputName": "book",
+    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+  },
+]
+`;
+
+exports[`JanusOutput.disable > should send disable query to server according to config 1`] = `
+[
+  {
+    "definitions": [
+      {
+        "kind": "OperationDefinition",
+        "name": {
+          "kind": "Name",
+          "value": "DisableJanusOutput",
+        },
+        "operation": "mutation",
+        "selectionSet": {
+          "kind": "SelectionSet",
+          "selections": [
+            {
+              "arguments": [
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "redirectionId",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "redirectionId",
+                    },
+                  },
+                },
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "outputName",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "outputName",
+                    },
+                  },
+                },
+              ],
+              "kind": "Field",
+              "name": {
+                "kind": "Name",
+                "value": "disableRedirectionOutput",
+              },
+              "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                  {
+                    "kind": "Field",
+                    "name": {
+                      "kind": "Name",
+                      "value": "id",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        "variableDefinitions": [
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "ID",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "redirectionId",
+              },
+            },
+          },
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "String",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "outputName",
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "kind": "Document",
+  },
+  {
+    "outputName": "book",
+    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+  },
+]
+`;
+
+exports[`JanusOutput.enable > should load given config file 1`] = `
+[
+  {
+    "definitions": [
+      {
+        "kind": "OperationDefinition",
+        "name": {
+          "kind": "Name",
+          "value": "EnableJanusOutput",
+        },
+        "operation": "mutation",
+        "selectionSet": {
+          "kind": "SelectionSet",
+          "selections": [
+            {
+              "arguments": [
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "redirectionId",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "redirectionId",
+                    },
+                  },
+                },
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "outputName",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "outputName",
+                    },
+                  },
+                },
+              ],
+              "kind": "Field",
+              "name": {
+                "kind": "Name",
+                "value": "enableRedirectionOutput",
+              },
+              "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                  {
+                    "kind": "Field",
+                    "name": {
+                      "kind": "Name",
+                      "value": "id",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        "variableDefinitions": [
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "ID",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "redirectionId",
+              },
+            },
+          },
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "String",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "outputName",
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "kind": "Document",
+  },
+  {
+    "outputName": "book",
+    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+  },
+]
+`;
+
+exports[`JanusOutput.enable > should send enable query to server according to config 1`] = `
+[
+  {
+    "definitions": [
+      {
+        "kind": "OperationDefinition",
+        "name": {
+          "kind": "Name",
+          "value": "EnableJanusOutput",
+        },
+        "operation": "mutation",
+        "selectionSet": {
+          "kind": "SelectionSet",
+          "selections": [
+            {
+              "arguments": [
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "redirectionId",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "redirectionId",
+                    },
+                  },
+                },
+                {
+                  "kind": "Argument",
+                  "name": {
+                    "kind": "Name",
+                    "value": "outputName",
+                  },
+                  "value": {
+                    "kind": "Variable",
+                    "name": {
+                      "kind": "Name",
+                      "value": "outputName",
+                    },
+                  },
+                },
+              ],
+              "kind": "Field",
+              "name": {
+                "kind": "Name",
+                "value": "enableRedirectionOutput",
+              },
+              "selectionSet": {
+                "kind": "SelectionSet",
+                "selections": [
+                  {
+                    "kind": "Field",
+                    "name": {
+                      "kind": "Name",
+                      "value": "id",
+                    },
+                  },
+                ],
+              },
+            },
+          ],
+        },
+        "variableDefinitions": [
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "ID",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "redirectionId",
+              },
+            },
+          },
+          {
+            "kind": "VariableDefinition",
+            "type": {
+              "kind": "NonNullType",
+              "type": {
+                "kind": "NamedType",
+                "name": {
+                  "kind": "Name",
+                  "value": "String",
+                },
+              },
+            },
+            "variable": {
+              "kind": "Variable",
+              "name": {
+                "kind": "Name",
+                "value": "outputName",
+              },
+            },
+          },
+        ],
+      },
+    ],
+    "kind": "Document",
+  },
+  {
+    "outputName": "book",
+    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+  },
+]
+`;

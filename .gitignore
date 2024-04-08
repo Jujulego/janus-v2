@@ -8,7 +8,8 @@
 .pnp.*
 
 # Codegen files
-src/gql
+src/cli/gql
+src/client/gql
 src/server/schema/schema.types.ts
 tests/gql
 

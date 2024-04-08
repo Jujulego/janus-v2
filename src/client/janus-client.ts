@@ -81,9 +81,9 @@ export class JanusClient implements Disposable {
   /**
    * Send a request to the server
    */
-  read$<D>(document: TypedDocumentNode<D, Record<string, never>>): Readable<Promise<FormattedExecutionResult<D>>>;
-  read$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Readable<Promise<FormattedExecutionResult<D>>>;
-  read$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Readable<Promise<FormattedExecutionResult<D>>> {
+  request$<D>(document: TypedDocumentNode<D, Record<string, never>>): Readable<Promise<FormattedExecutionResult<D>>>;
+  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Readable<Promise<FormattedExecutionResult<D>>>;
+  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Readable<Promise<FormattedExecutionResult<D>>> {
     return readable$(async (signal) => {
       const query = this._prepareQuery(document, variables);
       this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;

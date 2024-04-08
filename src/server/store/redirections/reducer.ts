@@ -4,7 +4,7 @@ import { createReducer, Reducer } from '@reduxjs/toolkit';
 import { loadConfig } from '../actions.js';
 import { disableRedirectionOutput, enableRedirectionOutput } from './actions.js';
 import { RedirectionsState, RedirectionState } from './types.js';
-import { generateRedirectionId } from './utils.js';
+import { generateRedirectionId } from '../../../utils/redirections.js';
 
 // Reducer
 const initialState: RedirectionsState = {
