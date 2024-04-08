@@ -54,7 +54,7 @@ export class JanusOutput implements Disposable {
   private async _getClient(): Promise<JanusClient> {
     if (!this._client) {
       const config = await this._getConfig();
-      this._client = new JanusClient(`http://localhost:${config.server.port}/`);
+      this._client = new JanusClient(`http://localhost:${config.server.port}/`, this.logger);
     }
 
     return this._client;
@@ -88,6 +88,7 @@ export class JanusOutput implements Disposable {
     await this._getRedirectionOutput(); // <= asserts that output exists according to config
     const client = await this._getClient();
 
+    this.logger.info('Enabling redirection output...');
     const { data: result } = await pipe$(
       client.request$(
         graphql(`
@@ -116,6 +117,7 @@ export class JanusOutput implements Disposable {
     await this._getRedirectionOutput(); // <= asserts that output exists according to config
     const client = await this._getClient();
 
+    this.logger.info('Disabling redirection output...');
     const { data: result } = await pipe$(
       client.request$(
         graphql(`
