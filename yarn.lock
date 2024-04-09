@@ -2196,15 +2196,15 @@ __metadata:
   linkType: hard
 
 "@jujulego/quick-tag@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "@jujulego/quick-tag@npm:1.0.1"
+  version: 1.0.3
+  resolution: "@jujulego/quick-tag@npm:1.0.3"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
     safe-stable-stringify: "npm:^2.4.3"
   dependenciesMeta:
-    vitest@1.2.1:
+    vitest@1.4.0:
       unplugged: true
-  checksum: 10c0/31775f50c44d06e6b481a0ec4198e3951f8f871e31c5732749dfb38ec9612fe1ebb06687e99fc87192ac07586dc7655687dd60b620cd90f42890fbd8fa2e659f
+  checksum: 10c0/9300898423719286bb0ca71e1c7f17bee4d7d932dfa29e91fe8a433213a137c625d545ddb21148a73b54e3534445882d9bbea49e201de0d0ecf027b69aa3c5ff
   languageName: node
   linkType: hard
 
