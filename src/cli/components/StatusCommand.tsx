@@ -2,7 +2,7 @@ import { render } from 'ink';
 import { each$, pipe$, store$, var$ } from 'kyrielle';
 
 import { JanusClient } from '../../client/janus-client.js';
-import { graphql } from '../gql/index.js';
+import { graphql } from '../../gql/index.js';
 import WithClientLayout from './layouts/WithClientLayout.jsx';
 import RedirectionStatusTable from './molecules/RedirectionStatusTable.jsx';
 

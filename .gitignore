@@ -8,10 +8,8 @@
 .pnp.*
 
 # Codegen files
-src/cli/gql
-src/client/gql
+src/gql
 src/server/schema/schema.types.ts
-tests/gql
 
 # Generated files
 .vite

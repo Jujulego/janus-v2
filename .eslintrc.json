@@ -12,17 +12,15 @@
   "ignorePatterns": [
     "coverage/**",
     "dist/**",
-    "src/cli/gql/**",
-    "src/client/gql/**",
-    "src/server/schema/schema.types.ts",
-    "tests/gql/**"
+    "src/gql/**",
+    "src/server/schema/schema.types.ts"
   ],
   "env": {
     "node": true
   },
   "overrides": [
     {
-      "files": "./**/*.{js,jsx,ts,tsx}",
+      "files": "**/*.{js,jsx,ts,tsx}",
       "extends": [
         "eslint:recommended",
         "plugin:@typescript-eslint/recommended"
@@ -34,7 +32,7 @@
       }
     },
     {
-      "files": "./**/*.{jsx,tsx}",
+      "files": "**/*.{jsx,tsx}",
       "extends": [
         "plugin:react/recommended",
         "plugin:react/jsx-runtime",
@@ -46,7 +44,7 @@
       }
     },
     {
-      "files": "./**/*.test.{js,jsx,ts,tsx}",
+      "files": "**/*.test.{js,jsx,ts,tsx}",
       "extends": [
         "plugin:vitest/recommended"
       ],
@@ -58,22 +56,19 @@
     },
     {
       "files": [
-        "./src/cli/**/*.{js,jsx,ts,tsx}",
-        "./src/client/**/*.{js,jsx,ts,tsx}",
-        "./tests/**/*.{js,jsx,ts,tsx}"
+        "src/**/*.{js,jsx,ts,tsx}",
+        "tests/**/*.{js,jsx,ts,tsx}"
       ],
+      "excludedFiles": "src/main.ts",
       "processor": "@graphql-eslint/graphql"
     },
     {
-      "files": "./src/server/schema/schema.graphql",
+      "files": "src/server/schema/schema.graphql",
       "extends": "plugin:@graphql-eslint/schema-recommended"
     },
     {
-      "files": [
-        "./src/cli/**/*.graphql",
-        "./src/client/**/*.graphql",
-        "./tests/**/*.graphql"
-      ],
+      "files": "**/*.graphql",
+      "excludedFiles": "src/server/schema/schema.graphql",
       "extends": "plugin:@graphql-eslint/operations-recommended"
     }
   ]

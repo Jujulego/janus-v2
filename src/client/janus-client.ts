@@ -1,6 +1,6 @@
-import { TypedDocumentNode } from '@graphql-typed-document-node/core';
+import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
-import { DocumentNode, FormattedExecutionResult, OperationDefinitionNode, print } from 'graphql';
+import { type DocumentNode, type FormattedExecutionResult, type OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
 import { AsyncReadable, type Observable, observable$, type Readable, readable$, var$ } from 'kyrielle';
 

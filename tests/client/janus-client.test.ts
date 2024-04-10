@@ -1,22 +1,22 @@
 import { Logger, logger$ } from '@kyrielle/logger';
+import { gql } from 'graphql-tag';
 import { graphql as mockGql, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
 import { beforeAll, beforeEach, describe, expect, it } from 'vitest';
 
 import { JanusClient } from '@/src/client/janus-client.js';
-import { graphql } from '@/tests/gql/index.js';
 
 // Setup
 let logger: Logger;
 let client: JanusClient;
 
-const TestQuery = graphql(`
+const TestQuery = gql`
   query TestJanusClient {
     redirections {
       id
     }
   }
-`);
+`;
 
 const janusGql = mockGql.link('http://localhost:3000/_janus/graphql');
 

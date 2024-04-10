@@ -1,7 +1,6 @@
 schema: './src/server/schema/schema.graphql'
 documents:
-  - './src/cli/**/*.{ts,tsx}'
-  - './src/client/**/*.{ts,tsx}'
+  - './src/**/*.{ts,tsx}'
   - './tests/**/*.{ts,tsx}'
 
 extensions:
@@ -10,31 +9,15 @@ extensions:
     emitLegacyCommonJSImports: false
 
     generates:
-      './src/cli/gql/':
+      './src/gql/':
         preset: 'client'
         documents:
-          - '!./src/client/**/*.{ts,tsx}'
           - '!./tests/**/*.{ts,tsx}'
 
-        presetConfig:
-          fragmentMasking:
-            unmaskFunctionName: 'unmask'
-
-      './src/client/gql/':
-        preset: 'client'
-        documents:
-          - '!./src/cli/**/*.{ts,tsx}'
-          - '!./tests/**/*.{ts,tsx}'
-
-        presetConfig:
-          fragmentMasking:
-            unmaskFunctionName: 'unmask'
-
-      './tests/gql/':
-        preset: 'client'
-        documents:
-          - '!./src/cli/**/*.{ts,tsx}'
-          - '!./src/client/**/*.{ts,tsx}'
+        config:
+          avoidOptionals: true
+          dedupeFragments: true
+          useTypeImports: true
 
         presetConfig:
           fragmentMasking:
@@ -45,3 +28,5 @@ extensions:
 
         config:
           immutableTypes: true
+          useIndexSignature: true
+          useTypeImports: true
