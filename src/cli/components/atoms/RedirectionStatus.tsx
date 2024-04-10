@@ -1,7 +1,7 @@
 import { Text } from 'ink';
 import { useMemo } from 'react';
 
-import { FragmentType, graphql, unmask } from '../../gql/index.js';
+import { FragmentType, graphql, unmask } from '../../../gql/index.js';
 
 // Fragment
 export const RedirectionStatusItem = graphql(/* GraphQL */ `

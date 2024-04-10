@@ -5,7 +5,7 @@ import assert from 'node:assert';
 import { ConfigService } from '../config/config.service.js';
 import { Config, OutputConfig, RedirectionConfig } from '../config/type.js';
 import { generateRedirectionId } from '../utils/redirections.js';
-import { graphql } from './gql/index.js';
+import { graphql } from '../gql/index.js';
 import { JanusClient } from './janus-client.js';
 
 // Types
