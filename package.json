@@ -70,7 +70,7 @@
     "@graphql-typed-document-node/core": "3.2.0",
     "@jujulego/jill": "2.5.2",
     "@jujulego/vite-plugin-swc": "1.2.0",
-    "@microsoft/eslint-formatter-sarif": "3.0.0",
+    "@microsoft/eslint-formatter-sarif": "3.1.0",
     "@parcel/watcher": "2.4.1",
     "@rollup/plugin-graphql": "2.0.4",
     "@rollup/plugin-json": "6.1.0",
