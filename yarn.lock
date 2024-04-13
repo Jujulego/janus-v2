@@ -7337,15 +7337,15 @@ __metadata:
   linkType: hard
 
 "kyrielle@npm:^1.0.0-alpha.4, kyrielle@npm:^1.0.0-alpha.7":
-  version: 1.0.0-alpha.7
-  resolution: "kyrielle@npm:1.0.0-alpha.7"
+  version: 1.0.0-alpha.8
+  resolution: "kyrielle@npm:1.0.0-alpha.8"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
-    vitest@1.4.0:
+    vitest@1.5.0:
       unplugged: true
-  checksum: 10c0/3610ecd246ad3817b14ac20907f511386a8740d1954fcd9cc106451e6b82697faa446754282781b23e6a0abc95de9f867eefe908c2204f85187cfc778840aec3
+  checksum: 10c0/66253267d6c5ef6c138ec272208046851f2b20047b2af4da49945e4b43a9cd46846e87c448fb97dc90b652a60070a5c5a6a4dd4bf0834dea54e1bb2226599744
   languageName: node
   linkType: hard
 
