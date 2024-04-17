@@ -2109,7 +2109,7 @@ __metadata:
     ink-spinner: "npm:^5.0.0"
     kyrielle: "npm:^1.0.0-alpha.7"
     log-symbols: "npm:^6.0.0"
-    msw: "npm:2.2.13"
+    msw: "npm:2.2.14"
     nodemon: "npm:3.1.0"
     react: "npm:^18.2.0"
     reflect-metadata: "npm:^0.2.0"
@@ -7893,9 +7893,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.2.13":
-  version: 2.2.13
-  resolution: "msw@npm:2.2.13"
+"msw@npm:2.2.14":
+  version: 2.2.14
+  resolution: "msw@npm:2.2.14"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -7921,7 +7921,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/3e1cf1f4122410b5e4685101bf0e131c508a6fb0f889cf475c0d361263e4feb3aed03fbf31ed5e39fff04562bbe92cfe09b49e72270acadd5842d68ce2080ff2
+  checksum: 10c0/3a5864aadb01d076835f53459a411fb0a303fe48469c0e3d9de9b9eb9a87b3257096d6441d21986c0ae388d9417e0ed232fa74db66e39bcf8cd5ddfccfeb5993
   languageName: node
   linkType: hard
 
