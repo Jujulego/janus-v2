@@ -93,7 +93,7 @@
     "graphql-tag": "2.12.6",
     "msw": "2.2.14",
     "nodemon": "3.1.0",
-    "rollup": "4.16.4",
+    "rollup": "4.17.0",
     "shx": "0.3.4",
     "supertest": "6.3.4",
     "ts-node": "10.9.2",
