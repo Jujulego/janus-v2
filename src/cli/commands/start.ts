@@ -31,8 +31,8 @@ const command: CommandModule<unknown, StartArgs> = {
         const proxy = await inject$(CliJanusProxy);
         await proxy.start();
 
-        process.on('SIGINT', async () => {
-          logger.info('Received SIGINT signal, initiate clean stop');
+        process.once('SIGINT', async () => {
+          logger.info`Received SIGINT signal, initiate clean stop`;
           await proxy.stop();
 
           process.exit(0);

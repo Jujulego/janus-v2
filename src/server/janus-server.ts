@@ -102,7 +102,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
         this._started = true;
         this._events.emit('started', this);
 
-        process.on('beforeExit', () => this._pidfile?.delete());
+        process.once('beforeExit', () => this._pidfile?.delete());
       } else {
         this.logger.warn('Looks like janus is already running.');
       }

@@ -4,12 +4,15 @@ import { fetch$, pipe$, retry$, timeout$, validate$ } from 'kyrielle';
 
 // Type
 export interface HealthPayload {
+  readonly pid: number;
   readonly version: string;
 }
 
 // Utils
 export function isHealthPayload(payload: unknown): payload is HealthPayload {
-  return !!payload && typeof payload === 'object' && 'version' in payload && typeof payload.version === 'string';
+  return !!payload && typeof payload === 'object'
+    && 'pid' in payload && typeof payload.pid === 'number'
+    && 'version' in payload && typeof payload.version === 'string';
 }
 
 // Reference

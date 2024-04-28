@@ -54,7 +54,7 @@ export class HttpServer {
 
   private _handleHealth(req: IncomingMessage, res: ServerResponse) {
     res.setHeader('Content-Type', 'application/json');
-    res.write(JSON.stringify({ version }));
+    res.write(JSON.stringify({ pid: process.pid, version }));
     res.end();
   }
 

@@ -25,7 +25,7 @@ process.once('message', async (configState: ConfigState) => {
       process.send!('started');
       disableStdoutLog.unsubscribe();
 
-      process.on('SIGINT', async () => {
+      process.once('SIGINT', async () => {
         logger.info('Received SIGINT signal, initiate clean stop');
         await proxy.stop();
 
