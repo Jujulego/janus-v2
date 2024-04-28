@@ -1,4 +1,4 @@
-import { inject$ } from '@jujulego/injector';
+import { inject$ } from '@kyrielle/injector';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 

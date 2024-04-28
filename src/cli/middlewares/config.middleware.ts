@@ -1,4 +1,4 @@
-import { inject$ } from '@jujulego/injector';
+import { inject$ } from '@kyrielle/injector';
 import { Argv } from 'yargs';
 
 import { CliConfigService } from '../cli-tokens.js';

@@ -1,10 +1,10 @@
-import { token$ } from '@jujulego/injector';
+import { token$ } from '@kyrielle/injector';
 import { cosmiconfig, defaultLoaders } from 'cosmiconfig';
 
 import { dynamicImport } from '../utils/import.js';
 
 // Tokens
-export const ConfigExplorer = token$(() => cosmiconfig('janus', {
+export const ConfigExplorer = token$('ConfigExplorer', () => cosmiconfig('janus', {
   searchStrategy: 'global',
   loaders: {
     '.cjs': (filepath) => dynamicImport(filepath).then((mod) => mod.default),

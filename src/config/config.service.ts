@@ -1,8 +1,7 @@
-import { Inject } from '@jujulego/injector';
 import { qjson } from '@jujulego/quick-tag';
+import { inject$ } from '@kyrielle/injector';
 import { Logger, withLabel } from '@kyrielle/logger';
 import Ajv from 'ajv';
-import { PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
 import process from 'node:process';
 
@@ -26,9 +25,7 @@ export class ConfigService {
   private _config?: Config;
 
   private readonly _logger: Logger;
-
-  @Inject(ConfigExplorer, { lazy: true })
-  private accessor _explorer: PublicExplorer;
+  private readonly _explorer = inject$(ConfigExplorer);
 
   // Constructor
   constructor(logger: Logger, state?: ConfigState) {
