@@ -41,6 +41,17 @@ export class HttpServer {
     });
   }
 
+  async close(): Promise<void> {
+    // Close server
+    await new Promise<void>((resolve, reject) => this._server.close((err) => {
+      if (err) {
+        reject(err);
+      } else {
+        resolve();
+      }
+    }));
+  }
+
   private _handleHealth(req: IncomingMessage, res: ServerResponse) {
     res.setHeader('Content-Type', 'application/json');
     res.write(JSON.stringify({ version }));

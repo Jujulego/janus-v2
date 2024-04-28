@@ -21,4 +21,16 @@ export class LogFile {
     this._subscription?.unsubscribe();
     this._subscription = flow$(logger, toStream(this._stream, (log) => qjson(log)!));
   }
+
+  async close(): Promise<void> {
+    if (this._stream) {
+      await new Promise<void>(((resolve, reject) => this._stream!.close((err) => {
+        if (err) {
+          reject(err);
+        } else {
+          resolve();
+        }
+      })));
+    }
+  }
 }

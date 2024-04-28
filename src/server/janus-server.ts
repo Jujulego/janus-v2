@@ -109,6 +109,23 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
     });
   }
 
+  /**
+   * Stops proxy server.
+   */
+  async stop(): Promise<void> {
+    if (!this._started) {
+      return;
+    }
+
+    await this._lock.with(async () => {
+      await this._server.close();
+      await this._logfile.close();
+      await this._pidfile!.delete();
+
+      this._started = true;
+    });
+  }
+
   // Properties
   get started() {
     return this._started;
