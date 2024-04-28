@@ -32,7 +32,7 @@
     "build:dts": "tsc -p tsconfig.dts.json",
     "build:types": "tsc -p tsconfig.build.json",
     "watch": "rollup -c --watch",
-    "dev:start": "nodemon ./bin/janus.js start",
+    "dev:start": "nodemon ./bin/janus.js -- start -v",
     "test": "vitest run --typecheck"
   },
   "dependencies": {

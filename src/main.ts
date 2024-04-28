@@ -20,6 +20,7 @@ import './graphql.d.js';
 
   parser.command(commands.start)
     .command(commands.status)
+    .command(commands.stop)
     .command(commands.version)
     .demandCommand()
     .strictCommands()

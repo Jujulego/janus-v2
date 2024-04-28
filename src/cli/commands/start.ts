@@ -30,6 +30,13 @@ const command: CommandModule<unknown, StartArgs> = {
       } else {
         const proxy = await inject$(CliJanusProxy);
         await proxy.start();
+
+        process.once('SIGINT', async () => {
+          logger.info`Received SIGINT signal, initiate clean stop`;
+          await proxy.stop();
+
+          process.exit(0);
+        });
       }
     } catch (err) {
       logger.error('Error while starting proxy:', err as Error);
