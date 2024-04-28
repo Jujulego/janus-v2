@@ -24,6 +24,13 @@ process.once('message', async (configState: ConfigState) => {
     if (proxy.started) {
       process.send!('started');
       disableStdoutLog.unsubscribe();
+
+      process.on('SIGINT', async () => {
+        logger.info('Received SIGINT signal, initiate clean stop');
+        await proxy.stop();
+
+        process.exit(0);
+      });
     }
   } catch (err) {
     logger.error('Error while running proxy server', err as Error);
