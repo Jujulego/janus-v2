@@ -1,4 +1,4 @@
-import { inject$ } from '@jujulego/injector';
+import { inject$ } from '@kyrielle/injector';
 import { defineQuickFormat, q$, qarg, qerror, qprop, qwrap } from '@jujulego/quick-tag';
 import {
   Log,
@@ -48,11 +48,10 @@ export function loggerMiddleware(parser: Argv) {
     })
     .middleware(async (args) => {
       const logLevel = args.verbose ? LogLevel[args.verbose] : LogLevel.info;
-      const logger = inject$(CliLogger);
       const logGateway = inject$(LogGateway);
 
       flow$(
-        logger,
+        inject$(CliLogger),
         filter$((log) => log.level >= logLevel),
         logDebugFilter$(),
         logDelay$(),

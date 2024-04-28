@@ -1,4 +1,4 @@
-import { inject$ } from '@jujulego/injector';
+import { inject$ } from '@kyrielle/injector';
 import { LogGateway, type WithDelay } from '@kyrielle/logger';
 import { useStderr } from 'ink';
 import { observer$ } from 'kyrielle';
