@@ -22,6 +22,7 @@ process.once('message', async (configState: ConfigState) => {
     await proxy.start();
 
     if (proxy.started) {
+      proxy.useLogFile();
       process.send!('started');
       disableStdoutLog.unsubscribe();
 
