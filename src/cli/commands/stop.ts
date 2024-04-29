@@ -14,9 +14,13 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      const health = await client.serverHealth$.read(AbortSignal.timeout(5000));
+      const { default: HealthLoader } = await import('../components/HealthLoader.jsx');
+      const health = await HealthLoader(client);
+
       logger.verbose`Reached janus server, running in process ${health.pid}`;
-      logger.info`Sending SIGINT signal to janus proxy`;
+      logger.verbose`Sending SIGINT signal to janus proxy`;
+      logger.info`Proxy stopped`;
+
       process.kill(health.pid, 'SIGINT');
     } catch (err) {
       if (!isTimeoutError(err)) {
