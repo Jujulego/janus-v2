@@ -2,6 +2,7 @@ import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
 import { logger$, withTimestamp } from '@kyrielle/logger';
 import { Listenable, multiplexer$, source$ } from 'kyrielle';
+import assert from 'node:assert';
 import process from 'node:process';
 
 import { ConfigService } from '../config/config.service.js';
@@ -45,14 +46,17 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
 
     if (configService?.config) {
       this._config = configService?.config;
-      this._setupLogFile();
     }
   }
 
   // Methods
   readonly on = this._events.on;
 
-  private _setupLogFile() {
+  /**
+   * Start to write to log file.
+   */
+  useLogFile() {
+    assert(this._config, 'Config must be loaded to use log file.');
     this._logfile.open(this._config!.server.logfile, this.logger);
   }
 
@@ -61,8 +65,6 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
    */
   async searchConfig(): Promise<void> {
     this._config = await this._configService.searchConfig();
-    this._setupLogFile();
-
     this._events.emit('loaded', this._config);
   }
 
@@ -73,8 +75,6 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
    */
   async loadConfig(filepath: string): Promise<void> {
     this._config = await this._configService.loadConfig(filepath);
-    this._setupLogFile();
-
     this._events.emit('loaded', this._config);
   }
 
