@@ -15,7 +15,7 @@ const command: CommandModule = {
 
     try {
       const { default: StatusCommand } = await import('../components/StatusCommand.jsx');
-      await StatusCommand(client);
+      StatusCommand(client);
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
