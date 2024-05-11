@@ -53,7 +53,7 @@
     "graphql-yoga": "^5.0.0",
     "http-errors": "^2.0.0",
     "http-proxy": "^1.18.1",
-    "ink": "^4.4.1",
+    "ink": "^5.0.0",
     "ink-spinner": "^5.0.0",
     "kyrielle": "^1.0.0-alpha.7",
     "log-symbols": "^6.0.0",
