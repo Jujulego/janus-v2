@@ -2261,17 +2261,17 @@ __metadata:
   linkType: hard
 
 "@kyrielle/logger@npm:^1.0.0-alpha.6, @kyrielle/logger@npm:^1.0.0-alpha.8":
-  version: 1.0.0-alpha.8
-  resolution: "@kyrielle/logger@npm:1.0.0-alpha.8"
+  version: 1.0.0-alpha.10
+  resolution: "@kyrielle/logger@npm:1.0.0-alpha.10"
   dependencies:
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@swc/helpers": "npm:^0.5.3"
     kyrielle: "npm:^1.0.0-alpha.4"
     pretty-ms: "npm:^9.0.0"
   dependenciesMeta:
-    vitest@1.4.0:
+    vitest@1.6.0:
       unplugged: true
-  checksum: 10c0/aa05679d2a3718845ee50df1dc601d6f3830819e11d6ba1a96a181049bed8d20a21e4f7d1860867902dd2181c598a9f5fc59c44512da268020ceb34171575e7b
+  checksum: 10c0/6f5ebe44ab3a0c4fd2a9ca46d2eb1b9eeb221e756e6e3a17ed4726018c597fd91c24d805a6164fd50f3c067ec35012e6a7a4ce3c4dd94919da66d6dd63ca65fd
   languageName: node
   linkType: hard
 
