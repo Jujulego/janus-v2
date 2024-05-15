@@ -2095,7 +2095,7 @@ __metadata:
     graphql-yoga: "npm:^5.0.0"
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
-    ink: "npm:^4.4.1"
+    ink: "npm:^5.0.0"
     ink-spinner: "npm:^5.0.0"
     kyrielle: "npm:^1.0.0-alpha.7"
     log-symbols: "npm:^6.0.0"
@@ -4358,6 +4358,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"cli-truncate@npm:^4.0.0":
+  version: 4.0.0
+  resolution: "cli-truncate@npm:4.0.0"
+  dependencies:
+    slice-ansi: "npm:^5.0.0"
+    string-width: "npm:^7.0.0"
+  checksum: 10c0/d7f0b73e3d9b88cb496e6c086df7410b541b56a43d18ade6a573c9c18bd001b1c3fba1ad578f741a4218fdc794d042385f8ac02c25e1c295a2d8b9f3cb86eb4c
+  languageName: node
+  linkType: hard
+
 "cli-width@npm:^3.0.0":
   version: 3.0.0
   resolution: "cli-width@npm:3.0.0"
@@ -4925,6 +4935,13 @@ __metadata:
   version: 1.4.690
   resolution: "electron-to-chromium@npm:1.4.690"
   checksum: 10c0/fba87387968bac5ac55161dc176e55d92a54146ae1e5fb16c3fdd5bf4f250ce6f271713659c0cdfa7fc0fd9a9ea1a79803f266fa2b936535b208c0759a4d3983
+  languageName: node
+  linkType: hard
+
+"emoji-regex@npm:^10.3.0":
+  version: 10.3.0
+  resolution: "emoji-regex@npm:10.3.0"
+  checksum: 10c0/b4838e8dcdceb44cf47f59abe352c25ff4fe7857acaf5fb51097c427f6f75b44d052eb907a7a3b86f86bc4eae3a93f5c2b7460abe79c407307e6212d65c91163
   languageName: node
   linkType: hard
 
@@ -5868,6 +5885,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"get-east-asian-width@npm:^1.0.0":
+  version: 1.2.0
+  resolution: "get-east-asian-width@npm:1.2.0"
+  checksum: 10c0/914b1e217cf38436c24b4c60b4c45289e39a45bf9e65ef9fd343c2815a1a02b8a0215aeec8bf9c07c516089004b6e3826332481f40a09529fcadbf6e579f286b
+  languageName: node
+  linkType: hard
+
 "get-func-name@npm:^2.0.1, get-func-name@npm:^2.0.2":
   version: 2.0.2
   resolution: "get-func-name@npm:2.0.2"
@@ -6537,7 +6561,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ink@npm:^4.3.0, ink@npm:^4.4.1":
+"ink@npm:^4.3.0":
   version: 4.4.1
   resolution: "ink@npm:4.4.1"
   dependencies:
@@ -6576,6 +6600,47 @@ __metadata:
     react-devtools-core:
       optional: true
   checksum: 10c0/f89e7d1b53df9a4dbf5271d123d47de1ef974b5ef41c6fbb7bf0a8f1af7d6806788cb6d181eb3132b372255127bdc4074e7760d5526f28a5308e6b0d06e56dae
+  languageName: node
+  linkType: hard
+
+"ink@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "ink@npm:5.0.0"
+  dependencies:
+    "@alcalzone/ansi-tokenize": "npm:^0.1.3"
+    ansi-escapes: "npm:^6.0.0"
+    ansi-styles: "npm:^6.2.1"
+    auto-bind: "npm:^5.0.1"
+    chalk: "npm:^5.3.0"
+    cli-boxes: "npm:^3.0.0"
+    cli-cursor: "npm:^4.0.0"
+    cli-truncate: "npm:^4.0.0"
+    code-excerpt: "npm:^4.0.0"
+    indent-string: "npm:^5.0.0"
+    is-in-ci: "npm:^0.1.0"
+    lodash: "npm:^4.17.21"
+    patch-console: "npm:^2.0.0"
+    react-reconciler: "npm:^0.29.0"
+    scheduler: "npm:^0.23.0"
+    signal-exit: "npm:^3.0.7"
+    slice-ansi: "npm:^7.1.0"
+    stack-utils: "npm:^2.0.6"
+    string-width: "npm:^7.0.0"
+    type-fest: "npm:^4.8.3"
+    widest-line: "npm:^5.0.0"
+    wrap-ansi: "npm:^9.0.0"
+    ws: "npm:^8.15.0"
+    yoga-wasm-web: "npm:~0.3.3"
+  peerDependencies:
+    "@types/react": ">=18.0.0"
+    react: ">=18.0.0"
+    react-devtools-core: ^4.19.1
+  peerDependenciesMeta:
+    "@types/react":
+      optional: true
+    react-devtools-core:
+      optional: true
+  checksum: 10c0/3466665321a26331b0891780bece462d2210106561a3d3c8c3057a3ff7264af29a456b54d4a981ff06f73f46eeadd38e93ec9036e6f11639638ea8b88d3d3f7c
   languageName: node
   linkType: hard
 
@@ -6798,6 +6863,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-fullwidth-code-point@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "is-fullwidth-code-point@npm:5.0.0"
+  dependencies:
+    get-east-asian-width: "npm:^1.0.0"
+  checksum: 10c0/cd591b27d43d76b05fa65ed03eddce57a16e1eca0b7797ff7255de97019bcaf0219acfc0c4f7af13319e13541f2a53c0ace476f442b13267b9a6a7568f2b65c8
+  languageName: node
+  linkType: hard
+
 "is-generator-function@npm:^1.0.10":
   version: 1.0.10
   resolution: "is-generator-function@npm:1.0.10"
@@ -6813,6 +6887,15 @@ __metadata:
   dependencies:
     is-extglob: "npm:^2.1.1"
   checksum: 10c0/17fb4014e22be3bbecea9b2e3a76e9e34ff645466be702f1693e8f1ee1adac84710d0be0bd9f967d6354036fd51ab7c2741d954d6e91dae6bb69714de92c197a
+  languageName: node
+  linkType: hard
+
+"is-in-ci@npm:^0.1.0":
+  version: 0.1.0
+  resolution: "is-in-ci@npm:0.1.0"
+  bin:
+    is-in-ci: cli.js
+  checksum: 10c0/0895b6ecf8abc18a07611382184a3fbe2a8424c11e8a6fd915fcee950d7027d6a3734068636c86bc084828465bf2878fdcd60a8f4fe06d70ff42e10f5cf8bb73
   languageName: node
   linkType: hard
 
@@ -9512,6 +9595,16 @@ __metadata:
   languageName: node
   linkType: hard
 
+"slice-ansi@npm:^7.1.0":
+  version: 7.1.0
+  resolution: "slice-ansi@npm:7.1.0"
+  dependencies:
+    ansi-styles: "npm:^6.2.1"
+    is-fullwidth-code-point: "npm:^5.0.0"
+  checksum: 10c0/631c971d4abf56cf880f034d43fcc44ff883624867bf11ecbd538c47343911d734a4656d7bc02362b40b89d765652a7f935595441e519b59e2ad3f4d5d6fe7ca
+  languageName: node
+  linkType: hard
+
 "slugify@npm:^1.6.6":
   version: 1.6.6
   resolution: "slugify@npm:1.6.6"
@@ -9714,6 +9807,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"string-width@npm:^7.0.0":
+  version: 7.1.0
+  resolution: "string-width@npm:7.1.0"
+  dependencies:
+    emoji-regex: "npm:^10.3.0"
+    get-east-asian-width: "npm:^1.0.0"
+    strip-ansi: "npm:^7.1.0"
+  checksum: 10c0/68a99fbc3bd3d8eb42886ff38dce819767dee55f606f74dfa4687a07dfd21262745d9683df0aa53bf81a5dd47c13da921a501925b974bec66a7ddd634fef0634
+  languageName: node
+  linkType: hard
+
 "string.prototype.matchall@npm:^4.0.10":
   version: 4.0.10
   resolution: "string.prototype.matchall@npm:4.0.10"
@@ -9782,7 +9886,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"strip-ansi@npm:^7.0.1":
+"strip-ansi@npm:^7.0.1, strip-ansi@npm:^7.1.0":
   version: 7.1.0
   resolution: "strip-ansi@npm:7.1.0"
   dependencies:
@@ -10173,10 +10277,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"type-fest@npm:^4.9.0":
-  version: 4.9.0
-  resolution: "type-fest@npm:4.9.0"
-  checksum: 10c0/7e6423f7337928a7323ce8a68cfbbaf30ecb70b9c635207899e58297d219c71be4a8c50b52afb9fe09c9f44b2c4276d0a44bb95acabab7bc942455f980aad267
+"type-fest@npm:^4.8.3, type-fest@npm:^4.9.0":
+  version: 4.18.2
+  resolution: "type-fest@npm:4.18.2"
+  checksum: 10c0/5e669128bf7cbc9f9cea4e4862c974517a1d9f77652589c2ac0908a8be5d852d4e52593ed14f4d8a44a604fb5e8a8ec1b658e461acd8bb7592f5e5265a04cbab
   languageName: node
   linkType: hard
 
@@ -10703,6 +10807,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"widest-line@npm:^5.0.0":
+  version: 5.0.0
+  resolution: "widest-line@npm:5.0.0"
+  dependencies:
+    string-width: "npm:^7.0.0"
+  checksum: 10c0/6bd6cca8cda502ef50e05353fd25de0df8c704ffc43ada7e0a9cf9a5d4f4e12520485d80e0b77cec8a21f6c3909042fcf732aa9281e5dbb98cc9384a138b2578
+  languageName: node
+  linkType: hard
+
 "wrap-ansi-cjs@npm:wrap-ansi@^7.0.0, wrap-ansi@npm:^7.0.0":
   version: 7.0.0
   resolution: "wrap-ansi@npm:7.0.0"
@@ -10733,6 +10846,17 @@ __metadata:
     string-width: "npm:^5.0.1"
     strip-ansi: "npm:^7.0.1"
   checksum: 10c0/138ff58a41d2f877eae87e3282c0630fc2789012fc1af4d6bd626eeb9a2f9a65ca92005e6e69a75c7b85a68479fe7443c7dbe1eb8fbaa681a4491364b7c55c60
+  languageName: node
+  linkType: hard
+
+"wrap-ansi@npm:^9.0.0":
+  version: 9.0.0
+  resolution: "wrap-ansi@npm:9.0.0"
+  dependencies:
+    ansi-styles: "npm:^6.2.1"
+    string-width: "npm:^7.0.0"
+    strip-ansi: "npm:^7.1.0"
+  checksum: 10c0/a139b818da9573677548dd463bd626a5a5286271211eb6e4e82f34a4f643191d74e6d4a9bb0a3c26ec90e6f904f679e0569674ac099ea12378a8b98e20706066
   languageName: node
   linkType: hard
 
