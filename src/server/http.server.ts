@@ -10,6 +10,12 @@ import { YogaServer } from './yoga.server.js';
 import { ProxyServer } from './proxy/proxy.server.js';
 import { ServerStore } from './store/types.js';
 
+// Types
+type ServerRequest = IncomingMessage & {
+  url?: string;
+  method?: string;
+}
+
 // Http server
 export class HttpServer {
   // Attributes
@@ -64,8 +70,7 @@ export class HttpServer {
         if (req.url === '/_janus/health') {
           this._handleHealth(req, res);
         } else {
-          // @ts-expect-error Yoga poorly typed
-          await this.yoga.handle(req, res);
+          await this.yoga.handle(req as ServerRequest, res);
         }
       } else {
         await this.proxy.handleRequest(req, res);
