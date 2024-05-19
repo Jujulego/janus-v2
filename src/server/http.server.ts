@@ -11,7 +11,7 @@ import { ProxyServer } from './proxy/proxy.server.js';
 import { ServerStore } from './store/types.js';
 
 // Types
-type ServerRequest = IncomingMessage & {
+export type ServerRequest = IncomingMessage & {
   url?: string;
   method?: string;
 }
