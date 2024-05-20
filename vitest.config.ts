@@ -8,6 +8,7 @@ export default defineConfig({
   test: {
     coverage: {
       include: ['src/**'],
+      exclude: ['src/gql/**'],
       reporter: ['text', 'lcovonly'],
     },
     globals: true,
