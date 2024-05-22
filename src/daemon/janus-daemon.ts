@@ -34,6 +34,10 @@ export class JanusDaemon {
         this.logger.next(JSON.parse(log));
       }
     });
+
+    daemon.stderr!.on('data', (msg: Buffer) => {
+      this.logger.error(msg.toString('utf-8'));
+    });
   }
 
   /**
@@ -49,12 +53,6 @@ export class JanusDaemon {
 
     // Handle events
     this._handleLogs(daemon);
-
-    daemon.stderr!.on('data', (msg: Buffer) => {
-      this.logger.error(msg.toString('utf-8'));
-    });
-
-    daemon.send(this._configService.state);
 
     return new Promise<boolean>((resolve, reject) => {
       daemon.on('message', (msg) => {
@@ -85,6 +83,8 @@ export class JanusDaemon {
 
         resolve(false);
       });
+
+      daemon.send(this._configService.state);
     });
   }
 }
