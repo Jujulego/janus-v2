@@ -93,7 +93,7 @@
     "graphql-tag": "2.12.6",
     "memfs": "4.9.2",
     "msw": "2.3.0",
-    "nodemon": "3.1.0",
+    "nodemon": "3.1.1",
     "rollup": "4.18.0",
     "shx": "0.3.4",
     "supertest": "7.0.0",
