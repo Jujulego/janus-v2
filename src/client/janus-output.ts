@@ -100,11 +100,11 @@ export class JanusOutput implements Disposable {
         `),
         { redirectionId: this.redirectionId, outputName: this.outputName }
       ),
-      retry$('read', {
+      retry$('defer', {
         tryTimeout: 1000,
         onRetry: () => timeout$(1000),
       }),
-    ).read(signal);
+    ).defer(signal);
 
     assert(result?.enableRedirectionOutput?.id === this.redirectionId, 'Janus server responded with wrong redirection id');
   }
@@ -129,11 +129,11 @@ export class JanusOutput implements Disposable {
         `),
         { redirectionId: this.redirectionId, outputName: this.outputName }
       ),
-      retry$('read', {
+      retry$('defer', {
         tryTimeout: 1000,
         onRetry: () => timeout$(1000),
       }),
-    ).read(signal);
+    ).defer(signal);
 
     assert(result?.disableRedirectionOutput?.id === this.redirectionId, 'Janus server responded with wrong redirection id');
   }
