@@ -46,7 +46,7 @@ describe('JanusClient.read$', () => {
   it('should call janus server and return it\'s response', async () => {
     const test$ = client.request$(TestQuery);
 
-    await expect(test$.read()).resolves.toStrictEqual({
+    await expect(test$.defer()).resolves.toStrictEqual({
       data: {
         redirections: [
           { id: 'test-1' }
