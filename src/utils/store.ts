@@ -7,7 +7,7 @@ export function useStore$<D>(res: StoredResource<D>): D {
       const sub = res.subscribe(cb);
       return () => sub.unsubscribe();
     }, [res]),
-    () => res.read(),
+    () => res.defer(),
   );
 
   if (data === undefined) {

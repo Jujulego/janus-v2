@@ -22,7 +22,7 @@ export function health$(url: URL, logger: Logger) {
       onFetch: (url) => logger.debug`Requesting server health at ${url.toString()}`,
       onSuccess: (res) => res.json(),
     }),
-    retry$('read', {
+    retry$('defer', {
       tryTimeout: 1000,
       onRetry: () => timeout$(1000),
     }),

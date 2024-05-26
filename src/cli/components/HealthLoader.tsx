@@ -22,7 +22,7 @@ export default async function HealthLoader(client: JanusClient, timeout = 5000):
       return new Promise<never>(() => {});
     });
 
-    return await client.serverHealth$.read(controller.signal);
+    return await client.serverHealth$.defer(controller.signal);
   } finally {
     clearTimeout(timeoutId);
     app.clear();

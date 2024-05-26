@@ -2,7 +2,7 @@ import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
 import { type DocumentNode, type FormattedExecutionResult, type OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
-import { AsyncReadable, type Observable, observable$, type Readable, readable$, var$ } from 'kyrielle';
+import { AsyncDeferrable, type Observable, observable$, type Deferrable, deferrable$, var$ } from 'kyrielle';
 
 import { health$, HealthPayload } from './health.ref.js';
 
@@ -16,7 +16,7 @@ export class JanusClient implements Disposable {
   private readonly _healthController = new AbortController();
 
   readonly logger: Logger;
-  readonly serverHealth$: AsyncReadable<HealthPayload>;
+  readonly serverHealth$: AsyncDeferrable<HealthPayload>;
   readonly status$ = var$<JanusClientStatus>('disconnected');
   readonly [Symbol.dispose]: () => void;
 
@@ -46,7 +46,7 @@ export class JanusClient implements Disposable {
       url,
       retry: async () => {
         this.status$.mutate('connecting');
-        await this.serverHealth$.read(this._healthController.signal);
+        await this.serverHealth$.defer(this._healthController.signal);
       },
       on: {
         connecting: (reconnecting) => {
@@ -81,10 +81,10 @@ export class JanusClient implements Disposable {
   /**
    * Send a request to the server
    */
-  request$<D>(document: TypedDocumentNode<D, Record<string, never>>): Readable<Promise<FormattedExecutionResult<D>>>;
-  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Readable<Promise<FormattedExecutionResult<D>>>;
-  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Readable<Promise<FormattedExecutionResult<D>>> {
-    return readable$(async (signal) => {
+  request$<D>(document: TypedDocumentNode<D, Record<string, never>>): Deferrable<Promise<FormattedExecutionResult<D>>>;
+  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Deferrable<Promise<FormattedExecutionResult<D>>>;
+  request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Deferrable<Promise<FormattedExecutionResult<D>>> {
+    return deferrable$(async (signal) => {
       const query = this._prepareQuery(document, variables);
       this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;
 
