@@ -41,7 +41,7 @@
     "@jujulego/quick-tag": "^1.0.1",
     "@jujulego/utils": "^3.0.4",
     "@kyrielle/injector": "^1.0.0-alpha.2",
-    "@kyrielle/logger": "^1.0.0-alpha.8",
+    "@kyrielle/logger": "^1.0.0-beta.1",
     "@reduxjs/toolkit": "^2.0.1",
     "@swc/helpers": "^0.5.11",
     "ajv": "^8.12.0",

@@ -2094,7 +2094,7 @@ __metadata:
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.2.0"
     "@kyrielle/injector": "npm:^1.0.0-alpha.2"
-    "@kyrielle/logger": "npm:^1.0.0-alpha.8"
+    "@kyrielle/logger": "npm:^1.0.0-beta.1"
     "@microsoft/eslint-formatter-sarif": "npm:3.1.0"
     "@parcel/watcher": "npm:2.4.1"
     "@reduxjs/toolkit": "npm:^2.0.1"
@@ -2293,18 +2293,18 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kyrielle/logger@npm:^1.0.0-alpha.6, @kyrielle/logger@npm:^1.0.0-alpha.8":
-  version: 1.0.0-alpha.10
-  resolution: "@kyrielle/logger@npm:1.0.0-alpha.10"
+"@kyrielle/logger@npm:^1.0.0-alpha.6, @kyrielle/logger@npm:^1.0.0-beta.1":
+  version: 1.0.0-beta.1
+  resolution: "@kyrielle/logger@npm:1.0.0-beta.1"
   dependencies:
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^1.0.0-alpha.4"
+    kyrielle: "npm:^1.0.0-beta.1"
     pretty-ms: "npm:^9.0.0"
   dependenciesMeta:
     vitest@1.6.0:
       unplugged: true
-  checksum: 10c0/6f5ebe44ab3a0c4fd2a9ca46d2eb1b9eeb221e756e6e3a17ed4726018c597fd91c24d805a6164fd50f3c067ec35012e6a7a4ce3c4dd94919da66d6dd63ca65fd
+  checksum: 10c0/77c1d2a43beb16200292dfbb9e3bf2333894461cf33ee2ce879107f3df45001a597e65add687dcd0bb6850badd691d490f63e931b959c22909d06b85aa35dd19
   languageName: node
   linkType: hard
 
@@ -7437,7 +7437,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^1.0.0-alpha.4, kyrielle@npm:^1.0.0-beta.1":
+"kyrielle@npm:^1.0.0-beta.1":
   version: 1.0.0-beta.1
   resolution: "kyrielle@npm:1.0.0-beta.1"
   dependencies:
