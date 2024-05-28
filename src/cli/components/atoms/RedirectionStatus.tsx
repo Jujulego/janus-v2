@@ -32,7 +32,7 @@ export default function RedirectionStatus(props: RedirectionStatusProps) {
     );
   } else {
     return (
-      <Text color="grey">{ redirection.url } {'|>'} <Text bold>all outputs are disabled</Text></Text>
+      <Text color="grey">{ redirection.url } {'--'} <Text italic>all outputs are disabled</Text></Text>
     );
   }
 }

@@ -14,10 +14,10 @@ export class JanusClient implements Disposable {
   // Attributes
   private readonly _sseClient: Client<false>;
   private readonly _healthController = new AbortController();
+  private readonly _status$ = var$<JanusClientStatus>('disconnected');
 
   readonly logger: Logger;
   readonly serverHealth$: AsyncDeferrable<HealthPayload>;
-  readonly status$ = var$<JanusClientStatus>('disconnected');
   readonly [Symbol.dispose]: () => void;
 
   // Constructor
@@ -45,16 +45,16 @@ export class JanusClient implements Disposable {
     return createClient({
       url,
       retry: async () => {
-        this.status$.mutate('connecting');
+        this._status$.mutate('connecting');
         await this.serverHealth$.defer(this._healthController.signal);
       },
       on: {
         connecting: (reconnecting) => {
-          this.status$.mutate('connecting');
+          this._status$.mutate('connecting');
           this.logger.debug`${reconnecting ? 'Reconnecting' : 'Connecting'} to sse stream`;
         },
         connected: (reconnected) => {
-          this.status$.mutate('connected');
+          this._status$.mutate('connected');
           this.logger.debug`${reconnected ? 'Reconnected' : 'Connected'} to sse stream`;
         },
       }
@@ -123,7 +123,12 @@ export class JanusClient implements Disposable {
     this._healthController.abort();
     this._sseClient.dispose();
 
-    this.status$.mutate('disconnected');
+    this._status$.mutate('disconnected');
     this.logger.verbose`Janus client disconnected`;
+  }
+
+  // Properties
+  get status$(): Deferrable<JanusClientStatus> & Observable<JanusClientStatus> {
+    return this._status$;
   }
 }
