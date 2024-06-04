@@ -3599,14 +3599,14 @@ __metadata:
   linkType: hard
 
 "ajv@npm:^8.12.0":
-  version: 8.14.0
-  resolution: "ajv@npm:8.14.0"
+  version: 8.15.0
+  resolution: "ajv@npm:8.15.0"
   dependencies:
     fast-deep-equal: "npm:^3.1.3"
+    fast-uri: "npm:^2.3.0"
     json-schema-traverse: "npm:^1.0.0"
     require-from-string: "npm:^2.0.2"
-    uri-js: "npm:^4.4.1"
-  checksum: 10c0/89aedf51bc3cd2a98214ef8d4081a9d5c02cedbfd28ada48deb9ae3d456fdfe3dc8899cce44736c80b3965840e32ba8827032df6a60af5671f27f47f8082a3bf
+  checksum: 10c0/e70341a7535d1e512ff56d76c94cdfc56e0c0cbc5c14d782a2219d44c922031499ada89342448994ed9340d4bd6df57a31bedec52c14c76d75a6f944949ad007
   languageName: node
   linkType: hard
 
@@ -5633,6 +5633,13 @@ __metadata:
   version: 2.1.1
   resolution: "fast-safe-stringify@npm:2.1.1"
   checksum: 10c0/d90ec1c963394919828872f21edaa3ad6f1dddd288d2bd4e977027afff09f5db40f94e39536d4646f7e01761d704d72d51dce5af1b93717f3489ef808f5f4e4d
+  languageName: node
+  linkType: hard
+
+"fast-uri@npm:^2.3.0":
+  version: 2.3.0
+  resolution: "fast-uri@npm:2.3.0"
+  checksum: 10c0/72844622c8b9d92dbb783723628d1069c999b31bfaa74af9e9afae0e0c22faf18c988a0ce55e775dce4c404f4cca75fa43e1f0ab07075342cff99796f4920945
   languageName: node
   linkType: hard
 
@@ -10583,7 +10590,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"uri-js@npm:^4.2.2, uri-js@npm:^4.4.1":
+"uri-js@npm:^4.2.2":
   version: 4.4.1
   resolution: "uri-js@npm:4.4.1"
   dependencies:
