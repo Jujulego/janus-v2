@@ -12,6 +12,7 @@ export interface StartArgs {
 // Command
 const command: CommandModule<unknown, StartArgs> = {
   command: 'start',
+  aliases: ['$0'],
   describe: 'Starts janus proxy server',
   builder: (parser) => parser
     .option('daemon', {
