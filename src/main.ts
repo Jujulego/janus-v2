@@ -19,6 +19,7 @@ import './graphql.d.js';
   configMiddleware(parser);
 
   parser.command(commands.start)
+    .command(commands.enable)
     .command(commands.status)
     .command(commands.stop)
     .command(commands.version)

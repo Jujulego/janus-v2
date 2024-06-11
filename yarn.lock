@@ -2128,6 +2128,7 @@ __metadata:
     http-errors: "npm:^2.0.0"
     http-proxy: "npm:^1.18.1"
     ink: "npm:^5.0.0"
+    ink-select-input: "npm:^6.0.0"
     ink-spinner: "npm:^5.0.0"
     ink-testing-library: "npm:4.0.0"
     kyrielle: "npm:^1.0.0-beta.1"
@@ -5694,6 +5695,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"figures@npm:^6.1.0":
+  version: 6.1.0
+  resolution: "figures@npm:6.1.0"
+  dependencies:
+    is-unicode-supported: "npm:^2.0.0"
+  checksum: 10c0/9159df4264d62ef447a3931537de92f5012210cf5135c35c010df50a2169377581378149abfe1eb238bd6acbba1c0d547b1f18e0af6eee49e30363cedaffcfe4
+  languageName: node
+  linkType: hard
+
 "file-entry-cache@npm:^6.0.1":
   version: 6.0.1
   resolution: "file-entry-cache@npm:6.0.1"
@@ -6610,6 +6620,20 @@ __metadata:
   languageName: node
   linkType: hard
 
+"ink-select-input@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "ink-select-input@npm:6.0.0"
+  dependencies:
+    figures: "npm:^6.1.0"
+    lodash.isequal: "npm:^4.5.0"
+    to-rotated: "npm:^1.0.0"
+  peerDependencies:
+    ink: ">=5.0.0"
+    react: ">=18.0.0"
+  checksum: 10c0/6e2422dda13d2c5e29cb2f46b401949884c7e6c179eb8908cb8e558cf859c3e0af6aee603dc700e609a759c976bff2198442348d4c6695db3a34d454d7e63c3f
+  languageName: node
+  linkType: hard
+
 "ink-spinner@npm:^5.0.0":
   version: 5.0.0
   resolution: "ink-spinner@npm:5.0.0"
@@ -7159,6 +7183,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"is-unicode-supported@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "is-unicode-supported@npm:2.0.0"
+  checksum: 10c0/3013dfb8265fe9f9a0d1e9433fc4e766595631a8d85d60876c457b4bedc066768dab1477c553d02e2f626d88a4e019162706e04263c94d74994ef636a33b5f94
+  languageName: node
+  linkType: hard
+
 "is-upper-case@npm:^2.0.2":
   version: 2.0.2
   resolution: "is-upper-case@npm:2.0.2"
@@ -7544,6 +7575,13 @@ __metadata:
   dependencies:
     p-locate: "npm:^5.0.0"
   checksum: 10c0/d3972ab70dfe58ce620e64265f90162d247e87159b6126b01314dd67be43d50e96a50b517bce2d9452a79409c7614054c277b5232377de50416564a77ac7aad3
+  languageName: node
+  linkType: hard
+
+"lodash.isequal@npm:^4.5.0":
+  version: 4.5.0
+  resolution: "lodash.isequal@npm:4.5.0"
+  checksum: 10c0/dfdb2356db19631a4b445d5f37868a095e2402292d59539a987f134a8778c62a2810c2452d11ae9e6dcac71fc9de40a6fedcb20e2952a15b431ad8b29e50e28f
   languageName: node
   linkType: hard
 
@@ -10214,6 +10252,13 @@ __metadata:
   dependencies:
     is-number: "npm:^7.0.0"
   checksum: 10c0/487988b0a19c654ff3e1961b87f471702e708fa8a8dd02a298ef16da7206692e8552a0250e8b3e8759270f62e9d8314616f6da274734d3b558b1fc7b7724e892
+  languageName: node
+  linkType: hard
+
+"to-rotated@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "to-rotated@npm:1.0.0"
+  checksum: 10c0/1a1f4625e94c4ba24340efb2362b2030e294f28d1c358578e6f68b298d34e062a9ab0c37f43a7ce12815e831f8df208bef1945f16f0a29ace73370903d796b28
   languageName: node
   linkType: hard
 
