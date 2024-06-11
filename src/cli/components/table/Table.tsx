@@ -1,5 +1,5 @@
 import { Box } from 'ink';
-import { Children, type ReactNode, useCallback, useState } from 'react';
+import { Children, type ReactNode, useCallback, useEffect, useState } from 'react';
 
 import { TableRowContext } from './TableRow.context.js';
 
@@ -10,6 +10,7 @@ export interface TableProps {
 
 export default function Table({ children }: TableProps) {
   const [matrix, setMatrix] = useState<number[][]>([]);
+
   const setWidth = useCallback((width: number, row: number, col: number) => {
     setMatrix((old) => {
       if (old[row]?.[col] === width) {
@@ -35,6 +36,13 @@ export default function Table({ children }: TableProps) {
     });
   }, []);
 
+  const count = Children.count(children);
+
+  useEffect(() => {
+    setMatrix((old) => old.slice(0, count));
+  }, [count]);
+
+  // Render
   return (
     <Box flexDirection="column">
       { Children.map(children, (child, row) => (

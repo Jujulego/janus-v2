@@ -2,8 +2,8 @@ import { Text } from 'ink';
 import { useMemo } from 'react';
 
 import { FragmentType, graphql, unmask } from '../../../gql/index.js';
-import TableCell from '../tables/TableCell.jsx';
-import TableRow from '../tables/TableRow.jsx';
+import TableCell from '../table/TableCell.jsx';
+import TableRow from '../table/TableRow.jsx';
 
 // Fragment
 export const RedirectionStatusItem = graphql(/* GraphQL */ `
