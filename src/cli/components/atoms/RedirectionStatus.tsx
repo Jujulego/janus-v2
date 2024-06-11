@@ -2,6 +2,8 @@ import { Text } from 'ink';
 import { useMemo } from 'react';
 
 import { FragmentType, graphql, unmask } from '../../../gql/index.js';
+import TableCell from '../tables/TableCell.jsx';
+import TableRow from '../tables/TableRow.jsx';
 
 // Fragment
 export const RedirectionStatusItem = graphql(/* GraphQL */ `
@@ -28,11 +30,31 @@ export default function RedirectionStatus(props: RedirectionStatusProps) {
 
   if (enabledOutput) {
     return (
-      <Text>{ redirection.url } {'->'} { enabledOutput.name } ({ enabledOutput.target })</Text>
+      <TableRow>
+        <TableCell>
+          <Text>{ redirection.url }</Text>
+        </TableCell>
+        <TableCell>
+          <Text>{ '->' }</Text>
+        </TableCell>
+        <TableCell>
+          <Text>{ enabledOutput.name } ({ enabledOutput.target })</Text>
+        </TableCell>
+      </TableRow>
     );
   } else {
     return (
-      <Text color="grey">{ redirection.url } {'--'} <Text italic>all outputs are disabled</Text></Text>
+      <TableRow>
+        <TableCell>
+          <Text color="grey">{ redirection.url }</Text>
+        </TableCell>
+        <TableCell>
+          <Text color="grey">{ '--' }</Text>
+        </TableCell>
+        <TableCell>
+          <Text color="grey" italic>all outputs are disabled</Text>
+        </TableCell>
+      </TableRow>
     );
   }
 }
