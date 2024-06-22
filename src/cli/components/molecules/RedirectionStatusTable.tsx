@@ -1,4 +1,3 @@
-import { Box } from 'ink';
 import type { StoredResource } from 'kyrielle';
 
 import { FragmentType, unmask } from '../../../gql/index.js';
