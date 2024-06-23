@@ -16,26 +16,26 @@ export default function Table({ children }: TableProps) {
     setMatrix((old) => {
       if (old[row]?.[col] === width) {
         return old;
-      } else {
-        const result: number[][] = [];
+      }
 
-        for (let r = 0; r < Math.max(old.length, row + 1); ++r) {
-          const oldLine = old[r] ?? [];
+      const result: number[][] = [];
 
-          if (r !== row) {
-            result.push(oldLine);
-          } else {
-            const line: number[] = [];
-            result.push(line);
+      for (let r = 0; r < Math.max(old.length, row + 1); ++r) {
+        const oldLine = old[r] ?? [];
 
-            for (let c = 0; c < Math.max(oldLine.length, col + 1); ++c) {
-              line.push(c === col ? width : oldLine[c] ?? 0);
-            }
+        if (r !== row) {
+          result.push(oldLine);
+        } else {
+          const line: number[] = [];
+          result.push(line);
+
+          for (let c = 0; c < Math.max(oldLine.length, col + 1); ++c) {
+            line.push(c === col ? width : oldLine[c] ?? 0);
           }
         }
-
-        return result;
       }
+
+      return result;
     });
   }, []);
 
