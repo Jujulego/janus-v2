@@ -3,31 +3,34 @@ import process from 'node:process';
 import { CommandModule } from 'yargs';
 
 import { isTimeoutError } from '../../utils/error.js';
-import { CliLogger } from '../cli-tokens.js';
+import { CliJanusClient, CliLogger } from '../cli-tokens.js';
 
 // Command
 export interface EnableArgs {
-  readonly redirection: string | undefined;
-  readonly output: string | undefined;
+  readonly redirection: string;
+  readonly output: string;
 }
 
 const command: CommandModule<unknown, EnableArgs> = {
-  command: 'enable [redirection] [output]',
+  command: 'enable <redirection> <output>',
   describe: 'Enables selected redirection',
   builder: (parser) => parser
     .positional('redirection', {
       type: 'string',
       describe: 'ID of the redirection to update',
     })
-    .positional('output', {
+    .option('output', {
       type: 'string',
       describe: 'Name of the output to enable',
-    }),
+    })
+    .demandOption(['output', 'redirection']),
   async handler(args) {
+    const client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {
-      console.log(args);
+      const { default: EnableCommand } = await import('../components/EnableCommand.jsx');
+      await EnableCommand(client, args.redirection, args.output);
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
