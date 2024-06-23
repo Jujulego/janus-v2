@@ -1,9 +1,9 @@
-import { Box } from 'ink';
 import type { StoredResource } from 'kyrielle';
 
 import { FragmentType, unmask } from '../../../gql/index.js';
 import { useStore$ } from '../../../utils/store.js';
 import RedirectionStatus, { RedirectionStatusItem } from '../atoms/RedirectionStatus.jsx';
+import Table from '../table/Table.jsx';
 
 // Component
 export interface RedirectionStatusTableProps {
@@ -14,12 +14,10 @@ export default function RedirectionStatusTable(props: RedirectionStatusTableProp
   const redirections = useStore$(props.redirections$);
 
   return (
-    <Box flexDirection="column">
+    <Table>
       { redirections.map((redirection) => (
-        <Box key={unmask(RedirectionStatusItem, redirection).id}>
-          <RedirectionStatus redirection={redirection} />
-        </Box>
+         <RedirectionStatus key={unmask(RedirectionStatusItem, redirection).id} redirection={redirection} />
       )) }
-    </Box>
+    </Table>
   );
 }
