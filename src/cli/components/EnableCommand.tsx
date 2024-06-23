@@ -15,9 +15,17 @@ const EnableOutputQuery = graphql(/* GraphQL */ `
 `);
 
 // Component
-export default async function EnableCommand(client: JanusClient, redirectionId: string, outputName: string) {
+export interface EnableCommandArgs {
+  readonly redirectionId: string;
+  readonly outputName: string;
+  readonly timeout?: number;
+}
+
+export default async function EnableCommand(client: JanusClient, args: EnableCommandArgs) {
+  const { redirectionId, outputName, timeout = 5000 } = args;
+
   const controller = new AbortController();
-  const timeoutId = setTimeout(() => controller.abort(), 5000);
+  const timeoutId = setTimeout(() => controller.abort(), timeout);
 
   const app = render(
     <>

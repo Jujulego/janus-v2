@@ -12,14 +12,14 @@ export interface EnableArgs {
 }
 
 const command: CommandModule<unknown, EnableArgs> = {
-  command: 'enable <redirection> <output>',
+  command: 'enable [redirection] [output]',
   describe: 'Enables selected redirection',
   builder: (parser) => parser
     .positional('redirection', {
       type: 'string',
       describe: 'ID of the redirection to update',
     })
-    .option('output', {
+    .positional('output', {
       type: 'string',
       describe: 'Name of the output to enable',
     })
@@ -30,10 +30,14 @@ const command: CommandModule<unknown, EnableArgs> = {
 
     try {
       const { default: EnableCommand } = await import('../components/EnableCommand.jsx');
-      await EnableCommand(client, args.redirection, args.output);
+
+      await EnableCommand(client, {
+        redirectionId: args.redirection,
+        outputName: args.output
+      });
     } catch (err) {
       if (!isTimeoutError(err)) {
-        logger.error('Error while evaluating proxy status:', err as Error);
+        logger.error('Error while enabling proxy output:', err as Error);
       }
 
       logger.warn`Proxy server unreachable`;

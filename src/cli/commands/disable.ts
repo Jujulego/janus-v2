@@ -12,14 +12,14 @@ export interface DisableArgs {
 }
 
 const command: CommandModule<unknown, DisableArgs> = {
-  command: 'disable <redirection> <output>',
+  command: 'disable [redirection] [output]',
   describe: 'Disables selected redirection',
   builder: (parser) => parser
     .positional('redirection', {
       type: 'string',
       describe: 'ID of the redirection to update',
     })
-    .option('output', {
+    .positional('output', {
       type: 'string',
       describe: 'Name of the output to enable',
     })
@@ -30,10 +30,14 @@ const command: CommandModule<unknown, DisableArgs> = {
 
     try {
       const { default: DisableCommand } = await import('../components/DisableCommand.jsx');
-      await DisableCommand(client, args.redirection, args.output);
+
+      await DisableCommand(client, {
+        redirectionId: args.redirection,
+        outputName: args.output,
+      });
     } catch (err) {
       if (!isTimeoutError(err)) {
-        logger.error('Error while evaluating proxy status:', err as Error);
+        logger.error('Error while disabling proxy output:', err as Error);
       }
 
       logger.warn`Proxy server unreachable`;
