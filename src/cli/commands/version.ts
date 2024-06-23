@@ -8,16 +8,26 @@ import { CliJanusClient, CliLogger } from '../cli-tokens.js';
 import { isTimeoutError } from '../../utils/error.js';
 
 // Command
-const command: CommandModule = {
+export interface VersionArgs {
+  readonly timeout: number;
+}
+
+const command: CommandModule<unknown, VersionArgs> = {
   command: 'version',
   describe: 'Prints version of janus client and connected proxy server',
-  async handler() {
+  builder: (parser) => parser
+    .option('timeout', {
+      type: 'number',
+      default: 5000,
+      describe: 'Timeout in milliseconds',
+    }),
+  async handler(args) {
     using client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {
       const { default: HealthLoader } = await import('../components/HealthLoader.jsx');
-      const health = await HealthLoader({ client });
+      const health = await HealthLoader({ client, timeout: args.timeout });
 
       logger.info`client/${version} proxy/${health.version}`;
     } catch (err) {

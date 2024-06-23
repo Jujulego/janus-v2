@@ -9,6 +9,7 @@ import { CliJanusClient, CliLogger } from '../cli-tokens.js';
 export interface DisableArgs {
   readonly redirection: string;
   readonly output: string;
+  readonly timeout: number;
 }
 
 const command: CommandModule<unknown, DisableArgs> = {
@@ -23,6 +24,11 @@ const command: CommandModule<unknown, DisableArgs> = {
       type: 'string',
       describe: 'Name of the output to enable',
     })
+    .option('timeout', {
+      type: 'number',
+      default: 5000,
+      describe: 'Timeout in milliseconds',
+    })
     .demandOption(['output', 'redirection']),
   async handler(args) {
     using client = await inject$(CliJanusClient);
@@ -35,6 +41,7 @@ const command: CommandModule<unknown, DisableArgs> = {
         client,
         redirectionId: args.redirection,
         outputName: args.output,
+        timeout: args.timeout,
       });
 
       logger.info`Output ${args.output} of ${args.redirection} disabled`;
