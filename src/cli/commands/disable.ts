@@ -25,16 +25,19 @@ const command: CommandModule<unknown, DisableArgs> = {
     })
     .demandOption(['output', 'redirection']),
   async handler(args) {
-    const client = await inject$(CliJanusClient);
+    using client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {
       const { default: DisableCommand } = await import('../components/DisableCommand.jsx');
 
-      await DisableCommand(client, {
+      await DisableCommand({
+        client,
         redirectionId: args.redirection,
         outputName: args.output,
       });
+
+      logger.info`Output ${args.output} of ${args.redirection} disabled`;
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while disabling proxy output:', err as Error);

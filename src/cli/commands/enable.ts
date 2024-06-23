@@ -25,16 +25,19 @@ const command: CommandModule<unknown, EnableArgs> = {
     })
     .demandOption(['output', 'redirection']),
   async handler(args) {
-    const client = await inject$(CliJanusClient);
+    using client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {
       const { default: EnableCommand } = await import('../components/EnableCommand.jsx');
 
-      await EnableCommand(client, {
+      await EnableCommand({
+        client,
         redirectionId: args.redirection,
         outputName: args.output
       });
+
+      logger.info`Output ${args.output} of ${args.redirection} enabled`;
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while enabling proxy output:', err as Error);

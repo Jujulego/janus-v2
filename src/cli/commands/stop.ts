@@ -15,7 +15,7 @@ const command: CommandModule = {
 
     try {
       const { default: HealthLoader } = await import('../components/HealthLoader.jsx');
-      const health = await HealthLoader(client);
+      const health = await HealthLoader({ client });
 
       logger.verbose`Reached janus server, running in process ${health.pid}`;
       logger.verbose`Sending SIGINT signal to janus proxy`;

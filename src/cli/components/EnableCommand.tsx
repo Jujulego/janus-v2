@@ -1,9 +1,7 @@
-import { render } from 'ink';
-
 import type { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
+import { inked } from '../inked.jsx';
 import Loader from './atoms/Loader.jsx';
-import StaticLogs from './StaticLogs.jsx';
 
 // Query
 const EnableOutputQuery = graphql(/* GraphQL */ `
@@ -15,43 +13,26 @@ const EnableOutputQuery = graphql(/* GraphQL */ `
 `);
 
 // Component
-export interface EnableCommandArgs {
+export interface EnableCommandProps {
+  readonly client: JanusClient;
   readonly redirectionId: string;
   readonly outputName: string;
   readonly timeout?: number;
 }
 
-export default async function EnableCommand(client: JanusClient, args: EnableCommandArgs) {
-  const { redirectionId, outputName, timeout = 5000 } = args;
-
-  const controller = new AbortController();
+const EnableCommand = inked(async function* (props: EnableCommandProps, controller) {
+  const { client, redirectionId, outputName, timeout = 5000 } = props;
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-  const app = render(
-    <>
-      <StaticLogs />
-      <Loader>Connecting ...</Loader>
-    </>
-  );
-
   try {
-    app.waitUntilExit().then(() => {
-      controller.abort();
-    });
-
+    yield <Loader>Connecting ...</Loader>;
     await client.serverHealth$.defer(controller.signal);
 
-    app.rerender(
-      <>
-        <StaticLogs />
-        <Loader>Enabling ...</Loader>
-      </>
-    );
-
+    yield <Loader>Enabling ...</Loader>;
     await client.request$(EnableOutputQuery, { redirectionId, outputName }).defer(controller.signal);
   } finally {
     clearTimeout(timeoutId);
-    app.clear();
-    app.unmount();
   }
-}
+});
+
+export default EnableCommand;
