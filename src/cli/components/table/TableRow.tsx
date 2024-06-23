@@ -1,8 +1,7 @@
 import { Box } from 'ink';
-import { Children, type ReactNode, useContext } from 'react';
+import { Children, type ReactNode } from 'react';
 
-import { TableCellContext } from './TableCell.context.js';
-import { TableRowContext } from './TableRow.context.js';
+import { TableColumnContext } from './TableColumn.context.js';
 
 // Component
 export interface TableRowProps {
@@ -10,19 +9,12 @@ export interface TableRowProps {
 }
 
 export default function TableRow({ children }: TableRowProps) {
-  const { matrix = [], row, setWidth } = useContext(TableRowContext);
-
   return (
     <Box flexWrap="nowrap">
       { Children.map(children, (child, col) => (
-        <TableCellContext.Provider
-          value={{
-            width: matrix.reduce((width, row) => Math.max(row[col] ?? 0, width), 0),
-            row, col, setWidth
-          }}
-        >
+        <TableColumnContext.Provider value={col}>
           { child }
-        </TableCellContext.Provider>
+        </TableColumnContext.Provider>
       )) }
     </Box>
   );

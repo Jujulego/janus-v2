@@ -1,7 +1,7 @@
 import { Box, type DOMElement, measureElement } from 'ink';
-import { type ReactNode, useContext, useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { type ReactNode, useEffect, useLayoutEffect, useRef, useState } from 'react';
 
-import { TableCellContext } from './TableCell.context.js';
+import { useTableCell } from './useTableCell.js';
 
 // Component
 export interface TableCellProps {
@@ -9,7 +9,7 @@ export interface TableCellProps {
 }
 
 export default function TableCell({ children }: TableCellProps) {
-  const { width, row, col, setWidth } = useContext(TableCellContext);
+  const { width, row, col, setWidth } = useTableCell();
   const [cellWidth, setCellWidth] = useState(0);
 
   const cell = useRef<DOMElement>(null);
@@ -23,7 +23,7 @@ export default function TableCell({ children }: TableCellProps) {
       const { width } = measureElement(cell.current);
       setCellWidth(width);
     }
-  });
+  }, [children]);
 
   return (
     <Box ref={cell} flexDirection="column" marginRight={width - cellWidth + 1}>

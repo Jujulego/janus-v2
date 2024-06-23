@@ -1,5 +1,6 @@
 import { Box } from 'ink';
-import { Children, type ReactNode, useCallback, useEffect, useState } from 'react';
+import { Children, type ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
+import { TableContext, type TableContextProps } from './Table.context.js';
 
 import { TableRowContext } from './TableRow.context.js';
 
@@ -19,14 +20,16 @@ export default function Table({ children }: TableProps) {
         const result: number[][] = [];
 
         for (let r = 0; r < Math.max(old.length, row + 1); ++r) {
+          const oldLine = old[r] ?? [];
+
           if (r !== row) {
-            result.push(old[r] ?? []);
+            result.push(oldLine);
           } else {
             const line: number[] = [];
             result.push(line);
 
-            for (let c = 0; c < Math.max(old[r]?.length ?? 0, col + 1); ++c) {
-              line.push(c === col ? width : old[r]?.[c] ?? 0);
+            for (let c = 0; c < Math.max(oldLine.length, col + 1); ++c) {
+              line.push(c === col ? width : oldLine[c] ?? 0);
             }
           }
         }
@@ -43,13 +46,17 @@ export default function Table({ children }: TableProps) {
   }, [count]);
 
   // Render
+  const context = useMemo<TableContextProps>(() => ({ matrix, setWidth }), [matrix, setWidth]);
+
   return (
-    <Box flexDirection="column">
-      { Children.map(children, (child, row) => (
-        <TableRowContext.Provider value={{ matrix, row, setWidth }}>
-          { child }
-        </TableRowContext.Provider>
-      )) }
-    </Box>
+    <TableContext.Provider value={context}>
+      <Box flexDirection="column">
+        { Children.map(children, (child, row) => (
+          <TableRowContext.Provider value={row}>
+            { child }
+          </TableRowContext.Provider>
+        )) }
+      </Box>
+    </TableContext.Provider>
   );
 }
