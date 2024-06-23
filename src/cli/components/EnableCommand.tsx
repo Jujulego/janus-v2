@@ -1,8 +1,8 @@
-import { render, Text } from 'ink';
-import Spinner from 'ink-spinner';
+import { render } from 'ink';
 
 import type { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
+import Loader from './atoms/Loader.jsx';
 import StaticLogs from './StaticLogs.jsx';
 
 // Query
@@ -22,10 +22,7 @@ export default async function EnableCommand(client: JanusClient, redirectionId: 
   const app = render(
     <>
       <StaticLogs />
-      <Text>
-        <Spinner type="dots" />
-        {' '}Connecting ...
-      </Text>
+      <Loader>Connecting ...</Loader>
     </>
   );
 
@@ -39,10 +36,7 @@ export default async function EnableCommand(client: JanusClient, redirectionId: 
     app.rerender(
       <>
         <StaticLogs />
-        <Text>
-          <Spinner type="dots" />
-          {' '}Enabling ...
-        </Text>
+        <Loader>Enabling ...</Loader>
       </>
     );
 

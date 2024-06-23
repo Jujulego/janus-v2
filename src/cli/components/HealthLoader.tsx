@@ -1,8 +1,8 @@
-import { render, Text } from 'ink';
-import Spinner from 'ink-spinner';
+import { render } from 'ink';
 
 import type { HealthPayload } from '../../client/health.ref.js';
 import { JanusClient } from '../../client/janus-client.js';
+import Loader from './atoms/Loader.jsx';
 import StaticLogs from './StaticLogs.jsx';
 
 // Component
@@ -13,10 +13,7 @@ export default async function HealthLoader(client: JanusClient, timeout = 5000):
   const app = render(
     <>
       <StaticLogs />
-      <Text>
-        <Spinner type="dots" />
-        {' '}Connecting ...
-      </Text>
+      <Loader>Connecting ...</Loader>
     </>
   );
 
