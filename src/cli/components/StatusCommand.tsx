@@ -5,6 +5,7 @@ import { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
 import WithClientLayout from './layouts/WithClientLayout.jsx';
 import RedirectionStatusTable from './molecules/RedirectionStatusTable.jsx';
+import StaticLogs from './StaticLogs.jsx';
 
 // Query
 const StatusCommandQuery = graphql(/* GraphQL */ `
@@ -24,8 +25,11 @@ export default function StatusCommand(client: JanusClient) {
   );
 
   render(
-    <WithClientLayout client={client}>
-      <RedirectionStatusTable redirections$={redirections$} />
-    </WithClientLayout>
+    <>
+      <StaticLogs />
+      <WithClientLayout client={client}>
+        <RedirectionStatusTable redirections$={redirections$} />
+      </WithClientLayout>
+    </>
   );
 }

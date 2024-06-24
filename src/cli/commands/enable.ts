@@ -7,8 +7,8 @@ import { CliJanusClient, CliLogger } from '../cli-tokens.js';
 
 // Command
 export interface EnableArgs {
-  readonly redirection: string;
-  readonly output: string;
+  readonly redirection: string | undefined;
+  readonly output: string | undefined;
   readonly timeout: number;
 }
 
@@ -28,8 +28,7 @@ const command: CommandModule<unknown, EnableArgs> = {
       type: 'number',
       default: 5000,
       describe: 'Timeout in milliseconds',
-    })
-    .demandOption(['output', 'redirection']),
+    }),
   async handler(args) {
     using client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
@@ -37,14 +36,14 @@ const command: CommandModule<unknown, EnableArgs> = {
     try {
       const { default: EnableCommand } = await import('../components/EnableCommand.jsx');
 
-      await EnableCommand({
+      const enabled = await EnableCommand({
         client,
         redirectionId: args.redirection,
         outputName: args.output,
         timeout: args.timeout,
       });
 
-      logger.info`Output ${args.output} of ${args.redirection} enabled`;
+      logger.info`Output ${enabled.outputName} of ${enabled.redirectionId} enabled`;
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while enabling proxy output:', err as Error);
