@@ -47,6 +47,6 @@ describe('RedirectionStatus', () => {
 
     const { lastFrame } = render(<RedirectionStatus redirection={redirection} />);
 
-    expect(lastFrame()).toBe(chalk.grey(`/test -- ${chalk.italic('all outputs are disabled')}`));
+    expect(lastFrame()).toBe(`${chalk.grey('/test')} ${chalk.grey('--')} ${chalk.italic.grey('all outputs are disabled')}`);
   });
 });

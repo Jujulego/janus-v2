@@ -21,7 +21,7 @@ export default function ClientStatus({ status }: ClientStatusProps) {
 
     case 'connecting':
       return (
-        <Loader>Connecting...</Loader>
+        <Loader>Connecting ...</Loader>
       );
 
     case 'disconnected':
