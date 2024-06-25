@@ -1,31 +1,23 @@
-import { render, Text } from 'ink';
-import Spinner from 'ink-spinner';
-
-import type { HealthPayload } from '../../client/health.ref.js';
 import { JanusClient } from '../../client/janus-client.js';
+import { inked } from '../inked.jsx';
+import Loader from './atoms/Loader.jsx';
 
 // Component
-export default async function HealthLoader(client: JanusClient, timeout = 5000): Promise<HealthPayload> {
-  const controller = new AbortController();
+export interface HealthLoaderProps {
+  readonly client: JanusClient;
+  readonly timeout?: number;
+}
+
+const HealthLoader = inked(async function* (props: HealthLoaderProps, { controller }) {
+  const { client, timeout = 5000 } = props;
   const timeoutId = setTimeout(() => controller.abort(), timeout);
 
-  const app = render(
-    <Text>
-      <Spinner type="dots" />
-      {' '}Connecting ...
-    </Text>
-  );
-
   try {
-    app.waitUntilExit().then(() => {
-      controller.abort();
-      return new Promise<never>(() => {});
-    });
-
+    yield <Loader>Connecting ...</Loader>;
     return await client.serverHealth$.defer(controller.signal);
   } finally {
     clearTimeout(timeoutId);
-    app.clear();
-    app.unmount();
   }
-}
+});
+
+export default HealthLoader;

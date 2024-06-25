@@ -17,7 +17,7 @@ const command: CommandModule = {
 
     try {
       const { default: HealthLoader } = await import('../components/HealthLoader.jsx');
-      const health = await HealthLoader(client);
+      const health = await HealthLoader({ client });
 
       logger.info`client/${version} proxy/${health.version}`;
     } catch (err) {

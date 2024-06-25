@@ -10,12 +10,12 @@ const command: CommandModule = {
   command: 'status',
   describe: 'Prints redirection status of janus proxy server',
   async handler() {
-    const client = await inject$(CliJanusClient);
+    using client = await inject$(CliJanusClient);
     const logger = inject$(CliLogger);
 
     try {
       const { default: StatusCommand } = await import('../components/StatusCommand.jsx');
-      StatusCommand(client);
+      await StatusCommand({ client });
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
