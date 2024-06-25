@@ -2,8 +2,8 @@ import { inject$ } from '@kyrielle/injector';
 import process from 'node:process';
 import { CommandModule } from 'yargs';
 
-import { CliLogger } from '../cli-tokens.js';
 import { isTimeoutError } from '../../utils/error.js';
+import { CliLogger } from '../cli-tokens.js';
 
 // Command
 const command: CommandModule = {

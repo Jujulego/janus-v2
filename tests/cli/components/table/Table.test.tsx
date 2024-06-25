@@ -3,8 +3,8 @@ import { render, cleanup } from 'ink-testing-library';
 import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import Table from '@/src/cli/components/table/Table.jsx';
-import TableCell from '@/src/cli/components/table/TableCell.js';
-import TableRow from '@/src/cli/components/table/TableRow.js';
+import TableCell from '@/src/cli/components/table/TableCell.jsx';
+import TableRow from '@/src/cli/components/table/TableRow.jsx';
 
 // Setup
 afterEach(() => {

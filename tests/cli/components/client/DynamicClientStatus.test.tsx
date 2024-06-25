@@ -3,7 +3,7 @@ import { type Var, var$ } from 'kyrielle';
 import symbols from 'log-symbols';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
-import DynamicClientStatus from '@/src/cli/components/client/DynamicClientStatus.js';
+import DynamicClientStatus from '@/src/cli/components/client/DynamicClientStatus.jsx';
 import { JanusClient, type JanusClientStatus } from '@/src/client/janus-client.js';
 
 // Setup
