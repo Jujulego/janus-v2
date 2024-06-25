@@ -14,14 +14,8 @@ const command: CommandModule = {
     const logger = inject$(CliLogger);
 
     try {
-      const { default: HealthLoader } = await import('../components/HealthLoader.jsx');
-      const health = await HealthLoader({ client });
-
-      logger.verbose`Reached janus server, running in process ${health.pid}`;
-      logger.verbose`Sending SIGINT signal to janus proxy`;
-      logger.info`Proxy stopped`;
-
-      process.kill(health.pid, 'SIGINT');
+      const { default: StopCommand } = await import('./stop.ink.jsx');
+      await StopCommand({ client });
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
