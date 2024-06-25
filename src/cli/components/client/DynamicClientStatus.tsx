@@ -2,7 +2,7 @@ import { startTransition, useLayoutEffect, useState } from 'react';
 
 import type { JanusClient } from '../../../client/janus-client.js';
 import { useStore$ } from '../../../utils/store.js';
-import ClientStatus from '../atoms/ClientStatus.jsx';
+import ClientStatus from './ClientStatus.jsx';
 
 // Component
 export interface DynamicClientStatusProps {

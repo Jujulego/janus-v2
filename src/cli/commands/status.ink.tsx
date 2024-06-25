@@ -1,10 +1,11 @@
-import { render } from 'ink';
+import { inject$ } from '@kyrielle/injector';
 import { each$, pipe$, store$, var$ } from 'kyrielle';
 
-import { JanusClient } from '../../client/janus-client.js';
 import { graphql } from '../../gql/index.js';
-import WithClientLayout from './layouts/WithClientLayout.jsx';
-import RedirectionStatusTable from './molecules/RedirectionStatusTable.jsx';
+import { CliJanusClient } from '../cli-tokens.js';
+import WithClientLayout from '../components/client/WithClientLayout.jsx';
+import RedirectionStatusTable from '../components/redirections/RedirectionStatusTable.jsx';
+import { inked } from '../inked.jsx';
 
 // Query
 const StatusCommandQuery = graphql(/* GraphQL */ `
@@ -16,16 +17,22 @@ const StatusCommandQuery = graphql(/* GraphQL */ `
 `);
 
 // Component
-export default function StatusCommand(client: JanusClient) {
+const StatusCommand = inked(async function* (_, { app }) {
+  using client = await inject$(CliJanusClient);
+
   const redirections$ = pipe$(
     client.subscribe$(StatusCommandQuery),
     each$(({ data }) => data!.redirections),
     store$(var$()),
   );
 
-  render(
+  yield (
     <WithClientLayout client={client}>
       <RedirectionStatusTable redirections$={redirections$} />
     </WithClientLayout>
   );
-}
+
+  await app.waitUntilExit();
+});
+
+export default StatusCommand;

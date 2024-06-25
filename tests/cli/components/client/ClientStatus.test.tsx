@@ -2,7 +2,7 @@ import { render, cleanup } from 'ink-testing-library';
 import symbols from 'log-symbols';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import ClientStatus from '@/src/cli/components/atoms/ClientStatus.js';
+import ClientStatus from '@/src/cli/components/client/ClientStatus.jsx';
 
 // Setup
 afterEach(() => {

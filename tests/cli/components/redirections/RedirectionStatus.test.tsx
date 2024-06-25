@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { cleanup, render } from 'ink-testing-library';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import RedirectionStatus, { RedirectionStatusItem } from '@/src/cli/components/atoms/RedirectionStatus.js';
+import RedirectionStatus, { RedirectionStatusItem } from '@/src/cli/components/redirections/RedirectionStatus.jsx';
 import { makeFragmentData } from '@/src/gql/index.js';
 
 // Setup
@@ -47,6 +47,6 @@ describe('RedirectionStatus', () => {
 
     const { lastFrame } = render(<RedirectionStatus redirection={redirection} />);
 
-    expect(lastFrame()).toBe(chalk.grey(`/test -- ${chalk.italic('all outputs are disabled')}`));
+    expect(lastFrame()).toBe(`${chalk.grey('/test')} ${chalk.grey('--')} ${chalk.italic.grey('all outputs are disabled')}`);
   });
 });
