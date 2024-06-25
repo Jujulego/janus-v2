@@ -2,7 +2,7 @@ import chalk from 'chalk';
 import { cleanup, render } from 'ink-testing-library';
 import { afterEach, describe, expect, it } from 'vitest';
 
-import RedirectionStatus, { RedirectionStatusItem } from '@/src/cli/components/atoms/RedirectionStatus.js';
+import RedirectionStatus, { RedirectionStatusItem } from '@/src/cli/components/redirections/RedirectionStatus.js';
 import { makeFragmentData } from '@/src/gql/index.js';
 
 // Setup

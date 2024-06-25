@@ -4,8 +4,8 @@ import { useCallback } from 'react';
 
 import { FragmentType, unmask } from '../../../gql/index.js';
 import { useStore$ } from '../../../utils/store.js';
-import RedirectionStatus, { RedirectionStatusItem } from '../atoms/RedirectionStatus.jsx';
 import Table from '../table/Table.jsx';
+import RedirectionStatus, { RedirectionStatusItem } from './RedirectionStatus.jsx';
 
 // Component
 export interface RedirectionStatusTableProps {

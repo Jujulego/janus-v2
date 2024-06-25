@@ -1,8 +1,8 @@
 import { type ReactNode, Suspense } from 'react';
 
 import type { JanusClient } from '../../../client/janus-client.js';
-import ClientStatus from '../atoms/ClientStatus.jsx';
-import DynamicClientStatus from '../atoms/DynamicClientStatus.jsx';
+import Loader from '../atoms/Loader.jsx';
+import DynamicClientStatus from './DynamicClientStatus.jsx';
 
 // Component
 export interface WithClientLayoutProps {
@@ -13,7 +13,7 @@ export interface WithClientLayoutProps {
 export default function WithClientLayout({ client, children }: WithClientLayoutProps) {
   // Render
   return (
-    <Suspense fallback={<ClientStatus status="connecting" />}>
+    <Suspense fallback={<Loader>Connecting...</Loader>}>
       { children }
       <DynamicClientStatus client={client} />
     </Suspense>

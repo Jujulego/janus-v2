@@ -1,7 +1,8 @@
 import { Text } from 'ink';
-import Spinner from 'ink-spinner';
 import symbols from 'log-symbols';
+
 import type { JanusClientStatus } from '../../../client/janus-client.js';
+import Loader from '../atoms/Loader.jsx';
 
 // Component
 export interface ClientStatusProps {
@@ -20,10 +21,7 @@ export default function ClientStatus({ status }: ClientStatusProps) {
 
     case 'connecting':
       return (
-        <Text>
-          <Spinner type="dots" />
-          {' '}Connecting ...
-        </Text>
+        <Loader>Connecting...</Loader>
       );
 
     case 'disconnected':
