@@ -3,7 +3,7 @@ import { each$, pipe$, store$, var$ } from 'kyrielle';
 
 import { graphql } from '../../gql/index.js';
 import { CliJanusClient } from '../cli-tokens.js';
-import WithClientLayout from '../components/client/WithClientLayout.jsx';
+import ClientLayout from '../components/client/ClientLayout.jsx';
 import RedirectionStatusTable from '../components/redirections/RedirectionStatusTable.jsx';
 import { inked } from '../inked.jsx';
 
@@ -27,9 +27,9 @@ const StatusCommand = inked(async function* (_, { app }) {
   );
 
   yield (
-    <WithClientLayout client={client}>
+    <ClientLayout client={client}>
       <RedirectionStatusTable redirections$={redirections$} />
-    </WithClientLayout>
+    </ClientLayout>
   );
 
   await app.waitUntilExit();
