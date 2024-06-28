@@ -7,16 +7,16 @@ import TableRow from '../table/TableRow.jsx';
 
 // Fragment
 export const RedirectionStatusItem = graphql(/* GraphQL */ `
-    fragment RedirectionStatusItem on Redirection {
-        id
-        url
-        outputs {
-            id
-            name
-            target
-            enabled
-        }
+  fragment RedirectionStatusItem on Redirection {
+    id
+    url
+    outputs {
+      id
+      name
+      target
+      enabled
     }
+  }
 `);
 
 // Component

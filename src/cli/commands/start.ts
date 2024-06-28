@@ -4,12 +4,11 @@ import { CommandModule } from 'yargs';
 
 import { CliJanusDaemon, CliJanusProxy, CliLogger } from '../cli-tokens.js';
 
-// Types
+// Command
 export interface StartArgs {
   readonly daemon: boolean;
 }
 
-// Command
 const command: CommandModule<unknown, StartArgs> = {
   command: 'start',
   aliases: ['$0'],

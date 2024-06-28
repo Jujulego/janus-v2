@@ -4,33 +4,61 @@ import { each$, pipe$, store$, var$ } from 'kyrielle';
 import { graphql } from '../../gql/index.js';
 import { CliJanusClient } from '../cli-tokens.js';
 import ClientLayout from '../components/client/ClientLayout.jsx';
+import OutputStatusTable from '../components/outputs/OutputStatusTable.jsx';
 import RedirectionStatusTable from '../components/redirections/RedirectionStatusTable.jsx';
 import { inked } from '../inked.jsx';
 
 // Query
-const StatusCommandQuery = graphql(/* GraphQL */ `
-  subscription StatusCommand {
+const ListRedirectionsQuery = graphql(/* GraphQL */ `
+  subscription ListRedirections {
     redirections {
       ...RedirectionStatusItem
     }
   }
 `);
 
+const GetRedirectionQuery = graphql(/* GraphQL */ `
+  subscription GetRedirection($id: ID!) {
+    redirection(id: $id) {
+      ...RedirectionWithOutputs
+    }
+  }
+`);
+
 // Component
-const StatusCommand = inked(async function* (_, { app }) {
+export interface StatusCommandProps {
+  readonly redirection: string | undefined;
+}
+
+const StatusCommand = inked(async function* (props: StatusCommandProps, { app }) {
   using client = await inject$(CliJanusClient);
+  const { redirection } = props;
 
-  const redirections$ = pipe$(
-    client.subscribe$(StatusCommandQuery),
-    each$(({ data }) => data!.redirections),
-    store$(var$()),
-  );
+  if (redirection) {
+    const redirection$ = pipe$(
+      client.subscribe$(GetRedirectionQuery, { id: redirection }),
+      each$(({ data }) => data!.redirection),
+      store$(var$()),
+    );
 
-  yield (
-    <ClientLayout client={client}>
-      <RedirectionStatusTable redirections$={redirections$} />
-    </ClientLayout>
-  );
+    yield (
+      <ClientLayout client={client}>
+        <OutputStatusTable redirection$={redirection$} />
+      </ClientLayout>
+    );
+  } else {
+    const redirections$ = pipe$(
+      client.subscribe$(ListRedirectionsQuery),
+      each$(({ data }) => data!.redirections),
+      store$(var$()),
+    );
+
+    yield (
+      <ClientLayout client={client}>
+        <RedirectionStatusTable redirections$={redirections$}/>
+      </ClientLayout>
+    );
+  }
 
   await app.waitUntilExit();
 });

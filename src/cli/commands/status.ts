@@ -3,18 +3,28 @@ import process from 'node:process';
 import { CommandModule } from 'yargs';
 
 import { isTimeoutError } from '../../utils/error.js';
+import { generateRedirectionId } from '../../utils/redirections.js';
 import { CliLogger } from '../cli-tokens.js';
 
 // Command
-const command: CommandModule = {
-  command: 'status',
+export interface StatusArgs {
+  readonly redirection: string | undefined;
+}
+
+const command: CommandModule<unknown, StatusArgs> = {
+  command: 'status [redirection]',
   describe: 'Prints redirection status of janus proxy server',
-  async handler() {
+  builder: (parser) => parser
+    .positional('redirection', {
+      type: 'string',
+      coerce: (arg) => /^[a-f0-9]{32}$/.test(arg) ? arg : generateRedirectionId(arg),
+    }),
+  async handler(args) {
     const logger = inject$(CliLogger);
 
     try {
       const { default: StatusCommand } = await import('./status.ink.jsx');
-      await StatusCommand({});
+      await StatusCommand({ redirection: args.redirection });
     } catch (err) {
       if (!isTimeoutError(err)) {
         logger.error('Error while evaluating proxy status:', err as Error);
