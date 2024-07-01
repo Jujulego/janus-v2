@@ -30,7 +30,7 @@ export default function OutputStatus(props: OutputStatusProps) {
         { output.enabled ? (
           <Text color="green">{ symbols.success }</Text>
         ) : (
-          <Text color="grey">{ '  ' }</Text>
+          <Text>{'  '}</Text>
         ) }
       </TableCell>
       <TableCell>
