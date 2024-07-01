@@ -17,8 +17,8 @@ const ListRedirectionsQuery = graphql(/* GraphQL */ `
   }
 `);
 
-const GetRedirectionQuery = graphql(/* GraphQL */ `
-  subscription GetRedirection($id: ID!) {
+const RedirectionQuery = graphql(/* GraphQL */ `
+  subscription Redirection($id: ID!) {
     redirection(id: $id) {
       ...RedirectionWithOutputs
     }
@@ -36,7 +36,7 @@ const StatusCommand = inked(async function* (props: StatusCommandProps, { app })
 
   if (redirection) {
     const redirection$ = pipe$(
-      client.subscribe$(GetRedirectionQuery, { id: redirection }),
+      client.subscribe$(RedirectionQuery, { id: redirection }),
       each$(({ data }) => data!.redirection),
       store$(var$()),
     );
