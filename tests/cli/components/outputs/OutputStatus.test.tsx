@@ -1,12 +1,20 @@
 import chalk from 'chalk';
 import { cleanup, render } from 'ink-testing-library';
+import isUnicodeSupported from 'is-unicode-supported';
 import symbols from 'log-symbols';
-import { afterEach, describe, expect, it } from 'vitest';
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import OutputStatus, { OutputStatusItem } from '@/src/cli/components/outputs/OutputStatus.jsx';
 import { makeFragmentData } from '@/src/gql/index.js';
 
+// Mocks
+vi.mock('is-unicode-supported');
+
 // Setup
+beforeEach(() => {
+  vi.mocked(isUnicodeSupported).mockResolvedValue(true);
+});
+
 afterEach(() => {
   cleanup();
 });
@@ -23,7 +31,7 @@ describe('OutputStatus', () => {
 
     const { lastFrame } = render(<OutputStatus output={output} />);
 
-    expect(lastFrame()).toBe(`${symbols.success} Output 1 -> https://example.com`);
+    expect(lastFrame()).toBe(`${chalk.green('✔')}  Output 1 -> https://example.com`);
   });
 
   it('should render disabled redirection', () => {

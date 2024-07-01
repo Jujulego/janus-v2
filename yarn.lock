@@ -2160,6 +2160,7 @@ __metadata:
     ink: "npm:^5.0.0"
     ink-spinner: "npm:^5.0.0"
     ink-testing-library: "npm:4.0.0"
+    is-unicode-supported: "npm:^2.0.0"
     kyrielle: "npm:^1.0.0-beta.1"
     log-symbols: "npm:^6.0.0"
     memfs: "npm:4.9.3"
@@ -7186,6 +7187,13 @@ __metadata:
   version: 1.3.0
   resolution: "is-unicode-supported@npm:1.3.0"
   checksum: 10c0/b8674ea95d869f6faabddc6a484767207058b91aea0250803cbf1221345cb0c56f466d4ecea375dc77f6633d248d33c47bd296fb8f4cdba0b4edba8917e83d8a
+  languageName: node
+  linkType: hard
+
+"is-unicode-supported@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "is-unicode-supported@npm:2.0.0"
+  checksum: 10c0/3013dfb8265fe9f9a0d1e9433fc4e766595631a8d85d60876c457b4bedc066768dab1477c553d02e2f626d88a4e019162706e04263c94d74994ef636a33b5f94
   languageName: node
   linkType: hard
 

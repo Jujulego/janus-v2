@@ -1,5 +1,5 @@
+import isUnicodeSupported from 'is-unicode-supported';
 import { Text } from 'ink';
-import symbols from 'log-symbols';
 
 import { type FragmentType, graphql, unmask } from '../../../gql/index.js';
 import TableCell from '../table/TableCell.jsx';
@@ -28,7 +28,7 @@ export default function OutputStatus(props: OutputStatusProps) {
     <TableRow>
       <TableCell>
         { output.enabled ? (
-          <Text color="green">{ symbols.success }</Text>
+          <Text color="green">{ isUnicodeSupported() ? '✔' : '√' }</Text>
         ) : (
           <Text>{'  '}</Text>
         ) }
