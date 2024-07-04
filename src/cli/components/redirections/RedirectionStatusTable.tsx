@@ -4,6 +4,7 @@ import { useCallback } from 'react';
 
 import { FragmentType, unmask } from '../../../gql/index.js';
 import { useStore$ } from '../../../utils/store.js';
+import ClientHelp from '../client/ClientHelp.jsx';
 import Table from '../table/Table.jsx';
 import RedirectionStatus, { RedirectionStatusItem } from './RedirectionStatus.jsx';
 
@@ -25,8 +26,9 @@ export default function RedirectionStatusTable(props: RedirectionStatusTableProp
   return (
     <Table>
       { redirections.map((redirection) => (
-         <RedirectionStatus key={unmask(RedirectionStatusItem, redirection).id} redirection={redirection} />
+        <RedirectionStatus key={unmask(RedirectionStatusItem, redirection).id} redirection={redirection} />
       )) }
+      <ClientHelp>Press &apos;q&apos; to quit.</ClientHelp>
     </Table>
   );
 }

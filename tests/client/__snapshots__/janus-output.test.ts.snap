@@ -113,7 +113,7 @@ exports[`JanusOutput.disable > should load given config file 1`] = `
   },
   {
     "outputName": "book",
-    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+    "redirectionId": "a26573220d20dd05d4a283582117eae3",
   },
 ]
 `;
@@ -231,7 +231,7 @@ exports[`JanusOutput.disable > should send disable query to server according to 
   },
   {
     "outputName": "book",
-    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+    "redirectionId": "a26573220d20dd05d4a283582117eae3",
   },
 ]
 `;
@@ -349,7 +349,7 @@ exports[`JanusOutput.enable > should load given config file 1`] = `
   },
   {
     "outputName": "book",
-    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+    "redirectionId": "a26573220d20dd05d4a283582117eae3",
   },
 ]
 `;
@@ -467,7 +467,7 @@ exports[`JanusOutput.enable > should send enable query to server according to co
   },
   {
     "outputName": "book",
-    "redirectionId": "omVzIg0g3QXUooNYIRfq4w",
+    "redirectionId": "a26573220d20dd05d4a283582117eae3",
   },
 ]
 `;

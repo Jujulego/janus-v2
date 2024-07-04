@@ -63,15 +63,15 @@ describe('redirectionsReducer', () => {
 
       expect(reducer(initial, loadConfig(config)))
         .toStrictEqual({
-          ids: ['omVzIg0g3QXUooNYIRfq4w', 'RTkzBki4D5TvO_kR9td6yQ'],
+          ids: ['a26573220d20dd05d4a283582117eae3', '4539330648b80f94ef3bf911f6d77ac9'],
           byId: {
-            'omVzIg0g3QXUooNYIRfq4w': {
-              id: 'omVzIg0g3QXUooNYIRfq4w',
+            'a26573220d20dd05d4a283582117eae3': {
+              id: 'a26573220d20dd05d4a283582117eae3',
               url: '/life',
               outputs: ['book'],
               outputsByName: {
                 'book': {
-                  id: 'omVzIg0g3QXUooNYIRfq4w#book',
+                  id: 'a26573220d20dd05d4a283582117eae3#book',
                   name: 'book',
                   target: 'http://localhost:3042',
                   enabled: true,
@@ -81,13 +81,13 @@ describe('redirectionsReducer', () => {
                 }
               }
             },
-            'RTkzBki4D5TvO_kR9td6yQ': {
-              id: 'RTkzBki4D5TvO_kR9td6yQ',
+            '4539330648b80f94ef3bf911f6d77ac9': {
+              id: '4539330648b80f94ef3bf911f6d77ac9',
               url: '/test',
               outputs: ['book', 'example'],
               outputsByName: {
                 'book': {
-                  id: 'RTkzBki4D5TvO_kR9td6yQ#book',
+                  id: '4539330648b80f94ef3bf911f6d77ac9#book',
                   name: 'book',
                   target: 'http://localhost:3042',
                   enabled: true,
@@ -96,7 +96,7 @@ describe('redirectionsReducer', () => {
                   ws: false,
                 },
                 'example': {
-                  id: 'RTkzBki4D5TvO_kR9td6yQ#example',
+                  id: '4539330648b80f94ef3bf911f6d77ac9#example',
                   name: 'example',
                   target: 'https://example.com',
                   enabled: true,
