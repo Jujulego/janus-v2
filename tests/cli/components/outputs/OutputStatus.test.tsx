@@ -1,7 +1,6 @@
 import chalk from 'chalk';
 import { cleanup, render } from 'ink-testing-library';
 import isUnicodeSupported from 'is-unicode-supported';
-import symbols from 'log-symbols';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import OutputStatus, { OutputStatusItem } from '@/src/cli/components/outputs/OutputStatus.jsx';
