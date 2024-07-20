@@ -1,4 +1,4 @@
-// @ts-check
+/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
@@ -18,7 +18,10 @@ export default tsEslint.config(
       'dist',
       'src/gql',
       'src/server/schema/schema.types.ts'
-    ]
+    ],
+    linterOptions: {
+      reportUnusedDisableDirectives: 'error'
+    }
   },
   {
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
