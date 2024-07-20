@@ -2,7 +2,7 @@ import { ConfigExplorer } from '@/src/config/config-explorer.js';
 import { DEFAULT_CONFIG } from '@/tests/utils.js';
 import { globalScope$, inject$ } from '@kyrielle/injector';
 import { type Logger, logger$ } from '@kyrielle/logger';
-import Ajv from 'ajv';
+import Ajv, { type ValidateFunction } from 'ajv';
 import { type PublicExplorer } from 'cosmiconfig';
 import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
@@ -12,7 +12,11 @@ import schema from '@/src/config/schema.json' assert { type: 'json' };
 
 // Types
 type AjvParser = Ajv.default;
-type AjvParserType = new (opts: Ajv.Options) => AjvParser;
+
+interface AjvParserType {
+  new(opts: Ajv.Options): AjvParser,
+  prototype: AjvParser
+}
 
 // Mocks
 vi.mock('ajv');
@@ -28,7 +32,7 @@ beforeEach(() => {
   configExplorer = inject$(ConfigExplorer);
 
   vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
-    .mockReturnValue(() => true);
+    .mockReturnValue((() => true) as unknown as ValidateFunction);
 });
 
 afterEach(() => {
@@ -76,7 +80,7 @@ describe('ConfigService.searchConfig', () => {
   it('should throw error if config is invalid', async () => {
     const validator = Object.assign(() => false, {
       errors: [],
-    });
+    }) as unknown as ValidateFunction;
 
     vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
       .mockReturnValue(validator);
@@ -126,7 +130,7 @@ describe('ConfigService.loadConfig', () => {
   it('should throw error if config is invalid', async () => {
     const validator = Object.assign(() => false, {
       errors: [],
-    });
+    }) as unknown as ValidateFunction;
 
     vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
       .mockReturnValue(validator);

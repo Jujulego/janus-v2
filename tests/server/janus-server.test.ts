@@ -28,7 +28,7 @@ beforeEach(() => {
   vi.resetAllMocks();
 
   logger = logger$();
-  store = { dispatch: vi.fn((action) => action) } as unknown as ServerStore;
+  store = { dispatch: vi.fn((action: unknown) => action) } as unknown as ServerStore;
   vi.mocked(serverStore).mockReturnValue(store);
 
   config = new ConfigService(logger, { config: DEFAULT_CONFIG, filepath: '/test/.janusrc.yml' });

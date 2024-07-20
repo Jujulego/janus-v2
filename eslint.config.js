@@ -9,6 +9,7 @@ import { dirname } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import tsEslint from 'typescript-eslint';
 
+// Config
 export default tsEslint.config(
   {
     ignores: [
@@ -16,9 +17,11 @@ export default tsEslint.config(
       '.yarn',
       'coverage',
       'dist',
-      'src/gql',
+      'src/gql/**',
       'src/server/schema/schema.types.ts'
-    ],
+    ]
+  },
+  {
     linterOptions: {
       reportUnusedDisableDirectives: 'error'
     }

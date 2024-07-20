@@ -46,7 +46,7 @@ describe('resolveRedirection', () => {
 
 describe('listOutputs', () => {
   it('should return all outputs of a given redirection', () => {
-    const redirection = serverState.redirections.byId['RTkzBki4D5TvO_kR9td6yQ']!;
+    const redirection = serverState.redirections.byId['RTkzBki4D5TvO_kR9td6yQ'];
 
     expect(listOutputs(redirection)).toStrictEqual([
       redirection.outputsByName['book'],
@@ -57,7 +57,7 @@ describe('listOutputs', () => {
 
 describe('listEnabledOutputs', () => {
   it('should return all enabled outputs of a given redirection', () => {
-    const redirection = serverState.redirections.byId['RTkzBki4D5TvO_kR9td6yQ']!;
+    const redirection = serverState.redirections.byId['RTkzBki4D5TvO_kR9td6yQ'];
 
     expect(listEnabledOutputs(redirection)).toStrictEqual([
       redirection.outputsByName['book'],

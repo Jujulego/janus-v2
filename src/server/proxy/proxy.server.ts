@@ -81,7 +81,7 @@ export class ProxyServer {
     throw new createHttpError.ServiceUnavailable('No outputs available');
   }
 
-  async handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
+  handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
     this._logger.warn('WebSockets not yet handled');
 
     // TODO: handle websockets

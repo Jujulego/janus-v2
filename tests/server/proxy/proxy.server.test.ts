@@ -52,7 +52,8 @@ beforeEach(() => {
 
   server = createHttpServer((req, res) => proxy.handleRequest(req, res));
 
-  vi.spyOn(store, 'dispatch').mockImplementation((a) => a);
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any, @typescript-eslint/no-unsafe-return
+  vi.spyOn(store, 'dispatch').mockImplementation((a: any) => a);
 });
 
 afterAll(() => {

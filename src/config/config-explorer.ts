@@ -7,8 +7,8 @@ import { dynamicImport } from '../utils/import.js';
 export const ConfigExplorer = token$('ConfigExplorer', () => cosmiconfig('janus', {
   searchStrategy: 'global',
   loaders: {
-    '.cjs': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
-    '.js': (filepath) => dynamicImport(filepath).then((mod) => mod.default),
+    '.cjs': (filepath) => dynamicImport<{ default: unknown }>(filepath).then((mod) => mod.default),
+    '.js': (filepath) => dynamicImport<{ default: unknown }>(filepath).then((mod) => mod.default),
     '.json': defaultLoaders['.json'],
     '.yaml': defaultLoaders['.yaml'],
     '.yml': defaultLoaders['.yml'],

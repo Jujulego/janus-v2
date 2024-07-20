@@ -1,4 +1,4 @@
-import http, { RequestListener, Server } from 'node:http';
+import http, { type IncomingMessage, type Server, type ServerResponse } from 'node:http';
 import { AddressInfo } from 'node:net';
 import { isHttpError } from 'http-errors';
 
@@ -16,17 +16,18 @@ export const DEFAULT_CONFIG: Config = {
 };
 
 // Utils
+export type RequestListener = (req: IncomingMessage, res: ServerResponse<IncomingMessage>) => Promise<void>;
+
 export function createHttpServer(listener: RequestListener): Server {
-  return http.createServer(async (req, res) => {
-    try {
-      await listener(req, res);
-    } catch (err) {
-      if (isHttpError(err)) {
-        sendHttpError(res, err);
-      } else {
-        throw err;
-      }
-    }
+  return http.createServer((req, res) => {
+    listener(req, res)
+      .catch((err) => {
+        if (isHttpError(err)) {
+          sendHttpError(res, err);
+        } else {
+          throw err;
+        }
+      });
   });
 }
 
