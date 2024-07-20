@@ -2297,17 +2297,17 @@ __metadata:
   linkType: hard
 
 "@kyrielle/logger@npm:^1.0.0-alpha.6, @kyrielle/logger@npm:^1.0.0-beta.1":
-  version: 1.0.0-beta.1
-  resolution: "@kyrielle/logger@npm:1.0.0-beta.1"
+  version: 1.0.0-beta.2
+  resolution: "@kyrielle/logger@npm:1.0.0-beta.2"
   dependencies:
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@swc/helpers": "npm:^0.5.3"
     kyrielle: "npm:^1.0.0-beta.1"
     pretty-ms: "npm:^9.0.0"
   dependenciesMeta:
-    vitest@1.6.0:
+    vitest@2.0.2:
       unplugged: true
-  checksum: 10c0/77c1d2a43beb16200292dfbb9e3bf2333894461cf33ee2ce879107f3df45001a597e65add687dcd0bb6850badd691d490f63e931b959c22909d06b85aa35dd19
+  checksum: 10c0/85096111d1a583c28f432576cb528182fe3990683208a5c393a41a41f886c70afd4e2ec0044b652421b4a7be12b2d9cad5a4e3544375e8fdd693fafbb7b0972b
   languageName: node
   linkType: hard
 
