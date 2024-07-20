@@ -1,6 +1,6 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
 import { Logger, logger$, withLabel } from '@kyrielle/logger';
-import { type DocumentNode, type FormattedExecutionResult, type OperationDefinitionNode, print } from 'graphql';
+import { type DocumentNode, type FormattedExecutionResult, Kind, type OperationDefinitionNode, print } from 'graphql';
 import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
 import { AsyncDeferrable, type Observable, observable$, type Deferrable, deferrable$, var$ } from 'kyrielle';
 
@@ -63,7 +63,7 @@ export class JanusClient implements Disposable {
 
   private _prepareQuery(document: DocumentNode, variables?: Record<string, unknown>): RequestParams {
     const operation = document.definitions
-      .find((def): def is OperationDefinitionNode => def.kind === 'OperationDefinition');
+      .find((def): def is OperationDefinitionNode => def.kind === Kind.OPERATION_DEFINITION);
 
     const request: RequestParams = { query: print(document) };
 
@@ -97,7 +97,7 @@ export class JanusClient implements Disposable {
         signal,
       });
 
-      return await res.json();
+      return await res.json() as FormattedExecutionResult<D>;
     });
   }
 

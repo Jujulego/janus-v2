@@ -17,7 +17,7 @@ export function inked<P, R>(stepper: InkedStepper<P, R>): InkedComponent<P, R> {
     const controller = new AbortController();
 
     const app = render(<StaticLogs />, { exitOnCtrlC: true });
-    app.waitUntilExit().then(() => {
+    void app.waitUntilExit().then(() => {
       controller.abort();
     });
 

@@ -44,9 +44,9 @@ export function loggerMiddleware(parser: Argv) {
       alias: 'v',
       type: 'count',
       description: 'Set verbosity level',
-      coerce: (cnt) => VERBOSITY_LEVEL[Math.min(cnt, 2)]
+      coerce: (cnt: number) => VERBOSITY_LEVEL[Math.min(cnt, 2)]
     })
-    .middleware(async (args) => {
+    .middleware((args) => {
       const logLevel = args.verbose ? LogLevel[args.verbose] : LogLevel.info;
       const logGateway = inject$(LogGateway);
 

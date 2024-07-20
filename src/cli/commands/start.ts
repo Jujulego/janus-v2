@@ -31,11 +31,12 @@ const command: CommandModule<unknown, StartArgs> = {
         const proxy = await inject$(CliJanusProxy);
         await proxy.start();
 
-        process.once('SIGINT', async () => {
+        process.once('SIGINT', () => {
           logger.info`Received SIGINT signal, initiate clean stop`;
-          await proxy.stop();
-
-          process.exit(0);
+          proxy.stop().then(
+            () => process.exit(0),
+            (err) => logger.error('Failed to stop janus proxy server', err as Error),
+          );
         });
       }
     } catch (err) {

@@ -17,7 +17,7 @@ const command: CommandModule<unknown, StatusArgs> = {
   builder: (parser) => parser
     .positional('redirection', {
       type: 'string',
-      coerce: (arg) => /^[a-f0-9]{32}$/.test(arg) ? arg : generateRedirectionId(arg),
+      coerce: (arg: string) => /^[a-f0-9]{32}$/.test(arg) ? arg : generateRedirectionId(arg),
     }),
   async handler(args) {
     const logger = inject$(CliLogger);
