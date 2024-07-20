@@ -23,7 +23,7 @@ describe('HttpServer.listen', () => {
   it('should call internal server listen method', async () => {
     vi.spyOn(server.server, 'listen')
       .mockImplementation((_, cb) => {
-        cb && cb();
+        if (typeof cb === 'function') cb();
         setTimeout(() => server.server.emit('listening'));
         return server.server;
       });
@@ -133,7 +133,7 @@ describe('HttpServer => YogaServer', () => {
   });
 
   it('should pass request to yoga', async () => {
-    (vi.mocked(server.yoga.handle) as unknown as Mock<[unknown, ServerResponse], void>)
+    (vi.mocked(server.yoga.handle) as unknown as Mock<(req: unknown, res: ServerResponse) => Promise<void>>)
       .mockImplementation(async (req, res) => {
         res.write('cool');
         res.end();

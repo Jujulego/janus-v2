@@ -10,21 +10,19 @@ import { loggerMiddleware } from './cli/middlewares/logger.middleware.js';
 import './graphql.d.js';
 
 // Bootstrap
-(async () => {
-  const parser = yargs(hideBin(process.argv))
-    .scriptName('janus')
-    .version(version);
+const parser = yargs(hideBin(process.argv))
+  .scriptName('janus')
+  .version(version);
 
-  loggerMiddleware(parser);
-  configMiddleware(parser);
+loggerMiddleware(parser);
+configMiddleware(parser);
 
-  parser.command(commands.start)
-    .command(commands.status)
-    .command(commands.stop)
-    .command(commands.version)
-    .demandCommand()
-    .strictCommands()
-    .recommendCommands();
+parser.command(commands.start)
+  .command(commands.status)
+  .command(commands.stop)
+  .command(commands.version)
+  .demandCommand()
+  .strictCommands()
+  .recommendCommands();
 
-  await parser.parseAsync();
-})();
+await parser.parseAsync();

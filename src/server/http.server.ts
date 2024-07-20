@@ -20,7 +20,10 @@ export type ServerRequest = IncomingMessage & {
 export class HttpServer {
   // Attributes
   private readonly _logger: Logger;
-  private readonly _server = createServer((req, res) => this._handleRequest(req, res));
+  private readonly _server = createServer((req, res) => {
+    this._handleRequest(req, res)
+      .catch((err) => this._logger.error('Error while handling request', err as Error));
+  });
 
   readonly proxy: ProxyServer;
   readonly yoga: ReturnType<typeof YogaServer>;
@@ -86,9 +89,9 @@ export class HttpServer {
     }
   }
 
-  private async _handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
+  private _handleUpgrade(req: IncomingMessage, socket: Duplex, head: Buffer) {
     try {
-      await this.proxy.handleUpgrade(req, socket, head);
+      this.proxy.handleUpgrade(req, socket, head);
     } catch (err) {
       const httpError = isHttpError(err) ? err : createHttpError(500, err as Error);
 

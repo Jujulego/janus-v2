@@ -63,6 +63,8 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@eslint/compat": "1.1.1",
+    "@eslint/js": "8.57.0",
     "@graphql-codegen/cli": "5.0.2",
     "@graphql-codegen/client-preset": "4.3.2",
     "@graphql-codegen/typescript": "4.0.9",
@@ -84,8 +86,6 @@
     "@types/react": "18.3.3",
     "@types/supertest": "6.0.2",
     "@types/yargs": "17.0.32",
-    "@typescript-eslint/eslint-plugin": "7.16.1",
-    "@typescript-eslint/parser": "7.16.1",
     "@vitest/coverage-v8": "2.0.3",
     "eslint": "8.57.0",
     "eslint-plugin-react": "7.35.0",
@@ -101,6 +101,7 @@
     "supertest": "7.0.0",
     "ts-node": "10.9.2",
     "typescript": "5.5.3",
+    "typescript-eslint": "7.16.1",
     "vite": "5.3.4",
     "vite-tsconfig-paths": "4.3.2",
     "vitest": "2.0.3"

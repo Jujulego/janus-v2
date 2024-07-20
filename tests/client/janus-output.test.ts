@@ -31,12 +31,12 @@ const janusGql = mockGql.link(`http://localhost:${config.server.port}/_janus/gra
 const mockServer = setupServer(
   janusGql.mutation('EnableJanusOutput', ({ variables }) => HttpResponse.json({
     data: {
-      enableRedirectionOutput: { id: variables.redirectionId }
+      enableRedirectionOutput: { id: variables.redirectionId as string }
     }
   })),
   janusGql.mutation('DisableJanusOutput', ({ variables }) => HttpResponse.json({
     data: {
-      disableRedirectionOutput: { id: variables.redirectionId }
+      disableRedirectionOutput: { id: variables.redirectionId as string }
     }
   }))
 );

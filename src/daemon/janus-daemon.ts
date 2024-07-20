@@ -1,5 +1,5 @@
 import { q$ } from '@jujulego/quick-tag';
-import { Logger, logger$, withLabel } from '@kyrielle/logger';
+import { type Log, Logger, logger$, withLabel } from '@kyrielle/logger';
 import { ChildProcess, fork } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
@@ -31,7 +31,7 @@ export class JanusDaemon {
 
       for (const log of logs) {
         if (log == '') continue;
-        this.logger.next(JSON.parse(log));
+        this.logger.next(JSON.parse(log) as Log);
       }
     });
 

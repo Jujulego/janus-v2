@@ -50,14 +50,14 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
   }
 
   // Methods
-  readonly on = this._events.on;
+  readonly on = this._events.on.bind(this._events);
 
   /**
    * Start to write to log file.
    */
   useLogFile() {
     assert(this._config, 'Configuration must be loaded to use log file.');
-    this._logfile.open(this._config!.server.logfile, this.logger);
+    this._logfile.open(this._config.server.logfile, this.logger);
   }
 
   /**
@@ -99,7 +99,10 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
         this._started = true;
         this._events.emit('started', this);
 
-        process.once('beforeExit', () => this._pidfile?.delete());
+        process.once('beforeExit', () => {
+          this._pidfile?.delete()
+            .catch((err) => this.logger.error('Error while deleting pidfile', err as Error));
+        });
       } else {
         this.logger.warn('Looks like janus is already running.');
       }
