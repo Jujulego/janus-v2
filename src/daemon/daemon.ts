@@ -11,7 +11,6 @@ const logger = logger$(withLabel('daemon'), withTimestamp());
 const disableStdoutLog = flow$(logger, toStdout((log) => qjson(log)!));
 
 // Receive config & start proxy
-// eslint-disable-next-line @typescript-eslint/no-misused-promises
 process.once('message', async (configState: ConfigState) => {
   try {
     // Load config state
@@ -27,7 +26,6 @@ process.once('message', async (configState: ConfigState) => {
       process.send!('started');
       disableStdoutLog.unsubscribe();
 
-      // eslint-disable-next-line @typescript-eslint/no-misused-promises
       process.once('SIGINT', async () => {
         logger.info('Received SIGINT signal, initiate clean stop');
         await proxy.stop();

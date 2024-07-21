@@ -47,6 +47,9 @@ export default tsEslint.config(
       'no-console': ['error', {
         allow: ['warn', 'error'],
       }],
+      '@typescript-eslint/no-misused-promises': ['error', {
+        checksVoidReturn: false
+      }]
     }
   },
   {

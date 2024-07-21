@@ -20,10 +20,7 @@ export type ServerRequest = IncomingMessage & {
 export class HttpServer {
   // Attributes
   private readonly _logger: Logger;
-  private readonly _server = createServer((req, res) => {
-    this._handleRequest(req, res)
-      .catch((err) => this._logger.error('Error while handling request', err as Error));
-  });
+  private readonly _server = createServer((req, res) => this._handleRequest(req, res));
 
   readonly proxy: ProxyServer;
   readonly yoga: ReturnType<typeof YogaServer>;
