@@ -92,7 +92,7 @@ export default tsEslint.config(
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
     ignores: ['*.config.js', 'src/main.ts'],
     plugins: {
-      '@graphql-eslint': graphqlEslint,
+      '@graphql-eslint': fixupPluginRules(graphqlEslint),
     },
     processor: '@graphql-eslint/graphql'
   },
@@ -105,7 +105,7 @@ export default tsEslint.config(
       }
     },
     plugins: {
-      '@graphql-eslint': graphqlEslint,
+      '@graphql-eslint': fixupPluginRules(graphqlEslint),
     },
     rules: {
       ...graphqlEslint.flatConfigs['schema-recommended'].rules,
@@ -121,7 +121,7 @@ export default tsEslint.config(
       }
     },
     plugins: {
-      '@graphql-eslint': graphqlEslint,
+      '@graphql-eslint': fixupPluginRules(graphqlEslint),
     },
     rules: {
       ...graphqlEslint.flatConfigs['operations-recommended'].rules,
