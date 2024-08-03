@@ -12,7 +12,7 @@ export function useStore$<D>(res: StoredResource<D>): D {
 
   if (data === undefined) {
     // TODO: use "use" once React 19 is out
-    throw waitFor$(res);
+    throw waitFor$(res); // eslint-disable-line @typescript-eslint/only-throw-error
   }
 
   return data;

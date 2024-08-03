@@ -1,12 +1,9 @@
-/* eslint-disable @typescript-eslint/no-unsafe-assignment, @typescript-eslint/no-unsafe-member-access */
 import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import vitest from 'eslint-plugin-vitest';
-import { dirname } from 'node:path';
-import { fileURLToPath } from 'node:url';
 import tsEslint from 'typescript-eslint';
 
 // Config
@@ -30,6 +27,18 @@ export default tsEslint.config(
     files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
     extends: [
       eslint.configs.recommended,
+    ],
+    rules: {
+      quotes: ['error', 'single'],
+      semi: ['error', 'always'],
+      'no-console': ['error', {
+        allow: ['warn', 'error'],
+      }],
+    }
+  },
+  {
+    files: ['**/*.ts', '**/*.tsx'],
+    extends: [
       ...tsEslint.configs.recommendedTypeChecked
     ],
     languageOptions: {
@@ -38,17 +47,15 @@ export default tsEslint.config(
           jsx: true,
         },
         project: true,
-        tsconfigRootDir: dirname(fileURLToPath(import.meta.url)),
+        tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      quotes: ['error', 'single'],
-      semi: ['error', 'always'],
-      'no-console': ['error', {
-        allow: ['warn', 'error'],
-      }],
       '@typescript-eslint/no-misused-promises': ['error', {
         checksVoidReturn: false
+      }],
+      '@typescript-eslint/no-unused-expressions': ['error', {
+        allowTaggedTemplates: true
       }]
     }
   },

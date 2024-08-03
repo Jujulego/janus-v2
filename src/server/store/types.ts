@@ -1,4 +1,4 @@
-import { serverStore } from './server.store.js';
+import type { serverStore } from './server.store.js';
 
 // Types
 export type ServerStore = ReturnType<typeof serverStore>;
