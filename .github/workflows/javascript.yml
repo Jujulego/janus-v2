@@ -34,7 +34,7 @@ jobs:
       - name: Build
         run: yarn build
 
-      - uses: actions/upload-artifact@v4.3.5
+      - uses: actions/upload-artifact@v4.3.6
         with:
           name: build
           path: dist
@@ -94,7 +94,7 @@ jobs:
       - name: Run tests
         run: yarn test --coverage
 
-      - uses: actions/upload-artifact@v4.3.5
+      - uses: actions/upload-artifact@v4.3.6
         with:
           name: coverage
           path: coverage
