@@ -94,10 +94,10 @@ jobs:
       - name: Run tests
         run: yarn test --coverage
 
-      - uses: actions/upload-artifact@v4.4.0
+      - name: Upload results to Codecov
+        uses: codecov/codecov-action@v4
         with:
-          name: coverage
-          path: coverage
+          token: ${{ secrets.CODECOV_TOKEN }}
 
   publish:
     if: ${{ github.event_name == 'push' }}

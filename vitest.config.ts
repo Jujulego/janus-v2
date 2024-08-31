@@ -9,7 +9,7 @@ export default defineConfig({
     coverage: {
       include: ['src/**'],
       exclude: ['src/gql/**'],
-      reporter: ['text', 'lcovonly'],
+      reporter: ['lcovonly'],
     },
     globals: true,
     setupFiles: ['tests/setup.ts'],
