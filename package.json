@@ -63,6 +63,7 @@
     "yargs": "^17.7.2"
   },
   "devDependencies": {
+    "@codecov/rollup-plugin": "0.0.1-beta.10",
     "@eslint/compat": "1.1.1",
     "@eslint/js": "9.9.1",
     "@graphql-codegen/cli": "5.0.2",
@@ -91,6 +92,7 @@
     "eslint-plugin-react": "7.35.0",
     "eslint-plugin-react-hooks": "4.6.2",
     "eslint-plugin-vitest": "0.5.4",
+    "globals": "15.9.0",
     "graphql-tag": "2.12.6",
     "ink-testing-library": "4.0.0",
     "memfs": "4.11.1",

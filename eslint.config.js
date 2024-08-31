@@ -4,6 +4,7 @@ import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import vitest from 'eslint-plugin-vitest';
+import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 
 // Config
@@ -19,6 +20,11 @@ export default tsEslint.config(
     ]
   },
   {
+    languageOptions: {
+      globals: {
+        ...globals.node,
+      }
+    },
     linterOptions: {
       reportUnusedDisableDirectives: 'error'
     }
