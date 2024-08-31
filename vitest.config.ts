@@ -1,3 +1,4 @@
+/// <reference types="vitest" />
 import { swc } from '@jujulego/vite-plugin-swc';
 import graphql from '@rollup/plugin-graphql';
 import tsconfigPaths from 'vite-tsconfig-paths';
@@ -12,7 +13,11 @@ export default defineConfig({
       reporter: ['lcovonly'],
     },
     globals: true,
+    reporters: ['default', 'junit'],
     setupFiles: ['tests/setup.ts'],
+    outputFile: {
+      junit: 'junit-report.xml'
+    },
     typecheck: {
       tsconfig: 'tests/tsconfig.json',
     }

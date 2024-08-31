@@ -15,5 +15,6 @@ src/server/schema/schema.types.ts
 .vite
 coverage
 dist
+junit-report.xml
 *.log
 *.pid
