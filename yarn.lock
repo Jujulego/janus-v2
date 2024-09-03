@@ -2202,7 +2202,7 @@ __metadata:
     chalk-template: "npm:^1.1.0"
     cosmiconfig: "npm:^9.0.0"
     eslint: "npm:9.9.1"
-    eslint-plugin-react: "npm:7.35.0"
+    eslint-plugin-react: "npm:7.35.1"
     eslint-plugin-react-hooks: "npm:4.6.2"
     eslint-plugin-vitest: "npm:0.5.4"
     globals: "npm:15.9.0"
@@ -5414,9 +5414,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"eslint-plugin-react@npm:7.35.0":
-  version: 7.35.0
-  resolution: "eslint-plugin-react@npm:7.35.0"
+"eslint-plugin-react@npm:7.35.1":
+  version: 7.35.1
+  resolution: "eslint-plugin-react@npm:7.35.1"
   dependencies:
     array-includes: "npm:^3.1.8"
     array.prototype.findlast: "npm:^1.2.5"
@@ -5438,7 +5438,7 @@ __metadata:
     string.prototype.repeat: "npm:^1.0.0"
   peerDependencies:
     eslint: ^3 || ^4 || ^5 || ^6 || ^7 || ^8 || ^9.7
-  checksum: 10c0/eedcc33de4b2cda91d56ae517a4f771a0c76da9c1e26c95543969012871381e11d4d6cffdf6fa8423036585c289eb3500f3f93fb1d314fb2624e0aa1e463305e
+  checksum: 10c0/faaa2108543675951949685208d105d9c3efa0ac8f4d950851b8f20e065b8bf87fdd7e78abae9b0382090bc22e61c00709388f35bdab2a8b1d283f985d310ed7
   languageName: node
   linkType: hard
 
