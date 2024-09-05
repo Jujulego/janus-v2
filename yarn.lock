@@ -737,7 +737,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecov/bundler-plugin-core@npm:^0.0.1-beta.10":
+"@codecov/bundler-plugin-core@npm:^0.0.1-beta.12":
   version: 0.0.1-beta.12
   resolution: "@codecov/bundler-plugin-core@npm:0.0.1-beta.12"
   dependencies:
@@ -749,15 +749,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecov/rollup-plugin@npm:0.0.1-beta.10":
-  version: 0.0.1-beta.10
-  resolution: "@codecov/rollup-plugin@npm:0.0.1-beta.10"
+"@codecov/rollup-plugin@npm:0.0.1-beta.12":
+  version: 0.0.1-beta.12
+  resolution: "@codecov/rollup-plugin@npm:0.0.1-beta.12"
   dependencies:
-    "@codecov/bundler-plugin-core": "npm:^0.0.1-beta.10"
+    "@codecov/bundler-plugin-core": "npm:^0.0.1-beta.12"
     unplugin: "npm:^1.10.1"
   peerDependencies:
     rollup: 3.x || 4.x
-  checksum: 10c0/45ace99a1847ddf789c66dded8435f3c7227788cb5a74a088ab74a39d9d2284c7dc8fb4c90b1b96a543d1d5ab6b9eafd7d5d093dfdefa3a00334019676493116
+  checksum: 10c0/ebafa83b4e17a3b132e67d210831e4fe5a151b066a0f9657b14df07df560fae8c68efedca7ecc97a4113176be5adc739eb98ae5f1ff6bed6903982d0e8dc182f
   languageName: node
   linkType: hard
 
@@ -2164,7 +2164,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@codecov/rollup-plugin": "npm:0.0.1-beta.10"
+    "@codecov/rollup-plugin": "npm:0.0.1-beta.12"
     "@eslint/compat": "npm:1.1.1"
     "@eslint/js": "npm:9.9.1"
     "@graphql-codegen/cli": "npm:5.0.2"
