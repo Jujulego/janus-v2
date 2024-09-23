@@ -78,7 +78,7 @@
     "@parcel/watcher": "2.4.1",
     "@rollup/plugin-graphql": "2.0.5",
     "@rollup/plugin-json": "6.1.0",
-    "@rollup/plugin-node-resolve": "15.2.3",
+    "@rollup/plugin-node-resolve": "15.2.4",
     "@swc/cli": "0.4.0",
     "@swc/core": "1.7.26",
     "@types/http-errors": "2.0.4",
