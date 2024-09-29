@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.0.3
@@ -50,7 +50,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.0.3
@@ -79,7 +79,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.0.3
@@ -118,7 +118,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Use Node.js 18.x
         uses: actions/setup-node@v4.0.3
@@ -151,7 +151,7 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v4.1.7
+        uses: actions/checkout@v4.2.0
 
       - name: Read package.json
         id: info
