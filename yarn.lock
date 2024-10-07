@@ -2256,7 +2256,7 @@ __metadata:
     is-unicode-supported: "npm:^2.0.0"
     kyrielle: "npm:^1.0.0-beta.1"
     log-symbols: "npm:^7.0.0"
-    memfs: "npm:4.12.0"
+    memfs: "npm:4.13.0"
     msw: "npm:2.4.9"
     nodemon: "npm:3.1.7"
     react: "npm:^18.2.0"
@@ -7998,15 +7998,15 @@ __metadata:
   languageName: node
   linkType: hard
 
-"memfs@npm:4.12.0":
-  version: 4.12.0
-  resolution: "memfs@npm:4.12.0"
+"memfs@npm:4.13.0":
+  version: 4.13.0
+  resolution: "memfs@npm:4.13.0"
   dependencies:
     "@jsonjoy.com/json-pack": "npm:^1.0.3"
     "@jsonjoy.com/util": "npm:^1.3.0"
     tree-dump: "npm:^1.0.1"
     tslib: "npm:^2.0.0"
-  checksum: 10c0/e3ccf01e41334893fc8e32e1c551b4b3af962f851c848650533e54fb2d4702a520bd1269fc9a8152f8e4d6e775c8866d49abfc35627b4ff3d6594d96af62c9b4
+  checksum: 10c0/b0cb47cefdafc8e84ced864a24654dc83d57b4019a2cef3fe8f0cb0f841da95d5f46bf5149d88fa41b8af05841c392776def801e1d293ecc4cbaf087244cbd12
   languageName: node
   linkType: hard
 
