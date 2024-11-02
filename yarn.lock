@@ -10888,6 +10888,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"undici@npm:*":
+  version: 6.20.1
+  resolution: "undici@npm:6.20.1"
+  checksum: 10c0/b2c8d5adcd226c53d02f9270e4cac277256a7147cf310af319369ec6f87651ca46b2960366cb1339a6dac84d937e01e8cdbec5cb468f1f1ce5e9490e438d7222
+  languageName: node
+  linkType: hard
+
 "undici@npm:^5.25.4":
   version: 5.28.4
   resolution: "undici@npm:5.28.4"
