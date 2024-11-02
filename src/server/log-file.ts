@@ -1,7 +1,10 @@
 import { qjson } from '@jujulego/quick-tag';
-import { Log, toStream } from '@kyrielle/logger';
-import { flow$, Observable, Subscription } from 'kyrielle';
-import { createWriteStream, WriteStream } from 'node:fs';
+import type { Log} from '@kyrielle/logger';
+import { toStream } from '@kyrielle/logger';
+import type { Observable, Subscription } from 'kyrielle';
+import { flow$ } from 'kyrielle';
+import type { WriteStream } from 'node:fs';
+import { createWriteStream } from 'node:fs';
 
 // Class
 export class LogFile {

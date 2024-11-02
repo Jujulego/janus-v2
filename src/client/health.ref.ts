@@ -1,5 +1,5 @@
 import { qjson } from '@jujulego/quick-tag';
-import { Logger } from '@kyrielle/logger';
+import type { Logger } from '@kyrielle/logger';
 import { fetch$, pipe$, retry$, timeout$, validate$ } from 'kyrielle';
 
 // Type

@@ -1,4 +1,5 @@
-import { Logger, withLabel } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { withLabel } from '@kyrielle/logger';
 import { createYoga } from 'graphql-yoga';
 
 import { serverSchema } from './schema/schema.js';

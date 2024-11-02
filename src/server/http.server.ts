@@ -1,14 +1,16 @@
-import { Logger, withLabel } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { withLabel } from '@kyrielle/logger';
 import createHttpError, { isHttpError } from 'http-errors';
-import { createServer, IncomingMessage, ServerResponse } from 'node:http';
-import { Duplex } from 'node:stream';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+import { createServer } from 'node:http';
+import type { Duplex } from 'node:stream';
 
 import { version } from '../../package.json' assert { type: 'json' };
-import { Config } from '../config/type.js';
+import type { Config } from '../config/type.js';
 import { renderHttpError, sendHttpError } from '../utils/http-error.js';
 import { YogaServer } from './yoga.server.js';
 import { ProxyServer } from './proxy/proxy.server.js';
-import { ServerStore } from './store/types.js';
+import type { ServerStore } from './store/types.js';
 
 // Types
 export type ServerRequest = IncomingMessage & {

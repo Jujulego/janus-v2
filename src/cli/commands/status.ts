@@ -1,6 +1,6 @@
 import { inject$ } from '@kyrielle/injector';
 import process from 'node:process';
-import { CommandModule } from 'yargs';
+import type { CommandModule } from 'yargs';
 
 import { isTimeoutError } from '../../utils/error.js';
 import { generateRedirectionId } from '../../utils/redirections.js';

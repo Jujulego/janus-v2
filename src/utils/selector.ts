@@ -1,5 +1,6 @@
-import { Store } from '@reduxjs/toolkit';
-import { each$, Observable, pipe$, Deferrable, resource$ } from 'kyrielle';
+import type { Store } from '@reduxjs/toolkit';
+import type { Observable, Deferrable} from 'kyrielle';
+import { each$, pipe$, resource$ } from 'kyrielle';
 
 // Utils
 export function selector$<S, D>(store: Store<S>, selector: (state: S) => D): Deferrable<D> & Observable<D> {

@@ -1,7 +1,7 @@
 import { createSelector } from '@reduxjs/toolkit';
 
-import { ServerState } from '../types.js';
-import { RedirectionState } from './types.js';
+import type { ServerState } from '../types.js';
+import type { RedirectionState } from './types.js';
 
 /**
  * Returns list of all redirections, in config order

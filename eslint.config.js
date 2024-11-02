@@ -1,14 +1,15 @@
+// @ts-check
 import { fixupPluginRules } from '@eslint/compat';
-import eslint from '@eslint/js';
-import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
+import js from '@eslint/js';
+import * as graphql from '@graphql-eslint/eslint-plugin';
 import vitest from '@vitest/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
 import globals from 'globals';
-import tsEslint from 'typescript-eslint';
+import ts from 'typescript-eslint';
 
 // Config
-export default tsEslint.config(
+export default ts.config(
   {
     ignores: [
       '.pnp.*',
@@ -21,19 +22,16 @@ export default tsEslint.config(
   },
   {
     languageOptions: {
-      globals: {
-        ...globals.node,
-      }
+      globals: globals.node,
     },
     linterOptions: {
       reportUnusedDisableDirectives: 'error'
     }
   },
+  js.configs.recommended,
+  ...ts.configs.recommendedTypeChecked.map((cfg) => ({ ...cfg, files: ['**/*.{ts,tsx}'] })),
   {
-    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
-    extends: [
-      eslint.configs.recommended,
-    ],
+    files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
       quotes: ['error', 'single'],
       semi: ['error', 'always'],
@@ -43,10 +41,7 @@ export default tsEslint.config(
     }
   },
   {
-    files: ['**/*.ts', '**/*.tsx'],
-    extends: [
-      ...tsEslint.configs.recommendedTypeChecked
-    ],
+    files: ['**/*.{ts,tsx}'],
     languageOptions: {
       parserOptions: {
         ecmaFeatures: {
@@ -57,6 +52,7 @@ export default tsEslint.config(
       },
     },
     rules: {
+      '@typescript-eslint/consistent-type-imports': 'error',
       '@typescript-eslint/no-misused-promises': ['error', {
         checksVoidReturn: false
       }],
@@ -66,7 +62,7 @@ export default tsEslint.config(
     }
   },
   {
-    files: ['**/*.jsx', '**/*.tsx'],
+    files: ['**/*.{jsx,tsx}'],
     settings: {
       react: {
         version: 'detect',
@@ -74,7 +70,7 @@ export default tsEslint.config(
     },
     plugins: {
       react,
-      'react-hooks': fixupPluginRules(reactHooks),
+      'react-hooks': reactHooks,
     },
     rules: {
       ...react.configs.flat.recommended.rules,
@@ -93,19 +89,32 @@ export default tsEslint.config(
     },
     rules: {
       ...vitest.configs.recommended.rules,
+    }
+  },
+  {
+    files: ['**/*.test.{js,jsx,ts,tsx}'],
+    rules: {
       '@typescript-eslint/no-unused-vars': ['off'],
       '@typescript-eslint/require-await': ['off'],
       '@typescript-eslint/unbound-method': ['off'],
       'vitest/expect-expect': ['error', {
-        assertFunctionNames: ['expect', 'expectTypeOf', 'assertType', 'request.**.expect']
+        assertFunctionNames: ['expect', 'request.**.expect']
       }],
     }
   },
   {
-    files: ['**/*.js', '**/*.jsx', '**/*.ts', '**/*.tsx'],
+    files: ['**/*.test-d.{ts,tsx}'],
+    rules: {
+      'vitest/expect-expect': ['error', {
+        assertFunctionNames: ['expectTypeOf', 'assertType']
+      }],
+    }
+  },
+  {
+    files: ['**/*.{js,jsx,ts,tsx}'],
     ignores: ['*.config.js', 'src/main.ts'],
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphqlEslint),
+      '@graphql-eslint': fixupPluginRules(graphql),
     },
     processor: '@graphql-eslint/graphql'
   },
@@ -113,15 +122,15 @@ export default tsEslint.config(
     files: ['src/server/schema/schema.graphql'],
     languageOptions: {
       parser: {
-        ...graphqlEslint,
+        ...graphql,
         meta: { name: '@graphql-eslint' }
       }
     },
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphqlEslint),
+      '@graphql-eslint': fixupPluginRules(graphql),
     },
     rules: {
-      ...graphqlEslint.flatConfigs['schema-recommended'].rules,
+      ...graphql.flatConfigs['schema-recommended'].rules,
     }
   },
   {
@@ -129,15 +138,15 @@ export default tsEslint.config(
     ignores: ['src/server/schema/schema.graphql'],
     languageOptions: {
       parser: {
-        ...graphqlEslint,
+        ...graphql,
         meta: { name: '@graphql-eslint' }
       }
     },
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphqlEslint),
+      '@graphql-eslint': fixupPluginRules(graphql),
     },
     rules: {
-      ...graphqlEslint.flatConfigs['operations-recommended'].rules,
+      ...graphql.flatConfigs['operations-recommended'].rules,
     }
   }
 );

@@ -1,4 +1,5 @@
-import { Logger, logger$ } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { logger$ } from '@kyrielle/logger';
 import { gql } from 'graphql-tag';
 import { graphql as mockGql, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';

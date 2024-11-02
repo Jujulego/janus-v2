@@ -1,21 +1,23 @@
 import { inject$ } from '@kyrielle/injector';
 import { defineQuickFormat, q$, qarg, qerror, qprop, qwrap } from '@jujulego/quick-tag';
-import {
+import type {
   Log,
+  LogLevelKey,
+  WithDelay
+} from '@kyrielle/logger';
+import {
   logDebugFilter$,
   logDelay$,
   LogGateway,
   LogLevel,
-  LogLevelKey,
   qLogDelay,
-  toStderr,
-  WithDelay
+  toStderr
 } from '@kyrielle/logger';
-import { ColorName, ModifierName } from 'chalk';
+import type { ColorName, ModifierName } from 'chalk';
 import { chalkTemplateStderr } from 'chalk-template';
 import { filter$, flow$ } from 'kyrielle';
 import os from 'node:os';
-import { Argv } from 'yargs';
+import type { Argv } from 'yargs';
 
 import { CliLogger } from '../cli-tokens.js';
 

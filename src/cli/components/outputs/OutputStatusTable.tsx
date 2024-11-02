@@ -2,7 +2,8 @@ import { Text, useApp, useInput } from 'ink';
 import type { StoredResource } from 'kyrielle';
 import { useCallback } from 'react';
 
-import { FragmentType, graphql, unmask } from '../../../gql/index.js';
+import type { FragmentType} from '../../../gql/index.js';
+import { graphql, unmask } from '../../../gql/index.js';
 import { useStore$ } from '../../../utils/store.js';
 import ClientHelp from '../client/ClientHelp.jsx';
 import Table from '../table/Table.jsx';

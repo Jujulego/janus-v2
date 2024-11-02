@@ -1,6 +1,6 @@
 import { createAction } from '@reduxjs/toolkit';
 
-import { Config } from '../../config/type.js';
+import type { Config } from '../../config/type.js';
 
 /**
  * Loads config into store

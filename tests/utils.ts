@@ -1,8 +1,8 @@
 import http, { type IncomingMessage, type Server, type ServerResponse } from 'node:http';
-import { AddressInfo } from 'node:net';
+import type { AddressInfo } from 'node:net';
 import { isHttpError } from 'http-errors';
 
-import { Config } from '@/src/config/type.js';
+import type { Config } from '@/src/config/type.js';
 import { sendHttpError } from '@/src/utils/http-error.js';
 
 // Constants

@@ -1,5 +1,5 @@
-import { RedirectionState } from '../../store/redirections/types.js';
-import { Redirection } from '../schema.types.js';
+import type { RedirectionState } from '../../store/redirections/types.js';
+import type { Redirection } from '../schema.types.js';
 
 // Utils
 export function mapRedirection(redirection: RedirectionState | null): Redirection | null {

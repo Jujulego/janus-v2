@@ -1,7 +1,8 @@
 import { Text } from 'ink';
 import { useMemo } from 'react';
 
-import { FragmentType, graphql, unmask } from '../../../gql/index.js';
+import type { FragmentType} from '../../../gql/index.js';
+import { graphql, unmask } from '../../../gql/index.js';
 import TableCell from '../table/TableCell.jsx';
 import TableRow from '../table/TableRow.jsx';
 

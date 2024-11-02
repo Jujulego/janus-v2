@@ -1,6 +1,8 @@
 import { q$ } from '@jujulego/quick-tag';
-import { type Log, Logger, logger$, withLabel } from '@kyrielle/logger';
-import { ChildProcess, fork } from 'node:child_process';
+import type { Logger} from '@kyrielle/logger';
+import { type Log, logger$, withLabel } from '@kyrielle/logger';
+import type { ChildProcess} from 'node:child_process';
+import { fork } from 'node:child_process';
 import os from 'node:os';
 import path from 'node:path';
 import process from 'node:process';

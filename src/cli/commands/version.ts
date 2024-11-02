@@ -1,7 +1,7 @@
 import { inject$ } from '@kyrielle/injector';
 import chalk from 'chalk';
 import process from 'node:process';
-import { CommandModule } from 'yargs';
+import type { CommandModule } from 'yargs';
 
 import { version } from '../../../package.json' assert { type: 'json' };
 import { isTimeoutError } from '../../utils/error.js';
