@@ -1,0 +1,76 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["redirections"],
+  "properties": {
+    "redirections": {
+      "type": "object",
+      "additionalProperties": {
+        "$ref": "#/definitions/redirection"
+      },
+      "minProperties": 1
+    },
+    "server": {
+      "type": "object",
+      "additionalProperties": false,
+      "default": {},
+      "properties": {
+        "port": {
+          "type": "number",
+          "default": 3000
+        },
+        "pidfile": {
+          "type": "string",
+          "default": ".janus.pid"
+        },
+        "logfile": {
+          "type": "string",
+          "default": ".janus.log"
+        }
+      }
+    }
+  },
+  "definitions": {
+    "output": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["target"],
+      "properties": {
+        "target": {
+          "type": "string"
+        },
+        "enabled": {
+          "type": "boolean",
+          "default": true
+        },
+        "changeOrigin": {
+          "type": "boolean",
+          "default": false
+        },
+        "secure": {
+          "type": "boolean",
+          "default": false
+        },
+        "ws": {
+          "type": "boolean",
+          "default": false
+        }
+      }
+    },
+    "redirection": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["outputs"],
+      "properties": {
+        "outputs": {
+          "type": "object",
+          "additionalProperties": {
+            "$ref": "#/definitions/output"
+          },
+          "minProperties": 1
+        }
+      }
+    }
+  }
+}

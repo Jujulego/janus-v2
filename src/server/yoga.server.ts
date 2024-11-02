@@ -1,0 +1,14 @@
+import type { Logger} from '@kyrielle/logger';
+import { withLabel } from '@kyrielle/logger';
+import { createYoga } from 'graphql-yoga';
+
+import { serverSchema } from './schema/schema.js';
+import type { ServerStore } from './store/types.js';
+
+// Tokens
+export const YogaServer = (logger: Logger, store: ServerStore) => createYoga({
+  graphqlEndpoint: '/_janus/graphql',
+  logging: logger.child(withLabel('yoga')),
+  schema: serverSchema(store),
+  plugins: []
+});

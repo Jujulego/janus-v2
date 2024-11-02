@@ -1,0 +1,32 @@
+schema: './src/server/schema/schema.graphql'
+documents:
+  - './src/**/*.{ts,tsx}'
+  - './tests/**/*.{ts,tsx}'
+
+extensions:
+  codegen:
+    ignoreNoDocuments: true
+    emitLegacyCommonJSImports: false
+
+    generates:
+      './src/gql/':
+        preset: 'client'
+        documents:
+          - '!./tests/**/*.{ts,tsx}'
+
+        config:
+          avoidOptionals: true
+          dedupeFragments: true
+          useTypeImports: true
+
+        presetConfig:
+          fragmentMasking:
+            unmaskFunctionName: 'unmask'
+
+      './src/server/schema/schema.types.ts':
+        plugins: ['typescript', 'typescript-resolvers']
+
+        config:
+          immutableTypes: true
+          useIndexSignature: true
+          useTypeImports: true

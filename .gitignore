@@ -7,10 +7,14 @@
 !.yarn/versions
 .pnp.*
 
+# Codegen files
+src/gql
+src/server/schema/schema.types.ts
+
 # Generated files
-.idea
-.vitest
+.vite
 coverage
 dist
+junit-report.xml
 *.log
 *.pid
