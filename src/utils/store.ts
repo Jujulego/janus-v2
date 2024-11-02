@@ -1,8 +1,10 @@
-import type { StoredResource} from 'kyrielle';
+import type { Observable, Ref } from 'kyrielle';
 import { waitFor$ } from 'kyrielle';
 import { useCallback, useSyncExternalStore } from 'react';
 
-export function useStore$<D>(res: StoredResource<D>): D {
+export type Stored<D> = Observable<D> & Ref<D>;
+
+export function useStore$<D>(res: Stored<D>): D {
   const data = useSyncExternalStore(
     useCallback((cb) => {
       const sub = res.subscribe(cb);

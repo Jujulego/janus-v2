@@ -1,23 +1,21 @@
-import { LogFile } from '@/src/server/log-file.js';
-import { PidFile } from '@jujulego/pid-file';
-import type { Logger} from '@kyrielle/logger';
-import { logger$, LogLevel } from '@kyrielle/logger';
-import { beforeEach, describe, expect, it, vi } from 'vitest';
-
 import { ConfigService } from '@/src/config/config.service.js';
 import { HttpServer } from '@/src/server/http.server.js';
 import { JanusServer } from '@/src/server/janus-server.js';
+import { LogFile } from '@/src/server/log-file.js';
 import { loadConfig } from '@/src/server/store/actions.js';
 import { serverStore } from '@/src/server/store/server.store.js';
 import type { ServerStore } from '@/src/server/store/types.js';
-
+import { PidFile } from '@/src/utils/pid-file.js';
 import { DEFAULT_CONFIG } from '@/tests/utils.js';
+import type { Logger } from '@kyrielle/logger';
+import { logger$, LogLevel } from '@kyrielle/logger';
+import { beforeEach, describe, expect, it, vi } from 'vitest';
 
 // Mocks
-vi.mock('@jujulego/pid-file');
 vi.mock('@/src/server/http.server.js');
 vi.mock('@/src/server/log-file.js');
 vi.mock('@/src/server/store/server.store.js');
+vi.mock('@/src/utils/pid-file.js');
 
 // Setup
 let config: ConfigService;

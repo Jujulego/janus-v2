@@ -1,14 +1,14 @@
 import type { Store } from '@reduxjs/toolkit';
-import type { Observable, Deferrable} from 'kyrielle';
-import { each$, pipe$, resource$ } from 'kyrielle';
+import type { Observable, Ref } from 'kyrielle';
+import { map$, pipe$, resource$ } from 'kyrielle';
 
 // Utils
-export function selector$<S, D>(store: Store<S>, selector: (state: S) => D): Deferrable<D> & Observable<D> {
+export function selector$<S, D>(store: Store<S>, selector: (state: S) => D): Ref<D> & Observable<D> {
   return pipe$(
-    resource$<S>()
+    resource$()
       .add(store)
       .add({ defer: () => store.getState() })
       .build(),
-    each$(selector)
-  ) as Deferrable<D> & Observable<D>;
+    map$(selector)
+  ) as Ref<D> & Observable<D>;
 }

@@ -2284,12 +2284,11 @@ __metadata:
     "@graphql-tools/merge": "npm:^9.0.3"
     "@graphql-typed-document-node/core": "npm:3.2.0"
     "@jujulego/jill": "npm:2.5.2"
-    "@jujulego/pid-file": "npm:^2.2.1"
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.2.0"
-    "@kyrielle/injector": "npm:^1.0.0-alpha.2"
-    "@kyrielle/logger": "npm:^1.0.0-beta.1"
+    "@kyrielle/injector": "npm:^1.0.0"
+    "@kyrielle/logger": "npm:^2.0.0"
     "@microsoft/eslint-formatter-sarif": "npm:3.1.0"
     "@parcel/watcher": "npm:2.4.1"
     "@reduxjs/toolkit": "npm:^2.0.1"
@@ -2302,6 +2301,7 @@ __metadata:
     "@types/http-errors": "npm:2.0.4"
     "@types/http-proxy": "npm:1.17.15"
     "@types/node": "npm:18.19.63"
+    "@types/proper-lockfile": "npm:4.1.4"
     "@types/react": "npm:18.3.12"
     "@types/supertest": "npm:6.0.2"
     "@types/yargs": "npm:17.0.33"
@@ -2326,11 +2326,12 @@ __metadata:
     ink-spinner: "npm:^5.0.0"
     ink-testing-library: "npm:4.0.0"
     is-unicode-supported: "npm:^2.0.0"
-    kyrielle: "npm:^1.0.0-beta.1"
+    kyrielle: "npm:^2.2.1"
     log-symbols: "npm:^7.0.0"
     memfs: "npm:4.14.0"
     msw: "npm:2.6.0"
     nodemon: "npm:3.1.7"
+    proper-lockfile: "npm:^4.1.2"
     react: "npm:^18.2.0"
     reflect-metadata: "npm:^0.2.0"
     rollup: "npm:4.24.3"
@@ -2393,17 +2394,6 @@ __metadata:
     chalk: "npm:^5.3.0"
     chalk-template: "npm:^1.1.0"
   checksum: 10c0/01c1800c7bb1218a5b997658d91f6312aa56cd438fcb82128b0ff9926458d29a4b58f87512d9d3f2dd7dedcaeb363ea9200df98a7eb750338fe389b82786e75d
-  languageName: node
-  linkType: hard
-
-"@jujulego/pid-file@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "@jujulego/pid-file@npm:2.2.1"
-  dependencies:
-    "@kyrielle/logger": "npm:^1.0.0-alpha.6"
-    "@swc/helpers": "npm:^0.5.6"
-    proper-lockfile: "npm:^4.1.2"
-  checksum: 10c0/77f4f380cdbfcb4253ab02a9593e2656752ca44e801d7591c4d9b2537ac00d9c6db406800b6f30e59bc4818d1a5865f8072cf8d838f7d9a5713b20b5d8da81d4
   languageName: node
   linkType: hard
 
@@ -2479,30 +2469,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@kyrielle/injector@npm:^1.0.0-alpha.2":
-  version: 1.0.0-alpha.2
-  resolution: "@kyrielle/injector@npm:1.0.0-alpha.2"
+"@kyrielle/injector@npm:^1.0.0":
+  version: 1.0.0
+  resolution: "@kyrielle/injector@npm:1.0.0"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
-    vitest@1.5.2:
+    vitest@2.1.4:
       unplugged: true
-  checksum: 10c0/285515121f82839ce1f8129ccef51791315582e3dd700a73f9d159914fb904b7d5641d010fd6ebc2694db7eb1356a77725aa8b7a8ee0d6ab7d17b2adbf534ab1
+  checksum: 10c0/b07d0c7025693596ce31b493263e1532bacacc04f9c744b9e453fcba6ae8d43a48b6915efd62c33f6b3bb9be8c204bd3d927624bca8fb15c11b8ff50e0717173
   languageName: node
   linkType: hard
 
-"@kyrielle/logger@npm:^1.0.0-alpha.6, @kyrielle/logger@npm:^1.0.0-beta.1":
-  version: 1.0.0
-  resolution: "@kyrielle/logger@npm:1.0.0"
+"@kyrielle/logger@npm:^2.0.0":
+  version: 2.0.0
+  resolution: "@kyrielle/logger@npm:2.0.0"
   dependencies:
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@swc/helpers": "npm:^0.5.3"
-    kyrielle: "npm:^1.0.0"
+    kyrielle: "npm:^2.2.1"
     pretty-ms: "npm:^9.0.0"
   dependenciesMeta:
     vitest@2.1.4:
       unplugged: true
-  checksum: 10c0/ab52ddb5656aeac749cdd695fb976bce751dbf29c5e43b525dd36806406c697fa32ae457eb0e59d023c182cfea3c8171a4add04fe43d603dc19bce68fe66d146
+  checksum: 10c0/7adf1731d5a47f488a75da5ce4b108b5fc64e997df8413385cf2a09814346dba9b404100d7317578c30aec669650dd79dedddf5dbbd2a36b78df65bc2f3ea60d
   languageName: node
   linkType: hard
 
@@ -3470,6 +3460,15 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@types/proper-lockfile@npm:4.1.4":
+  version: 4.1.4
+  resolution: "@types/proper-lockfile@npm:4.1.4"
+  dependencies:
+    "@types/retry": "npm:*"
+  checksum: 10c0/d597846d6f7860da2470623d3f11b6e5b39864719c3c18b5a5e55f783c5e432fe49dcdcf6341b3903428fdf103f2bdc68eba263ce1ce3cbe8070cbcb54bbf230
+  languageName: node
+  linkType: hard
+
 "@types/react@npm:18.3.12":
   version: 18.3.12
   resolution: "@types/react@npm:18.3.12"
@@ -3493,6 +3492,13 @@ __metadata:
   dependencies:
     "@types/node": "npm:*"
   checksum: 10c0/57bbb8753a38c4b6361ca920a73139acd6518565b57cb7a70b6ed58a57dbc565adba0cdd35f68bd49122745eb3b0ea80574a8696bee67e964c40c340f69fd0e2
+  languageName: node
+  linkType: hard
+
+"@types/retry@npm:*":
+  version: 0.12.5
+  resolution: "@types/retry@npm:0.12.5"
+  checksum: 10c0/eaaca483cc62f2f02c0b8486847ee70986ca7f97afd7363037247dbe3e98df8bd56a5b50d58b1e96768a5a1be0307010d86e9991bd458d72e8df88be471bd720
   languageName: node
   linkType: hard
 
@@ -7850,16 +7856,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"kyrielle@npm:^1.0.0, kyrielle@npm:^1.0.0-beta.1":
-  version: 1.0.0
-  resolution: "kyrielle@npm:1.0.0"
+"kyrielle@npm:^2.2.1":
+  version: 2.2.1
+  resolution: "kyrielle@npm:2.2.1"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
-    vitest@2.1.2:
+    vitest@2.1.3:
       unplugged: true
-  checksum: 10c0/b0dbb68f0d28d89d0f450d2b3cec0abb0290ff4ab588c39a01794c8a69e53a56c1e4e193c7cd970b0454a6923c728e0a096a64cb5d628865e00cffca3daebfa6
+  checksum: 10c0/7f6255d09194d13be9ab7416974d6d107192a6f4cc594dd400e71e3fbe8d900515de996b06522471a97d318759f94cc4b5a3b05a0c842f1cef187b3d13dcb4b7
   languageName: node
   linkType: hard
 

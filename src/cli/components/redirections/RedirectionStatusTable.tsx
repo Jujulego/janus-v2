@@ -1,17 +1,15 @@
 import { useApp, useInput } from 'ink';
-import type { StoredResource } from 'kyrielle';
 import { useCallback } from 'react';
-
-import type { FragmentType} from '../../../gql/index.js';
+import type { FragmentType } from '../../../gql/index.js';
 import { unmask } from '../../../gql/index.js';
-import { useStore$ } from '../../../utils/store.js';
+import { type Stored, useStore$ } from '../../../utils/store.js';
 import ClientHelp from '../client/ClientHelp.jsx';
 import Table from '../table/Table.jsx';
 import RedirectionStatus, { RedirectionStatusItem } from './RedirectionStatus.jsx';
 
 // Component
 export interface RedirectionStatusTableProps {
-  readonly redirections$: StoredResource<FragmentType<typeof RedirectionStatusItem>[]>;
+  readonly redirections$: Stored<FragmentType<typeof RedirectionStatusItem>[]>;
 }
 
 export default function RedirectionStatusTable(props: RedirectionStatusTableProps) {

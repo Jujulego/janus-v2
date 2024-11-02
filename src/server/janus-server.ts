@@ -1,14 +1,13 @@
-import { PidFile } from '@jujulego/pid-file';
 import { Lock } from '@jujulego/utils';
 import type { Logger} from '@kyrielle/logger';
 import { logger$, withTimestamp } from '@kyrielle/logger';
-import type { Listenable} from 'kyrielle';
+import type { StrictListenable } from 'kyrielle';
 import { multiplexer$, source$ } from 'kyrielle';
 import assert from 'node:assert';
 import process from 'node:process';
-
 import { ConfigService } from '../config/config.service.js';
 import type { Config } from '../config/type.js';
+import { PidFile } from '../utils/pid-file.js';
 import { LogFile } from './log-file.js';
 import { HttpServer } from './http.server.js';
 import { serverStore } from './store/server.store.js';
@@ -21,7 +20,7 @@ export type JanusProxyEventMap = {
   started: JanusServer;
 }
 
-export class JanusServer implements Listenable<JanusProxyEventMap> {
+export class JanusServer implements StrictListenable<JanusProxyEventMap> {
   // Attributes
   private readonly _configService: ConfigService;
   private readonly _server: HttpServer;
@@ -52,7 +51,7 @@ export class JanusServer implements Listenable<JanusProxyEventMap> {
   }
 
   // Methods
-  readonly on = this._events.on.bind(this._events);
+  readonly on = this._events.on;
 
   /**
    * Start to write to log file.

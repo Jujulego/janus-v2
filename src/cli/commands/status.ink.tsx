@@ -1,6 +1,5 @@
 import { inject$ } from '@kyrielle/injector';
-import { each$, pipe$, store$, var$ } from 'kyrielle';
-
+import { map$, pipe$, store$, var$ } from 'kyrielle';
 import { graphql } from '../../gql/index.js';
 import { CliJanusClient } from '../cli-tokens.js';
 import ClientLayout from '../components/client/ClientLayout.jsx';
@@ -37,8 +36,8 @@ const StatusCommand = inked(async function* (props: StatusCommandProps, { app })
   if (redirection) {
     const redirection$ = pipe$(
       client.subscribe$(RedirectionQuery, { id: redirection }),
-      each$(({ data }) => data!.redirection),
-      store$(var$()),
+      map$(({ data }) => data!.redirection),
+      store$(var$(null)),
     );
 
     yield (
@@ -49,8 +48,8 @@ const StatusCommand = inked(async function* (props: StatusCommandProps, { app })
   } else {
     const redirections$ = pipe$(
       client.subscribe$(ListRedirectionsQuery),
-      each$(({ data }) => data!.redirections),
-      store$(var$()),
+      map$(({ data }) => data!.redirections),
+      store$(var$([])),
     );
 
     yield (

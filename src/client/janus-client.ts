@@ -5,7 +5,7 @@ import { type DocumentNode, type FormattedExecutionResult, Kind, type OperationD
 import type { Client, ExecutionResult, RequestParams } from 'graphql-sse';
 import { createClient } from 'graphql-sse';
 import type { AsyncDeferrable} from 'kyrielle';
-import { type Observable, observable$, type Deferrable, deferrable$, var$ } from 'kyrielle';
+import { type Observable, observable$, type Deferrable, ref$, var$ } from 'kyrielle';
 
 import type { HealthPayload } from './health.ref.js';
 import { health$ } from './health.ref.js';
@@ -88,7 +88,7 @@ export class JanusClient implements Disposable {
   request$<D>(document: TypedDocumentNode<D, Record<string, never>>): Deferrable<Promise<FormattedExecutionResult<D>>>;
   request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables: V): Deferrable<Promise<FormattedExecutionResult<D>>>;
   request$<D, V extends Record<string, unknown>>(document: TypedDocumentNode<D, V>, variables?: V): Deferrable<Promise<FormattedExecutionResult<D>>> {
-    return deferrable$(async (signal) => {
+    return ref$(async (signal) => {
       const query = this._prepareQuery(document, variables);
       this.logger.debug`Sending ${query.operationName ?? 'graphql'} request to server at ${this.janusUrl}`;
 

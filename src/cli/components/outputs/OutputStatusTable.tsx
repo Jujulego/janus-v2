@@ -1,10 +1,8 @@
 import { Text, useApp, useInput } from 'ink';
-import type { StoredResource } from 'kyrielle';
 import { useCallback } from 'react';
-
-import type { FragmentType} from '../../../gql/index.js';
+import type { FragmentType } from '../../../gql/index.js';
 import { graphql, unmask } from '../../../gql/index.js';
-import { useStore$ } from '../../../utils/store.js';
+import { type Stored, useStore$ } from '../../../utils/store.js';
 import ClientHelp from '../client/ClientHelp.jsx';
 import Table from '../table/Table.jsx';
 import OutputStatus from './OutputStatus.jsx';
@@ -23,7 +21,7 @@ export const RedirectionWithOutputs = graphql(/* GraphQL */ `
 
 // Component
 export interface OutputStatusTableProps {
-  readonly redirection$: StoredResource<FragmentType<typeof RedirectionWithOutputs> | null>;
+  readonly redirection$: Stored<FragmentType<typeof RedirectionWithOutputs> | null>;
 }
 
 export default function OutputStatusTable(props: OutputStatusTableProps) {
