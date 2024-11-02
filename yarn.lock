@@ -2305,6 +2305,7 @@ __metadata:
     "@types/react": "npm:18.3.12"
     "@types/supertest": "npm:6.0.2"
     "@types/yargs": "npm:17.0.33"
+    "@typescript-eslint/utils": "npm:8.12.2"
     "@vitest/coverage-v8": "npm:2.1.4"
     "@vitest/eslint-plugin": "npm:1.1.7"
     ajv: "npm:^8.12.0"

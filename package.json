@@ -87,6 +87,7 @@
     "@types/react": "18.3.12",
     "@types/supertest": "6.0.2",
     "@types/yargs": "17.0.33",
+    "@typescript-eslint/utils": "8.12.2",
     "@vitest/coverage-v8": "2.1.4",
     "@vitest/eslint-plugin": "1.1.7",
     "eslint": "9.14.0",

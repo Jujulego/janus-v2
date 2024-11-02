@@ -82,10 +82,7 @@ export default tsEslint.config(
     },
   },
   {
-    files: [
-      '**/*.test.js', '**/*.test.jsx', '**/*.test.ts', '**/*.test.tsx',
-      '**/*.test-d.ts', '**/*.test-d.tsx',
-    ],
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.test-d.{ts,tsx}'],
     plugins: {
       vitest
     },
