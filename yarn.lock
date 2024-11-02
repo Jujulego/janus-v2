@@ -2301,7 +2301,7 @@ __metadata:
     "@swc/helpers": "npm:^0.5.11"
     "@types/http-errors": "npm:2.0.4"
     "@types/http-proxy": "npm:1.17.15"
-    "@types/node": "npm:18.19.63"
+    "@types/node": "npm:22.8.6"
     "@types/react": "npm:18.3.12"
     "@types/supertest": "npm:6.0.2"
     "@types/yargs": "npm:17.0.33"
@@ -3445,21 +3445,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:*":
-  version: 20.11.17
-  resolution: "@types/node@npm:20.11.17"
+"@types/node@npm:*, @types/node@npm:22.8.6":
+  version: 22.8.6
+  resolution: "@types/node@npm:22.8.6"
   dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10c0/1f30dae80b416cbf38f133a619ffb0e9fb9e7bc58f82d900bf73816ae5781740c4640892bf5971dd9c12570d5d05241646be3e7540bb4e059322ec6af4e51e15
-  languageName: node
-  linkType: hard
-
-"@types/node@npm:18.19.63":
-  version: 18.19.63
-  resolution: "@types/node@npm:18.19.63"
-  dependencies:
-    undici-types: "npm:~5.26.4"
-  checksum: 10c0/cbb6a548f9aa1f9f391a67a76dc8e19733bc058b940ec9810b79156881c3a5888ba2934b79b94250b96179f8c6cba08bf5b1190019ff2dbf6be1a3451096214a
+    undici-types: "npm:~6.19.8"
+  checksum: 10c0/d3a11f2549234a91a4c5d0ff35ab4bdcb7ba34db4d3f1d189be39b8bd41c19aac98d117150a95a9c5a9d45b1014135477ea240b2b8317c86ae3d3cf1c3b3f8f4
   languageName: node
   linkType: hard
 
@@ -10825,10 +10816,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"undici-types@npm:~5.26.4":
-  version: 5.26.5
-  resolution: "undici-types@npm:5.26.5"
-  checksum: 10c0/bb673d7876c2d411b6eb6c560e0c571eef4a01c1c19925175d16e3a30c4c428181fb8d7ae802a261f283e4166a0ac435e2f505743aa9e45d893f9a3df017b501
+"undici-types@npm:~6.19.8":
+  version: 6.19.8
+  resolution: "undici-types@npm:6.19.8"
+  checksum: 10c0/078afa5990fba110f6824823ace86073b4638f1d5112ee26e790155f481f2a868cc3e0615505b6f4282bdf74a3d8caad715fd809e870c2bb0704e3ea6082f344
   languageName: node
   linkType: hard
 
