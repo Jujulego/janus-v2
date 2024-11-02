@@ -1,9 +1,9 @@
 import { fixupPluginRules } from '@eslint/compat';
 import eslint from '@eslint/js';
 import * as graphqlEslint from '@graphql-eslint/eslint-plugin';
+import vitest from '@vitest/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
-import vitest from 'eslint-plugin-vitest';
 import globals from 'globals';
 import tsEslint from 'typescript-eslint';
 
@@ -82,10 +82,7 @@ export default tsEslint.config(
     },
   },
   {
-    files: [
-      '**/*.test.js', '**/*.test.jsx', '**/*.test.ts', '**/*.test.tsx',
-      '**/*.test-d.ts', '**/*.test-d.tsx',
-    ],
+    files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.test-d.{ts,tsx}'],
     plugins: {
       vitest
     },
