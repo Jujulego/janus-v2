@@ -1,5 +1,5 @@
-import { HttpError } from 'http-errors';
-import { ServerResponse } from 'node:http';
+import type { HttpError } from 'http-errors';
+import type { ServerResponse } from 'node:http';
 
 /**
  * Send http error to response

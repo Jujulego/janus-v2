@@ -1,4 +1,5 @@
-import { StoredResource, waitFor$ } from 'kyrielle';
+import type { StoredResource} from 'kyrielle';
+import { waitFor$ } from 'kyrielle';
 import { useCallback, useSyncExternalStore } from 'react';
 
 export function useStore$<D>(res: StoredResource<D>): D {

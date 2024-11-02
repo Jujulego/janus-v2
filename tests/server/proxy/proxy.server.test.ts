@@ -1,14 +1,15 @@
-import { logger$, Logger } from '@kyrielle/logger';
+import type { Logger } from '@kyrielle/logger';
+import { logger$ } from '@kyrielle/logger';
 import { http, HttpResponse } from 'msw';
 import { setupServer } from 'msw/node';
-import { Server } from 'node:http';
+import type { Server } from 'node:http';
 import request from 'supertest';
 import { afterAll, beforeAll, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { createHttpServer, ignoreServer } from '@/tests/utils.js';
 import { ProxyServer } from '@/src/server/proxy/proxy.server.js';
 import { listEnabledOutputs, resolveRedirection } from '@/src/server/store/redirections/selectors.js';
-import { ServerStore } from '@/src/server/store/types.js';
+import type { ServerStore } from '@/src/server/store/types.js';
 import { serverStore } from '@/src/server/store/server.store.js';
 import { disableRedirectionOutput } from '@/src/server/store/redirections/actions.js';
 

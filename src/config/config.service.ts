@@ -1,13 +1,14 @@
 import { qjson } from '@jujulego/quick-tag';
 import { inject$ } from '@kyrielle/injector';
-import { Logger, withLabel } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { withLabel } from '@kyrielle/logger';
 import Ajv from 'ajv';
 import path from 'node:path';
 import process from 'node:process';
 
 import schema from './schema.json' assert { type: 'json' };
 import { ConfigExplorer } from './config-explorer.js';
-import { Config } from './type.js';
+import type { Config } from './type.js';
 
 // Types
 type AjvParser = Ajv.default;

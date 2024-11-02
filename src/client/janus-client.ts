@@ -1,10 +1,14 @@
 import type { TypedDocumentNode } from '@graphql-typed-document-node/core';
-import { Logger, logger$, withLabel } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { logger$, withLabel } from '@kyrielle/logger';
 import { type DocumentNode, type FormattedExecutionResult, Kind, type OperationDefinitionNode, print } from 'graphql';
-import { Client, createClient, ExecutionResult, RequestParams } from 'graphql-sse';
-import { AsyncDeferrable, type Observable, observable$, type Deferrable, deferrable$, var$ } from 'kyrielle';
+import type { Client, ExecutionResult, RequestParams } from 'graphql-sse';
+import { createClient } from 'graphql-sse';
+import type { AsyncDeferrable} from 'kyrielle';
+import { type Observable, observable$, type Deferrable, deferrable$, var$ } from 'kyrielle';
 
-import { health$, HealthPayload } from './health.ref.js';
+import type { HealthPayload } from './health.ref.js';
+import { health$ } from './health.ref.js';
 
 // Type
 export type JanusClientStatus = 'connecting' | 'connected' | 'disconnected';

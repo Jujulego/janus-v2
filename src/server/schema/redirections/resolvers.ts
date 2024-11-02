@@ -3,8 +3,8 @@ import { iterate$ } from 'kyrielle';
 import { selector$ } from '../../../utils/selector.js';
 import { disableRedirectionOutput, enableRedirectionOutput } from '../../store/redirections/actions.js';
 import { allRedirections, getRedirection } from '../../store/redirections/selectors.js';
-import { ServerStore } from '../../store/types.js';
-import { Resolvers } from '../schema.types.js';
+import type { ServerStore } from '../../store/types.js';
+import type { Resolvers } from '../schema.types.js';
 import { mapRedirection, mapRedirectionList } from './utils.js';
 
 // Resolvers

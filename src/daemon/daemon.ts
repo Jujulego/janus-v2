@@ -3,7 +3,8 @@ import { logger$, toStdout, withLabel, withTimestamp } from '@kyrielle/logger';
 import { flow$ } from 'kyrielle';
 import process from 'node:process';
 
-import { ConfigService, ConfigState } from '../config/config.service.js';
+import type { ConfigState } from '../config/config.service.js';
+import { ConfigService } from '../config/config.service.js';
 import { JanusServer } from '../server/janus-server.js';
 
 // Setup logger

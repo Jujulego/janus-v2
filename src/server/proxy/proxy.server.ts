@@ -1,13 +1,16 @@
 import { Flag } from '@jujulego/utils';
-import { Logger, withLabel } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { withLabel } from '@kyrielle/logger';
 import createHttpError from 'http-errors';
-import proxy, { ServerOptions } from 'http-proxy';
-import { IncomingMessage, ServerResponse } from 'node:http';
-import { Duplex, Readable } from 'node:stream';
+import type { ServerOptions } from 'http-proxy';
+import proxy from 'http-proxy';
+import type { IncomingMessage, ServerResponse } from 'node:http';
+import type { Duplex} from 'node:stream';
+import { Readable } from 'node:stream';
 
 import { disableRedirectionOutput } from '../store/redirections/actions.js';
 import { listEnabledOutputs, resolveRedirection } from '../store/redirections/selectors.js';
-import { ServerStore } from '../store/types.js';
+import type { ServerStore } from '../store/types.js';
 
 // Proxy server
 export class ProxyServer {

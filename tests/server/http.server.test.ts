@@ -1,4 +1,5 @@
-import { Logger, logger$ } from '@kyrielle/logger';
+import type { Logger} from '@kyrielle/logger';
+import { logger$ } from '@kyrielle/logger';
 import createHttpError from 'http-errors';
 import { ServerResponse } from 'node:http';
 import request from 'supertest';

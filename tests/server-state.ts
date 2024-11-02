@@ -1,4 +1,4 @@
-import { ServerState } from '@/src/server/store/types.js';
+import type { ServerState } from '@/src/server/store/types.js';
 
 export const serverState = {
   redirections: {
