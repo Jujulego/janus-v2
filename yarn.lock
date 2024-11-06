@@ -2329,7 +2329,7 @@ __metadata:
     kyrielle: "npm:^2.2.1"
     log-symbols: "npm:^7.0.0"
     memfs: "npm:4.14.0"
-    msw: "npm:2.6.0"
+    msw: "npm:2.6.1"
     nodemon: "npm:3.1.7"
     proper-lockfile: "npm:^4.1.2"
     react: "npm:^18.2.0"
@@ -8398,9 +8398,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"msw@npm:2.6.0":
-  version: 2.6.0
-  resolution: "msw@npm:2.6.0"
+"msw@npm:2.6.1":
+  version: 2.6.1
+  resolution: "msw@npm:2.6.1"
   dependencies:
     "@bundled-es-modules/cookie": "npm:^2.0.0"
     "@bundled-es-modules/statuses": "npm:^1.0.1"
@@ -8427,7 +8427,7 @@ __metadata:
       optional: true
   bin:
     msw: cli/index.js
-  checksum: 10c0/157c92d8faf1871acc1f4e965916ffcc8dd51aa7b1317b58749d8ef427e392db7549dc4ae3aac6b0295a6305f53a985c743272ec4445556b07439fefe5d77529
+  checksum: 10c0/9af09ea10b3ce01766cc12d9d75a036de145d532ec810f9448d3857a77c52f85c5e2611797683094f2d97a6913298a36a70a181ac99c5b4cd17a57abfdc598ed
   languageName: node
   linkType: hard
 
