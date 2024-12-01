@@ -90,7 +90,7 @@
     "@types/yargs": "17.0.33",
     "@typescript-eslint/utils": "8.16.0",
     "@vitest/coverage-v8": "2.1.6",
-    "@vitest/eslint-plugin": "1.1.12",
+    "@vitest/eslint-plugin": "1.1.13",
     "eslint": "9.16.0",
     "eslint-plugin-react": "7.37.2",
     "eslint-plugin-react-hooks": "5.0.0",
