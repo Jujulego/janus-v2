@@ -786,9 +786,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@codecov/bundler-plugin-core@npm:^1.4.0":
-  version: 1.4.0
-  resolution: "@codecov/bundler-plugin-core@npm:1.4.0"
+"@codecov/bundler-plugin-core@npm:^1.5.0":
+  version: 1.5.0
+  resolution: "@codecov/bundler-plugin-core@npm:1.5.0"
   dependencies:
     "@actions/core": "npm:^1.10.1"
     "@actions/github": "npm:^6.0.0"
@@ -796,19 +796,19 @@ __metadata:
     semver: "npm:^7.5.4"
     unplugin: "npm:^1.10.1"
     zod: "npm:^3.22.4"
-  checksum: 10c0/549d95708fdd5e10cb9c0c26bd82acce4ed19f64918b6efded42bc01e6b7b89ae7f93db0cae9e16f629443d7613a140f5e89f4562909a0a193c73772fd157af3
+  checksum: 10c0/8c14c3cf332824b63cf0c044b539477e70de1c7c9ec1ce6c3910e09441c5fe68ae82d6afd6ae5b83074fff87e9983c06a31bb1518b30a3c9e9caba69a7ef1c1a
   languageName: node
   linkType: hard
 
-"@codecov/rollup-plugin@npm:1.4.0":
-  version: 1.4.0
-  resolution: "@codecov/rollup-plugin@npm:1.4.0"
+"@codecov/rollup-plugin@npm:1.5.0":
+  version: 1.5.0
+  resolution: "@codecov/rollup-plugin@npm:1.5.0"
   dependencies:
-    "@codecov/bundler-plugin-core": "npm:^1.4.0"
+    "@codecov/bundler-plugin-core": "npm:^1.5.0"
     unplugin: "npm:^1.10.1"
   peerDependencies:
     rollup: 3.x || 4.x
-  checksum: 10c0/68f00510ae851dfa32002c9b74eb232544f132122750245ef721b419856790815dc7b020143767973f3900c6c52053e8ddfcf2fc63e7b86dbc5e4169d2cb456a
+  checksum: 10c0/6c83fa8dab8132dc3deb616bfa2d07b5cf79b81811e05174978b61abfc42b09dbd536470d38c185162c82b7d03d01c2fcd073b7323957e8197c42218d0e98aa2
   languageName: node
   linkType: hard
 
@@ -2273,7 +2273,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@jujulego/janus@workspace:."
   dependencies:
-    "@codecov/rollup-plugin": "npm:1.4.0"
+    "@codecov/rollup-plugin": "npm:1.5.0"
     "@eslint/compat": "npm:1.2.3"
     "@eslint/js": "npm:9.16.0"
     "@graphql-codegen/cli": "npm:5.0.3"
