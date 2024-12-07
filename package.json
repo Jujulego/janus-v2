@@ -110,7 +110,7 @@
     "vite-tsconfig-paths": "5.1.3",
     "vitest": "2.1.8"
   },
-  "packageManager": "yarn@4.5.2",
+  "packageManager": "yarn@4.5.3",
   "resolutions": {
     "@graphql-eslint/eslint-plugin/@graphql-tools/graphql-tag-pluck": "^8.3.0",
     "@graphql-tools/code-file-loader/@graphql-tools/graphql-tag-pluck": "^8.3.0"
