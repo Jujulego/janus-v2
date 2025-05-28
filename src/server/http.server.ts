@@ -5,7 +5,7 @@ import type { IncomingMessage, ServerResponse } from 'node:http';
 import { createServer } from 'node:http';
 import type { Duplex } from 'node:stream';
 
-import { version } from '../../package.json' assert { type: 'json' };
+import { version } from '../../package.json' with { type: 'json' };
 import type { Config } from '../config/type.js';
 import { renderHttpError, sendHttpError } from '../utils/http-error.js';
 import { YogaServer } from './yoga.server.js';

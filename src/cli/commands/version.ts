@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import process from 'node:process';
 import type { CommandModule } from 'yargs';
 
-import { version } from '../../../package.json' assert { type: 'json' };
+import { version } from '../../../package.json' with { type: 'json' };
 import { isTimeoutError } from '../../utils/error.js';
 import { CliLogger } from '../cli-tokens.js';
 

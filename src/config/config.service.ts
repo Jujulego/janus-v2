@@ -6,14 +6,11 @@ import Ajv from 'ajv';
 import path from 'node:path';
 import process from 'node:process';
 
-import schema from './schema.json' assert { type: 'json' };
+import schema from './schema.json' with { type: 'json' };
 import { ConfigExplorer } from './config-explorer.js';
 import type { Config } from './type.js';
 
 // Types
-type AjvParser = Ajv.default;
-type AjvParserType = new (opts: Ajv.Options) => AjvParser;
-
 export interface ConfigState {
   readonly filepath: string | undefined;
   readonly config: Config | undefined;
@@ -39,7 +36,7 @@ export class ConfigService {
   // Methods
   private _validateConfig(config: unknown): Config {
     // Validate config
-    const ajv = new (Ajv as unknown as AjvParserType)({
+    const ajv = new Ajv({
       allErrors: true,
       useDefaults: true,
       logger: this._logger.child(withLabel('ajv')),

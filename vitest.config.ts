@@ -24,7 +24,7 @@ export default defineConfig({
   },
   plugins: [
     tsconfigPaths(),
-    (graphql as unknown as typeof graphql.default)(),
+    graphql(),
     swc()
   ]
 });
