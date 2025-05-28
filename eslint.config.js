@@ -1,7 +1,7 @@
 // @ts-check
 import { fixupPluginRules } from '@eslint/compat';
 import js from '@eslint/js';
-import * as graphql from '@graphql-eslint/eslint-plugin';
+import graphql from '@graphql-eslint/eslint-plugin';
 import vitest from '@vitest/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -114,39 +114,33 @@ export default ts.config(
     files: ['**/*.{js,jsx,ts,tsx}'],
     ignores: ['*.config.js', 'src/main.ts'],
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphql),
+      '@graphql-eslint': graphql,
     },
-    processor: '@graphql-eslint/graphql'
+    processor: graphql.processor
   },
   {
     files: ['src/server/schema/schema.graphql'],
     languageOptions: {
-      parser: {
-        ...graphql,
-        meta: { name: '@graphql-eslint' }
-      }
+      parser: graphql.parser
     },
     plugins: {
       '@graphql-eslint': fixupPluginRules(graphql),
     },
     rules: {
-      ...graphql.flatConfigs['schema-recommended'].rules,
+      ...graphql.configs['flat/schema-recommended'].rules,
     }
   },
   {
     files: ['**/*.graphql'],
     ignores: ['src/server/schema/schema.graphql'],
     languageOptions: {
-      parser: {
-        ...graphql,
-        meta: { name: '@graphql-eslint' }
-      }
+      parser: graphql.parser
     },
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphql),
+      '@graphql-eslint': graphql,
     },
     rules: {
-      ...graphql.flatConfigs['operations-recommended'].rules,
+      ...graphql.configs['flat/operations-recommended'].rules,
     }
   }
 );
