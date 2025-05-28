@@ -2088,7 +2088,7 @@ __metadata:
     "@swc/helpers": "npm:^0.5.11"
     "@types/http-errors": "npm:2.0.4"
     "@types/http-proxy": "npm:1.17.16"
-    "@types/node": "npm:18.19.104"
+    "@types/node": "npm:18.19.105"
     "@types/proper-lockfile": "npm:4.1.4"
     "@types/react": "npm:18.3.18"
     "@types/supertest": "npm:6.0.3"
@@ -3495,12 +3495,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/node@npm:18.19.104":
-  version: 18.19.104
-  resolution: "@types/node@npm:18.19.104"
+"@types/node@npm:18.19.105":
+  version: 18.19.105
+  resolution: "@types/node@npm:18.19.105"
   dependencies:
     undici-types: "npm:~5.26.4"
-  checksum: 10c0/ae263ad6991c6f4504eb345dfa6e3bb7c32fb3c37b9a650ae4f95ac022180e238d8001b07129ee10e799601a3240c69c5e83c35e3b296cc128b60f1817eb8e35
+  checksum: 10c0/9ce50636b6c0540d29c67864aa86f893cdc54764c0a74dc6927e559bda7a6286aa9e59254c8c3fc6bc53bdf7eb89a3ac18cf998d1dd9b298cb2e56c3f1326182
   languageName: node
   linkType: hard
 
