@@ -5,7 +5,7 @@ import { ServerResponse } from 'node:http';
 import request from 'supertest';
 import { beforeEach, describe, expect, it, type Mock, vi } from 'vitest';
 
-import { version } from '../../package.json' assert { type: 'json' };
+import { version } from '../../package.json' with { type: 'json' };
 import { HttpServer } from '@/src/server/http.server.js';
 import { DEFAULT_CONFIG } from '@/tests/utils.js';
 import { serverStore } from '@/src/server/store/server.store.js';

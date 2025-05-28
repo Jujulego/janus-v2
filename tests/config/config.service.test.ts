@@ -8,15 +8,7 @@ import path from 'node:path';
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest';
 
 import { ConfigService } from '@/src/config/config.service.js';
-import schema from '@/src/config/schema.json' assert { type: 'json' };
-
-// Types
-type AjvParser = Ajv.default;
-
-interface AjvParserType {
-  new(opts: Ajv.Options): AjvParser,
-  prototype: AjvParser
-}
+import schema from '@/src/config/schema.json' with { type: 'json' };
 
 // Mocks
 vi.mock('ajv');
@@ -31,7 +23,7 @@ beforeEach(() => {
   configService = new ConfigService(logger);
   configExplorer = inject$(ConfigExplorer);
 
-  vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
+  vi.mocked(Ajv.prototype.compile)
     .mockReturnValue((() => true) as unknown as ValidateFunction);
 });
 
@@ -68,7 +60,7 @@ describe('ConfigService.searchConfig', () => {
     });
 
     expect(configExplorer.search).toHaveBeenCalled();
-    expect((Ajv as unknown as AjvParserType).prototype.compile).toHaveBeenCalledWith(schema);
+    expect(Ajv.prototype.compile).toHaveBeenCalledWith(schema);
   });
 
   it('should throw error if no config was loaded', async () => {
@@ -82,7 +74,7 @@ describe('ConfigService.searchConfig', () => {
       errors: [],
     }) as unknown as ValidateFunction;
 
-    vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
+    vi.mocked(Ajv.prototype.compile)
       .mockReturnValue(validator);
 
     await expect(configService.searchConfig()).rejects.toEqual(new Error('Error in config file'));
@@ -117,7 +109,7 @@ describe('ConfigService.loadConfig', () => {
     });
 
     expect(configExplorer.load).toHaveBeenCalledWith('/test/.janusrc.yml');
-    expect((Ajv as unknown as AjvParserType).prototype.compile).toHaveBeenCalledWith(schema);
+    expect(Ajv.prototype.compile).toHaveBeenCalledWith(schema);
   });
 
   it('should throw error if config file was not loaded', async () => {
@@ -132,7 +124,7 @@ describe('ConfigService.loadConfig', () => {
       errors: [],
     }) as unknown as ValidateFunction;
 
-    vi.mocked((Ajv as unknown as AjvParserType).prototype.compile)
+    vi.mocked(Ajv.prototype.compile)
       .mockReturnValue(validator);
 
     await expect(configService.loadConfig('/test/.janusrc.yml'))
