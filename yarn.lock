@@ -2475,7 +2475,7 @@ __metadata:
     "@swc/core": "npm:1.10.1"
     "@swc/helpers": "npm:^0.5.11"
     "@types/http-errors": "npm:2.0.4"
-    "@types/http-proxy": "npm:1.17.15"
+    "@types/http-proxy": "npm:1.17.16"
     "@types/node": "npm:18.19.104"
     "@types/proper-lockfile": "npm:4.1.4"
     "@types/react": "npm:18.3.18"
@@ -3877,12 +3877,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-proxy@npm:1.17.15":
-  version: 1.17.15
-  resolution: "@types/http-proxy@npm:1.17.15"
+"@types/http-proxy@npm:1.17.16":
+  version: 1.17.16
+  resolution: "@types/http-proxy@npm:1.17.16"
   dependencies:
     "@types/node": "npm:*"
-  checksum: 10c0/e2bf2fcdf23c88141b8d2c85ed5e5418b62ef78285884a2b5a717af55f4d9062136aa475489d10292093343df58fb81975f34bebd6b9df322288fd9821cbee07
+  checksum: 10c0/b71bbb7233b17604f1158bbbe33ebf8bb870179d2b6e15dc9483aa2a785ce0d19ffb6c2237225b558addf24211d1853c95e337ee496df058eb175b433418a941
   languageName: node
   linkType: hard
 
