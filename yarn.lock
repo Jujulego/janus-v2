@@ -8065,15 +8065,15 @@ __metadata:
   linkType: hard
 
 "kyrielle@npm:^2.2.1":
-  version: 2.2.1
-  resolution: "kyrielle@npm:2.2.1"
+  version: 2.2.2
+  resolution: "kyrielle@npm:2.2.2"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
   dependenciesMeta:
-    vitest@2.1.3:
+    vitest@2.1.9:
       unplugged: true
-  checksum: 10c0/7f6255d09194d13be9ab7416974d6d107192a6f4cc594dd400e71e3fbe8d900515de996b06522471a97d318759f94cc4b5a3b05a0c842f1cef187b3d13dcb4b7
+  checksum: 10c0/6d697cb214430ac3abf9b23a3b1450a0404a6df436b1bd2d53afc3cb1a03b523b77bc1acea588a84d812b6be8c3e30bce6e6bb6d5d5184eb76b833bd499e3637
   languageName: node
   linkType: hard
 
