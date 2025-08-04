@@ -2117,7 +2117,7 @@ __metadata:
     "@swc/cli": "npm:0.7.8"
     "@swc/core": "npm:1.13.3"
     "@swc/helpers": "npm:^0.5.11"
-    "@types/http-errors": "npm:2.0.4"
+    "@types/http-errors": "npm:2.0.5"
     "@types/http-proxy": "npm:1.17.16"
     "@types/node": "npm:22.17.0"
     "@types/proper-lockfile": "npm:4.1.4"
@@ -3365,10 +3365,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/http-errors@npm:2.0.4":
-  version: 2.0.4
-  resolution: "@types/http-errors@npm:2.0.4"
-  checksum: 10c0/494670a57ad4062fee6c575047ad5782506dd35a6b9ed3894cea65830a94367bd84ba302eb3dde331871f6d70ca287bfedb1b2cf658e6132cd2cbd427ab56836
+"@types/http-errors@npm:2.0.5":
+  version: 2.0.5
+  resolution: "@types/http-errors@npm:2.0.5"
+  checksum: 10c0/00f8140fbc504f47356512bd88e1910c2f07e04233d99c88c854b3600ce0523c8cd0ba7d1897667243282eb44c59abb9245959e2428b9de004f93937f52f7c15
   languageName: node
   linkType: hard
 
