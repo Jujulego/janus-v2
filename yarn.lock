@@ -2155,7 +2155,7 @@ __metadata:
     reflect-metadata: "npm:^0.2.0"
     rollup: "npm:4.41.1"
     shx: "npm:0.4.0"
-    supertest: "npm:7.1.1"
+    supertest: "npm:7.1.4"
     ts-node: "npm:10.9.2"
     typescript: "npm:5.8.3"
     typescript-eslint: "npm:8.33.0"
@@ -5010,10 +5010,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"component-emitter@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "component-emitter@npm:1.3.0"
-  checksum: 10c0/68774a0a3754fb6c0ba53c2e88886dfbd0c773931066abb1d7fd1b0c893b2a838d8f088ab4dca1f18cc1a4fc2e6932019eba3ded2d931b5ba2241ce40e93a24f
+"component-emitter@npm:^1.3.1":
+  version: 1.3.1
+  resolution: "component-emitter@npm:1.3.1"
+  checksum: 10c0/e4900b1b790b5e76b8d71b328da41482118c0f3523a516a41be598dc2785a07fd721098d9bf6e22d89b19f4fa4e1025160dc00317ea111633a3e4f75c2b86032
   languageName: node
   linkType: hard
 
@@ -5216,7 +5216,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"debug@npm:4, debug@npm:^4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:^4.4.0":
+"debug@npm:4, debug@npm:^4, debug@npm:^4.1.0, debug@npm:^4.1.1, debug@npm:^4.3.1, debug@npm:^4.3.2, debug@npm:^4.3.3, debug@npm:^4.3.4, debug@npm:^4.3.7, debug@npm:^4.4.0":
   version: 4.4.1
   resolution: "debug@npm:4.4.1"
   dependencies:
@@ -6403,14 +6403,16 @@ __metadata:
   languageName: node
   linkType: hard
 
-"form-data@npm:^4.0.0":
-  version: 4.0.0
-  resolution: "form-data@npm:4.0.0"
+"form-data@npm:^4.0.4":
+  version: 4.0.4
+  resolution: "form-data@npm:4.0.4"
   dependencies:
     asynckit: "npm:^0.4.0"
     combined-stream: "npm:^1.0.8"
+    es-set-tostringtag: "npm:^2.1.0"
+    hasown: "npm:^2.0.2"
     mime-types: "npm:^2.1.12"
-  checksum: 10c0/cb6f3ac49180be03ff07ba3ff125f9eba2ff0b277fb33c7fc47569fc5e616882c5b1c69b9904c4c4187e97dd0419dd03b134174756f296dec62041e6527e2c6e
+  checksum: 10c0/373525a9a034b9d57073e55eab79e501a714ffac02e7a9b01be1c820780652b16e4101819785e1e18f8d98f0aee866cc654d660a435c378e16a72f2e7cac9695
   languageName: node
   linkType: hard
 
@@ -9356,12 +9358,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"qs@npm:^6.11.0":
-  version: 6.11.2
-  resolution: "qs@npm:6.11.2"
+"qs@npm:^6.11.2":
+  version: 6.14.0
+  resolution: "qs@npm:6.14.0"
   dependencies:
-    side-channel: "npm:^1.0.4"
-  checksum: 10c0/4f95d4ff18ed480befcafa3390022817ffd3087fc65f146cceb40fc5edb9fa96cb31f648cae2fa96ca23818f0798bd63ad4ca369a0e22702fcd41379b3ab6571
+    side-channel: "npm:^1.1.0"
+  checksum: 10c0/8ea5d91bf34f440598ee389d4a7d95820e3b837d3fd9f433871f7924801becaa0cd3b3b4628d49a7784d06a8aea9bc4554d2b6d8d584e2d221dc06238a42909c
   languageName: node
   linkType: hard
 
@@ -10108,7 +10110,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"side-channel@npm:^1.0.4, side-channel@npm:^1.1.0":
+"side-channel@npm:^1.1.0":
   version: 1.1.0
   resolution: "side-channel@npm:1.1.0"
   dependencies:
@@ -10582,30 +10584,30 @@ __metadata:
   languageName: node
   linkType: hard
 
-"superagent@npm:^10.2.1":
-  version: 10.2.1
-  resolution: "superagent@npm:10.2.1"
+"superagent@npm:^10.2.3":
+  version: 10.2.3
+  resolution: "superagent@npm:10.2.3"
   dependencies:
-    component-emitter: "npm:^1.3.0"
+    component-emitter: "npm:^1.3.1"
     cookiejar: "npm:^2.1.4"
-    debug: "npm:^4.3.4"
+    debug: "npm:^4.3.7"
     fast-safe-stringify: "npm:^2.1.1"
-    form-data: "npm:^4.0.0"
+    form-data: "npm:^4.0.4"
     formidable: "npm:^3.5.4"
     methods: "npm:^1.1.2"
     mime: "npm:2.6.0"
-    qs: "npm:^6.11.0"
-  checksum: 10c0/526e3716f765873fc2f98a00fe0c8cbfe57976c501a30486307eefe54a6a5e379a0adf2ca8b29d40bc33a34d6baf7814972b0398b6002445ca3b4af07487f090
+    qs: "npm:^6.11.2"
+  checksum: 10c0/c45b40dcdac661f2dde197875912ffc97a28a7778705605640d89e02f1d98cf8f2a5230af81c254fd769acfe15bc61dcd85488283102c76999d94dea5a7376dd
   languageName: node
   linkType: hard
 
-"supertest@npm:7.1.1":
-  version: 7.1.1
-  resolution: "supertest@npm:7.1.1"
+"supertest@npm:7.1.4":
+  version: 7.1.4
+  resolution: "supertest@npm:7.1.4"
   dependencies:
     methods: "npm:^1.1.2"
-    superagent: "npm:^10.2.1"
-  checksum: 10c0/d5ca56e5a78b145bcfb44c0d9518bdcfce4657b62d0b4c37561c772a8a21b91a6a7c63832e73764484dfc32e4183e6e42028595d539028c05458e8d9867baf75
+    superagent: "npm:^10.2.3"
+  checksum: 10c0/b4cd2af4ac19f620b5969ca174a72653132a92b031d0bea3b24fdd222fadaa2cca24ea37f3be3d01739fe6f55f1c32e8edd27eaad92d908e4190dd1e532cdf47
   languageName: node
   linkType: hard
 
