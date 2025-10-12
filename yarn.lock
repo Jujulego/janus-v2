@@ -8084,15 +8084,12 @@ __metadata:
   linkType: hard
 
 "kyrielle@npm:^2.2.1":
-  version: 2.2.2
-  resolution: "kyrielle@npm:2.2.2"
+  version: 2.8.0
+  resolution: "kyrielle@npm:2.8.0"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
-  dependenciesMeta:
-    vitest@2.1.9:
-      unplugged: true
-  checksum: 10c0/6d697cb214430ac3abf9b23a3b1450a0404a6df436b1bd2d53afc3cb1a03b523b77bc1acea588a84d812b6be8c3e30bce6e6bb6d5d5184eb76b833bd499e3637
+  checksum: 10c0/7b40238e8744b81c47d6d6127fa79c95e5c82d94d01eeb6d53c4719a465492b7c7be8321f42ed95de9a2ffce194aba70f3ababde26b2dc9cbf612674b149ca0b
   languageName: node
   linkType: hard
 
