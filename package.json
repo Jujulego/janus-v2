@@ -97,7 +97,7 @@
     "globals": "16.4.0",
     "graphql-tag": "2.12.6",
     "ink-testing-library": "4.0.0",
-    "memfs": "4.36.0",
+    "memfs": "4.49.0",
     "msw": "2.10.4",
     "nodemon": "3.1.10",
     "rollup": "4.46.2",
