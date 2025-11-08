@@ -2,8 +2,8 @@
   "extends": [
     "config:recommended"
   ],
-  "baseBranches": [
-    "latest"
+  "baseBranchPatterns": [
+    "next"
   ],
   "labels": [
     "dependencies"
@@ -27,6 +27,19 @@
       "postUpdateOptions": [
         "yarnDedupeHighest"
       ]
+    },
+    {
+      "matchDepTypes": [
+        "dependencies"
+      ],
+      "matchUpdateTypes": [
+        "patch",
+        "pin",
+        "digest"
+      ],
+      "automerge": true,
+      "automergeType": "pr",
+      "platformAutomerge": true
     },
     {
       "matchDepTypes": [
