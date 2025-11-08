@@ -14,12 +14,14 @@ export default function DynamicClientStatus({ client }: DynamicClientStatusProps
 
   const [showStatus, setShowStatus] = useState(false);
   useLayoutEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setShowStatus(true);
 
     if (status === 'connected') {
       const timeout = setTimeout(() => startTransition(() => {
         setShowStatus(false);
       }), 2000);
+
       return () => clearTimeout(timeout);
     }
   }, [status]);

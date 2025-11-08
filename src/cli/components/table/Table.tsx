@@ -42,6 +42,7 @@ export default function Table({ children }: TableProps) {
   const count = Children.count(children);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/set-state-in-effect
     setMatrix((old) => old.slice(0, count));
   }, [count]);
 

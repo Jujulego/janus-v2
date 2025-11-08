@@ -1,25 +1,22 @@
-// @ts-check
-import { fixupPluginRules } from '@eslint/compat';
 import js from '@eslint/js';
 import graphql from '@graphql-eslint/eslint-plugin';
 import vitest from '@vitest/eslint-plugin';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
+import { defineConfig, globalIgnores } from 'eslint/config';
 import globals from 'globals';
 import ts from 'typescript-eslint';
 
 // Config
-export default ts.config(
-  {
-    ignores: [
-      '.pnp.*',
-      '.yarn',
-      'coverage',
-      'dist',
-      'src/gql/**',
-      'src/server/schema/schema.types.ts'
-    ]
-  },
+export default defineConfig(
+  globalIgnores([
+    '.pnp.*',
+    '.yarn',
+    'coverage',
+    'dist',
+    'src/gql/**',
+    'src/server/schema/schema.types.ts'
+  ]),
   {
     languageOptions: {
       globals: globals.node,
@@ -28,8 +25,9 @@ export default ts.config(
       reportUnusedDisableDirectives: 'error'
     }
   },
+  // Javascript/Typescript rules
   js.configs.recommended,
-  ...ts.configs.recommendedTypeChecked.map((cfg) => ({ ...cfg, files: ['**/*.{ts,tsx}'] })),
+  ts.configs.recommendedTypeChecked.map((cfg) => ({ ...cfg, files: ['**/*.{ts,tsx}'] })),
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     rules: {
@@ -61,22 +59,37 @@ export default ts.config(
       }]
     }
   },
+  // React rules
   {
     files: ['**/*.{jsx,tsx}'],
+    languageOptions: {
+      parserOptions: {
+        ecmaFeatures: {
+          jsx: true,
+        },
+        project: true,
+        tsconfigRootDir: import.meta.dirname,
+      },
+    },
     settings: {
       react: {
         version: 'detect',
       }
     },
-    plugins: {
-      react,
-      'react-hooks': reactHooks,
-    },
-    rules: {
-      ...react.configs.flat.recommended.rules,
-      ...react.configs.flat['jsx-runtime'].rules,
-    },
   },
+  {
+    files: ['**/*.{jsx,tsx}'],
+    ...react.configs.flat.recommended,
+  },
+  {
+    files: ['**/*.{jsx,tsx}'],
+    ...react.configs.flat['jsx-runtime'],
+  },
+  {
+    files: ['**/*.{jsx,tsx}'],
+    ...reactHooks.configs.flat.recommended,
+  },
+  // Vitest rules
   {
     files: ['**/*.test.{js,jsx,ts,tsx}', '**/*.test-d.{ts,tsx}'],
     plugins: {
@@ -94,7 +107,9 @@ export default ts.config(
   {
     files: ['**/*.test.{js,jsx,ts,tsx}'],
     rules: {
+      '@typescript-eslint/no-unsafe-assignment': ['off'],
       '@typescript-eslint/no-unused-vars': ['off'],
+      '@typescript-eslint/prefer-promise-reject-errors': ['off'],
       '@typescript-eslint/require-await': ['off'],
       '@typescript-eslint/unbound-method': ['off'],
       'vitest/expect-expect': ['error', {
@@ -110,13 +125,14 @@ export default ts.config(
       }],
     }
   },
+  // GraphQL rules
   {
     files: ['**/*.{js,jsx,ts,tsx}'],
     ignores: ['*.config.js', 'src/main.ts'],
     plugins: {
       '@graphql-eslint': graphql,
     },
-    processor: graphql.processor
+    processor: (graphql as unknown as { default: typeof graphql }).default.processor
   },
   {
     files: ['src/server/schema/schema.graphql'],
@@ -124,7 +140,7 @@ export default ts.config(
       parser: graphql.parser
     },
     plugins: {
-      '@graphql-eslint': fixupPluginRules(graphql),
+      '@graphql-eslint': graphql,
     },
     rules: {
       ...graphql.configs['flat/schema-recommended'].rules,
