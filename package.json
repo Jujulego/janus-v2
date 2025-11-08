@@ -1,11 +1,11 @@
 {
   "name": "@jujulego/janus",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "license": "MIT",
   "author": "Julien Capellari <julien.capellari@gmail.com>",
   "repository": {
     "type": "git",
-    "url": "https://github.com/jujulego/janus-v2"
+    "url": "https://github.com/Jujulego/janus-v2"
   },
   "publishConfig": {
     "access": "public"
