@@ -8106,12 +8106,12 @@ __metadata:
   linkType: hard
 
 "kyrielle@npm:^2.2.1":
-  version: 2.8.0
-  resolution: "kyrielle@npm:2.8.0"
+  version: 2.8.3
+  resolution: "kyrielle@npm:2.8.3"
   dependencies:
     "@repeaterjs/repeater": "npm:^3.0.5"
     "@swc/helpers": "npm:^0.5.3"
-  checksum: 10c0/7b40238e8744b81c47d6d6127fa79c95e5c82d94d01eeb6d53c4719a465492b7c7be8321f42ed95de9a2ffce194aba70f3ababde26b2dc9cbf612674b149ca0b
+  checksum: 10c0/4711c93d11db11dcca7018fbc58cdd58ef5d041b4ac3baae5a52cf4f7da5639cd8814bd98620ad2efe6ffda1305857a9fd4585b8dc545d384f6147777da7c38a
   languageName: node
   linkType: hard
 
