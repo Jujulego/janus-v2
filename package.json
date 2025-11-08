@@ -82,7 +82,7 @@
     "@swc/cli": "0.7.8",
     "@swc/core": "1.13.5",
     "@types/http-errors": "2.0.5",
-    "@types/http-proxy": "1.17.16",
+    "@types/http-proxy": "1.17.17",
     "@types/node": "22.18.11",
     "@types/proper-lockfile": "4.1.4",
     "@types/react": "18.3.26",
