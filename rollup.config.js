@@ -27,9 +27,11 @@ export default defineConfig({
     json(),
     swc(),
     codecovRollupPlugin({
-      enableBundleAnalysis: !!process.env.CODECOV_TOKEN,
+      enableBundleAnalysis: !!process.env.CI,
       bundleName: 'janus-v2',
-      uploadToken: process.env.CODECOV_TOKEN,
+      oidc: {
+        useGitHubOIDC: true,
+      },
     })
   ],
   external: [
