@@ -146,6 +146,10 @@ jobs:
     environment: npm
     needs: [ lint, build, tests ]
 
+    permissions:
+      contents: read
+      id-token: write
+
     steps:
       - name: Checkout repository
         uses: actions/checkout@v5.0.0
