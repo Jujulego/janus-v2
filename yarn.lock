@@ -2390,7 +2390,7 @@ __metadata:
     "@graphql-eslint/eslint-plugin": "npm:4.4.0"
     "@graphql-tools/merge": "npm:^9.0.3"
     "@graphql-typed-document-node/core": "npm:3.2.0"
-    "@jujulego/jill": "npm:3.0.0"
+    "@jujulego/jill": "npm:3.0.2"
     "@jujulego/quick-tag": "npm:^1.0.1"
     "@jujulego/utils": "npm:^3.0.4"
     "@jujulego/vite-plugin-swc": "npm:1.2.1"
@@ -2457,15 +2457,16 @@ __metadata:
   languageName: unknown
   linkType: soft
 
-"@jujulego/jill@npm:3.0.0":
-  version: 3.0.0
-  resolution: "@jujulego/jill@npm:3.0.0"
+"@jujulego/jill@npm:3.0.2":
+  version: 3.0.2
+  resolution: "@jujulego/jill@npm:3.0.2"
   dependencies:
     "@sentry/node": "npm:^10.0.0"
     "@swc/helpers": "npm:^0.5.0"
+    yargs: "npm:^18.0.0"
   bin:
     jill: bin/jill.js
-  checksum: 10c0/111b166f8f451f8d2c5c7ffb242a7251dff8a01b4bf8a5e5f771ca8957a5dbd91bd72b9828c61c81ee578103c2e8bc8006c4c4e22801e386b04ebfc93a3f45e5
+  checksum: 10c0/1e4d5db8e3218c813f534dd5ec50e86fdc44285fee9b5abad9d2de04f898032adcaacac86593bd666e10d83a39b5559823a5e3511c8489eb5b207f17b00c62b4
   languageName: node
   linkType: hard
 
