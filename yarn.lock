@@ -2470,15 +2470,12 @@ __metadata:
   linkType: hard
 
 "@jujulego/quick-tag@npm:^1.0.1":
-  version: 1.0.3
-  resolution: "@jujulego/quick-tag@npm:1.0.3"
+  version: 1.1.0
+  resolution: "@jujulego/quick-tag@npm:1.1.0"
   dependencies:
     "@swc/helpers": "npm:^0.5.3"
-    safe-stable-stringify: "npm:^2.4.3"
-  dependenciesMeta:
-    vitest@1.4.0:
-      unplugged: true
-  checksum: 10c0/9300898423719286bb0ca71e1c7f17bee4d7d932dfa29e91fe8a433213a137c625d545ddb21148a73b54e3534445882d9bbea49e201de0d0ecf027b69aa3c5ff
+    safe-stringify: "npm:^1.2.0"
+  checksum: 10c0/e2d2b11572e1d05f3a0bd5d102bbbb2b802432b083866c9542b0d99717b91f1be7be5c832548c3426cf3330fc711a8922fe868839d5197e145eda40908420b15
   languageName: node
   linkType: hard
 
@@ -10496,10 +10493,10 @@ __metadata:
   languageName: node
   linkType: hard
 
-"safe-stable-stringify@npm:^2.4.3":
-  version: 2.4.3
-  resolution: "safe-stable-stringify@npm:2.4.3"
-  checksum: 10c0/81dede06b8f2ae794efd868b1e281e3c9000e57b39801c6c162267eb9efda17bd7a9eafa7379e1f1cacd528d4ced7c80d7460ad26f62ada7c9e01dec61b2e768
+"safe-stringify@npm:^1.2.0":
+  version: 1.2.0
+  resolution: "safe-stringify@npm:1.2.0"
+  checksum: 10c0/88ce4d2c4834afa9e7b4a2e375feca3351dd49dfe2c98f98e941f17fe232af023b0dbf0997248f8609ad918b382254913d19bcbbe0c590f809f2d48afae10c2f
   languageName: node
   linkType: hard
 
