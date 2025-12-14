@@ -83,7 +83,7 @@
     "@swc/core": "1.15.4",
     "@types/http-errors": "2.0.5",
     "@types/http-proxy": "1.17.17",
-    "@types/node": "24.10.3",
+    "@types/node": "24.10.4",
     "@types/proper-lockfile": "4.1.4",
     "@types/react": "18.3.27",
     "@types/supertest": "6.0.3",
