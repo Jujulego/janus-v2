@@ -79,7 +79,7 @@
     "@rollup/plugin-graphql": "2.0.5",
     "@rollup/plugin-json": "6.1.0",
     "@rollup/plugin-node-resolve": "16.0.3",
-    "@swc/cli": "0.7.9",
+    "@swc/cli": "0.7.10",
     "@swc/core": "1.15.8",
     "@types/http-errors": "2.0.5",
     "@types/http-proxy": "1.17.17",
