@@ -2457,7 +2457,7 @@ __metadata:
     jiti: "npm:2.6.1"
     kyrielle: "npm:^2.2.1"
     log-symbols: "npm:^7.0.0"
-    memfs: "npm:4.53.0"
+    memfs: "npm:4.54.0"
     msw: "npm:2.12.7"
     nodemon: "npm:3.1.11"
     proper-lockfile: "npm:^4.1.2"
@@ -8974,9 +8974,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"memfs@npm:4.53.0":
-  version: 4.53.0
-  resolution: "memfs@npm:4.53.0"
+"memfs@npm:4.54.0":
+  version: 4.54.0
+  resolution: "memfs@npm:4.54.0"
   dependencies:
     "@jsonjoy.com/json-pack": "npm:^1.11.0"
     "@jsonjoy.com/util": "npm:^1.9.0"
@@ -8984,7 +8984,7 @@ __metadata:
     thingies: "npm:^2.5.0"
     tree-dump: "npm:^1.0.3"
     tslib: "npm:^2.0.0"
-  checksum: 10c0/5684e1fdecd06e13b6ca5d9eb468d14d5e9565f6d97a031ed6176636e3b67ef6c4d89dfa5fdd53d7a030d76eccb8a7d9f9403d9782acf91fe0cd35b99dfe9004
+  checksum: 10c0/b428f99ca89cf552d1c420a9097bb35f68ca23add954be2a1cbb779906e8c974ec8a958a5b0772491c15bf7cc2b51368323361dd3d3137e8afc08aacc0b77d1d
   languageName: node
   linkType: hard
 
