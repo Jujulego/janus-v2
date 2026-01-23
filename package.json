@@ -98,7 +98,7 @@
     "graphql-tag": "2.12.6",
     "ink-testing-library": "4.0.0",
     "jiti": "2.6.1",
-    "memfs": "4.54.0",
+    "memfs": "4.56.10",
     "msw": "2.12.7",
     "nodemon": "3.1.11",
     "rollup": "4.55.2",
