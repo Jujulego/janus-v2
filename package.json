@@ -75,7 +75,7 @@
     "@jujulego/jill": "3.0.7",
     "@jujulego/vite-plugin-swc": "1.2.1",
     "@microsoft/eslint-formatter-sarif": "3.1.0",
-    "@parcel/watcher": "2.5.4",
+    "@parcel/watcher": "2.5.6",
     "@rollup/plugin-graphql": "2.0.5",
     "@rollup/plugin-json": "6.1.0",
     "@rollup/plugin-node-resolve": "16.0.3",
