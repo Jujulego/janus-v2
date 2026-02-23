@@ -65,7 +65,7 @@
   "devDependencies": {
     "@codecov/rollup-plugin": "1.9.1",
     "@eslint/compat": "1.4.1",
-    "@eslint/js": "9.39.2",
+    "@eslint/js": "9.39.3",
     "@graphql-codegen/cli": "6.1.1",
     "@graphql-codegen/client-preset": "5.2.2",
     "@graphql-codegen/typescript": "5.0.7",
@@ -91,7 +91,7 @@
     "@typescript-eslint/utils": "8.53.1",
     "@vitest/coverage-v8": "3.2.4",
     "@vitest/eslint-plugin": "1.6.9",
-    "eslint": "9.39.2",
+    "eslint": "9.39.3",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "7.0.1",
     "globals": "17.3.0",
