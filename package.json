@@ -80,7 +80,7 @@
     "@rollup/plugin-json": "6.1.0",
     "@rollup/plugin-node-resolve": "16.0.3",
     "@swc/cli": "0.8.0",
-    "@swc/core": "1.15.13",
+    "@swc/core": "1.15.17",
     "@types/http-errors": "2.0.5",
     "@types/http-proxy": "1.17.17",
     "@types/node": "24.10.14",
